@@ -3,7 +3,9 @@
 
 foundation: Технологии 1С
 url: https://oxotka.github.io/Landscape1C
-base_path: /Landscape1C/
+# base_path нужен только для публикации на GitHub Pages (проектный сайт под /Landscape1C/).
+# Локально он ломает маршрутизацию (404), поэтому добавим его на этапе деплоя.
+# base_path: /Landscape1C/
 
 colors:
   color1: "rgba(28, 78, 140, 1)"
