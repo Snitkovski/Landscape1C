@@ -1,0 +1,6 @@
+# Результат сборки landscape2
+/build/
+/_site/
+
+# OS
+.DS_Store

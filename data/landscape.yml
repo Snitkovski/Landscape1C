@@ -1,0 +1,111 @@
+# Данные ландшафта технологий 1С.
+# Черновик: несколько примеров элементов для запуска MVP.
+# Полное наполнение — миграцией из README исходного каталога (см. docs/TZ.md, п.6).
+#
+# ВНИМАНИЕ: поля logo ссылаются на файлы в каталоге logos/, которых пока нет —
+# перед реальной сборкой добавьте SVG-логотипы или уберите элементы без логотипа.
+
+landscape:
+  - category: Разработка
+    subcategories:
+      - subcategory: Языки программирования
+        items:
+          - item:
+              name: Встроенный язык 1С:Предприятия (BSL)
+              description: Основной язык разработчика 1С для описания алгоритмов прикладной задачи.
+              homepage_url: https://v8.1c.ru/platforma/
+              logo: bsl.svg
+              extra:
+                maturity: базовое
+                roles: [разработчик]
+                origin: отечественное
+                license_type: проприетарное
+                why: Основной инструмент программиста 1С — большая часть работы делается на нём.
+          - item:
+              name: OneScript
+              description: Кроссплатформенный движок исполнения скриптов на языке 1С вне платформы.
+              homepage_url: https://oscript.io
+              repo_url: https://github.com/EvilBeaver/OneScript
+              logo: onescript.svg
+              extra:
+                maturity: продвинутое
+                roles: [разработчик, devops]
+                origin: отечественное
+                license_type: open-source
+                why: Автоматизация и CI без запуска полноценной платформы 1С.
+
+      - subcategory: IDE
+        items:
+          - item:
+              name: 1C:Enterprise Development Tools (EDT)
+              description: Среда разработки 1С на базе Eclipse с современными инструментами.
+              homepage_url: https://edt.1c.ru
+              logo: edt.svg
+              extra:
+                maturity: продвинутое
+                roles: [разработчик]
+                origin: отечественное
+                license_type: проприетарное
+          - item:
+              name: Конфигуратор
+              description: Классическая среда разработки, входящая в состав платформы.
+              homepage_url: https://v8.1c.ru/platforma/
+              logo: configurator.svg
+              extra:
+                maturity: базовое
+                roles: [разработчик]
+                origin: отечественное
+                license_type: проприетарное
+
+  - category: Системы хранения версий
+    subcategories:
+      - subcategory: Версионирование
+        items:
+          - item:
+              name: git
+              description: Распределённая система контроля версий — индустриальный стандарт.
+              homepage_url: https://git-scm.com
+              logo: git.svg
+              extra:
+                maturity: базовое
+                roles: [разработчик, devops]
+                origin: зарубежное
+                license_type: open-source
+          - item:
+              name: Хранилище конфигурации
+              description: Штатный механизм платформы для совместной разработки.
+              homepage_url: https://its.1c.ru
+              logo: storage.svg
+              extra:
+                maturity: устаревает
+                roles: [разработчик]
+                origin: отечественное
+                license_type: проприетарное
+                why: Постепенно вытесняется связкой git + выгрузка конфигурации в файлы.
+
+  - category: Повышение качества
+    subcategories:
+      - subcategory: Тестирование
+        items:
+          - item:
+              name: Vanessa-Automation
+              description: Инструмент BDD-тестирования сценариев 1С на русскоязычном Gherkin.
+              homepage_url: https://github.com/Pr-Mex/vanessa-automation
+              repo_url: https://github.com/Pr-Mex/vanessa-automation
+              logo: vanessa.svg
+              extra:
+                maturity: продвинутое
+                roles: [тестировщик, разработчик]
+                origin: отечественное
+                license_type: open-source
+          - item:
+              name: YAxUnit
+              description: Фреймворк модульного тестирования кода 1С.
+              homepage_url: https://github.com/bia-technologies/yaxunit
+              repo_url: https://github.com/bia-technologies/yaxunit
+              logo: yaxunit.svg
+              extra:
+                maturity: продвинутое
+                roles: [тестировщик, разработчик]
+                origin: отечественное
+                license_type: open-source

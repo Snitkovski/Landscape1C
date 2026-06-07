@@ -1,0 +1,23 @@
+# Настройки сайта landscape2 (черновик MVP).
+# Полная схема: https://github.com/cncf/landscape2/blob/main/docs/config/settings.yml
+
+foundation: Технологии 1С
+# url: https://oxotka.github.io/StackTechnologies1C-Landscape   # заполнить после настройки Pages
+
+# Доменные фильтры 1С реализуются через extra-поля элементов (maturity, roles, origin,
+# license_type). Ниже — отправная точка; конкретный синтаксис групп/фильтров сверять
+# с актуальной документацией landscape2 при настройке MVP.
+
+categories:
+  - name: Разработка
+    subcategories:
+      - Языки программирования
+      - IDE
+      - Плагины и библиотеки
+  - name: Системы хранения версий
+    subcategories:
+      - Версионирование
+  - name: Повышение качества
+    subcategories:
+      - Тестирование
+      - Статический анализ
