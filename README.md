@@ -6,33 +6,37 @@
 
 ## Статус
 
-🚧 Ранняя стадия. Сейчас в репозитории — техническое задание и стартовая структура под движок [landscape2](https://github.com/cncf/landscape2). См. **[docs/TZ.md](docs/TZ.md)**.
+🚧 Прототип. Реализуется **свой статический фронтенд** (папка `app/`). Подробности и история решений — в **[docs/TZ.md](docs/TZ.md)**.
 
 ## Подход
 
-Не пишем движок с нуля — переиспользуем открытый генератор **landscape2** (тот же, что у [CNCF Landscape](https://landscape.cncf.io)): на входе YAML-данные, на выходе статический интерактивный сайт. Деплой на GitHub Pages.
+Сначала проверяли готовый движок [landscape2](https://github.com/cncf/landscape2) (как у [CNCF Landscape](https://landscape.cncf.io)), но он не поддерживает две кастомные оси фильтрации (роль + контекст) и русскоязычный UI. Поэтому делаем свой статический фронтенд: HTML/CSS/JS без сборки, данные в `app/data.js`. Артефакты landscape2 (`data/`, `logos/`, `settings.yml`) оставлены как документированный результат разведки.
 
 ## Структура репозитория
 
-- `docs/TZ.md` — техническое задание
-- `data/landscape.yml` — данные ландшафта (категории, подкатегории, элементы)
-- `data/settings.yml` — настройки сайта (фильтры, оформление)
-- `logos/` — логотипы технологий (SVG)
-- `.github/workflows/deploy.yml` — сборка и публикация (черновик)
+- `app/` — **фронтенд (Вариант B):** `index.html`, `styles.css`, `app.js`, `data.js`, `logos/`
+- `docs/TZ.md` — техническое задание и история решений
+- `.github/workflows/deploy.yml` — публикация `app/` на GitHub Pages
+- `data/`, `logos/`, `settings.yml` — артефакты разведки landscape2 (не используются в деплое)
 
-## Локальная сборка
+## Локальный предпросмотр
 
-Требуется установленный [landscape2](https://github.com/cncf/landscape2#installation).
+Сборка не нужна — это статика. Запусти любой статический сервер из папки `app/`:
 
 ```bash
-landscape2 build \
-  --data-file data/landscape.yml \
-  --settings-file data/settings.yml \
-  --logos-path logos \
-  --output-dir build
+cd app && python3 -m http.server 8123
+# открой http://127.0.0.1:8123/
 ```
 
-Результат — статический сайт в `build/`.
+## Публикация на GitHub Pages
+
+Подготовлено, но **не активно** (репозиторий приватный). Чтобы включить:
+
+1. Сделать репозиторий публичным.
+2. Settings → Pages → Source: **GitHub Actions**.
+3. Запустить workflow «Deploy to GitHub Pages» вручную, либо раскомментировать триггер `push` в `.github/workflows/deploy.yml` для автодеплоя.
+
+Адрес проектного сайта: `https://oxotka.github.io/Landscape1C/` (пути в `app/` относительные — работает без доп. настроек). Свой домен подключается позже через `CNAME` без переделок.
 
 ## Источники данных
 
