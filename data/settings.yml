@@ -1,23 +1,27 @@
-# Настройки сайта landscape2 (черновик MVP).
+# Настройки сайта landscape2 — MVP.
 # Полная схема: https://github.com/cncf/landscape2/blob/main/docs/config/settings.yml
 
 foundation: Технологии 1С
-# url: https://oxotka.github.io/StackTechnologies1C-Landscape   # заполнить после настройки Pages
+url: https://oxotka.github.io/Landscape1C
+base_path: /Landscape1C/
 
-# Доменные фильтры 1С реализуются через extra-поля элементов (maturity, roles, origin,
-# license_type). Ниже — отправная точка; конкретный синтаксис групп/фильтров сверять
-# с актуальной документацией landscape2 при настройке MVP.
+colors:
+  color1: "rgba(28, 78, 140, 1)"
+  color2: "rgba(54, 116, 181, 1)"
+  color3: "rgba(240, 160, 40, 1)"
+  color4: "rgba(120, 140, 165, 1)"
+  color5: "rgba(64, 160, 100, 1)"
+  color6: "rgba(77, 77, 77, 1)"
+  color7: "rgba(240, 243, 247, 1)"
 
+# Порядок категорий и подкатегорий (должны совпадать с landscape.yml).
 categories:
-  - name: Разработка
+  - name: IDE
     subcategories:
-      - Языки программирования
-      - IDE
-      - Плагины и библиотеки
+      - Среды разработки
+  - name: CI/CD
+    subcategories:
+      - Сборка и доставка
   - name: Системы хранения версий
     subcategories:
       - Версионирование
-  - name: Повышение качества
-    subcategories:
-      - Тестирование
-      - Статический анализ
