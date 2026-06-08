@@ -372,46 +372,81 @@ a { color: var(--ink); text-underline-offset: 3px; }
 /* ── Модалка карточки ────────────────────── */
 .detail {
   border: 1.5px solid var(--ink); border-radius: 0; padding: 0;
-  max-width: 560px; width: calc(100% - 32px);
+  max-width: 720px; width: calc(100% - 32px);
   background: var(--card); color: var(--ink);
 }
 .detail::backdrop { background: rgba(26, 26, 22, .4); }
-.detail__body { position: relative; padding: 30px clamp(20px, 4vw, 34px); }
-.detail__head { display: flex; align-items: center; gap: 14px; margin: 0 0 18px; }
-.detail__logo {
-  width: 48px; height: 48px; flex: none;
-  display: grid; place-items: center;
+.detail__body { position: relative; }
+
+/* Шапка */
+.detail__head {
+  display: flex; align-items: center; gap: 16px;
+  padding: 26px clamp(20px, 4vw, 32px) 20px;
+  border-bottom: 1px solid var(--line);
 }
+.detail__logo { width: 52px; height: 52px; flex: none; display: grid; place-items: center; }
 .detail__logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .detail__logo--ph {
-  width: 48px; height: 48px; border-radius: 2px; border: 1px solid var(--line);
-  font-size: 14px; font-weight: 700; color: #bbb;
+  width: 52px; height: 52px; border-radius: 2px; border: 1px solid var(--line);
+  font-size: 15px; font-weight: 700; color: #bbb;
 }
-.detail h2 {
+.detail__headtext { min-width: 0; }
+.detail__title {
   font-family: var(--display); font-weight: 900; font-size: 22px;
   text-transform: uppercase; letter-spacing: -.5px;
-  margin: 0 0 3px; line-height: 1.1; overflow-wrap: break-word;
+  margin: 0 0 4px; line-height: 1.05; overflow-wrap: break-word;
 }
 .detail__sub {
-  font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 1px; margin: 0;
+  font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px;
 }
-.detail__meta { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 18px; }
-.detail__row { margin: 0 0 16px; }
+.detail__badges { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Одна колонка */
+.detail__content { padding: 22px clamp(20px, 4vw, 32px); }
+
+.detail__row { margin: 0 0 18px; }
+.detail__row:last-child { margin-bottom: 0; }
 .detail__row h3 {
-  font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin: 0 0 6px;
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin: 0 0 7px;
 }
 .detail__row p { margin: 0; font-size: 14px; line-height: 1.55; }
 .detail__list { margin: 0; padding-left: 18px; }
-.detail__list li { margin-bottom: 5px; font-size: 14px; }
-.detail__links { display: flex; gap: 16px; font-size: 13px; }
+.detail__list li { margin-bottom: 6px; font-size: 13.5px; }
+.detail__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Связанные карточки — квадратные кнопки с лого */
+.detail__rels { display: flex; flex-wrap: wrap; gap: 7px; }
+.detail__rel {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--body); font-size: 12px; font-weight: 600;
+  padding: 6px 11px; border: 1px solid var(--card-line); border-radius: 0;
+  background: #f0ede8; color: var(--ink); cursor: pointer;
+  transition: background .12s ease, color .12s ease, border-color .12s ease;
+}
+.detail__rel-logo { width: 16px; height: 16px; flex: none; display: grid; place-items: center; }
+.detail__rel-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.detail__rel-logo--ph { font-size: 8px; font-weight: 700; color: #bbb; }
+.detail__rel::after { content: "↗"; opacity: .5; }
+.detail__rel:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+:root[data-theme="dark"] .detail__rel { background: #2e2520; border-color: var(--edge); }
+
+/* Подвал — ссылки */
+.detail__foot {
+  display: flex; gap: 18px; flex-wrap: wrap;
+  padding: 18px clamp(20px, 4vw, 32px);
+  border-top: 1px solid var(--line); font-size: 13px;
+}
+
+/* Крестик */
 .detail__close {
   position: absolute; top: 14px; right: 16px;
-  font-size: 18px; line-height: 1; cursor: pointer;
+  font-size: 18px; line-height: 1; cursor: pointer; z-index: 1;
   background: none; border: none; color: #bbb;       /* вторичный — не основной элемент */
   transition: color .12s ease;
 }
 .detail__close:hover { color: var(--ink); }
 .detail__close:focus { outline: none; }              /* не подсвечивать при авто-фокусе на открытии */
+
 
 /* ── Подвал ──────────────────────────────── */
 .foot {

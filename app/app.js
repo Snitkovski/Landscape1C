@@ -13,6 +13,7 @@
   const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
   // Точки переноса в длинных именах без пробелов: «1С:Предприятие.Элемент».
   const wbr = s => s.replace(/([.:/])/g, "$1<wbr>");
+  const byName = n => D.items.find(x => x.name === n);
 
   // ── Рендер фильтров ───────────────────────
   function renderFilters() {
@@ -207,7 +208,7 @@
     // Блок раздела рендерится только если есть содержимое
     const row = (title, inner) => inner ? `<div class="detail__row"><h3>${title}</h3>${inner}</div>` : "";
 
-    const metaInner = [
+    const badges = [
       i.maturity ? `<span class="badge badge--mat" data-mat="${i.maturity}" style="--mat:var(--m-${matKey(i.maturity)})">${i.maturity}</span>` : "",
       tags([i.origin, i.license])
     ].join("");
@@ -216,24 +217,41 @@
           i.start.map(s => `<li><a href="${s.url}" target="_blank" rel="noopener">${s.label} ↗</a></li>`).join("")
         }</ul>`
       : "";
+    // Связанные карточки — квадратные кнопки с лого, открывают свою модалку
+    const relLinks = names => (names || []).map(n => {
+      const t = byName(n);
+      if (!t) return "";
+      const logo = t.logo
+        ? `<img class="detail__rel-logo" src="logos/${t.logo}" alt="">`
+        : `<span class="detail__rel-logo detail__rel-logo--ph">1С</span>`;
+      return `<button type="button" class="detail__rel" data-i="${D.items.indexOf(t)}">${logo}<span>${t.name}</span></button>`;
+    }).filter(Boolean).join("");
+    const analogsInner = relLinks(i.analogs);
+    const dependsInner = relLinks(i.depends);
 
     dlg.querySelector(".detail__body").innerHTML = `
       <button class="detail__close" aria-label="Закрыть">✕</button>
-      <div class="detail__head">
+      <header class="detail__head">
         ${logoMarkup(i, "detail__logo")}
-        <div>
-          <h2>${wbr(i.name)}</h2>
+        <div class="detail__headtext">
+          <h2 class="detail__title">${wbr(i.name)}</h2>
           <p class="detail__sub">${i.subcategory ? `${i.category} · ${i.subcategory}` : i.category}</p>
+          ${badges.trim() ? `<div class="detail__badges">${badges}</div>` : ""}
         </div>
+      </header>
+      <div class="detail__content">
+        ${row("Зачем нужно", i.why ? `<p>${i.why}</p>` : "")}
+        ${row("С чего начать", startInner)}
+        ${row("Аналоги", analogsInner ? `<div class="detail__rels">${analogsInner}</div>` : "")}
+        ${row("Зависимости", dependsInner ? `<div class="detail__rels">${dependsInner}</div>` : "")}
+        ${row("Роль", i.roles && i.roles.length ? `<div class="detail__tags">${tags(i.roles)}</div>` : "")}
+        ${row("Контекст", i.contexts && i.contexts.length ? `<div class="detail__tags">${tags(i.contexts)}</div>` : "")}
       </div>
-      ${metaInner.trim() ? `<div class="detail__meta">${metaInner}</div>` : ""}
-      ${row("Зачем нужно", i.why ? `<p>${i.why}</p>` : "")}
-      ${row("С чего начать", startInner)}
-      ${row("Роль", i.roles && i.roles.length ? `<div class="detail__meta">${tags(i.roles)}</div>` : "")}
-      ${row("Контекст работы", i.contexts && i.contexts.length ? `<div class="detail__meta">${tags(i.contexts)}</div>` : "")}
-      ${row("Подробнее", links ? `<div class="detail__links">${links}</div>` : "")}`;
+      ${links ? `<footer class="detail__foot">${links}</footer>` : ""}`;
     dlg.querySelector(".detail__close").addEventListener("click", () => dlg.close());
-    dlg.showModal();
+    dlg.querySelectorAll(".detail__rel").forEach(btn =>
+      btn.addEventListener("click", () => openDetail(D.items[+btn.dataset.i])));
+    if (!dlg.open) dlg.showModal();
   }
   function matKey(m) {
     return { "базовое": "base", "продвинутое": "adv", "нишевое": "niche", "устаревает": "legacy" }[m];
@@ -249,6 +267,8 @@
   $("#detail").addEventListener("click", e => { if (e.target.id === "detail") e.target.close(); });
 
   // ── Старт ─────────────────────────────────
+  const numEl = $(".masthead__num");
+  if (numEl) numEl.textContent = D.items.length;   // живое число инструментов
   renderFilters();
   renderKits();
   readUrl();
