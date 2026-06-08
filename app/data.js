@@ -296,7 +296,7 @@ window.LANDSCAPE = {
           "url": "https://курсы-по-1с.рф/articles/приемы-работы-в-конфигураторе/"
         }
       ],
-      "maturity": "устаревает",
+      "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
@@ -1198,7 +1198,7 @@ window.LANDSCAPE = {
       "homepage": "https://bitbucket.org/",
       "repo": null,
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
       "roles": [
@@ -1522,7 +1522,7 @@ window.LANDSCAPE = {
           "url": "https://t.me/testspro1c"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
@@ -1560,7 +1560,7 @@ window.LANDSCAPE = {
           "url": "https://bia-technologies.github.io/yaxunit/docs/getting-started/first-test"
         }
       ],
-      "maturity": "нишевое",
+      "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
@@ -1692,7 +1692,7 @@ window.LANDSCAPE = {
           "url": "https://t.me/s/SPPR1c"
         }
       ],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
@@ -1997,7 +1997,7 @@ window.LANDSCAPE = {
           "url": "https://guides.hexlet.io/vagrant/"
         }
       ],
-      "maturity": "нишевое",
+      "maturity": "устаревает",
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
@@ -2390,7 +2390,7 @@ window.LANDSCAPE = {
           "url": "https://its.1c.ru/db/metod8dev/content/5756/hdoc"
         }
       ],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
       "roles": [
@@ -2579,7 +2579,7 @@ window.LANDSCAPE = {
           "url": "https://github.com/botokash/swagger"
         }
       ],
-      "maturity": "",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
@@ -2606,7 +2606,7 @@ window.LANDSCAPE = {
           "url": "https://losst.pro/kak-polzovatsya-ngrok"
         }
       ],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
       "roles": [
@@ -2675,7 +2675,7 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/1091360/"
         }
       ],
-      "maturity": "нишевое",
+      "maturity": "устаревает",
       "origin": "зарубежное",
       "license": "проприетарное",
       "roles": [
@@ -2884,7 +2884,7 @@ window.LANDSCAPE = {
       "homepage": "https://habr.com/ru/companies/1c/articles/493008/",
       "repo": null,
       "start": [],
-      "maturity": "нишевое",
+      "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
@@ -2950,7 +2950,7 @@ window.LANDSCAPE = {
       "homepage": "https://www.atlassian.com/software/confluence",
       "repo": null,
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "устаревает",
       "origin": "зарубежное",
       "license": "проприетарное",
       "roles": [
@@ -3552,7 +3552,7 @@ window.LANDSCAPE = {
       "homepage": "https://www.atlassian.com/software/jira",
       "repo": null,
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "устаревает",
       "origin": "зарубежное",
       "license": "проприетарное",
       "roles": [
@@ -3581,7 +3581,7 @@ window.LANDSCAPE = {
       "homepage": "https://trello.com/",
       "repo": null,
       "start": [],
-      "maturity": "базовое",
+      "maturity": "устаревает",
       "origin": "зарубежное",
       "license": "проприетарное",
       "roles": [
@@ -3639,7 +3639,7 @@ window.LANDSCAPE = {
       "homepage": "https://www.jetbrains.com/youtrack/",
       "repo": null,
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "устаревает",
       "origin": "зарубежное",
       "license": "проприетарное",
       "roles": [
