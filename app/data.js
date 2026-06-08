@@ -7,11 +7,12 @@ window.LANDSCAPE = {
     "Прототипирование",
     "Повышение качества",
     "CI/CD",
+    "Администрирование и инфраструктура",
     "Интеграции",
     "Мониторинг",
-    "Анализ логов",
+    "Производительность и нагрузочное тестирование",
+    "BI-системы",
     "Задачи",
-    "Прочие технологии и полезные ссылки",
     "Сертификация"
   ],
   "axes": {
@@ -170,7 +171,7 @@ window.LANDSCAPE = {
       "name": "1С:Предприятие.Элемент",
       "category": "Разработка",
       "subcategory": "Языки программирования",
-      "logo": "1c.png",
+      "logo": "element.svg",
       "description": "Технология 1С для веб- и консьюмерских приложений.",
       "why": "Используется для создания веб-приложений для пользователей (консьюмерские приложения)",
       "homepage": null,
@@ -205,7 +206,7 @@ window.LANDSCAPE = {
       "name": "1C:Предприятие.Элемент Скрипт. (бывший 1С:Исполнитель)",
       "category": "Разработка",
       "subcategory": "Языки программирования",
-      "logo": "1c.png",
+      "logo": "ispolnitel.png",
       "description": "Среда выполнения скриптов на языке 1С:Элемент (бывший 1С:Исполнитель).",
       "why": "Нужен для автоматизации рутинных задач и администрирования. Имеет преимущества перед традиционными командными интерпретаторами. Условный python или OneScript но с синтаксисом Элемента.",
       "homepage": null,
@@ -236,7 +237,7 @@ window.LANDSCAPE = {
       "name": "OneScript",
       "category": "Разработка",
       "subcategory": "Языки программирования",
-      "logo": null,
+      "logo": "onescript.png",
       "description": "Кроссплатформенный движок языка 1С для скриптов без установки платформы.",
       "why": "Позволяет решать задачи автоматизации рутинных операций. Низкий порог входа, так как используется тот же синтаксис языка.",
       "homepage": "https://oscript.io/",
@@ -417,7 +418,7 @@ window.LANDSCAPE = {
       "name": "TurboConf",
       "category": "Разработка",
       "subcategory": "Плагины и библиотеки",
-      "logo": null,
+      "logo": "turboconf.png",
       "description": "Расширение Конфигуратора, автоматизирующее рутину разработки.",
       "why": "Улучшает работу в Конфигураторе 1С.",
       "homepage": "https://turboconf.ru",
@@ -450,7 +451,7 @@ window.LANDSCAPE = {
       "name": "Подсистема \"Инструменты разработчика\"",
       "category": "Разработка",
       "subcategory": "Плагины и библиотеки",
-      "logo": null,
+      "logo": "devtools.png",
       "description": "Набор внутренних инструментов разработчика: консоли запросов, кода, СКД.",
       "why": "Набор инструментов разработчика, который помогает в ежедневной работе.",
       "homepage": "http://devtool1c.ucoz.ru",
@@ -483,7 +484,7 @@ window.LANDSCAPE = {
       "name": "Подсистема \"Универсальные инструменты 1С для управляемых форм\"",
       "category": "Разработка",
       "subcategory": "Плагины и библиотеки",
-      "logo": null,
+      "logo": "universal-tools.png",
       "description": "Набор инструментов разработчика для управляемых форм.",
       "why": "Набор инструментов разработчика, который помогает в ежедневной работе (используется для управляемых форм)",
       "homepage": null,
@@ -516,7 +517,7 @@ window.LANDSCAPE = {
       "name": "Infostart Toolkit",
       "category": "Разработка",
       "subcategory": "Плагины и библиотеки",
-      "logo": null,
+      "logo": "infostart-toolkit.png",
       "description": "Набор инструментов для анализа и обработки данных в базе 1С.",
       "why": "Набор инструментов разработчика, который помогает в ежедневной работе.",
       "homepage": "https://infostart.ru/public/1254364/",
@@ -620,7 +621,7 @@ window.LANDSCAPE = {
       "name": "Плагин для VSCode «1C: Platform Tools»",
       "category": "Разработка",
       "subcategory": "Плагины и библиотеки",
-      "logo": null,
+      "logo": "vscode.svg",
       "description": "Расширение VSCode с инструментами разработки на платформе 1С.",
       "why": "Позволяет работать с около-1Сными проектами прямо в VSCode: запуск команд `vanessa-runner`, навигация по проектам, дерево метаданных, ER-диаграммы, отладка 1С и интеграция с AI-агентами через MCP — в одной панели.",
       "homepage": "https://github.com/yellow-hammer/vscode-1c-platform-tools",
@@ -687,7 +688,7 @@ window.LANDSCAPE = {
       "name": "Библиотеки для OneScript",
       "category": "Разработка",
       "subcategory": "Плагины и библиотеки",
-      "logo": null,
+      "logo": "oscript-library.png",
       "description": "Готовые библиотеки сообщества для экосистемы OneScript.",
       "why": "",
       "homepage": "https://github.com/oscript-library",
@@ -725,7 +726,7 @@ window.LANDSCAPE = {
       "name": "Autumn (ОСень)",
       "category": "Разработка",
       "subcategory": "Плагины и библиотеки",
-      "logo": null,
+      "logo": "autumn.png",
       "description": "Фреймворк компонентных приложений для OneScript (DI/IoC).",
       "why": "Когда нужно быстро собрать приложение на OneScript, которое можно легко расширять и поддерживать. Особенно полезен, если проект состоит из множества взаимосвязанных модулей — Autumn сам организует их взаимодействие и избавит от лишней «склейки» кода.",
       "homepage": "https://autumn-library.github.io/getting-started/about-autumn",
@@ -743,6 +744,87 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "depends": [
+        "OneScript"
+      ]
+    },
+    {
+      "name": "BSL Language Server",
+      "category": "Разработка",
+      "subcategory": "Плагины и библиотеки",
+      "logo": null,
+      "description": "Языковой сервер для кода 1С (BSL): диагностики, автодополнение, форматирование.",
+      "why": "Подсвечивает ошибки и нарушения стандартов прямо в VSCode и 1С:EDT; лежит в основе многих проверок качества кода 1С.",
+      "homepage": "https://1c-syntax.github.io/bsl-language-server/",
+      "repo": "https://github.com/1c-syntax/bsl-language-server",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты",
+        "фриланс"
+      ],
+      "depends": [
+        "Visual Studio Code (VSCode)",
+        "1C:Enterprise Development Tools (EDT)"
+      ]
+    },
+    {
+      "name": "gitsync",
+      "category": "Разработка",
+      "subcategory": "Плагины и библиотеки",
+      "logo": null,
+      "description": "Выгрузка истории Хранилища конфигурации 1С в git (и Mercurial).",
+      "why": "Переносит коммиты из Хранилища 1С в git с сохранением авторов и комментариев — мост к нормальному версионированию.",
+      "homepage": "https://github.com/oscript-library/gitsync",
+      "repo": "https://github.com/oscript-library/gitsync",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "depends": [
+        "Хранилище",
+        "git",
+        "OneScript"
+      ]
+    },
+    {
+      "name": "Precommit1C",
+      "category": "Разработка",
+      "subcategory": "Плагины и библиотеки",
+      "logo": null,
+      "description": "Разбор выгрузки 1С на текстовые файлы при коммите для удобного код-ревью.",
+      "why": "Раскладывает epf/erf и конфигурацию на файлы перед коммитом, чтобы видеть изменения в git.",
+      "homepage": "https://github.com/xDrivenDevelopment/precommit1c",
+      "repo": "https://github.com/xDrivenDevelopment/precommit1c",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "depends": [
+        "git",
         "OneScript"
       ]
     },
@@ -815,7 +897,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Файловая СУБД",
-        "Microsoft SQLServer"
+        "Microsoft SQLServer",
+        "Postgres Pro"
       ]
     },
     {
@@ -854,6 +937,83 @@ window.LANDSCAPE = {
       "analogs": [
         "Файловая СУБД",
         "PostgreSQL"
+      ]
+    },
+    {
+      "name": "Postgres Pro",
+      "category": "Системы управления базами данных (СУБД)",
+      "subcategory": null,
+      "logo": "postgresql.svg",
+      "description": "Российская СУБД на базе PostgreSQL с поддержкой и сертификацией для 1С.",
+      "why": "Отечественная замена PostgreSQL/MS SQL для продуктива 1С: входит в реестр ПО, оптимизирована под нагрузку 1С.",
+      "homepage": "https://postgrespro.ru/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "PostgreSQL",
+        "Microsoft SQLServer"
+      ]
+    },
+    {
+      "name": "Oracle Database",
+      "category": "Системы управления базами данных (СУБД)",
+      "subcategory": null,
+      "logo": "oracle.svg",
+      "description": "Промышленная СУБД Oracle, поддерживаемая платформой 1С:Предприятие.",
+      "why": "Используется как СУБД для крупных внедрений 1С, где исторически стоял Oracle.",
+      "homepage": "https://www.oracle.com/database/",
+      "repo": null,
+      "start": [],
+      "maturity": "устаревает",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ],
+      "analogs": [
+        "Microsoft SQLServer",
+        "PostgreSQL"
+      ]
+    },
+    {
+      "name": "IBM Db2",
+      "category": "Системы управления базами данных (СУБД)",
+      "subcategory": null,
+      "logo": "ibm-db2.svg",
+      "description": "СУБД IBM Db2, входящая в список поддерживаемых платформой 1С.",
+      "why": "Один из поддерживаемых 1С серверов БД; встречается в редких корпоративных ландшафтах.",
+      "homepage": "https://www.ibm.com/products/db2",
+      "repo": null,
+      "start": [],
+      "maturity": "устаревает",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ],
+      "analogs": [
+        "Oracle Database",
+        "Microsoft SQLServer"
       ]
     },
     {
@@ -937,10 +1097,218 @@ window.LANDSCAPE = {
       ]
     },
     {
-      "name": "MAKER-STUDIO",
+      "name": "GitLab",
+      "category": "Системы хранения версий",
+      "subcategory": null,
+      "logo": "gitlab.svg",
+      "description": "Платформа хостинга git-репозиториев с код-ревью и встроенным CI/CD.",
+      "why": "Хранит репозитории проектов 1С, ведёт merge request'ы и запускает пайплайны Gitlab CI.",
+      "homepage": "https://about.gitlab.com/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "GitHub",
+        "GitVerse",
+        "Bitbucket"
+      ],
+      "depends": [
+        "git"
+      ]
+    },
+    {
+      "name": "GitHub",
+      "category": "Системы хранения версий",
+      "subcategory": null,
+      "logo": "github.svg",
+      "description": "Крупнейший хостинг git-репозиториев с pull request'ами и Actions.",
+      "why": "Здесь живёт большинство open-source проектов экосистемы 1С (OneScript, Vanessa, BSL LS).",
+      "homepage": "https://github.com/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты",
+        "фриланс"
+      ],
+      "analogs": [
+        "GitLab",
+        "GitVerse",
+        "Bitbucket"
+      ],
+      "depends": [
+        "git"
+      ]
+    },
+    {
+      "name": "GitVerse",
+      "category": "Системы хранения версий",
+      "subcategory": null,
+      "logo": null,
+      "description": "Отечественная платформа хостинга git-репозиториев от SberTech.",
+      "why": "Российская замена GitHub/GitLab для команд 1С: репозитории, код-ревью, CI и ИИ-ассистент GigaCode.",
+      "homepage": "https://gitverse.ru/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "GitLab",
+        "GitHub",
+        "Bitbucket"
+      ],
+      "depends": [
+        "git"
+      ]
+    },
+    {
+      "name": "Bitbucket",
+      "category": "Системы хранения версий",
+      "subcategory": null,
+      "logo": "bitbucket.svg",
+      "description": "Хостинг git-репозиториев от Atlassian с pull request'ами и интеграцией с Jira.",
+      "why": "Хранит репозитории проектов 1С и связывает коммиты с задачами Jira; есть встроенный CI (Bitbucket Pipelines).",
+      "homepage": "https://bitbucket.org/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "GitLab",
+        "GitHub",
+        "GitVerse"
+      ],
+      "depends": [
+        "git"
+      ]
+    },
+    {
+      "name": "Figma",
+      "category": "Прототипирование",
+      "subcategory": null,
+      "logo": "figma.svg",
+      "description": "Облачный редактор интерфейсов и кликабельных прототипов с совместной работой.",
+      "why": "Проектирование макетов форм и пользовательских сценариев до реализации в 1С; аналитики и разработчики работают над прототипом совместно.",
+      "homepage": "https://www.figma.com/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "аналитик",
+        "разработчик"
+      ],
+      "contexts": [
+        "продукты",
+        "инхаус",
+        "проекты",
+        "фриланс"
+      ],
+      "analogs": [
+        "MAKER-STUDIO",
+        "Mockplus",
+        "Balsamiq"
+      ]
+    },
+    {
+      "name": "Mockplus",
       "category": "Прототипирование",
       "subcategory": null,
       "logo": null,
+      "description": "Инструмент быстрого прототипирования интерфейсов и кликабельных макетов.",
+      "why": "Сборка прототипов экранов из готовых компонентов для согласования с заказчиком до разработки в 1С.",
+      "homepage": "https://www.mockplus.com/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "продукты",
+        "инхаус",
+        "проекты"
+      ],
+      "analogs": [
+        "Figma",
+        "Balsamiq",
+        "MAKER-STUDIO"
+      ]
+    },
+    {
+      "name": "Balsamiq",
+      "category": "Прототипирование",
+      "subcategory": null,
+      "logo": null,
+      "description": "Создание схематичных wireframe-макетов (mockups) интерфейсов.",
+      "why": "Быстрые черновые наброски форм и экранов для обсуждения логики интерфейса будущего решения 1С.",
+      "homepage": "https://balsamiq.com/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "продукты",
+        "инхаус",
+        "проекты"
+      ],
+      "analogs": [
+        "Figma",
+        "Mockplus",
+        "MAKER-STUDIO"
+      ]
+    },
+    {
+      "name": "MAKER-STUDIO",
+      "category": "Прототипирование",
+      "subcategory": null,
+      "logo": "maker.webp",
       "description": "Онлайн-сервис прототипирования форм и моделирования бизнес-процессов.",
       "why": "Позволяет быстро создавать формы, организовать между ними связи и сделать кликабельный прототип. Проект можно дополнить наглядными диаграммами и текстовым описанием с поддержкой ролевых моделей GPT. В пару кликов генерирует готовое ТЗ из выбранных элементов.",
       "homepage": "https://maker-studio.pro/",
@@ -964,14 +1332,17 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Накидка"
+        "Накидка",
+        "Figma",
+        "Mockplus",
+        "Balsamiq"
       ]
     },
     {
       "name": "Накидка",
       "category": "Прототипирование",
       "subcategory": null,
-      "logo": null,
+      "logo": "nakidka.png",
       "description": "Быстрое создание форм 1С по текстовому описанию (Markdown-синтаксис).",
       "why": "📌 Разработчикам Создание форм, соответствующих стандартам 1С и рекомендациям сообщества. Можно взять готовый код формы у аналитика. Автоматическая генерация кода программного создания реквизитов 📌 Аналитикам Быстрое создание прототипов с помощью Искусственного интеллекта. Привычный синтаксис Markdown. Наглядная визуализация будущего интерфейса на ранних этапах для согласования с заказчиком.",
       "homepage": "https://crimsongoldteam.github.io/md_design/#/",
@@ -1067,7 +1438,7 @@ window.LANDSCAPE = {
       "name": "Vanessa-Automation",
       "category": "Повышение качества",
       "subcategory": "Автоматизированное тестирование",
-      "logo": null,
+      "logo": "vanessa.png",
       "description": "BDD-тестирование решений 1С на языке Gherkin.",
       "why": "Описывает и запускает сценарии на Gherkin, готовит инструкции и документацию.",
       "homepage": "https://pr-mex.github.io/vanessa-automation/",
@@ -1107,7 +1478,7 @@ window.LANDSCAPE = {
       "name": "Vanessa-ADD",
       "category": "Повышение качества",
       "subcategory": "Автоматизированное тестирование",
-      "logo": null,
+      "logo": "vanessa.png",
       "description": "Набор инструментов автотестирования (предшественник Vanessa-Automation).",
       "why": "Ранний набор инструментов сценарного и поведенческого тестирования 1С.",
       "homepage": null,
@@ -1170,7 +1541,7 @@ window.LANDSCAPE = {
       "name": "YAxUnit",
       "category": "Повышение качества",
       "subcategory": "Автоматизированное тестирование",
-      "logo": null,
+      "logo": "yaxunit.svg",
       "description": "Фреймворк юнит-тестирования решений на 1С:Предприятие 8.3.",
       "why": "Когда начинаете использовать тестирование, даже если не следуете TDD, то всё равно начнете задаваться вопросом: \"а как я это буду тестировать?\". И как следствие, будете стараться следовать принципам SOLID, чтобы уменьшить зависимости, упростить методы, что облегчит тестирование. И это приводит к повышению качества кода. Также использую тесты, вы получаете возможность быстро проверить, что изменения кода, не ломают его. На YAxUnit возможно писать юнит, интеграционные и сценарные тесты.",
       "homepage": "https://bia-technologies.github.io/yaxunit/",
@@ -1307,8 +1678,8 @@ window.LANDSCAPE = {
     },
     {
       "name": "1С:СППР",
-      "category": "Повышение качества",
-      "subcategory": "Прочее",
+      "category": "Задачи",
+      "subcategory": null,
       "logo": "1c.png",
       "description": "Проектирование прикладных решений и ведение проектной документации.",
       "why": "",
@@ -1406,7 +1777,10 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Gitlab CI"
+        "Gitlab CI",
+        "GitHub Actions",
+        "Travis CI",
+        "TeamCity"
       ]
     },
     {
@@ -1445,10 +1819,156 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Jenkins"
+        "Jenkins",
+        "GitHub Actions",
+        "Travis CI",
+        "TeamCity"
       ],
       "depends": [
         "git"
+      ]
+    },
+    {
+      "name": "GitHub Actions",
+      "category": "CI/CD",
+      "subcategory": null,
+      "logo": "github-actions.svg",
+      "description": "Встроенная в GitHub система CI/CD на основе workflow-файлов.",
+      "why": "Запускает сборку, тесты и проверки кода 1С при каждом пуше в репозиторий на GitHub.",
+      "homepage": "https://github.com/features/actions",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "администратор",
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Jenkins",
+        "Gitlab CI",
+        "Travis CI",
+        "TeamCity"
+      ],
+      "depends": [
+        "git"
+      ]
+    },
+    {
+      "name": "Travis CI",
+      "category": "CI/CD",
+      "subcategory": null,
+      "logo": "travis-ci.svg",
+      "description": "Облачный сервис непрерывной интеграции с конфигом в .travis.yml.",
+      "why": "Исторически популярный облачный CI; для 1С-проектов сейчас вытесняется GitHub Actions и GitLab CI.",
+      "homepage": "https://www.travis-ci.com/",
+      "repo": null,
+      "start": [],
+      "maturity": "устаревает",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Jenkins",
+        "Gitlab CI",
+        "GitHub Actions",
+        "TeamCity"
+      ],
+      "depends": [
+        "git"
+      ]
+    },
+    {
+      "name": "vanessa-runner",
+      "category": "CI/CD",
+      "subcategory": null,
+      "logo": null,
+      "description": "OneScript-оркестратор сборки, тестов и проверок 1С в CI.",
+      "why": "Стандартный инструмент CI для 1С: создаёт и обновляет базы, запускает Vanessa-Automation, замеряет покрытие и выгружает конфигурацию — одной командой в пайплайне.",
+      "homepage": "https://github.com/vanessa-opensource/vanessa-runner",
+      "repo": "https://github.com/vanessa-opensource/vanessa-runner",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "roles": [
+        "администратор",
+        "тестировщик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "depends": [
+        "OneScript",
+        "Vanessa-Automation"
+      ]
+    },
+    {
+      "name": "TeamCity",
+      "category": "CI/CD",
+      "subcategory": null,
+      "logo": "teamcity.svg",
+      "description": "CI/CD-сервер JetBrains для сборок и автотестов.",
+      "why": "Альтернатива Jenkins для пайплайнов 1С с удобным UI и готовыми раннерами.",
+      "homepage": "https://www.jetbrains.com/teamcity/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "администратор",
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Jenkins",
+        "Gitlab CI",
+        "GitHub Actions",
+        "Travis CI"
+      ]
+    },
+    {
+      "name": "Ansible",
+      "category": "CI/CD",
+      "subcategory": null,
+      "logo": "ansible.svg",
+      "description": "Система управления конфигурацией и автоматического развёртывания.",
+      "why": "Автоматизирует развёртывание серверов 1С, СУБД и окружений без ручной настройки.",
+      "homepage": "https://www.ansible.com/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Vagrant"
       ]
     },
     {
@@ -1540,7 +2060,7 @@ window.LANDSCAPE = {
     },
     {
       "name": "Allure",
-      "category": "CI/CD",
+      "category": "Мониторинг",
       "subcategory": null,
       "logo": "allure.png",
       "description": "Наглядные отчёты о результатах автотестов.",
@@ -1672,7 +2192,7 @@ window.LANDSCAPE = {
       "name": "Открытый пакет интеграций",
       "category": "Интеграции",
       "subcategory": null,
-      "logo": null,
+      "logo": "openintegration.svg",
       "description": "Набор модулей для интеграции 1С с популярными API.",
       "why": "Предназначено для легкой интеграции с существующими сервисами. Поставляется в виде расширения, проекта EDT, файлов конфигурации или других вариантов. После установки в конфигурации можем легко вызывать методы API сервисов не разрабатывая их самостоятельно",
       "homepage": "https://openintegrations.dev",
@@ -1831,7 +2351,7 @@ window.LANDSCAPE = {
       "name": "Объектное хранилище S3",
       "category": "Интеграции",
       "subcategory": null,
-      "logo": null,
+      "logo": "s3.png",
       "description": "Стандарт API объектных хранилищ для выноса файлов из базы 1С.",
       "why": "Позволяет выносить присоединенные файлы и вложения из базы 1С во внешнее масштабируемое и отказоустойчивое хранилище. Это разгружает базу, упрощает резервное копирование и дает единую точку хранения файлов для разных систем.",
       "homepage": null,
@@ -1866,7 +2386,7 @@ window.LANDSCAPE = {
       "name": "Fiddler",
       "category": "Интеграции",
       "subcategory": "Отладка веб-сервисов и интеграций",
-      "logo": null,
+      "logo": "fiddler.png",
       "description": "Прокси-сниффер HTTP/HTTPS-трафика для отладки интеграций.",
       "why": "",
       "homepage": "https://www.telerik.com/download/fiddler",
@@ -1885,6 +2405,112 @@ window.LANDSCAPE = {
         "тестировщик"
       ],
       "contexts": []
+    },
+    {
+      "name": "Bruno",
+      "category": "Интеграции",
+      "subcategory": "Отладка веб-сервисов и интеграций",
+      "logo": "bruno.svg",
+      "description": "Локальный (offline-first) клиент API: запросы и секреты хранятся в файлах, а не в облаке.",
+      "why": "Тестирование HTTP/REST-сервисов 1С с хранением коллекций в git рядом с кодом — без облачного аккаунта и синхронизации.",
+      "homepage": "https://www.usebruno.com/",
+      "repo": "https://github.com/usebruno/bruno",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "разработчик",
+        "тестировщик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Postman",
+        "Insomnia"
+      ]
+    },
+    {
+      "name": "Insomnia",
+      "category": "Интеграции",
+      "subcategory": "Отладка веб-сервисов и интеграций",
+      "logo": "insomnia.svg",
+      "description": "Десктоп-клиент для проектирования и тестирования REST/GraphQL/gRPC API.",
+      "why": "Альтернатива Postman для ручного тестирования веб-сервисов 1С с удобным минималистичным UI.",
+      "homepage": "https://insomnia.rest/",
+      "repo": "https://github.com/Kong/insomnia",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "разработчик",
+        "тестировщик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Postman",
+        "Bruno"
+      ]
+    },
+    {
+      "name": "SoapUI",
+      "category": "Интеграции",
+      "subcategory": "Отладка веб-сервисов и интеграций",
+      "logo": null,
+      "description": "Инструмент функционального и нагрузочного тестирования веб-сервисов (SOAP/REST).",
+      "why": "Тестирование SOAP- и REST-сервисов 1С, включая сложные сценарии, проверки ответов и нагрузочные прогоны.",
+      "homepage": "https://www.soapui.org/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "тестировщик",
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Postman"
+      ]
+    },
+    {
+      "name": "Karate",
+      "category": "Интеграции",
+      "subcategory": "Отладка веб-сервисов и интеграций",
+      "logo": null,
+      "description": "Фреймворк автотестов API с человекочитаемым синтаксисом на базе Gherkin.",
+      "why": "Автоматизация тестирования HTTP-сервисов 1С декларативными сценариями — без написания кода на Java.",
+      "homepage": "https://github.com/karatelabs/karate",
+      "repo": "https://github.com/karatelabs/karate",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "тестировщик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Postman",
+        "SoapUI"
+      ]
     },
     {
       "name": "Postman",
@@ -1916,7 +2542,13 @@ window.LANDSCAPE = {
         "разработчик",
         "тестировщик"
       ],
-      "contexts": []
+      "contexts": [],
+      "analogs": [
+        "Bruno",
+        "Insomnia",
+        "SoapUI",
+        "Karate"
+      ]
     },
     {
       "name": "OpenAPI UI (ex. Swagger)",
@@ -1991,8 +2623,8 @@ window.LANDSCAPE = {
     },
     {
       "name": "1С:Аналитика",
-      "category": "Прочие технологии и полезные ссылки",
-      "subcategory": "BI-системы",
+      "category": "BI-системы",
+      "subcategory": null,
       "logo": "1c.png",
       "description": "BI-система 1С для работы с аналитическими данными.",
       "why": "Простой и удобный интерфейс для бизнес-пользователей, который не требует специальных навыков или опыта работы с 1С",
@@ -2028,9 +2660,9 @@ window.LANDSCAPE = {
     },
     {
       "name": "Microsoft Power BI",
-      "category": "Прочие технологии и полезные ссылки",
-      "subcategory": "BI-системы",
-      "logo": null,
+      "category": "BI-системы",
+      "subcategory": null,
+      "logo": "powerbi.svg",
       "description": "BI-платформа Microsoft для визуализации и анализа данных.",
       "why": "Позволяет собрать данные из 1C, Excel и других источников и построить красивые и понятные отчеты",
       "homepage": "https://powerbi.microsoft.com/ru-ru/",
@@ -2064,9 +2696,194 @@ window.LANDSCAPE = {
       ]
     },
     {
+      "name": "Yandex DataLens",
+      "category": "BI-системы",
+      "subcategory": null,
+      "logo": "datalens.svg",
+      "description": "Отечественная BI-платформа Яндекса для дашбордов и аналитики.",
+      "why": "Строит дашборды поверх данных 1С (через выгрузку или витрину) — российская замена Power BI.",
+      "homepage": "https://datalens.yandex.ru/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "бесплатное",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Microsoft Power BI",
+        "1С:Аналитика"
+      ]
+    },
+    {
+      "name": "Visiology",
+      "category": "BI-системы",
+      "subcategory": null,
+      "logo": null,
+      "description": "Российская BI-платформа для корпоративной аналитики и дашбордов.",
+      "why": "Отечественная BI из реестра ПО — визуализация показателей поверх данных 1С.",
+      "homepage": "https://visiology.su/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ],
+      "analogs": [
+        "Microsoft Power BI",
+        "Yandex DataLens"
+      ]
+    },
+    {
+      "name": "RAC/RAS",
+      "category": "Администрирование и инфраструктура",
+      "subcategory": null,
+      "logo": "1c.png",
+      "description": "Серверная утилита (ras) и консольный клиент (rac) администрирования кластера 1С.",
+      "why": "Управление кластером, сеансами и информационными базами из командной строки — основа автоматизации администрирования и скриптов обслуживания.",
+      "homepage": "https://its.1c.ru/db/v8323doc#bookmark:adm:TI000000484",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "ibcmd",
+        "Консоль администрирования серверов 1С"
+      ],
+      "depends": [
+        "Кластер серверов 1С:Предприятие"
+      ]
+    },
+    {
+      "name": "ibcmd",
+      "category": "Администрирование и инфраструктура",
+      "subcategory": null,
+      "logo": "1c.png",
+      "description": "Консольная утилита управления информационными базами 1С (создание, обновление, выгрузка).",
+      "why": "Позволяет работать с ИБ без кластера: разворачивать, обновлять конфигурацию и выгружать/загружать данные из CLI в пайплайнах.",
+      "homepage": "https://its.1c.ru/db/v8323doc#bookmark:adm:TI000000559",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "RAC/RAS"
+      ]
+    },
+    {
+      "name": "Консоль администрирования серверов 1С",
+      "category": "Администрирование и инфраструктура",
+      "subcategory": null,
+      "logo": "1c.png",
+      "description": "Графическая консоль (MMC) управления кластером серверов 1С:Предприятие.",
+      "why": "Привычный GUI для администрирования кластера: рабочие серверы, сеансы, информационные базы, регламентные задания.",
+      "homepage": "https://its.1c.ru/db/v8323doc#bookmark:adm:TI000000186",
+      "repo": null,
+      "start": [],
+      "maturity": "базовое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "RAC/RAS"
+      ],
+      "depends": [
+        "Кластер серверов 1С:Предприятие"
+      ]
+    },
+    {
+      "name": "Apache HTTP Server",
+      "category": "Администрирование и инфраструктура",
+      "subcategory": null,
+      "logo": "apache.svg",
+      "description": "Веб-сервер для публикации веб-клиента и HTTP/REST-сервисов 1С.",
+      "why": "Классический вариант публикации базы 1С: веб-клиент, веб-сервисы и HTTP-сервисы доступны по сети.",
+      "homepage": "https://httpd.apache.org/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "nginx"
+      ]
+    },
+    {
+      "name": "nginx",
+      "category": "Администрирование и инфраструктура",
+      "subcategory": null,
+      "logo": "nginx.svg",
+      "description": "Высокопроизводительный веб-сервер и обратный прокси для публикации 1С.",
+      "why": "Обратный прокси и балансировщик перед серверами 1С: HTTPS, кэширование статики, маршрутизация веб- и HTTP-сервисов.",
+      "homepage": "https://nginx.org/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Apache HTTP Server"
+      ]
+    },
+    {
       "name": "Кластер серверов 1С:Предприятие",
-      "category": "Прочие технологии и полезные ссылки",
-      "subcategory": "Мониторинг и аналитика",
+      "category": "Администрирование и инфраструктура",
+      "subcategory": null,
       "logo": "1c.png",
       "description": "Объединение рабочих серверов 1С для обслуживания нагрузки.",
       "why": "Обеспечивает масштабируемость (наращивание оборудования под нагрузку), отказоустойчивость и балансировку нагрузки между серверами. Понимание устройства кластера важно при работе с серверным вариантом 1С и при администрировании крупных внедрений.",
@@ -2086,9 +2903,9 @@ window.LANDSCAPE = {
     },
     {
       "name": "OneSwiss",
-      "category": "Прочие технологии и полезные ссылки",
-      "subcategory": "Мониторинг и аналитика",
-      "logo": null,
+      "category": "Мониторинг",
+      "subcategory": null,
+      "logo": "oneswiss.png",
       "description": "Кроссплатформенный комплекс обслуживания и мониторинга баз 1С.",
       "why": "Автоматизирует регламентное обслуживание баз и упрощает работу администратора: блокировка соединений, загрузка конфигураций и расширений, запуск внешних обработок и скриптов по шаблонам в виде блок-схем.",
       "homepage": "https://infostart.ru/1c/tools/2433900/",
@@ -2277,7 +3094,7 @@ window.LANDSCAPE = {
       "name": "Сертификация от Госуслуг",
       "category": "Сертификация",
       "subcategory": null,
-      "logo": null,
+      "logo": "gosuslugi.svg",
       "description": "Подтверждение ИТ-компетенций сертификатом на Госуслугах.",
       "why": "Независимая онлайн-проверка знаний IT-компетенций, с сертификатом от Минцифры. Привлечение внимания к резюме. Выше шансы на трудоустройство. Хранение в одном месте и постоянный доступ.",
       "homepage": "https://www.gosuslugi.ru/itskills",
@@ -2370,9 +3187,192 @@ window.LANDSCAPE = {
       ]
     },
     {
-      "name": "Elasticsearch",
-      "category": "Анализ логов",
+      "name": "1С:КИП (Корпоративный инструментальный пакет)",
+      "category": "Производительность и нагрузочное тестирование",
       "subcategory": null,
+      "logo": "1c.png",
+      "description": "Пакет инструментов 1С для контроля и оптимизации производительности крупных внедрений.",
+      "why": "Включает Центр контроля качества, Тест-центр и инструменты анализа — основа методики мониторинга и нагрузочного тестирования по стандартам 1С.",
+      "homepage": "https://its.1c.ru/db/kip",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ]
+    },
+    {
+      "name": "1С:ЦКК (Центр контроля качества)",
+      "category": "Производительность и нагрузочное тестирование",
+      "subcategory": null,
+      "logo": "1c.png",
+      "description": "Система автоматического мониторинга производительности и качества работы баз 1С.",
+      "why": "Регулярно собирает показатели (APDEX, ошибки, регламент) и сигнализирует о деградации производительности продуктивных систем.",
+      "homepage": "https://its.1c.ru/db/kip#content:171:hdoc",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "1С:Анализатор"
+      ],
+      "depends": [
+        "1С:КИП (Корпоративный инструментальный пакет)",
+        "APDEX"
+      ]
+    },
+    {
+      "name": "1С:Тест-центр",
+      "category": "Производительность и нагрузочное тестирование",
+      "subcategory": null,
+      "logo": "1c.png",
+      "description": "Инструмент автоматизации многопользовательского нагрузочного тестирования 1С.",
+      "why": "Эмулирует работу сотен пользователей для оценки производительности системы под нагрузкой до вывода в продуктив.",
+      "homepage": "https://its.1c.ru/db/kip#content:151:hdoc",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Тест Гилёва (TPC-1C)"
+      ],
+      "depends": [
+        "1С:КИП (Корпоративный инструментальный пакет)"
+      ]
+    },
+    {
+      "name": "1С:Анализатор",
+      "category": "Производительность и нагрузочное тестирование",
+      "subcategory": null,
+      "logo": "1c.png",
+      "description": "Инструмент анализа нагрузки и технологического журнала 1С.",
+      "why": "Автоматически разбирает техжурнал и счётчики, находит узкие места и проблемные запросы без ручного парсинга логов.",
+      "homepage": "https://analyzer.1c.ru/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Анализ технологического журнала",
+        "1С:ЦКК (Центр контроля качества)"
+      ]
+    },
+    {
+      "name": "APDEX",
+      "category": "Производительность и нагрузочное тестирование",
+      "subcategory": null,
+      "logo": null,
+      "description": "Методика числовой оценки удовлетворённости пользователей временем отклика.",
+      "why": "Единая метрика производительности ключевых операций (0..1) — на ней строится мониторинг и SLA по скорости работы 1С.",
+      "homepage": "https://its.1c.ru/db/metod8dev#content:5847:hdoc",
+      "repo": null,
+      "start": [],
+      "maturity": "базовое",
+      "origin": "зарубежное",
+      "license": "бесплатное",
+      "roles": [
+        "администратор",
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "1С:ЦКК (Центр контроля качества)"
+      ]
+    },
+    {
+      "name": "Анализ технологического журнала",
+      "category": "Производительность и нагрузочное тестирование",
+      "subcategory": null,
+      "logo": "1c.png",
+      "description": "Сбор и разбор технологического журнала платформы для поиска проблем производительности.",
+      "why": "Техжурнал фиксирует события платформы (блокировки, длительные запросы, ошибки); его анализ — ключ к расследованию инцидентов производительности.",
+      "homepage": "https://its.1c.ru/db/v8323doc#bookmark:adm:TI000000437",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "бесплатное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "1С:Анализатор"
+      ]
+    },
+    {
+      "name": "Тест Гилёва (TPC-1C)",
+      "category": "Производительность и нагрузочное тестирование",
+      "subcategory": null,
+      "logo": null,
+      "description": "Нагрузочный тест производительности связки «1С + СУБД + железо».",
+      "why": "Быстрая оценка производительности системы в «попугаях» TPC-1C — точка отсчёта при оптимизации.",
+      "homepage": "https://gilev.ru/tpc1c/",
+      "repo": null,
+      "start": [],
+      "maturity": "базовое",
+      "origin": "отечественное",
+      "license": "бесплатное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "1С:Тест-центр"
+      ]
+    },
+    {
+      "name": "Elasticsearch",
+      "category": "Мониторинг",
+      "subcategory": "Анализ логов",
       "logo": "elasticsearch.svg",
       "description": "Поисковый движок для хранения и анализа логов.",
       "why": "Хранит и индексирует логи 1С для быстрого поиска и анализа.",
@@ -2401,8 +3401,8 @@ window.LANDSCAPE = {
     },
     {
       "name": "Kibana",
-      "category": "Анализ логов",
-      "subcategory": null,
+      "category": "Мониторинг",
+      "subcategory": "Анализ логов",
       "logo": "kibana.svg",
       "description": "Визуализация и поиск по логам из Elasticsearch.",
       "why": "Веб-интерфейс для анализа логов 1С, хранящихся в Elasticsearch.",
@@ -2427,8 +3427,8 @@ window.LANDSCAPE = {
     },
     {
       "name": "Logstash",
-      "category": "Анализ логов",
-      "subcategory": null,
+      "category": "Мониторинг",
+      "subcategory": "Анализ логов",
       "logo": "logstash.svg",
       "description": "Сбор, преобразование и доставка логов.",
       "why": "Собирает логи 1С из разных источников и нормализует перед отправкой.",
@@ -2452,8 +3452,8 @@ window.LANDSCAPE = {
     },
     {
       "name": "ClickHouse",
-      "category": "Анализ логов",
-      "subcategory": null,
+      "category": "Мониторинг",
+      "subcategory": "Анализ логов",
       "logo": "clickhouse.svg",
       "description": "Колоночная СУБД для аналитики больших логов.",
       "why": "Быстро хранит и агрегирует огромные объёмы логов и событий 1С.",
@@ -2501,7 +3501,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Trello"
+        "Trello",
+        "Яндекс Трекер"
       ]
     },
     {
@@ -2529,7 +3530,155 @@ window.LANDSCAPE = {
         "инхаус"
       ],
       "analogs": [
-        "Jira"
+        "Jira",
+        "Яндекс Трекер"
+      ]
+    },
+    {
+      "name": "Яндекс Трекер",
+      "category": "Задачи",
+      "subcategory": null,
+      "logo": "yandex-tracker.svg",
+      "description": "Облачный трекер задач и управление разработкой от Яндекса.",
+      "why": "Ведёт задачи, спринты и процессы команды 1С в отечественном облаке — импортозамещение Jira.",
+      "homepage": "https://yandex.ru/tracker/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "аналитик",
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Jira",
+        "Trello"
+      ]
+    },
+    {
+      "name": "YouTrack",
+      "category": "Задачи",
+      "subcategory": null,
+      "logo": null,
+      "description": "Трекер задач и Agile-доски от JetBrains.",
+      "why": "Ведёт задачи и спринты команды 1С с гибкими запросами и автоматизацией.",
+      "homepage": "https://www.jetbrains.com/youtrack/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "аналитик",
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Jira",
+        "Яндекс Трекер"
+      ]
+    },
+    {
+      "name": "Redmine",
+      "category": "Задачи",
+      "subcategory": null,
+      "logo": "redmine.svg",
+      "description": "Open-source система ведения задач и проектов.",
+      "why": "Бесплатный трекер задач и багов для небольших команд и франчайзи на 1С.",
+      "homepage": "https://www.redmine.org/",
+      "repo": null,
+      "start": [],
+      "maturity": "базовое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "roles": [
+        "разработчик",
+        "аналитик",
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "проекты"
+      ],
+      "analogs": [
+        "Jira",
+        "Trello"
+      ]
+    },
+    {
+      "name": "Kaiten",
+      "category": "Задачи",
+      "subcategory": null,
+      "logo": null,
+      "description": "Отечественный сервис канбан-досок и управления задачами.",
+      "why": "Российская замена Trello/Jira для ведения задач команд 1С.",
+      "homepage": "https://kaiten.ru/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "аналитик",
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Trello",
+        "Jira",
+        "Яндекс Трекер"
+      ]
+    },
+    {
+      "name": "WEEEK",
+      "category": "Задачи",
+      "subcategory": null,
+      "logo": null,
+      "description": "Отечественный таск-менеджер с досками, спринтами и базой знаний.",
+      "why": "Российский сервис управления задачами и проектами для команд 1С.",
+      "homepage": "https://weeek.net/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "аналитик",
+        "тестировщик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "фриланс",
+        "проекты"
+      ],
+      "analogs": [
+        "Trello",
+        "Kaiten",
+        "Яндекс Трекер"
       ]
     },
     {

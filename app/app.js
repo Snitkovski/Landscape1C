@@ -106,13 +106,17 @@
   }
 
   // ── Рендер доски ──────────────────────────
+  // Порядок сортировки карточек внутри раздела по зрелости
+  const MAT_ORDER = { "базовое": 0, "продвинутое": 1, "нишевое": 2, "устаревает": 3 };
+
   function apply() {
     const board = $("#board");
     board.innerHTML = "";
     const visible = D.items.filter(matches);
 
     D.categories.forEach(catName => {
-      const items = visible.filter(i => i.category === catName);
+      const items = visible.filter(i => i.category === catName)
+        .sort((a, b) => (MAT_ORDER[a.maturity] ?? 99) - (MAT_ORDER[b.maturity] ?? 99));
       if (!items.length) return;
       const cat = document.createElement("section");
       cat.className = "cat";
