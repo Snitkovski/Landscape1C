@@ -18,10 +18,9 @@ window.LANDSCAPE = {
       "label": "Роль",
       "values": [
         "разработчик",
-        "devops",
+        "администратор",
         "тестировщик",
-        "аналитик",
-        "администратор"
+        "аналитик"
       ]
     },
     "context": {
@@ -208,7 +207,7 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -249,7 +248,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -342,7 +341,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -583,7 +582,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -755,7 +754,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -870,7 +869,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "тестировщик",
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": true
@@ -1019,7 +1018,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -1152,7 +1151,7 @@ window.LANDSCAPE = {
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -1184,7 +1183,7 @@ window.LANDSCAPE = {
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -1220,7 +1219,7 @@ window.LANDSCAPE = {
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -1264,7 +1263,7 @@ window.LANDSCAPE = {
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -1296,7 +1295,7 @@ window.LANDSCAPE = {
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
-        "devops",
+        "администратор",
         "тестировщик"
       ],
       "contexts": [],
@@ -1351,7 +1350,7 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -1430,7 +1429,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -1479,7 +1478,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": true
@@ -1643,7 +1642,7 @@ window.LANDSCAPE = {
       "license": "бесплатное",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": [],
       "umbrella": false
@@ -1745,7 +1744,6 @@ window.LANDSCAPE = {
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
-        "devops",
         "администратор"
       ],
       "contexts": [],

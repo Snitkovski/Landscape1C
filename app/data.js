@@ -16,10 +16,9 @@ window.LANDSCAPE = {
       "label": "Роль",
       "values": [
         "разработчик",
-        "devops",
+        "администратор",
         "тестировщик",
-        "аналитик",
-        "администратор"
+        "аналитик"
       ]
     },
     "context": {
@@ -222,7 +221,7 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -262,7 +261,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -352,7 +351,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -584,7 +583,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -750,7 +749,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -861,7 +860,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "тестировщик",
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -1005,7 +1004,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -1134,7 +1133,7 @@ window.LANDSCAPE = {
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -1165,7 +1164,7 @@ window.LANDSCAPE = {
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -1200,7 +1199,7 @@ window.LANDSCAPE = {
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -1243,7 +1242,7 @@ window.LANDSCAPE = {
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -1274,7 +1273,7 @@ window.LANDSCAPE = {
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
-        "devops",
+        "администратор",
         "тестировщик"
       ],
       "contexts": []
@@ -1327,7 +1326,7 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -1403,7 +1402,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -1451,7 +1450,7 @@ window.LANDSCAPE = {
       "license": "open-source",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -1610,7 +1609,7 @@ window.LANDSCAPE = {
       "license": "бесплатное",
       "roles": [
         "разработчик",
-        "devops"
+        "администратор"
       ],
       "contexts": []
     },
@@ -1708,7 +1707,6 @@ window.LANDSCAPE = {
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
-        "devops",
         "администратор"
       ],
       "contexts": []
@@ -1723,11 +1721,22 @@ window.LANDSCAPE = {
       "homepage": null,
       "repo": null,
       "start": [],
-      "maturity": "",
+      "maturity": "базовое",
       "origin": "отечественное",
-      "license": "",
-      "roles": [],
-      "contexts": []
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "администратор",
+        "тестировщик",
+        "аналитик"
+      ],
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты",
+        "фриланс"
+      ]
     },
     {
       "name": "1С:Специалист‑консультант",
@@ -1739,11 +1748,18 @@ window.LANDSCAPE = {
       "homepage": null,
       "repo": null,
       "start": [],
-      "maturity": "",
+      "maturity": "продвинутое",
       "origin": "отечественное",
-      "license": "",
-      "roles": [],
-      "contexts": []
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "аналитик"
+      ],
+      "contexts": [
+        "франчайзи",
+        "продукты",
+        "проекты"
+      ]
     },
     {
       "name": "1С:Специалист",
@@ -1755,11 +1771,18 @@ window.LANDSCAPE = {
       "homepage": null,
       "repo": null,
       "start": [],
-      "maturity": "",
+      "maturity": "продвинутое",
       "origin": "отечественное",
-      "license": "",
-      "roles": [],
-      "contexts": []
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "франчайзи",
+        "продукты",
+        "проекты"
+      ]
     },
     {
       "name": "1С:Эксперт по технологическим вопросам",
@@ -1771,11 +1794,18 @@ window.LANDSCAPE = {
       "homepage": null,
       "repo": null,
       "start": [],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
-      "license": "",
-      "roles": [],
-      "contexts": []
+      "license": "проприетарное",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты",
+        "продукты"
+      ]
     },
     {
       "name": "1С:Эксплуататор",
@@ -1792,11 +1822,17 @@ window.LANDSCAPE = {
           "url": "http://kb.1c.ru"
         }
       ],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
-      "license": "",
-      "roles": [],
-      "contexts": []
+      "license": "проприетарное",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты",
+        "продукты"
+      ]
     },
     {
       "name": "Сертификация от 1С-ТестЦентр",
