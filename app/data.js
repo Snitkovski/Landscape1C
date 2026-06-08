@@ -690,7 +690,7 @@ window.LANDSCAPE = {
       "subcategory": "Плагины и библиотеки",
       "logo": "oscript-library.png",
       "description": "Готовые библиотеки сообщества для экосистемы OneScript.",
-      "why": "",
+      "why": "Не писать инфраструктуру с нуля: HTTP-клиенты, работа с JSON и архивами, CI-обвязка и тесты берутся готовыми пакетами.",
       "homepage": "https://github.com/oscript-library",
       "repo": "https://github.com/oscript-library",
       "start": [
@@ -881,7 +881,7 @@ window.LANDSCAPE = {
       "subcategory": null,
       "logo": "sqlserver.svg",
       "description": "Проприетарная СУБД Microsoft с языком запросов Transact-SQL.",
-      "why": "",
+      "why": "Исторически основная СУБД для серверных баз 1С на Windows; знание T-SQL помогает диагностировать и оптимизировать запросы под нагрузкой.",
       "homepage": "https://1c.ru/rus/products/1c+microsoft.htm",
       "repo": null,
       "start": [
@@ -1646,7 +1646,7 @@ window.LANDSCAPE = {
         "инхаус"
       ],
       "analogs": [
-        "1С:Автоматизированная проверка конфигураций",
+        "1С:Автоматизированная проверка конфигураций (АПК)",
         "Синтаксическая проверка конфигурации"
       ]
     },
@@ -1656,7 +1656,7 @@ window.LANDSCAPE = {
       "subcategory": null,
       "logo": "1c.png",
       "description": "Проектирование прикладных решений и ведение проектной документации.",
-      "why": "",
+      "why": "Ведёт требования, архитектуру и проектную документацию решения в единой системе — основа управляемой разработки крупных внедрений.",
       "homepage": "https://v8.1c.ru/tekhnologii/sistema-proektirovaniya-prikladnykh-resheniy/",
       "repo": null,
       "start": [
@@ -2362,7 +2362,7 @@ window.LANDSCAPE = {
       "subcategory": "Отладка веб-сервисов и интеграций",
       "logo": "fiddler.png",
       "description": "Прокси-сниффер HTTP/HTTPS-трафика для отладки интеграций.",
-      "why": "",
+      "why": "Показывает реальный HTTP/HTTPS-трафик между 1С и внешними сервисами — незаменим при разборе сбоев интеграций и веб-сервисов.",
       "homepage": "https://www.telerik.com/download/fiddler",
       "repo": null,
       "start": [
@@ -2492,7 +2492,7 @@ window.LANDSCAPE = {
       "subcategory": "Отладка веб-сервисов и интеграций",
       "logo": "postman.svg",
       "description": "Инструмент ручного тестирования HTTP-запросов к API.",
-      "why": "",
+      "why": "Быстрая ручная проверка HTTP- и REST-сервисов 1С: запросы, заголовки, авторизация и коллекции для регрессии без написания кода.",
       "homepage": "https://www.postman.com",
       "repo": null,
       "start": [
@@ -2530,7 +2530,7 @@ window.LANDSCAPE = {
       "subcategory": "Отладка веб-сервисов и интеграций",
       "logo": "swagger.svg",
       "description": "Интерактивная документация к REST API (бывший Swagger).",
-      "why": "",
+      "why": "Наглядно описывает контракты REST-сервисов 1С и позволяет интеграторам пробовать запросы прямо из браузера.",
       "homepage": "https://github.com/swagger-api/swagger-ui",
       "repo": "https://github.com/swagger-api/swagger-ui",
       "start": [
@@ -2573,7 +2573,7 @@ window.LANDSCAPE = {
       "subcategory": "Отладка веб-сервисов и интеграций",
       "logo": "ngrok.svg",
       "description": "Временный публичный URL к локальному серверу для отладки webhook-ов.",
-      "why": "",
+      "why": "Открывает локальную базу 1С наружу по временному HTTPS-адресу — удобно тестировать вебхуки и интеграции без публикации на белый IP.",
       "homepage": "https://ngrok.com",
       "repo": null,
       "start": [
@@ -2902,7 +2902,7 @@ window.LANDSCAPE = {
       "subcategory": "Сертификация от 1С",
       "logo": "1c.png",
       "description": "Базовый экзамен на знание платформы и типовых конфигураций 1С.",
-      "why": "",
+      "why": "Подтверждает базовый уровень владения платформой — стартовая ступень для разработчика и консультанта 1С, частое требование вакансий.",
       "homepage": null,
       "repo": null,
       "start": [],
@@ -2935,7 +2935,7 @@ window.LANDSCAPE = {
       "subcategory": "Сертификация от 1С",
       "logo": "1c.png",
       "description": "Экзамены по внедрению и сопровождению прикладных решений.",
-      "why": "",
+      "why": "Подтверждает компетенции по внедрению и сопровождению типовых решений — ценится у франчайзи и на проектах внедрения.",
       "homepage": null,
       "repo": null,
       "start": [],
@@ -2964,7 +2964,7 @@ window.LANDSCAPE = {
       "subcategory": "Сертификация от 1С",
       "logo": "1c.png",
       "description": "Экзамен на умение решать практические задачи в конфигурациях.",
-      "why": "",
+      "why": "Подтверждает умение дорабатывать конфигурации под задачи бизнеса — ключевая сертификация для разработчика 1С.",
       "homepage": null,
       "repo": null,
       "start": [],
@@ -2993,7 +2993,7 @@ window.LANDSCAPE = {
       "subcategory": "Сертификация от 1С",
       "logo": "1c.png",
       "description": "Экзамен по оптимизации и нестандартным техническим решениям.",
-      "why": "",
+      "why": "Высшая техническая сертификация: оптимизация производительности и решение сложных нагрузочных задач в крупных системах.",
       "homepage": null,
       "repo": null,
       "start": [],
@@ -3016,7 +3016,7 @@ window.LANDSCAPE = {
       "subcategory": "Сертификация от 1С",
       "logo": "1c.png",
       "description": "Экзамен по настройке и поддержке крупных систем на базе 1С.",
-      "why": "",
+      "why": "Подтверждает навыки администрирования и поддержки высоконагруженных систем 1С — для админов и DevOps крупных внедрений.",
       "homepage": null,
       "repo": null,
       "start": [
