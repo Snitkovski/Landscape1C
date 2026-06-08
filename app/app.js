@@ -190,7 +190,7 @@
         ${logoMarkup(i, "detail__logo")}
         <div>
           <h2>${i.name}</h2>
-          <p class="detail__sub">${i.category} · ${i.subcategory}</p>
+          <p class="detail__sub">${i.subcategory ? `${i.category} · ${i.subcategory}` : i.category}</p>
         </div>
       </div>
       <div class="detail__meta">
