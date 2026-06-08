@@ -1654,7 +1654,7 @@ window.LANDSCAPE = {
         }
       ],
       "maturity": "продвинутое",
-      "origin": "отечественное",
+      "origin": "зарубежное",
       "license": "open-source",
       "roles": [
         "разработчик"
@@ -2701,7 +2701,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "нишевое",
       "origin": "отечественное",
-      "license": "бесплатное",
+      "license": "open-source",
       "roles": [
         "аналитик"
       ],
