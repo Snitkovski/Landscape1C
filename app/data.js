@@ -274,6 +274,10 @@ window.LANDSCAPE = {
         "франчайзи",
         "фриланс",
         "проекты"
+      ],
+      "depends": [
+        "Библиотеки для OneScript",
+        "Autumn (ОСень)"
       ]
     },
     {
@@ -312,7 +316,8 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "Хранилище",
-        "Плагин для конфигуратора PhoenixBSL"
+        "Плагин для конфигуратора PhoenixBSL",
+        "TurboConf"
       ]
     },
     {
@@ -363,7 +368,8 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git",
-        "Плагины для 1С:EDT"
+        "Плагины для 1С:EDT",
+        "Плагин 1С:Напарник"
       ]
     },
     {
@@ -395,7 +401,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "фриланс",
-        "проекты"
+        "проекты",
+        "инхаус"
       ],
       "analogs": [
         "Конфигуратор",
@@ -421,13 +428,23 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/public/292440/"
         }
       ],
-      "maturity": "",
+      "maturity": "устаревает",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "фриланс"
+      ],
+      "analogs": [
+        "Плагин для конфигуратора PhoenixBSL"
+      ],
+      "depends": [
+        "Конфигуратор"
+      ]
     },
     {
       "name": "Подсистема \"Инструменты разработчика\"",
@@ -444,14 +461,23 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/public/15126/"
         }
       ],
-      "maturity": "",
+      "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "бесплатное",
       "roles": [
         "разработчик",
         "аналитик"
       ],
-      "contexts": []
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "фриланс"
+      ],
+      "analogs": [
+        "Подсистема \"Универсальные инструменты 1С для управляемых форм\"",
+        "Infostart Toolkit"
+      ]
     },
     {
       "name": "Подсистема \"Универсальные инструменты 1С для управляемых форм\"",
@@ -468,14 +494,23 @@ window.LANDSCAPE = {
           "url": "https://github.com/cpr1c/tools_ui_1c/"
         }
       ],
-      "maturity": "",
+      "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "бесплатное",
       "roles": [
         "разработчик",
         "аналитик"
       ],
-      "contexts": []
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "фриланс"
+      ],
+      "analogs": [
+        "Подсистема \"Инструменты разработчика\"",
+        "Infostart Toolkit"
+      ]
     },
     {
       "name": "Infostart Toolkit",
@@ -496,14 +531,24 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/1431272/"
         }
       ],
-      "maturity": "",
+      "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
         "разработчик",
         "аналитик"
       ],
-      "contexts": []
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты",
+        "фриланс"
+      ],
+      "analogs": [
+        "Подсистема \"Инструменты разработчика\"",
+        "Подсистема \"Универсальные инструменты 1С для управляемых форм\""
+      ]
     },
     {
       "name": "Плагин для конфигуратора PhoenixBSL",
@@ -520,13 +565,20 @@ window.LANDSCAPE = {
           "url": "https://github.com/otymko/phoenixbsl"
         }
       ],
-      "maturity": "",
+      "maturity": "устаревает",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
         "разработчик"
       ],
-      "contexts": [],
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "фриланс"
+      ],
+      "analogs": [
+        "TurboConf"
+      ],
       "depends": [
         "Конфигуратор"
       ]
@@ -550,13 +602,19 @@ window.LANDSCAPE = {
           "url": "https://t.me/AriN1C/231"
         }
       ],
-      "maturity": "",
+      "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [
+        "проекты",
+        "продукты"
+      ],
+      "depends": [
+        "1C:Enterprise Development Tools (EDT)"
+      ]
     },
     {
       "name": "Плагин для VSCode «1C: Platform Tools»",
@@ -573,13 +631,17 @@ window.LANDSCAPE = {
           "url": "https://marketplace.visualstudio.com/items?itemName=yellow-hammer.1c-platform-tools"
         }
       ],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
         "разработчик"
       ],
-      "contexts": [],
+      "contexts": [
+        "проекты",
+        "фриланс",
+        "инхаус"
+      ],
       "depends": [
         "Visual Studio Code (VSCode)"
       ]
@@ -607,13 +669,16 @@ window.LANDSCAPE = {
           "url": "https://курсы-по-1с.рф/news/2022-03-28-twelve-edt-plugins-for-ease-and-speed/"
         }
       ],
-      "maturity": "",
+      "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
         "разработчик"
       ],
-      "contexts": [],
+      "contexts": [
+        "продукты",
+        "проекты"
+      ],
       "depends": [
         "1C:Enterprise Development Tools (EDT)"
       ]
@@ -641,14 +706,20 @@ window.LANDSCAPE = {
           "url": "https://github.com/oscript-library/opm"
         }
       ],
-      "maturity": "",
+      "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
         "разработчик",
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "франчайзи"
+      ],
+      "depends": [
+        "OneScript"
+      ]
     },
     {
       "name": "Autumn (ОСень)",
@@ -660,13 +731,20 @@ window.LANDSCAPE = {
       "homepage": "https://autumn-library.github.io/getting-started/about-autumn",
       "repo": "https://github.com/autumn-library",
       "start": [],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "depends": [
+        "OneScript"
+      ]
     },
     {
       "name": "Файловая СУБД",
@@ -683,9 +761,16 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "roles": [
         "администратор",
-        "разработчик"
+        "разработчик",
+        "тестировщик"
       ],
-      "contexts": [],
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты",
+        "фриланс"
+      ],
       "analogs": [
         "PostgreSQL",
         "Microsoft SQLServer"
@@ -794,7 +879,7 @@ window.LANDSCAPE = {
           "url": "https://its.1c.ru/db/v8std/content/709/hdoc"
         }
       ],
-      "maturity": "устаревает",
+      "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
@@ -847,7 +932,8 @@ window.LANDSCAPE = {
         "фриланс"
       ],
       "depends": [
-        "1C:Enterprise Development Tools (EDT)"
+        "1C:Enterprise Development Tools (EDT)",
+        "Gitlab CI"
       ]
     },
     {
@@ -865,14 +951,18 @@ window.LANDSCAPE = {
           "url": "https://vk.com/video-199230936_456239039"
         }
       ],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
-      "license": "",
+      "license": "проприетарное",
       "roles": [
         "аналитик",
         "разработчик"
       ],
-      "contexts": [],
+      "contexts": [
+        "продукты",
+        "инхаус",
+        "проекты"
+      ],
       "analogs": [
         "Накидка"
       ]
@@ -896,14 +986,18 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/2331345/"
         }
       ],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
-      "license": "",
+      "license": "open-source",
       "roles": [
         "аналитик",
         "разработчик"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
       "analogs": [
         "MAKER-STUDIO"
       ]
@@ -925,7 +1019,10 @@ window.LANDSCAPE = {
         "тестировщик",
         "аналитик"
       ],
-      "contexts": [],
+      "contexts": [
+        "продукты",
+        "инхаус"
+      ],
       "analogs": [
         "1С:Сценарное тестирование",
         "Vanessa-Automation"
@@ -957,7 +1054,10 @@ window.LANDSCAPE = {
         "тестировщик",
         "аналитик"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ],
       "analogs": [
         "1С:Тестировщик",
         "Vanessa-Automation"
@@ -990,7 +1090,10 @@ window.LANDSCAPE = {
         "администратор",
         "аналитик"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ],
       "analogs": [
         "1С:Тестировщик",
         "1С:Сценарное тестирование",
@@ -1010,14 +1113,17 @@ window.LANDSCAPE = {
       "homepage": null,
       "repo": "https://github.com/vanessa-opensource/add",
       "start": [],
-      "maturity": "нишевое",
+      "maturity": "устаревает",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
         "тестировщик",
         "разработчик"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ],
       "analogs": [
         "Vanessa-Automation"
       ]
@@ -1049,13 +1155,16 @@ window.LANDSCAPE = {
           "url": "https://t.me/testspro1c"
         }
       ],
-      "maturity": "",
+      "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
         "тестировщик"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ]
     },
     {
       "name": "YAxUnit",
@@ -1084,14 +1193,18 @@ window.LANDSCAPE = {
           "url": "https://bia-technologies.github.io/yaxunit/docs/getting-started/first-test"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
         "тестировщик",
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ]
     },
     {
       "name": "Синтаксическая проверка конфигурации",
@@ -1107,12 +1220,23 @@ window.LANDSCAPE = {
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
-        "разработчик"
+        "разработчик",
+        "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты",
+        "фриланс"
+      ],
+      "analogs": [
+        "SonarQube",
+        "1С:Автоматизированная проверка конфигураций (АПК)"
+      ]
     },
     {
-      "name": "1С:Автоматизированная проверка конфигураций",
+      "name": "1С:Автоматизированная проверка конфигураций (АПК)",
       "category": "Повышение качества",
       "subcategory": "Статический анализ кода",
       "logo": "1c.png",
@@ -1126,16 +1250,23 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/574829/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [
+        "проекты",
+        "продукты"
+      ],
+      "analogs": [
+        "SonarQube",
+        "Синтаксическая проверка конфигурации"
+      ]
     },
     {
-      "name": "Плагин для SonarQube",
+      "name": "SonarQube",
       "category": "Повышение качества",
       "subcategory": "Статический анализ кода",
       "logo": "sonarqube.svg",
@@ -1164,7 +1295,15 @@ window.LANDSCAPE = {
         "разработчик",
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "продукты",
+        "проекты",
+        "инхаус"
+      ],
+      "analogs": [
+        "1С:Автоматизированная проверка конфигураций",
+        "Синтаксическая проверка конфигурации"
+      ]
     },
     {
       "name": "1С:СППР",
@@ -1194,45 +1333,6 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "roles": [
         "аналитик",
-        "разработчик"
-      ],
-      "contexts": []
-    },
-    {
-      "name": "Code-review",
-      "category": "Повышение качества",
-      "subcategory": "Прочее",
-      "logo": null,
-      "description": "Практика проверки кода коллегами для повышения качества.",
-      "why": "Помогает повысить сопровождаемость и качества разработки.",
-      "homepage": "https://www.jetbrains.com/upsource/",
-      "repo": null,
-      "start": [
-        {
-          "label": "Тренажер: Код-ревью для 1С",
-          "url": "https://codereview1c.ru"
-        },
-        {
-          "label": "Практика проведения Code-review",
-          "url": "https://www.youtube.com/watch?v=BMAgiz2uEHA"
-        },
-        {
-          "label": "Code review по-человечески",
-          "url": "https://habr.com/ru/post/340550/"
-        },
-        {
-          "label": "Как завести у себя в команде код-ревью",
-          "url": "https://infostart.ru/1c/articles/1093475/"
-        },
-        {
-          "label": "12 Best Code Review Tools",
-          "url": "https://kinsta.com/blog/code-review-tools/"
-        }
-      ],
-      "maturity": "",
-      "origin": "",
-      "license": "",
-      "roles": [
         "разработчик"
       ],
       "contexts": []
@@ -1300,7 +1400,14 @@ window.LANDSCAPE = {
         "администратор",
         "аналитик"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Gitlab CI"
+      ]
     },
     {
       "name": "Gitlab CI",
@@ -1329,9 +1436,20 @@ window.LANDSCAPE = {
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
-        "администратор"
+        "администратор",
+        "аналитик"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "analogs": [
+        "Jenkins"
+      ],
+      "depends": [
+        "git"
+      ]
     },
     {
       "name": "Vagrant",
@@ -1366,7 +1484,10 @@ window.LANDSCAPE = {
       "roles": [
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ]
     },
     {
       "name": "Docker",
@@ -1409,7 +1530,13 @@ window.LANDSCAPE = {
       "roles": [
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ],
+      "depends": [
+        "Kubernetes"
+      ]
     },
     {
       "name": "Allure",
@@ -1442,7 +1569,10 @@ window.LANDSCAPE = {
         "тестировщик",
         "аналитик"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "продукты"
+      ]
     },
     {
       "name": "1С:Конвертация данных",
@@ -1466,7 +1596,14 @@ window.LANDSCAPE = {
         "разработчик",
         "аналитик"
       ],
-      "contexts": []
+      "contexts": [
+        "франчайзи",
+        "проекты",
+        "фриланс"
+      ],
+      "depends": [
+        "EnterpriseData"
+      ]
     },
     {
       "name": "EnterpriseData",
@@ -1490,7 +1627,14 @@ window.LANDSCAPE = {
         "разработчик",
         "аналитик"
       ],
-      "contexts": []
+      "contexts": [
+        "проекты",
+        "фриланс",
+        "франчайзи"
+      ],
+      "depends": [
+        "1С:Конвертация данных"
+      ]
     },
     {
       "name": "1С:Шина",
@@ -1507,7 +1651,7 @@ window.LANDSCAPE = {
           "url": "https://www.youtube.com/watch?v=Q2SeCpi_McA"
         }
       ],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
@@ -1515,7 +1659,14 @@ window.LANDSCAPE = {
         "администратор",
         "аналитик"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "analogs": [
+        "Kafka",
+        "RabbitMQ"
+      ]
     },
     {
       "name": "Открытый пакет интеграций",
@@ -1527,13 +1678,18 @@ window.LANDSCAPE = {
       "homepage": "https://openintegrations.dev",
       "repo": "https://github.com/Bayselonarrend/OpenIntegrations",
       "start": [],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
-        "разработчик"
+        "разработчик",
+        "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "фриланс"
+      ]
     },
     {
       "name": "Telegram бот",
@@ -1566,13 +1722,16 @@ window.LANDSCAPE = {
           "url": "https://habr.com/ru/post/543676/"
         }
       ],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "зарубежное",
-      "license": "",
+      "license": "бесплатное",
       "roles": [
         "разработчик"
       ],
-      "contexts": []
+      "contexts": [
+        "франчайзи",
+        "фриланс"
+      ]
     },
     {
       "name": "Curlone",
@@ -1584,14 +1743,17 @@ window.LANDSCAPE = {
       "homepage": "https://curlone.ru/",
       "repo": "https://github.com/alei1180/curlone",
       "start": [],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
         "разработчик",
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "проекты",
+        "инхаус"
+      ]
     },
     {
       "name": "RabbitMQ",
@@ -1612,7 +1774,7 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/692798/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
@@ -1620,9 +1782,13 @@ window.LANDSCAPE = {
         "администратор",
         "аналитик"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
       "analogs": [
-        "Kafka"
+        "Kafka",
+        "1С:Шина"
       ]
     },
     {
@@ -1644,7 +1810,7 @@ window.LANDSCAPE = {
           "url": "https://habr.com/ru/company/southbridge/blog/550934/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
@@ -1652,9 +1818,13 @@ window.LANDSCAPE = {
         "администратор",
         "аналитик"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
       "analogs": [
-        "RabbitMQ"
+        "RabbitMQ",
+        "1С:Шина"
       ]
     },
     {
@@ -1680,14 +1850,17 @@ window.LANDSCAPE = {
           "url": "https://github.com/ValentinKozlov/1c-s3connector"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "зарубежное",
-      "license": "",
+      "license": "проприетарное",
       "roles": [
         "разработчик",
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ]
     },
     {
       "name": "Fiddler",
@@ -1839,13 +2012,16 @@ window.LANDSCAPE = {
           "url": "https://v8.1c.ru/metod/books/135703.htm"
         }
       ],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
         "аналитик"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
       "analogs": [
         "Microsoft Power BI"
       ]
@@ -1873,13 +2049,16 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/1091360/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
       "roles": [
         "аналитик"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
       "analogs": [
         "1С:Аналитика"
       ]
@@ -1894,13 +2073,16 @@ window.LANDSCAPE = {
       "homepage": "https://habr.com/ru/companies/1c/articles/493008/",
       "repo": null,
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
       "roles": [
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "проекты",
+        "инхаус"
+      ]
     },
     {
       "name": "OneSwiss",
@@ -1912,13 +2094,16 @@ window.LANDSCAPE = {
       "homepage": "https://infostart.ru/1c/tools/2433900/",
       "repo": "https://github.com/akpaevj/oneswiss",
       "start": [],
-      "maturity": "",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
       "roles": [
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ]
     },
     {
       "name": "1С:Профессионал",
@@ -1945,6 +2130,12 @@ window.LANDSCAPE = {
         "продукты",
         "проекты",
         "фриланс"
+      ],
+      "analogs": [
+        "1С:Специалист‑консультант",
+        "1С:Специалист",
+        "Сертификация от 1С-ТестЦентр",
+        "Сертификация от Госуслуг"
       ]
     },
     {
@@ -1968,6 +2159,12 @@ window.LANDSCAPE = {
         "франчайзи",
         "продукты",
         "проекты"
+      ],
+      "analogs": [
+        "1С:Профессионал",
+        "Сертификация от 1С-ТестЦентр",
+        "Сертификация от Госуслуг",
+        "1С:Специалист"
       ]
     },
     {
@@ -1991,6 +2188,12 @@ window.LANDSCAPE = {
         "франчайзи",
         "продукты",
         "проекты"
+      ],
+      "analogs": [
+        "1С:Профессионал",
+        "1С:Специалист‑консультант",
+        "Сертификация от 1С-ТестЦентр",
+        "Сертификация от Госуслуг"
       ]
     },
     {
@@ -2062,6 +2265,12 @@ window.LANDSCAPE = {
       "contexts": [
         "франчайзи",
         "проекты"
+      ],
+      "analogs": [
+        "1С:Профессионал",
+        "1С:Специалист‑консультант",
+        "Сертификация от Госуслуг",
+        "1С:Специалист"
       ]
     },
     {
@@ -2086,6 +2295,12 @@ window.LANDSCAPE = {
         "франчайзи",
         "продукты",
         "проекты"
+      ],
+      "analogs": [
+        "1С:Профессионал",
+        "1С:Специалист‑консультант",
+        "Сертификация от 1С-ТестЦентр",
+        "1С:Специалист"
       ]
     },
     {
@@ -2164,14 +2379,18 @@ window.LANDSCAPE = {
       "homepage": "https://www.elastic.co/elasticsearch",
       "repo": "https://github.com/elastic/elasticsearch",
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
         "администратор",
         "разработчик"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "проекты",
+        "продукты"
+      ],
       "analogs": [
         "ClickHouse"
       ],
@@ -2190,14 +2409,18 @@ window.LANDSCAPE = {
       "homepage": "https://www.elastic.co/kibana",
       "repo": "https://github.com/elastic/kibana",
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
         "администратор",
         "разработчик"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
       "depends": [
         "Elasticsearch"
       ]
@@ -2218,7 +2441,11 @@ window.LANDSCAPE = {
       "roles": [
         "администратор"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
       "depends": [
         "Elasticsearch"
       ]
@@ -2240,7 +2467,11 @@ window.LANDSCAPE = {
         "администратор",
         "разработчик"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
       "analogs": [
         "Elasticsearch"
       ]
@@ -2255,7 +2486,7 @@ window.LANDSCAPE = {
       "homepage": "https://www.atlassian.com/software/jira",
       "repo": null,
       "start": [],
-      "maturity": "базовое",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "проприетарное",
       "roles": [
@@ -2264,7 +2495,11 @@ window.LANDSCAPE = {
         "тестировщик",
         "администратор"
       ],
-      "contexts": [],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
       "analogs": [
         "Trello"
       ]
@@ -2288,7 +2523,11 @@ window.LANDSCAPE = {
         "тестировщик",
         "администратор"
       ],
-      "contexts": [],
+      "contexts": [
+        "франчайзи",
+        "фриланс",
+        "инхаус"
+      ],
       "analogs": [
         "Jira"
       ]
@@ -2303,13 +2542,19 @@ window.LANDSCAPE = {
       "homepage": "https://kubernetes.io/",
       "repo": "https://github.com/kubernetes/kubernetes",
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
       "roles": [
         "администратор"
       ],
-      "contexts": []
+      "contexts": [
+        "проекты",
+        "инхаус"
+      ],
+      "depends": [
+        "Docker"
+      ]
     }
   ]
 };

@@ -423,12 +423,15 @@ a { color: var(--ink); text-underline-offset: 3px; }
   background: #f0ede8; color: var(--ink); cursor: pointer;
   transition: background .12s ease, color .12s ease, border-color .12s ease;
 }
-.detail__rel-logo { width: 16px; height: 16px; flex: none; display: grid; place-items: center; }
-.detail__rel-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.detail__rel-logo {
+  width: 18px; height: 18px; flex: none; object-fit: contain;   /* лого — на самом img, сохраняем пропорции */
+  display: grid; place-items: center;
+}
 .detail__rel-logo--ph { font-size: 8px; font-weight: 700; color: #bbb; }
 .detail__rel::after { content: "↗"; opacity: .5; }
 .detail__rel:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 :root[data-theme="dark"] .detail__rel { background: #2e2520; border-color: var(--edge); }
+:root[data-theme="dark"] .detail__rel:hover { background: #3a2f28; color: #fff; border-color: var(--edge); }
 
 /* Подвал — ссылки */
 .detail__foot {

@@ -14,6 +14,7 @@
   font-family: var(--body); font-size: 10px; letter-spacing: 1px;
   text-transform: uppercase; color: var(--m-base); min-height: 12px;
 }
+.saved.dirty { color: var(--m-niche); }   /* есть несохранённые правки */
 .editbar__actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .editbar #search {
   font-family: var(--body); font-size: 13px; padding: 8px 12px;
@@ -84,6 +85,28 @@
 .edit .chip[aria-pressed="true"] {
   background: var(--ink); color: #fff; border-color: var(--ink); font-weight: 600;
 }
+
+/* ── Связи: аналоги / зависимости ───────── */
+.reledit { display: flex; flex-direction: column; gap: 9px; }
+.reltags { display: flex; flex-wrap: wrap; gap: 6px; }
+.reltag {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--body); font-size: 12px; font-weight: 600;
+  padding: 4px 6px 4px 10px;
+  border: 1px solid var(--line-strong); background: var(--paper);
+}
+.reltag--empty { color: #999; font-weight: 500; border-style: dashed; }
+.reltag button {
+  border: none; background: none; cursor: pointer; color: var(--m-legacy);
+  font-size: 12px; line-height: 1; padding: 0 1px;
+}
+.reltag button:hover { color: var(--m-niche); }
+.reladd {
+  font-family: var(--body); font-size: 13px; padding: 7px 9px;
+  background: var(--paper); border: 1.3px solid var(--line-strong); border-radius: 0;
+  align-self: flex-start; max-width: 300px; color: var(--ink);
+}
+.reladd:focus { outline: none; box-shadow: 2px 2px 0 var(--ink); }
 
 /* ── Блок «С чего начать» ───────────────── */
 .startrow { display: grid; grid-template-columns: 1fr 1.3fr auto; gap: 8px; margin-bottom: 8px; }
