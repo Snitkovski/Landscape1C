@@ -40,8 +40,7 @@ window.LANDSCAPE = {
       "values": [
         "базовое",
         "продвинутое",
-        "нишевое",
-        "устаревает"
+        "нишевое"
       ]
     },
     "origin": {
@@ -57,6 +56,13 @@ window.LANDSCAPE = {
         "open-source",
         "проприетарное",
         "бесплатное"
+      ]
+    },
+    "availability": {
+      "label": "Доступность в РФ",
+      "values": [
+        "доступен",
+        "ограничен"
       ]
     }
   },
@@ -87,6 +93,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -123,6 +130,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "аналитик"
@@ -156,6 +164,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -190,6 +199,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -221,6 +231,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -264,6 +275,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -296,6 +308,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор",
@@ -351,6 +364,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -391,6 +405,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -424,9 +439,10 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/public/292440/"
         }
       ],
-      "maturity": "устаревает",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -459,6 +475,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "бесплатное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -490,6 +507,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "бесплатное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -525,6 +543,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -554,9 +573,10 @@ window.LANDSCAPE = {
           "url": "https://github.com/otymko/phoenixbsl"
         }
       ],
-      "maturity": "устаревает",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -593,6 +613,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -622,6 +643,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -660,6 +682,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -697,6 +720,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -723,6 +747,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -748,6 +773,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -774,6 +800,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -802,6 +829,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "бесплатное",
+      "availability": "доступен",
       "roles": [
         "аналитик",
         "разработчик"
@@ -829,6 +857,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор",
         "разработчик"
@@ -874,6 +903,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -910,9 +940,10 @@ window.LANDSCAPE = {
           "url": "https://www.1c-uc3.ru/our-courses/all-courses/dlya-administratorov/ms/"
         }
       ],
-      "maturity": "устаревает",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "ограничен",
       "roles": [
         "администратор"
       ],
@@ -938,6 +969,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -961,9 +993,10 @@ window.LANDSCAPE = {
       "homepage": "https://www.oracle.com/database/",
       "repo": null,
       "start": [],
-      "maturity": "устаревает",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "ограничен",
       "roles": [
         "администратор"
       ],
@@ -986,9 +1019,10 @@ window.LANDSCAPE = {
       "homepage": "https://www.ibm.com/products/db2",
       "repo": null,
       "start": [],
-      "maturity": "устаревает",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "ограничен",
       "roles": [
         "администратор"
       ],
@@ -1027,6 +1061,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -1067,6 +1102,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -1094,6 +1130,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -1125,6 +1162,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -1156,6 +1194,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -1187,6 +1226,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -1218,6 +1258,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "аналитик"
       ],
@@ -1245,6 +1286,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "аналитик"
       ],
@@ -1272,6 +1314,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "аналитик"
       ],
@@ -1304,6 +1347,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "аналитик",
         "разработчик"
@@ -1342,6 +1386,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "аналитик",
         "разработчик"
@@ -1368,6 +1413,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "тестировщик",
         "аналитик"
@@ -1403,6 +1449,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "тестировщик",
         "аналитик"
@@ -1438,6 +1485,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "тестировщик",
         "аналитик"
@@ -1465,9 +1513,10 @@ window.LANDSCAPE = {
       "homepage": null,
       "repo": "https://github.com/vanessa-opensource/add",
       "start": [],
-      "maturity": "устаревает",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "тестировщик",
         "разработчик"
@@ -1510,6 +1559,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -1548,6 +1598,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -1570,6 +1621,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -1602,6 +1654,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -1640,6 +1693,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -1679,6 +1733,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "аналитик",
         "разработчик"
@@ -1707,6 +1762,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "бесплатное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -1747,6 +1803,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор",
         "тестировщик",
@@ -1790,6 +1847,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор",
         "тестировщик",
@@ -1823,6 +1881,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор",
         "тестировщик",
@@ -1853,9 +1912,10 @@ window.LANDSCAPE = {
       "homepage": "https://www.travis-ci.com/",
       "repo": null,
       "start": [],
-      "maturity": "устаревает",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор",
         "тестировщик",
@@ -1888,6 +1948,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор",
         "тестировщик"
@@ -1915,6 +1976,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор",
         "тестировщик",
@@ -1945,6 +2007,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -1984,9 +2047,10 @@ window.LANDSCAPE = {
           "url": "https://guides.hexlet.io/vagrant/"
         }
       ],
-      "maturity": "устаревает",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -2033,6 +2097,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -2070,6 +2135,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "тестировщик"
       ],
@@ -2096,6 +2162,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "аналитик"
@@ -2126,6 +2193,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "аналитик"
@@ -2156,6 +2224,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -2182,6 +2251,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -2224,6 +2294,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -2247,6 +2318,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -2278,6 +2350,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -2313,6 +2386,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -2352,6 +2426,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -2379,6 +2454,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "тестировщик"
@@ -2402,6 +2478,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "тестировщик"
@@ -2429,6 +2506,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "тестировщик"
@@ -2456,6 +2534,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "тестировщик",
         "разработчик"
@@ -2482,6 +2561,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "тестировщик",
         "разработчик"
@@ -2522,6 +2602,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "бесплатное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "тестировщик"
@@ -2576,6 +2657,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -2607,6 +2689,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -2643,6 +2726,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "аналитик"
       ],
@@ -2677,9 +2761,10 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/1091360/"
         }
       ],
-      "maturity": "устаревает",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "ограничен",
       "roles": [
         "аналитик"
       ],
@@ -2704,6 +2789,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "аналитик"
       ],
@@ -2729,6 +2815,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "аналитик"
       ],
@@ -2754,6 +2841,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -2782,6 +2870,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -2806,6 +2895,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -2833,6 +2923,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -2857,6 +2948,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -2881,6 +2973,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -2902,6 +2995,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -2923,6 +3017,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "аналитик"
       ],
@@ -2942,9 +3037,10 @@ window.LANDSCAPE = {
       "homepage": "https://www.atlassian.com/software/confluence",
       "repo": null,
       "start": [],
-      "maturity": "устаревает",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "ограничен",
       "roles": [
         "аналитик"
       ],
@@ -2970,6 +3066,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "аналитик"
       ],
@@ -2995,6 +3092,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор",
@@ -3027,6 +3125,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "аналитик"
@@ -3056,6 +3155,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -3085,6 +3185,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -3113,6 +3214,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -3135,6 +3237,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик"
       ],
@@ -3162,6 +3265,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "бесплатное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "администратор"
@@ -3191,6 +3295,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -3215,6 +3320,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -3239,6 +3345,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -3266,6 +3373,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -3287,6 +3395,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -3315,6 +3424,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -3342,6 +3452,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -3367,6 +3478,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "зарубежное",
       "license": "бесплатное",
+      "availability": "доступен",
       "roles": [
         "администратор",
         "аналитик"
@@ -3392,6 +3504,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "бесплатное",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -3416,6 +3529,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "отечественное",
       "license": "бесплатное",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -3440,6 +3554,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор",
         "разработчик"
@@ -3469,6 +3584,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор",
         "разработчик"
@@ -3494,6 +3610,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],
@@ -3518,6 +3635,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор",
         "разработчик"
@@ -3540,9 +3658,10 @@ window.LANDSCAPE = {
       "homepage": "https://www.atlassian.com/software/jira",
       "repo": null,
       "start": [],
-      "maturity": "устаревает",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "ограничен",
       "roles": [
         "разработчик",
         "аналитик",
@@ -3569,9 +3688,10 @@ window.LANDSCAPE = {
       "homepage": "https://trello.com/",
       "repo": null,
       "start": [],
-      "maturity": "устаревает",
+      "maturity": "базовое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "ограничен",
       "roles": [
         "разработчик",
         "аналитик",
@@ -3600,6 +3720,7 @@ window.LANDSCAPE = {
       "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "аналитик",
@@ -3626,9 +3747,10 @@ window.LANDSCAPE = {
       "homepage": "https://www.jetbrains.com/youtrack/",
       "repo": null,
       "start": [],
-      "maturity": "устаревает",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "проприетарное",
+      "availability": "ограничен",
       "roles": [
         "разработчик",
         "аналитик",
@@ -3658,6 +3780,7 @@ window.LANDSCAPE = {
       "maturity": "базовое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "аналитик",
@@ -3687,6 +3810,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "аналитик",
@@ -3717,6 +3841,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
+      "availability": "доступен",
       "roles": [
         "разработчик",
         "аналитик",
@@ -3747,6 +3872,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
+      "availability": "доступен",
       "roles": [
         "администратор"
       ],

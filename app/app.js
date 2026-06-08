@@ -1,8 +1,8 @@
 (() => {
   const D = window.LANDSCAPE;
-  const AXES = ["role", "context", "maturity", "origin", "license"];
+  const AXES = ["role", "context", "maturity", "origin", "license", "availability"];
   // Поля элемента, по которым фильтруем (role/context — массивы)
-  const FIELD = { role: "roles", context: "contexts", maturity: "maturity", origin: "origin", license: "license" };
+  const FIELD = { role: "roles", context: "contexts", maturity: "maturity", origin: "origin", license: "license", availability: "availability" };
 
   // Состояние фильтров: для каждой оси — Set выбранных значений
   const state = {};
@@ -195,6 +195,7 @@
           <span class="badge badge--mat">${i.maturity}</span>
           <span class="badge badge--ghost">${i.origin}</span>
           <span class="badge badge--ghost">${i.license}</span>
+          ${i.availability === "ограничен" ? `<span class="badge badge--ghost">огранич. в РФ</span>` : ""}
         </div>
       </div>`;
     el.addEventListener("click", () => openDetail(i));
@@ -214,7 +215,7 @@
 
     const badges = [
       i.maturity ? `<span class="badge badge--mat" data-mat="${i.maturity}" style="--mat:var(--m-${matKey(i.maturity)})">${i.maturity}</span>` : "",
-      tags([i.origin, i.license])
+      tags([i.origin, i.license, i.availability === "ограничен" ? "ограничен в РФ" : ""])
     ].join("");
     const startInner = (i.start && i.start.length)
       ? `<ul class="detail__list">${
