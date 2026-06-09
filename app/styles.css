@@ -27,7 +27,6 @@
   --m-base: #2d6e22;     /* базовое */
   --m-adv: #1a4f8a;      /* продвинутое */
   --m-niche: #a83e18;    /* нишевое */
-  --m-legacy: #999999;   /* устаревает */
 
   --display: "Unbounded", sans-serif;
   --body: "Inter", sans-serif;
@@ -51,7 +50,6 @@
   --m-base: #5aaa40;     /* базовое */
   --m-adv: #4a8acc;      /* продвинутое */
   --m-niche: #e06030;    /* нишевое */
-  --m-legacy: #8a7f76;   /* устаревает */
 }
 
 * { box-sizing: border-box; }
@@ -323,14 +321,8 @@ a { color: var(--ink); text-underline-offset: 3px; }
   width: 48px; height: 48px; display: grid; place-items: center;
 }
 .card__logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
-/* монохромные (чёрные) лого без цветной версии — в тёмной теме инвертируем, иначе тонут */
-:root[data-theme="dark"] img[src$="kafka.svg"],
-:root[data-theme="dark"] img[src$="curl.svg"],
-:root[data-theme="dark"] img[src$="ngrok.svg"],
-:root[data-theme="dark"] img[src$="cursor.svg"],
-:root[data-theme="dark"] img[src$="openai.svg"],
-:root[data-theme="dark"] img[src$="github-copilot.svg"],
-:root[data-theme="dark"] img[src$="github.svg"] { filter: invert(1); }
+/* монохромные (чёрные) лого: в тёмной теме инвертируем по флагу logoInvert в data.js */
+:root[data-theme="dark"] img.is-invert { filter: invert(1); }
 .card__logo--ph {
   width: 48px; height: 48px; border-radius: 2px; border: 1px solid var(--line);
   font-size: 14px; font-weight: 700; color: #bbb;
@@ -374,7 +366,6 @@ a { color: var(--ink); text-underline-offset: 3px; }
 [data-mat="базовое"]    { --mat: var(--m-base); }
 [data-mat="продвинутое"]{ --mat: var(--m-adv); }
 [data-mat="нишевое"]    { --mat: var(--m-niche); }
-[data-mat="устаревает"] { --mat: var(--m-legacy); }
 
 .empty { padding: 48px clamp(16px, 3vw, 24px); max-width: 560px; }
 .empty__title {

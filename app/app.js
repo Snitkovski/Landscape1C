@@ -90,7 +90,11 @@
   // ── Фильтрация ────────────────────────────
   function matches(item) {
     if (query) {
-      const hay = (item.name + " " + item.description).toLowerCase();
+      // Ищем по имени, описанию, разделу и меткам ролей/контекста, плюс «зачем»
+      const hay = [
+        item.name, item.description, item.category, item.subcategory, item.why,
+        (item.roles || []).join(" "), (item.contexts || []).join(" ")
+      ].filter(Boolean).join(" ").toLowerCase();
       if (!hay.includes(query)) return false;
     }
     for (const axis of AXES) {
@@ -107,7 +111,7 @@
 
   // ── Рендер доски ──────────────────────────
   // Порядок сортировки карточек внутри раздела по зрелости
-  const MAT_ORDER = { "базовое": 0, "продвинутое": 1, "нишевое": 2, "устаревает": 3 };
+  const MAT_ORDER = { "базовое": 0, "продвинутое": 1, "нишевое": 2 };
 
   function apply() {
     const board = $("#board");
@@ -153,6 +157,8 @@
     const active = AXES.some(a => state[a].size) || query;
     $("#reset").hidden = !active;
     writeUrl();
+    // Высота доски изменилась — пусть фиксированный футер пересчитает «раскрытие»
+    dispatchEvent(new Event("scroll"));
   }
 
   // Письмо «не нашел инструмент» — с подставленными фильтрами
@@ -196,7 +202,7 @@
 
   function logoMarkup(i, cls) {
     return i.logo
-      ? `<span class="${cls}"><img src="logos/${i.logo}" alt="" loading="lazy"></span>`
+      ? `<span class="${cls}"><img class="${i.logoInvert ? "is-invert" : ""}" src="logos/${i.logo}" alt="" loading="lazy"></span>`
       : `<span class="${cls} ${cls}--ph">1С</span>`;
   }
 
@@ -245,7 +251,7 @@
       const t = byName(n);
       if (!t) return "";
       const logo = t.logo
-        ? `<img class="detail__rel-logo" src="logos/${t.logo}" alt="">`
+        ? `<img class="detail__rel-logo${t.logoInvert ? " is-invert" : ""}" src="logos/${t.logo}" alt="">`
         : `<span class="detail__rel-logo detail__rel-logo--ph">1С</span>`;
       return `<button type="button" class="detail__rel" data-i="${D.items.indexOf(t)}">${logo}<span>${t.name}</span></button>`;
     }).filter(Boolean).join("");
@@ -277,7 +283,7 @@
     if (!dlg.open) dlg.showModal();
   }
   function matKey(m) {
-    return { "базовое": "base", "продвинутое": "adv", "нишевое": "niche", "устаревает": "legacy" }[m];
+    return { "базовое": "base", "продвинутое": "adv", "нишевое": "niche" }[m];
   }
 
   // ── Сброс / поиск ─────────────────────────
