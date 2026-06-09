@@ -508,6 +508,12 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .doc ul { margin: 0 0 14px; padding-left: 20px; max-width: 64ch; }
 .doc li { margin: 0 0 7px; }
 .doc strong { font-weight: 600; }
+/* Метки осей — те же бейджи, что и в ландшафте; бейдж играет роль маркера */
+.axis { display: grid; grid-template-columns: max-content 1fr; gap: 11px 14px; align-items: baseline; margin: 0 0 8px; max-width: 64ch; }
+.axis .badge { justify-self: start; }
+/* на странице методологии метки читаемые — черные (зрелость остается цветной) */
+.axis .badge--ghost { color: var(--ink); border-color: var(--ink); }
+.axis__desc { color: var(--ink); }
 
 /* Экспертный совет — сетка персон с плейсхолдерами */
 .council { padding: 30px 0 64px; }
