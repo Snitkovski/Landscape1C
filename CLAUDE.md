@@ -53,6 +53,12 @@ python3 scripts/serve.py
 node scripts/validate.js
 ```
 
+Сборка `dist/` для ручной выгрузки на хостинг (сначала прогоняет валидатор, затем копирует публичную статику из `app/`, выкидывая редактор `editor.*`, промежуточный `data.generated.js` и `.DS_Store`):
+
+```bash
+node scripts/build.js
+```
+
 Деплой — GitHub Actions (`.github/workflows/deploy.yml`), выкладывает содержимое `app/` на GitHub Pages. Сейчас **только ручной запуск** (`workflow_dispatch`); автодеплой по push в `main` закомментирован (репозиторий приватный). Пути в `app/` относительные — работает на projectpage без доп. настроек.
 
 ## Соглашения
