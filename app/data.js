@@ -115,6 +115,10 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
+      ],
+      "depends": [
+        "YAxUnit",
+        "Стандарты разработки"
       ]
     },
     {
@@ -153,6 +157,9 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
+      ],
+      "depends": [
+        "Стандарты разработки"
       ]
     },
     {
@@ -339,7 +346,8 @@ window.LANDSCAPE = {
       "depends": [
         "Хранилище",
         "Плагин для конфигуратора PhoenixBSL",
-        "TurboConf"
+        "TurboConf",
+        "Синтаксическая проверка конфигурации"
       ]
     },
     {
@@ -392,7 +400,8 @@ window.LANDSCAPE = {
       "depends": [
         "git",
         "Плагины для 1С:EDT",
-        "Плагин 1С:Напарник"
+        "Плагин 1С:Напарник",
+        "Синтаксическая проверка конфигурации"
       ]
     },
     {
@@ -429,7 +438,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Конфигуратор",
-        "1C:Enterprise Development Tools (EDT)"
+        "1C:Enterprise Development Tools (EDT)",
+        "Cursor"
       ],
       "depends": [
         "Плагин для VSCode «1C: Platform Tools»",
@@ -633,6 +643,10 @@ window.LANDSCAPE = {
         "проекты",
         "продукты"
       ],
+      "analogs": [
+        "GigaCode",
+        "GitHub Copilot"
+      ],
       "depends": [
         "1C:Enterprise Development Tools (EDT)"
       ]
@@ -657,6 +671,10 @@ window.LANDSCAPE = {
       "contexts": [
         "продукты",
         "инхаус"
+      ],
+      "analogs": [
+        "Плагин 1С:Напарник",
+        "GitHub Copilot"
       ]
     },
     {
@@ -680,6 +698,13 @@ window.LANDSCAPE = {
       "contexts": [
         "продукты",
         "инхаус"
+      ],
+      "analogs": [
+        "GigaCode",
+        "Плагин 1С:Напарник"
+      ],
+      "depends": [
+        "GitHub"
       ]
     },
     {
@@ -703,6 +728,10 @@ window.LANDSCAPE = {
       "contexts": [
         "продукты",
         "инхаус"
+      ],
+      "analogs": [
+        "Visual Studio Code (VSCode)",
+        "Codex"
       ]
     },
     {
@@ -725,6 +754,9 @@ window.LANDSCAPE = {
       "contexts": [
         "продукты",
         "инхаус"
+      ],
+      "analogs": [
+        "Codex"
       ]
     },
     {
@@ -748,6 +780,10 @@ window.LANDSCAPE = {
       "contexts": [
         "продукты",
         "инхаус"
+      ],
+      "analogs": [
+        "Cursor",
+        "Claude Code"
       ]
     },
     {
@@ -995,7 +1031,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "PostgreSQL",
-        "Microsoft SQLServer"
+        "Microsoft SQLServer",
+        "Postgres Pro"
       ]
     },
     {
@@ -1078,7 +1115,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Файловая СУБД",
-        "PostgreSQL"
+        "PostgreSQL",
+        "Postgres Pro"
       ]
     },
     {
@@ -1104,7 +1142,10 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "PostgreSQL",
-        "Microsoft SQLServer"
+        "Microsoft SQLServer",
+        "Файловая СУБД",
+        "IBM Db2",
+        "Oracle Database"
       ]
     },
     {
@@ -1130,7 +1171,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Microsoft SQLServer",
-        "PostgreSQL"
+        "PostgreSQL",
+        "Postgres Pro"
       ]
     },
     {
@@ -1156,7 +1198,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Oracle Database",
-        "Microsoft SQLServer"
+        "Microsoft SQLServer",
+        "Postgres Pro"
       ]
     },
     {
@@ -1238,7 +1281,10 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "1C:Enterprise Development Tools (EDT)",
-        "Gitlab CI"
+        "Gitlab CI",
+        "SonarQube",
+        "Crucible",
+        "Review Board"
       ]
     },
     {
@@ -1303,7 +1349,8 @@ window.LANDSCAPE = {
         "Bitbucket"
       ],
       "depends": [
-        "git"
+        "git",
+        "GitHub Copilot"
       ]
     },
     {
@@ -1549,7 +1596,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "1С:Сценарное тестирование",
-        "Vanessa-Automation"
+        "Vanessa-Automation",
+        "Тестер"
       ]
     },
     {
@@ -1585,7 +1633,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "1С:Тестировщик",
-        "Vanessa-Automation"
+        "Vanessa-Automation",
+        "Тестер"
       ]
     },
     {
@@ -1622,7 +1671,8 @@ window.LANDSCAPE = {
       "analogs": [
         "1С:Тестировщик",
         "1С:Сценарное тестирование",
-        "Vanessa-ADD"
+        "Vanessa-ADD",
+        "Тестер"
       ],
       "depends": [
         "Visual Studio Code (VSCode)"
@@ -1691,6 +1741,11 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "продукты"
+      ],
+      "analogs": [
+        "1С:Тестировщик",
+        "1С:Сценарное тестирование",
+        "Vanessa-Automation"
       ]
     },
     {
@@ -1730,6 +1785,9 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "продукты"
+      ],
+      "depends": [
+        "Встроенный язык программирования 1С:Предприятия"
       ]
     },
     {
@@ -1758,6 +1816,10 @@ window.LANDSCAPE = {
       "analogs": [
         "SonarQube",
         "1С:Автоматизированная проверка конфигураций (АПК)"
+      ],
+      "depends": [
+        "Конфигуратор",
+        "1C:Enterprise Development Tools (EDT)"
       ]
     },
     {
@@ -1829,6 +1891,9 @@ window.LANDSCAPE = {
       "analogs": [
         "1С:Автоматизированная проверка конфигураций (АПК)",
         "Синтаксическая проверка конфигурации"
+      ],
+      "depends": [
+        "git"
       ]
     },
     {
@@ -1866,6 +1931,9 @@ window.LANDSCAPE = {
         "продукты",
         "проекты",
         "инхаус"
+      ],
+      "analogs": [
+        "Jira"
       ]
     },
     {
@@ -1895,6 +1963,10 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты",
         "проекты"
+      ],
+      "depends": [
+        "Встроенный язык программирования 1С:Предприятия",
+        "Язык запросов"
       ]
     },
     {
@@ -1917,6 +1989,13 @@ window.LANDSCAPE = {
       "contexts": [
         "продукты",
         "инхаус"
+      ],
+      "analogs": [
+        "Collaborator",
+        "Review Board"
+      ],
+      "depends": [
+        "git"
       ]
     },
     {
@@ -1939,6 +2018,13 @@ window.LANDSCAPE = {
       "contexts": [
         "продукты",
         "инхаус"
+      ],
+      "analogs": [
+        "Crucible",
+        "Collaborator"
+      ],
+      "depends": [
+        "git"
       ]
     },
     {
@@ -1961,6 +2047,10 @@ window.LANDSCAPE = {
       "contexts": [
         "продукты",
         "инхаус"
+      ],
+      "analogs": [
+        "Crucible",
+        "Review Board"
       ]
     },
     {
@@ -1983,6 +2073,13 @@ window.LANDSCAPE = {
       "contexts": [
         "продукты",
         "инхаус"
+      ],
+      "analogs": [
+        "ai-review"
+      ],
+      "depends": [
+        "Gitlab CI",
+        "GitHub Actions"
       ]
     },
     {
@@ -2006,6 +2103,13 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус",
         "проекты"
+      ],
+      "analogs": [
+        "CodeRabbit"
+      ],
+      "depends": [
+        "GitHub Actions",
+        "Gitlab CI"
       ]
     },
     {
@@ -2100,7 +2204,9 @@ window.LANDSCAPE = {
         "TeamCity"
       ],
       "depends": [
-        "git"
+        "git",
+        "CodeRabbit",
+        "ai-review"
       ]
     },
     {
@@ -2134,7 +2240,9 @@ window.LANDSCAPE = {
         "TeamCity"
       ],
       "depends": [
-        "git"
+        "git",
+        "CodeRabbit",
+        "ai-review"
       ]
     },
     {
@@ -2379,6 +2487,9 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "продукты"
+      ],
+      "analogs": [
+        "Grafana"
       ]
     },
     {
@@ -2396,7 +2507,7 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/695523/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "базовое",
       "origin": "отечественное",
       "license": "проприетарное",
       "availability": "доступен",
@@ -2979,7 +3090,9 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Microsoft Power BI"
+        "Microsoft Power BI",
+        "Yandex DataLens",
+        "Visiology"
       ]
     },
     {
@@ -3017,7 +3130,9 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "1С:Аналитика"
+        "1С:Аналитика",
+        "Yandex DataLens",
+        "Visiology"
       ]
     },
     {
@@ -3043,7 +3158,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Microsoft Power BI",
-        "1С:Аналитика"
+        "1С:Аналитика",
+        "Visiology"
       ]
     },
     {
@@ -3069,7 +3185,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Microsoft Power BI",
-        "Yandex DataLens"
+        "Yandex DataLens",
+        "1С:Аналитика"
       ]
     },
     {
@@ -3246,6 +3363,10 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "проекты"
+      ],
+      "analogs": [
+        "Elasticsearch",
+        "ClickHouse"
       ]
     },
     {
@@ -3572,6 +3693,9 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "analogs": [
+        "Allure"
+      ],
       "depends": [
         "Prometheus"
       ]
@@ -3724,8 +3848,7 @@ window.LANDSCAPE = {
       "license": "бесплатное",
       "availability": "доступен",
       "roles": [
-        "администратор",
-        "аналитик"
+        "администратор"
       ],
       "contexts": [
         "инхаус",
@@ -3808,7 +3931,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "ClickHouse"
+        "ClickHouse",
+        "OneSwiss"
       ],
       "depends": [
         "Kibana",
@@ -3889,7 +4013,8 @@ window.LANDSCAPE = {
         "проекты"
       ],
       "analogs": [
-        "Elasticsearch"
+        "Elasticsearch",
+        "OneSwiss"
       ]
     },
     {
@@ -3919,7 +4044,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Trello",
-        "Яндекс Трекер"
+        "Яндекс Трекер",
+        "1С:СППР"
       ]
     },
     {
