@@ -128,6 +128,10 @@
     $("#count").textContent = `${visible.length} из ${D.items.length} инструментов`;
     const active = AXES.some(a => state[a].size) || query;
     $("#reset").hidden = !active;
+    // Дубль счётчика/сброса в прилипающей верхней строке — только при активном отборе
+    const c2 = $("#count2"), r2 = $("#reset2");
+    if (c2) { c2.textContent = `${visible.length} из ${D.items.length}`; c2.hidden = !active; }
+    if (r2) r2.hidden = !active;
     writeUrl();
     // Высота доски изменилась — пусть фиксированный футер пересчитает «раскрытие»
     dispatchEvent(new Event("scroll"));
@@ -202,11 +206,13 @@
   const openDetail = i => window.openDetail(i);   // модалка вынесена в detail.js
 
   // ── Сброс / поиск ─────────────────────────
-  $("#reset").addEventListener("click", () => {
+  const reset = () => {
     AXES.forEach(a => state[a].clear());
-    query = ""; $("#search").value = "";
+    query = ""; $("#search").value = ""; $("#search2").value = "";
     syncControls(); apply();
-  });
+  };
+  $("#reset").addEventListener("click", reset);
+  $("#reset2").addEventListener("click", reset);
   $("#search").addEventListener("input", e => { query = e.target.value.trim().toLowerCase(); apply(); });
 
   // ── Старт ─────────────────────────────────

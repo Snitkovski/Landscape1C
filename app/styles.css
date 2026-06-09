@@ -79,15 +79,18 @@ a { color: var(--ink); text-underline-offset: 3px; }
 }
 
 /* ── Переключатель темы ──────────────────── */
-.theme-toggle {
-  position: absolute; top: 18px; right: clamp(20px, 4vw, 40px);
+.theme-toggle, .menu-toggle {
+  position: absolute; top: 18px;
   width: 34px; height: 34px; display: grid; place-items: center; padding: 0;
   background: transparent; border: none; border-radius: 0;
   color: var(--ink); cursor: pointer;
   transition: color .12s ease;
 }
-.theme-toggle:hover { color: var(--ink-soft); }
+.menu-toggle  { right: clamp(20px, 4vw, 40px); }                /* крайний справа */
+.theme-toggle { right: calc(clamp(20px, 4vw, 40px) + 40px); }   /* левее бургера */
+.theme-toggle:hover, .menu-toggle:hover { color: var(--ink-soft); }
 .theme-toggle svg { width: 16px; height: 16px; display: block; }
+.menu-toggle svg { width: 22px; height: 22px; display: block; }
 .theme-toggle .i-sun { display: none; }
 :root[data-theme="dark"] .theme-toggle .i-moon { display: none; }
 :root[data-theme="dark"] .theme-toggle .i-sun { display: block; }
@@ -113,7 +116,48 @@ a { color: var(--ink); text-underline-offset: 3px; }
   border: 1.5px solid var(--ink); border-radius: 0; color: var(--ink);
 }
 .topbar__search input:focus { outline: none; }
-.topbar .theme-toggle { position: static; flex: none; }
+.topbar .theme-toggle, .topbar .menu-toggle { position: static; flex: none; }
+
+/* ── Меню-бургер ──────────────────────────── */
+.menu {
+  position: fixed; top: 54px; right: clamp(12px, 4vw, 40px); z-index: 40;
+  display: none;
+}
+.menu.is-open { display: block; }
+.menu__panel {
+  min-width: 232px; padding: 8px;
+  background: var(--card); border: 1.5px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  display: flex; flex-direction: column; gap: 1px;
+}
+/* строки меню — ссылки, поле темы и пункты списка темы выглядят одинаково */
+.menu__panel a,
+.menu__theme-head,
+.menu__theme-list button {
+  font-family: var(--body); font-size: 14px; font-weight: 600;
+  color: var(--ink); text-decoration: none; text-align: left;
+  padding: 9px 12px; background: transparent; border: none; cursor: pointer;
+  width: 100%;
+}
+.menu__panel a:hover,
+.menu__theme-head:hover,
+.menu__theme-list button:hover { background: var(--hover); }
+.menu__sep { height: 1px; background: var(--line); margin: 6px 4px; }
+
+/* Поле выбора темы — раскрывается списком из 3 вариантов */
+.menu__theme-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.menu__theme-cur { margin-left: auto; color: var(--ink-soft); font-weight: 500; font-size: 13px; }
+.menu__theme-head::after {
+  content: "▾"; font-size: 11px; color: var(--ink-soft); transition: transform .15s ease;
+}
+.menu__theme-head[aria-expanded="true"]::after { transform: rotate(180deg); }
+.menu__theme-list { display: flex; flex-direction: column; }
+.menu__theme-list[hidden] { display: none; }
+.menu__theme-list button { font-size: 13px; color: var(--ink-soft); padding-left: 24px; }
+.menu__theme-list button[aria-pressed="true"] { color: var(--ink); }
+.menu__theme-list button[aria-pressed="true"]::after { content: " ✓"; }
+/* На мобильном отдельную кнопку темы прячем — тему меняем через бургер-меню */
+@media (max-width: 600px) { .theme-toggle { display: none; } }
 .masthead__main { min-width: 0; }
 .kicker {
   font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
@@ -191,15 +235,26 @@ a { color: var(--ink); text-underline-offset: 3px; }
 }
 .chips { display: block; }
 .chip {
+  position: relative;
   display: block; width: 100%; text-align: left;
   font-family: var(--body); font-size: 12px; font-weight: 500;
-  padding: 6px 16px 6px 14px;
-  background: none; border: none; border-left: 2px solid transparent;
+  padding: 6px 16px 6px 16px;
+  background: none; border: none;
   color: var(--ink); cursor: pointer;
-  transition: background .1s ease, border-color .1s ease;
+  transition: background .1s ease;
 }
 .chip:hover { background: var(--hover); }
-.chip[aria-pressed="true"] { border-left-color: var(--ink); font-weight: 700; }
+.chip[aria-pressed="true"] { font-weight: 700; padding-right: 30px; }
+/* индикатор выбранного: вертикальная черта (отступив от края) + крестик-сброс справа */
+.chip[aria-pressed="true"]::before {
+  content: ""; position: absolute; left: 7px; top: 5px; bottom: 5px;
+  width: 2px; background: var(--ink);
+}
+.chip[aria-pressed="true"]::after {
+  content: "✕"; position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  font-size: 10px; line-height: 1; color: var(--ink-soft);
+}
+.chip[aria-pressed="true"]:hover::after { color: var(--ink); }
 
 /* На узком экране сайдбар уезжает наверх — фильтры горизонтально, чипы тегами.
    Метка оси встаёт в одну строку с чипами. */
@@ -219,7 +274,10 @@ a { color: var(--ink); text-underline-offset: 3px; }
   .chip:hover { background: var(--paper-2); }
   .chip[aria-pressed="true"] {
     background: var(--ink); color: var(--paper); border-color: var(--ink); font-weight: 600;
+    padding: 5px 11px;                                  /* перебить десктопный отступ под крестик */
   }
+  .chip[aria-pressed="true"]::before,
+  .chip[aria-pressed="true"]::after { content: none; }  /* на мобильном — закрашенный тег без черты/крестика */
 }
 
 /* ── Контент ─────────────────────────────── */
@@ -238,6 +296,10 @@ a { color: var(--ink); text-underline-offset: 3px; }
   background: none; border: none; color: var(--ink);
   text-decoration: underline; text-underline-offset: 3px; padding: 0;
 }
+/* Счётчик и сброс, продублированные в прилипающей верхней строке */
+.topbar .count, .topbar .reset { flex: none; white-space: nowrap; }
+.topbar .count { letter-spacing: .5px; }
+@media (max-width: 600px) { .topbar .count, .topbar .reset { display: none; } }  /* на мобильном дубль не показываем */
 
 /* ── Блоки (группы категорий) ────────────── */
 .block__head {
@@ -477,6 +539,9 @@ a { color: var(--ink); text-underline-offset: 3px; }
 /* долистали до конца — раскрываем: подчёркивание и чуть крупнее */
 .foot.is-full { font-size: 12px; padding: 12px clamp(20px, 4vw, 40px); }
 .foot.is-full a { text-decoration: underline; text-underline-offset: 3px; }
+/* На телефоне подвал не фиксируем: на узком экране ссылки переносятся в 2 строки,
+   полосой внизу это выглядит плохо — пусть просто стоит в конце страницы. */
+@media (max-width: 600px) { .foot { position: static; } }
 
 /* ── Отдельные страницы (Методология, Экспертный совет) ── */
 .kicker .back { color: #999; text-decoration: none; }
