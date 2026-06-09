@@ -524,9 +524,7 @@ a { color: var(--ink); text-underline-offset: 3px; }
 }
 .exp__photo img {
   width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: grayscale(1); transition: filter .3s ease;
 }
-.exp:hover .exp__photo img { filter: grayscale(0); }
 
 .exp__body {
   flex: 1; display: flex; flex-direction: column; align-items: flex-start;
@@ -553,6 +551,19 @@ a { color: var(--ink); text-underline-offset: 3px; }
 }
 .exp__link:hover { color: var(--ink-soft); border-color: var(--ink-soft); }
 .exp__link span { font-size: 11px; }
+
+/* Автор проекта — акцентная карточка во всю ширину, фото сбоку */
+.exp--lead { grid-column: 1 / -1; }
+@media (min-width: 600px) {
+  .exp--lead { flex-direction: row; }
+  .exp--lead .exp__photo {
+    flex: none; width: clamp(200px, 34%, 300px);
+    border-bottom: none; border-right: 1.5px solid var(--ink);
+  }
+  .exp--lead .exp__body { justify-content: center; gap: 14px; }
+  .exp--lead .exp__name { font-size: clamp(24px, 3vw, 32px); }
+  .exp--lead .exp__bio { font-size: 15px; max-width: 46ch; }
+}
 
 /* ── Граф связей ──────────────────────────── */
 .graph-filters {
