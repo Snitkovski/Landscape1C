@@ -114,19 +114,37 @@
     board.innerHTML = "";
     const visible = D.items.filter(matches);
 
-    D.categories.forEach(catName => {
+    const renderCat = (catName, blockName) => {
       const items = visible.filter(i => i.category === catName)
-        .sort((a, b) => (MAT_ORDER[a.maturity] ?? 99) - (MAT_ORDER[b.maturity] ?? 99));
+        // Сначала доступные в РФ, ограниченные — в конец; внутри групп — по зрелости
+        .sort((a, b) =>
+          (a.availability === "ограничен") - (b.availability === "ограничен")
+          || (MAT_ORDER[a.maturity] ?? 99) - (MAT_ORDER[b.maturity] ?? 99));
       if (!items.length) return;
       const cat = document.createElement("section");
       cat.className = "cat";
-      cat.innerHTML = `<div class="cat__head"><h2 class="cat__name">${catName}</h2><span class="cat__num">${items.length}</span></div>`;
+      cat.innerHTML = `<div class="cat__head"><div class="cat__title">${blockName ? `<span class="cat__block">${blockName}</span>` : ""}<h2 class="cat__name">${catName}</h2></div><span class="cat__num">${items.length}</span></div>`;
       const cards = document.createElement("div");
       cards.className = "cards";
       items.forEach(i => cards.appendChild(card(i)));
       cat.appendChild(cards);
       board.appendChild(cat);
-    });
+    };
+
+    // Блоки группируют категории; если блоков нет — плоский список (запасной путь)
+    if (D.blocks) {
+      D.blocks.forEach(block => {
+        const visCats = block.categories.filter(c => visible.some(i => i.category === c));
+        if (!visCats.length) return;
+        const head = document.createElement("div");
+        head.className = "block__head";
+        head.innerHTML = `<span class="block__name">${block.name}</span>`;
+        board.appendChild(head);
+        visCats.forEach(c => renderCat(c, block.name));
+      });
+    } else {
+      D.categories.forEach(renderCat);
+    }
 
     const noResults = visible.length === 0;
     $("#empty").hidden = !noResults;
@@ -195,7 +213,7 @@
           <span class="badge badge--mat">${i.maturity}</span>
           <span class="badge badge--ghost">${i.origin}</span>
           <span class="badge badge--ghost">${i.license}</span>
-          ${i.availability === "ограничен" ? `<span class="badge badge--ghost">огранич. в РФ</span>` : ""}
+          ${i.availability === "ограничен" ? `<span class="badge badge--ghost">ограничен</span>` : ""}
         </div>
       </div>`;
     el.addEventListener("click", () => openDetail(i));
@@ -215,7 +233,7 @@
 
     const badges = [
       i.maturity ? `<span class="badge badge--mat" data-mat="${i.maturity}" style="--mat:var(--m-${matKey(i.maturity)})">${i.maturity}</span>` : "",
-      tags([i.origin, i.license, i.availability === "ограничен" ? "ограничен в РФ" : ""])
+      tags([i.origin, i.license, i.availability === "ограничен" ? "ограничен" : ""])
     ].join("");
     const startInner = (i.start && i.start.length)
       ? `<ul class="detail__list">${
