@@ -1049,7 +1049,7 @@ window.LANDSCAPE = {
       ]
     },
     {
-      "name": "Плагин для VSCode «1C: Platform Tools»",
+      "name": "Плагин для VSCode «1C:Platform Tools»",
       "category": "Плагины и расширения",
       "subcategory": null,
       "logo": "vscode.svg",
@@ -1088,7 +1088,7 @@ window.LANDSCAPE = {
       "name": "Плагины для 1С:EDT",
       "category": "Плагины и расширения",
       "subcategory": null,
-      "logo": "1c.png",
+      "logo": "edt.png",
       "description": "Официальные и сторонние плагины, расширяющие 1С:EDT",
       "why": "Улучшают работу разработчика в 1C:EDT",
       "homepage": "https://edt.1c.ru/ext/",
@@ -1243,10 +1243,10 @@ window.LANDSCAPE = {
       "name": "OneScript Debug (BSL)",
       "category": "Плагины и расширения",
       "subcategory": null,
-      "logo": "vscode.svg",
+      "logo": "onescript-debug.png",
       "description": "Отладка скриптов OneScript прямо в VSCode",
       "why": "Дает точки останова и пошаговую отладку OneScript-скриптов в редакторе — без внешних средств",
-      "homepage": null,
+      "homepage": "https://marketplace.visualstudio.com/items?itemName=EvilBeaver.oscript-debug",
       "repo": null,
       "start": [],
       "maturity": "нишевое",
@@ -1275,10 +1275,10 @@ window.LANDSCAPE = {
       "name": "Language 1C (BSL)",
       "category": "Плагины и расширения",
       "subcategory": null,
-      "logo": "vscode.svg",
+      "logo": "bsl-language-server.png",
       "description": "Подсветка синтаксиса, автодополнение и навигация по коду 1С (BSL) в VSCode",
       "why": "Превращает VSCode в полноценный редактор кода 1С: подсветка, автодополнение и переход к определению",
-      "homepage": null,
+      "homepage": "https://marketplace.visualstudio.com/items?itemName=1c-syntax.language-1c-bsl",
       "repo": null,
       "start": [],
       "maturity": "продвинутое",
@@ -1307,10 +1307,10 @@ window.LANDSCAPE = {
       "name": "Cucumber (Gherkin) Full Support",
       "category": "Плагины и расширения",
       "subcategory": null,
-      "logo": "vscode.svg",
+      "logo": "cucumber.png",
       "description": "Автодополнение и подсветка Gherkin для feature-файлов (BDD, Vanessa-Automation)",
       "why": "Помогает писать BDD-сценарии: автодополнение шагов, подсветка и переход к определениям в feature-файлах",
-      "homepage": null,
+      "homepage": "https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete",
       "repo": null,
       "start": [],
       "maturity": "нишевое",
@@ -1340,10 +1340,10 @@ window.LANDSCAPE = {
       "name": "Gherkin Table Align",
       "category": "Плагины и расширения",
       "subcategory": null,
-      "logo": "vscode.svg",
+      "logo": "gherkin-table-align.png",
       "description": "Выравнивание таблиц в Gherkin-сценариях",
       "why": "Автоматически выравнивает столбцы таблиц в feature-файлах — сценарии читать и поддерживать проще",
-      "homepage": null,
+      "homepage": "https://marketplace.visualstudio.com/items?itemName=AlanCole.gherkintablealign",
       "repo": null,
       "start": [],
       "maturity": "нишевое",
@@ -1372,10 +1372,10 @@ window.LANDSCAPE = {
       "name": "Allure Support",
       "category": "Плагины и расширения",
       "subcategory": null,
-      "logo": "vscode.svg",
+      "logo": "allure-support.png",
       "description": "Поддержка Allure в VSCode: подсказки и навигация по разметке тестов",
       "why": "Упрощает работу с Allure прямо в редакторе — подсказки и переходы по разметке отчетов",
-      "homepage": null,
+      "homepage": "https://marketplace.visualstudio.com/items?itemName=qameta.allure-vscode",
       "repo": null,
       "start": [],
       "maturity": "нишевое",
@@ -1580,7 +1580,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "проекты",
-        "инхаус"
+        "инхаус",
+        "франчайзи"
       ],
       "aliases": [
         "постгрес",
@@ -1663,7 +1664,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "проекты"
+        "проекты",
+        "франчайзи"
       ],
       "aliases": [
         "постгрес про",
@@ -2229,6 +2231,9 @@ window.LANDSCAPE = {
         "1С:Тестировщик",
         "Vanessa-Automation",
         "Тестер"
+      ],
+      "depends": [
+        "Allure"
       ]
     },
     {
@@ -2275,7 +2280,8 @@ window.LANDSCAPE = {
         "Тестер"
       ],
       "depends": [
-        "Visual Studio Code (VSCode)"
+        "Visual Studio Code (VSCode)",
+        "Allure"
       ]
     },
     {
@@ -2406,7 +2412,8 @@ window.LANDSCAPE = {
         "юнит тесты 1с"
       ],
       "depends": [
-        "Встроенный язык программирования 1С:Предприятия"
+        "Встроенный язык программирования 1С:Предприятия",
+        "Allure"
       ]
     },
     {
@@ -3333,6 +3340,11 @@ window.LANDSCAPE = {
       "analogs": [
         "Grafana",
         "ТестОпс"
+      ],
+      "depends": [
+        "Vanessa-Automation",
+        "1С:Сценарное тестирование",
+        "YAxUnit"
       ]
     },
     {
@@ -3750,7 +3762,8 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "продукты",
-        "проекты"
+        "проекты",
+        "франчайзи"
       ],
       "aliases": [
         "фиддлер",
@@ -3779,7 +3792,8 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "продукты",
-        "проекты"
+        "проекты",
+        "франчайзи"
       ],
       "aliases": [
         "бруно",
@@ -3813,7 +3827,8 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "продукты",
-        "проекты"
+        "проекты",
+        "франчайзи"
       ],
       "aliases": [
         "инсомния",
@@ -3847,7 +3862,8 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "продукты",
-        "проекты"
+        "проекты",
+        "франчайзи"
       ],
       "aliases": [
         "соап юай",
@@ -3882,7 +3898,8 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "продукты",
-        "проекты"
+        "проекты",
+        "франчайзи"
       ],
       "aliases": [
         "карате",
@@ -3929,7 +3946,8 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "продукты",
-        "проекты"
+        "проекты",
+        "франчайзи"
       ],
       "aliases": [
         "постман",
@@ -3988,7 +4006,8 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "продукты",
-        "проекты"
+        "проекты",
+        "франчайзи"
       ],
       "aliases": [
         "сваггер",
@@ -4031,7 +4050,8 @@ window.LANDSCAPE = {
       "contexts": [
         "инхаус",
         "продукты",
-        "проекты"
+        "проекты",
+        "франчайзи"
       ],
       "aliases": [
         "нгрок",
