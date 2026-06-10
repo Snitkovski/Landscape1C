@@ -134,6 +134,10 @@ a {
 :root[data-theme="dark"] .theme-toggle .i-sun {
     display: block;
 }
+/* Иконку темы из навигации убрали — выбор темы только в бургер-меню */
+.theme-toggle {
+    display: none;
+}
 
 /* ── Свёрнутая верхняя строка (появляется при прокрутке) ── */
 .topbar {
@@ -1639,4 +1643,307 @@ a {
 }
 .page-graph.is-immersive .graph-flabel {
     display: block;
+}
+
+/* ── Страница «Схема» ─────────────────────── */
+/* Подвал — фиксированный снизу, как на других страницах (body{padding-bottom}). */
+.scheme-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 16px var(--frame-gap) 0;
+}
+.scheme-toggles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 22px;
+}
+/* Квадратные чипы отбора — как в графе (.graph-filters .chip) */
+.scheme-toggles .chip {
+    display: inline-block;
+    width: auto;
+    text-align: center;
+    padding: 5px 11px;
+    border: 1px solid var(--edge);
+    border-radius: 2px;
+    font-size: 12px;
+}
+.scheme-toggles .chip:hover {
+    background: var(--hover);
+}
+.scheme-toggles .chip[aria-pressed="true"] {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 700;
+    padding-right: 11px;
+}
+/* без крестика-сброса и вертикальной черты базового чипа */
+.scheme-toggles .chip[aria-pressed="true"]::before,
+.scheme-toggles .chip[aria-pressed="true"]::after {
+    content: none;
+}
+/* Выпадающий список «Блоки» */
+.scheme-dd {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+/* стрелочка ▾ только у «Блоки», у «Скачать» — нет (давала лишний отступ) */
+.chip.scheme-dd__btn::after {
+    content: "▾";
+    margin-left: 5px;
+    font-size: 9px;
+}
+.scheme-dd__panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    z-index: 40;
+    min-width: 220px;
+    background: var(--card);
+    border: 1.5px solid var(--ink);
+    padding: 8px;
+    box-shadow: 4px 4px 0 var(--ink); /* фирменная жёсткая тень, как у бургера */
+}
+/* Меню «Скачать»: выравнивание по правому краю кнопки + опции */
+.scheme-dl__panel {
+    left: auto;
+    right: 0;
+    min-width: 168px;
+}
+/* Бар-«Скачать» — покрупнее (примерно как «Сбросить») */
+.scheme-btn.scheme-dl-btn {
+    font-size: 14px;
+}
+.scheme-dl-btn .i-share {
+    display: none;
+} /* иконка «Поделиться» — только на мобильном в заголовке */
+/* Раскрытие по наведению (бар, только указательные устройства); разрыв убран, чтобы hover не терялся */
+.scheme-dd--hover .scheme-dl__panel {
+    margin-top: 0;
+}
+@media (hover: hover) {
+    .scheme-dd--hover:hover .scheme-dl__panel {
+        display: block;
+    }
+}
+.scheme-dl__opt {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 9px 12px;
+    font-family: var(--body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    white-space: nowrap;
+}
+.scheme-dl__opt:hover {
+    background: var(--hover);
+}
+.scheme-dd__panel label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    font-size: 12px;
+    color: var(--ink);
+    cursor: pointer;
+    white-space: nowrap;
+}
+.scheme-dd__panel label:hover {
+    background: var(--hover);
+}
+.scheme-dd__panel input {
+    accent-color: var(--ink);
+    cursor: pointer;
+}
+.scheme-reset {
+    margin-left: 2px;
+}
+.scheme-actions {
+    display: flex;
+    gap: 8px;
+}
+.scheme-btn {
+    font-family: var(--body);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border: 1px solid var(--ink);
+    background: none;
+    color: var(--ink);
+    cursor: pointer;
+    transition:
+        background 0.12s ease,
+        color 0.12s ease;
+}
+.scheme-btn:hover {
+    background: var(--ink);
+    color: var(--paper);
+}
+.scheme-wrap {
+    margin: 14px var(--frame-gap) var(--frame-gap);
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    overflow: auto;
+}
+.scheme-wrap svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.scheme-wrap__empty {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 13px;
+}
+.scheme-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ── Отборы как попап (как в графе): на мобильном всегда, на десктопе —
+   при видимой шапке во время прокрутки. Открытие — кнопкой «Отборы». ── */
+.scheme-toggles.is-open {
+    position: fixed;
+    top: 52px;
+    right: 12px;
+    z-index: 35;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    margin: 0;
+    padding: 14px;
+    min-width: 240px;
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 64px);
+    overflow: auto;
+    background: var(--card);
+    border: 1.5px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+}
+.scheme-toggles.is-open .graph-fgroup {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+}
+/* «Блоки» в попапе — без кнопки-триггера, список чекбоксов сразу */
+.scheme-toggles.is-open .scheme-dd__btn:not(.scheme-dl-btn) {
+    display: none;
+}
+.scheme-toggles.is-open .scheme-dd__panel {
+    position: static;
+    display: block;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: none;
+}
+/* Триггер «Отборы» в шапке — когда шапка видима (прокрутка / мобильный) */
+.topbar.is-visible #topbar-ftrigger {
+    display: inline-flex;
+}
+
+/* ── Схема на мобильном ── */
+@media (max-width: 720px) {
+    /* инлайн-фильтры в баре не показываем — только попап из шапки */
+    .scheme-toggles {
+        display: none;
+    }
+    /* заголовок: «Скачать» → иконка «Поделиться»; «Сбросить» прячем (есть в попапе) */
+    #topbar-dl .scheme-dl-text {
+        display: none;
+    }
+    #topbar-dl .i-share {
+        display: block;
+        width: 20px;
+        height: 20px;
+    }
+    #topbar-dl .scheme-dl-btn {
+        text-decoration: none;
+        padding: 4px 2px;
+        color: var(--ink);
+    }
+    .topbar #reset2 {
+        display: none;
+    }
+
+    /* Контентные страницы (схема/методология/совет): сразу компактный
+       прилепленный заголовок вместо большого masthead */
+    .page-doc .masthead {
+        display: none;
+    }
+    .page-doc {
+        padding-top: 52px; /* под фиксированный топбар */
+    }
+    .page-doc .topbar {
+        transform: none; /* всегда видим */
+        gap: 10px; /* плотнее, чтобы всё влезло */
+    }
+    /* Схема: бар не показываем — Отборы/Скачать живут в топбаре */
+    .page-doc .scheme-bar {
+        margin: 0;
+    }
+    .page-doc .scheme-actions {
+        display: none;
+    }
+    /* Контентные страницы: подвал на мобильном не показываем */
+    .page-doc .foot {
+        display: none;
+    }
+    .page-doc {
+        padding-bottom: 0;
+    }
+}
+
+/* Доп. пункты бургера (Отборы/Скачать) — только на мобильном */
+.menu__page-actions {
+    display: none;
+}
+.menu__pa-item {
+    font-family: var(--body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    text-align: left;
+    padding: 9px 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+.menu__pa-item:hover {
+    background: var(--hover);
+}
+.menu__pa-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.menu__pa-sub {
+    padding-left: 24px;
+    font-weight: 500;
+}
+.menu__pa-list[hidden] {
+    display: none;
+}
+@media (max-width: 720px) {
+    .menu__page-actions {
+        display: contents;
+    }
 }

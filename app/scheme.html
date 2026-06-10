@@ -3,9 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Ландшафт технологий 1С</title>
+        <title>Схема · Ландшафт технологий 1С</title>
         <script>
-            // Тема до отрисовки — чтобы не мигало. Сохраненный выбор > системная настройка.
             (function () {
                 try {
                     var t = localStorage.getItem("theme");
@@ -25,20 +24,31 @@
         />
         <link rel="stylesheet" href="styles.css?v=113" />
     </head>
-    <body>
+    <body class="page-doc page-scheme">
         <div class="topbar" id="topbar">
-            <span class="topbar__brand">Ландшафт</span>
-            <div class="topbar__search">
-                <input
-                    id="search2"
-                    type="search"
-                    placeholder="Поиск инструмента…"
-                    autocomplete="off"
-                    spellcheck="false"
-                />
-            </div>
-            <span id="count2" class="count" aria-hidden="true"></span>
+            <span class="topbar__brand"
+                ><a
+                    href="index.html"
+                    style="text-decoration: none; color: inherit"
+                    >Ландшафт</a
+                ></span
+            >
+            <span
+                class="topbar__search"
+                style="font-size: 13px; color: #999; cursor: pointer"
+                >Схема</span
+            >
+            <button
+                class="graph-ftrigger scheme-ftrigger"
+                id="topbar-ftrigger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="scheme-toggles"
+            >
+                Отборы
+            </button>
             <button id="reset2" class="reset" hidden>Сбросить ✕</button>
+            <div class="scheme-dd" id="topbar-dl"></div>
             <button
                 class="theme-toggle"
                 type="button"
@@ -76,19 +86,10 @@
 
         <header class="masthead">
             <div class="masthead__main">
-                <p class="kicker">Интерактивная карта · стек 1С</p>
-                <h1 class="title">
-                    Ландшафт <span class="title__mid">технологий </span>1С
-                </h1>
-                <div class="search">
-                    <input
-                        id="search"
-                        type="search"
-                        placeholder="Поиск инструмента…"
-                        autocomplete="off"
-                        spellcheck="false"
-                    />
-                </div>
+                <p class="kicker">
+                    <a href="index.html" class="back">← Ландшафт</a>
+                </p>
+                <h1 class="title">Схема</h1>
             </div>
             <button
                 class="theme-toggle"
@@ -123,39 +124,16 @@
                     />
                 </svg>
             </button>
-            <!-- Декоративный счетчик. Статичный: app.js обновляет только #count в строке ниже. -->
-            <div class="masthead__num" aria-hidden="true">130</div>
         </header>
 
-        <div class="body">
-            <aside class="filters" id="filters" aria-label="Фильтры"></aside>
-
-            <main class="content">
-                <div class="content__bar">
-                    <span id="count" class="count"></span>
-                    <button id="reset" class="reset" hidden>Сбросить ✕</button>
-                </div>
-                <p id="fallback-note" class="note" hidden>
-                    С выбранными отборами ничего не нашлось — показываем
-                    подходящие без отборов
-                </p>
-                <div id="board" class="board"></div>
-                <div id="empty" class="empty" hidden>
-                    <p class="empty__title">Не нашлось таких инструментов</p>
-                    <p class="empty__text">
-                        Расскажите, что ожидали увидеть — это поможет дополнить
-                        ландшафт. Письмо уже частично заполнено: остается
-                        вписать нужный инструмент
-                    </p>
-                    <a
-                        id="empty-mail"
-                        class="empty__btn"
-                        href="mailto:aripovn@gmail.com"
-                        >Написать на aripovn@gmail.com</a
-                    >
-                </div>
-            </main>
+        <div class="scheme-bar">
+            <div class="scheme-toggles" id="scheme-toggles"></div>
+            <div class="scheme-actions">
+                <div class="scheme-dd" id="bar-dl"></div>
+            </div>
         </div>
+
+        <div class="scheme-wrap" id="scheme-wrap"></div>
 
         <footer class="foot">
             <nav class="foot__links"></nav>
@@ -167,10 +145,9 @@
 
         <script src="data.js?v=99"></script>
         <script src="detail.js?v=4"></script>
-        <script src="nav.js?v=3"></script>
-        <script src="app.js?v=41"></script>
+        <script src="nav.js?v=4"></script>
+        <script src="scheme.js?v=16"></script>
         <script>
-            // ── Переключение темы (обе кнопки) ──
             document.querySelectorAll(".theme-toggle").forEach(function (btn) {
                 btn.addEventListener("click", function () {
                     var next =
@@ -183,8 +160,6 @@
                     } catch (e) {}
                 });
             });
-
-            // ── Свернутая строка появляется после прокрутки за хедер ──
             var topbar = document.getElementById("topbar");
             var mast = document.querySelector(".masthead");
             var foot = document.querySelector(".foot");
@@ -203,23 +178,12 @@
             addEventListener("resize", onScroll);
             onScroll();
 
-            // ── Клик по бренду в свернутой строке — плавно наверх (отборы не трогаем) ──
+            // Клик по названию страницы в слепленной строке — плавно наверх
             document
-                .querySelector(".topbar__brand")
+                .querySelector(".topbar__search")
                 .addEventListener("click", function () {
                     window.scrollTo({ top: 0, behavior: "smooth" });
                 });
-
-            // ── Два поля поиска синхронизированы; фильтрацию ведет app.js (#search) ──
-            var s1 = document.getElementById("search");
-            var s2 = document.getElementById("search2");
-            s2.addEventListener("input", function () {
-                s1.value = s2.value;
-                s1.dispatchEvent(new Event("input", { bubbles: true }));
-            });
-            s1.addEventListener("input", function () {
-                s2.value = s1.value;
-            });
         </script>
     </body>
 </html>

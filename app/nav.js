@@ -6,6 +6,7 @@
     var NAV = [
         ["index.html", "Ландшафт"],
         ["graph.html", "Граф"],
+        ["scheme.html", "Схема"],
         ["methodology.html", "Методология"],
         ["council.html", "Экспертный совет"],
     ];
