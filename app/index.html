@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=60">
+  <link rel="stylesheet" href="styles.css?v=70">
 </head>
 <body>
   <div class="topbar" id="topbar">
@@ -57,6 +57,7 @@
         <span id="count" class="count"></span>
         <button id="reset" class="reset" hidden>Сбросить ✕</button>
       </div>
+      <p id="fallback-note" class="note" hidden>С выбранными отборами ничего не нашлось — показываем подходящие без отборов</p>
       <div id="board" class="board"></div>
       <div id="empty" class="empty" hidden>
         <p class="empty__title">Мы не нашли таких инструментов</p>
@@ -74,10 +75,10 @@
     <div class="detail__body"></div>
   </dialog>
 
-  <script src="data.js?v=92"></script>
-  <script src="detail.js?v=3"></script>
-  <script src="nav.js?v=2"></script>
-  <script src="app.js?v=39"></script>
+  <script src="data.js?v=95"></script>
+  <script src="detail.js?v=4"></script>
+  <script src="nav.js?v=3"></script>
+  <script src="app.js?v=41"></script>
   <script>
     // ── Переключение темы (обе кнопки) ──
     document.querySelectorAll(".theme-toggle").forEach(function (btn) {

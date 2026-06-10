@@ -326,6 +326,36 @@
   buildChips("f-role", D.axes.role.values, fRole);
   buildChips("f-maturity", D.axes.maturity.values, fMat);
 
+  // ── Выпадающие отборы из верхней строки (только на мобильном) ──
+  const fbox = document.getElementById("graph-filters");
+  const ftrigger = document.querySelector(".graph-ftrigger");
+  if (fbox && ftrigger) {
+    const setOpen = (on) => {
+      fbox.classList.toggle("is-open", on);
+      ftrigger.setAttribute("aria-expanded", on);
+    };
+    ftrigger.addEventListener("click", () => {
+      setOpen(!fbox.classList.contains("is-open"));
+    });
+    // Любое нажатие вне списка и кнопки — закрыть. Фаза перехвата, чтобы
+    // сработало и поверх canvas (он гасит обычные click при перетаскивании).
+    document.addEventListener("pointerdown", (e) => {
+      if (fbox.classList.contains("is-open") && !fbox.contains(e.target) && e.target !== ftrigger)
+        setOpen(false);
+    }, true);
+  }
+
+  // ── Полноэкранный режим (кнопка в углу графа, десктоп) ──
+  const expandBtn = document.getElementById("graph-expand");
+  if (expandBtn) {
+    expandBtn.addEventListener("click", () => {
+      const on = document.body.classList.toggle("is-immersive");
+      expandBtn.setAttribute("aria-label", on ? "Свернуть" : "Развернуть на весь экран");
+      resize();                                  // холст сменил размер
+      window.dispatchEvent(new Event("scroll")); // пересчитать видимость верхней строки
+    });
+  }
+
   // ── Старт ─────────────────────────────────
   window.addEventListener("resize", resize);
   resize();

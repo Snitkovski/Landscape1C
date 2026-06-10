@@ -56,17 +56,19 @@
   }
 
   // ── Фильтрация ────────────────────────────
-  function matches(item) {
-    if (query) {
-      // Ищем по имени, описанию, разделу, меткам ролей/контекста, «зачем»
-      // и скрытым синонимам (aliases — русские транслитерации англ. названий и пр.)
-      const hay = [
-        item.name, item.description, item.category, item.subcategory, item.why,
-        (item.roles || []).join(" "), (item.contexts || []).join(" "),
-        (item.aliases || []).join(" ")
-      ].filter(Boolean).join(" ").toLowerCase();
-      if (!hay.includes(query)) return false;
-    }
+  // Совпадение по тексту поиска (имя, описание, раздел, метки, «зачем»
+  // и скрытые синонимы aliases — русские транслитерации англ. названий и пр.)
+  function matchesQuery(item) {
+    if (!query) return true;
+    const hay = [
+      item.name, item.description, item.category, item.subcategory, item.why,
+      (item.roles || []).join(" "), (item.contexts || []).join(" "),
+      (item.aliases || []).join(" ")
+    ].filter(Boolean).join(" ").toLowerCase();
+    return hay.includes(query);
+  }
+  // Совпадение по выбранным отборам (внутри оси — ИЛИ, между осями — И)
+  function matchesAxes(item) {
     for (const axis of AXES) {
       const set = state[axis];
       if (!set.size) continue;
@@ -78,6 +80,7 @@
     }
     return true;
   }
+  const matches = item => matchesQuery(item) && matchesAxes(item);
 
   // ── Рендер доски ──────────────────────────
   // Порядок сортировки карточек внутри раздела: зрелость → происхождение → лицензия
@@ -88,7 +91,12 @@
   function apply() {
     const board = $("#board");
     board.innerHTML = "";
-    const visible = D.items.filter(matches);
+    const matched = D.items.filter(matches);
+    const axisActive = AXES.some(a => state[a].size);
+    // Поиск с отборами ничего не дал, но без отборов совпадения есть —
+    // показываем их и поясняем строкой сверху (отборы при этом не сбрасываем).
+    const fallback = matched.length === 0 && !!query && axisActive && D.items.some(matchesQuery);
+    const visible = fallback ? D.items.filter(matchesQuery) : matched;
 
     const renderCat = (catName, blockName) => {
       const items = visible.filter(i => i.category === catName)
@@ -124,11 +132,15 @@
       D.categories.forEach(renderCat);
     }
 
+    // Пояснение над доской, когда показываем результаты без отборов
+    const note = $("#fallback-note");
+    if (note) note.hidden = !fallback;
+
     const noResults = visible.length === 0;
     $("#empty").hidden = !noResults;
     if (noResults) updateEmptyMail();
     $("#count").textContent = `${visible.length} из ${D.items.length} инструментов`;
-    const active = AXES.some(a => state[a].size) || query;
+    const active = axisActive || query;
     $("#reset").hidden = !active;
     // Дубль счётчика/сброса в прилипающей верхней строке — только при активном отборе
     const c2 = $("#count2"), r2 = $("#reset2");

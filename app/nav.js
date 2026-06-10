@@ -34,7 +34,7 @@
   menu.className = "menu"; menu.id = "menu"; menu.setAttribute("aria-label", "Меню");
   menu.innerHTML =
     '<div class="menu__panel">' + navLinks +
-      '<div class="menu__sep"></div>' + ext(" ↗") +
+      '<div class="menu__sep"></div>' + ext(" ↗︎") +
       '<div class="menu__sep"></div>' +
       '<div class="menu__theme">' +
         '<button type="button" class="menu__theme-head" aria-expanded="false">' +

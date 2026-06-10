@@ -13,8 +13,8 @@
   function openDetail(i) {
     const dlg = $("#detail");
     const links = [
-      i.homepage ? `<a href="${i.homepage}" target="_blank" rel="noopener">Сайт ↗</a>` : "",
-      i.repo ? `<a href="${i.repo}" target="_blank" rel="noopener">Репозиторий ↗</a>` : ""
+      i.homepage ? `<a href="${i.homepage}" target="_blank" rel="noopener">Сайт ↗︎</a>` : "",
+      i.repo ? `<a href="${i.repo}" target="_blank" rel="noopener">Репозиторий ↗︎</a>` : ""
     ].filter(Boolean).join("");
     const tags = arr => (arr || []).filter(Boolean).map(v => `<span class="badge badge--ghost">${v}</span>`).join("");
     // Блок раздела рендерится только если есть содержимое
@@ -26,7 +26,7 @@
     ].join("");
     const startInner = (i.start && i.start.length)
       ? `<ul class="detail__list">${
-          i.start.map(s => `<li><a href="${s.url}" target="_blank" rel="noopener">${s.label} ↗</a></li>`).join("")
+          i.start.map(s => `<li><a href="${s.url}" target="_blank" rel="noopener">${s.label} ↗︎</a></li>`).join("")
         }</ul>`
       : "";
     // Связанные карточки — квадратные кнопки с лого, открывают свою модалку

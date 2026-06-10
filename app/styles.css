@@ -80,7 +80,8 @@ a { color: var(--ink); text-underline-offset: 3px; }
 
 /* ── Переключатель темы ──────────────────── */
 .theme-toggle, .menu-toggle {
-  position: absolute; top: 18px;
+  /* по вертикали — на строке кикера (надзаголовка): паддинг шапки 40px + центр кикера */
+  position: absolute; top: 30px;
   width: 34px; height: 34px; display: grid; place-items: center; padding: 0;
   background: transparent; border: none; border-radius: 0;
   color: var(--ink); cursor: pointer;
@@ -288,6 +289,12 @@ a { color: var(--ink); text-underline-offset: 3px; }
   padding: 13px clamp(16px, 3vw, 24px); min-height: 46px;
   border-bottom: 1px solid var(--line);
 }
+/* Строка-пояснение над доской (показ результатов без отборов) */
+.note {
+  margin: 0; padding: 12px clamp(16px, 3vw, 24px) 0;
+  font-size: 13px; color: var(--ink-soft);
+}
+.note[hidden] { display: none; }
 .count {
   font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #999;
 }
@@ -429,7 +436,16 @@ a { color: var(--ink); text-underline-offset: 3px; }
   max-width: 720px; width: calc(100% - 32px);
   max-height: calc(100dvh - 32px); overflow: hidden;   /* высота ограничена — скроллит внутренний контент */
   background: var(--card); color: var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);                    /* фирменная жёсткая тень, как у поиска/бургера */
 }
+/* плавное появление модалки и затемнения */
+.detail[open] { animation: detail-in .16s ease both; }
+.detail[open]::backdrop { animation: backdrop-in .16s ease both; }
+@keyframes detail-in {
+  from { opacity: 0; transform: translateY(8px) scale(.98); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes backdrop-in { from { opacity: 0; } to { opacity: 1; } }
 .detail::backdrop { background: rgba(26, 26, 22, .4); }
 /* Колонка: шапка и подвал зафиксированы, середина прокручивается */
 .detail__body {
@@ -501,7 +517,7 @@ a { color: var(--ink); text-underline-offset: 3px; }
   display: grid; place-items: center;
 }
 .detail__rel-logo--ph { font-size: 8px; font-weight: 700; color: #bbb; }
-.detail__rel::after { content: "↗"; opacity: .5; }
+.detail__rel::after { content: "\2197\FE0E"; opacity: .5; }
 .detail__rel:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 :root[data-theme="dark"] .detail__rel { background: #2e2520; border-color: var(--edge); }
 :root[data-theme="dark"] .detail__rel:hover { background: #3a2f28; color: #fff; border-color: var(--edge); }
@@ -555,7 +571,9 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .doc h2 {
   font-family: var(--display); font-weight: 700;
   font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
-  margin: 36px 0 12px; padding-top: 20px; border-top: 1px solid var(--line);
+  /* при прокрутке подзаголовок секции закрепляется под верхней строкой (topbar 52px) */
+  position: sticky; top: 52px; z-index: 5; background: var(--paper);
+  margin: 36px 0 0; padding: 20px 0 12px; border-top: 1px solid var(--line);
 }
 .doc section:first-child h2 { border-top: none; padding-top: 0; margin-top: 0; }
 .doc p { margin: 0 0 12px; max-width: 64ch; }
@@ -572,7 +590,12 @@ a { color: var(--ink); text-underline-offset: 3px; }
 /* Экспертный совет — карточки кураторов */
 /* Совет шире текстовых страниц (860) — чтобы 2 колонки были просторными. */
 .council { max-width: 1080px; padding-block: 30px 72px; }
-.council .lead { max-width: 60ch; }
+/* Вводный текст — элемент сетки во всю ширину: левый/правый край ровно по карточкам */
+.council .lead {
+  grid-column: 1 / -1;
+  font-size: clamp(15px, 1.7vw, 19px); line-height: 1.55;
+  margin: 0 0 20px; max-width: none;
+}
 /* Кураторы — сетка в 2 колонки; автор (.exp--lead) во всю ширину под ними.
    На узком экране — одна колонка. */
 .exp-grid {
@@ -653,6 +676,29 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .graph-filters .chip[aria-pressed="true"] {
   border-color: var(--ink); background: var(--ink); color: var(--paper); font-weight: 700;
 }
+/* Кнопка отборов в верхней строке (видна в компактном/полноэкранном режиме) */
+.graph-ftrigger {
+  display: none; align-items: center; gap: 5px; flex: none;
+  padding: 4px 6px; background: transparent; border: none; cursor: pointer;
+  font-family: var(--body); font-size: 12px; color: #999;
+}
+.graph-ftrigger::after { content: "▾"; font-size: 10px; transition: transform .15s ease; }
+.graph-ftrigger[aria-expanded="true"] { color: var(--ink); }
+.graph-ftrigger[aria-expanded="true"]::after { transform: rotate(180deg); }
+
+/* Кнопка «развернуть/свернуть» — правый верхний угол графа, чтобы не
+   перекрывать подсказку (она в правом нижнем) (десктоп) */
+.graph__expand {
+  position: absolute; right: 12px; top: 12px;
+  width: 32px; height: 32px; display: grid; place-items: center; padding: 0;
+  background: var(--card); border: 1px solid var(--card-line); color: var(--ink);
+  cursor: pointer;
+}
+.graph__expand:hover { background: var(--hover); }
+.graph__expand svg { width: 16px; height: 16px; display: block; }
+.graph__expand .i-collapse { display: none; }
+.is-immersive .graph__expand .i-expand { display: none; }
+.is-immersive .graph__expand .i-collapse { display: block; }
 
 .graph {
   position: relative; overflow: hidden;
@@ -690,16 +736,52 @@ a { color: var(--ink); text-underline-offset: 3px; }
 .graph__zoom button:hover { background: var(--hover); }
 .graph__zoom svg { width: 16px; height: 16px; display: block; }
 
-/* Граф на узких экранах: больше холста, компактная легенда, крупнее тап-зоны */
+/* Граф на узких экранах: компактная верхняя строка вместо большой шапки,
+   подвал без навигации, отборы — аккордеон. Холст занимает максимум места. */
 @media (max-width: 600px) {
+  .page-graph .masthead { display: none; }      /* большую шапку прячем */
+  .page-graph .topbar { transform: none; }      /* «слипшаяся» строка видна сразу */
+  .page-graph .foot { display: none; }          /* без навигации в подвале */
+
   .graph {
-    height: calc(100dvh - 220px); min-height: 360px;
-    margin: 12px 12px 0;
+    height: calc(100dvh - 78px); min-height: 320px;
+    margin: calc(52px + 10px) 12px 0;   /* под фиксированную верхнюю строку */
   }
-  .graph-filters { margin: 14px 12px 0; gap: 6px 14px; }
-  .graph-flabel { display: none; }              /* только чипы, без подписей «Роль»/«Зрелость» */
-  .graph__legend { top: 8px; left: 8px; padding: 7px 9px; font-size: 10px; max-width: 44%; }
-  .graph__legend li { margin: 3px 0; }
+  .graph-ftrigger { display: inline-flex; }     /* кнопка отборов в строке */
+  .graph__expand { display: none; }             /* на мобильном всегда полноэкранно */
+  /* Отборы — выпадающий список под верхней строкой */
+  .graph-filters {
+    position: fixed; top: 52px; right: 12px; z-index: 35;
+    flex-direction: column; align-items: stretch; gap: 6px;
+    margin: 0; padding: 10px; min-width: 210px;
+    background: var(--card); border: 1.5px solid var(--ink); box-shadow: 4px 4px 0 var(--ink);
+    display: none;
+  }
+  .graph-filters.is-open { display: flex; }
+  .graph-fgroup { flex-direction: column; align-items: flex-start; gap: 7px; }
+  .graph-flabel { display: block; }   /* подписи «Роль»/«Зрелость» в списке нужны */
+  .graph__legend { display: none; }   /* легенду блоков на мобильном не показываем */
   .graph__hint { display: none; }
   .graph__zoom { display: none; }               /* на тач-экране зум пинчем, кнопки не нужны */
 }
+
+/* Полноэкранный режим графа на десктопе (кнопка «развернуть») —
+   тот же компактный заголовок, отборы в выпадашке, без подвала; легенда и зум остаются */
+.page-graph.is-immersive .masthead { display: none; }
+.page-graph.is-immersive .topbar { transform: none; }
+.page-graph.is-immersive .foot { display: none; }
+.page-graph.is-immersive .graph {
+  position: fixed; inset: 52px 0 0; z-index: 20;
+  height: auto; min-height: 0; margin: 0; border: none;
+}
+.page-graph.is-immersive .graph-ftrigger { display: inline-flex; }
+.page-graph.is-immersive .graph-filters {
+  position: fixed; top: 52px; right: 12px; z-index: 35;
+  flex-direction: column; align-items: stretch; gap: 6px;
+  margin: 0; padding: 10px; min-width: 210px;
+  background: var(--card); border: 1.5px solid var(--ink); box-shadow: 4px 4px 0 var(--ink);
+  display: none;
+}
+.page-graph.is-immersive .graph-filters.is-open { display: flex; }
+.page-graph.is-immersive .graph-fgroup { flex-direction: column; align-items: flex-start; gap: 7px; }
+.page-graph.is-immersive .graph-flabel { display: block; }

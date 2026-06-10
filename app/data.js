@@ -241,14 +241,14 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "depends": [
-        "Язык запросов"
-      ],
       "aliases": [
         "скд",
         "skd",
         "компоновка данных",
         "система компоновки"
+      ],
+      "depends": [
+        "Язык запросов"
       ]
     },
     {
@@ -281,13 +281,13 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "depends": [
-        "Встроенный язык программирования 1С:Предприятия"
-      ],
       "aliases": [
         "мобильная платформа",
         "мобильное приложение 1с",
         "мобильный клиент"
+      ],
+      "depends": [
+        "Встроенный язык программирования 1С:Предприятия"
       ]
     },
     {
@@ -333,7 +333,7 @@ window.LANDSCAPE = {
       ]
     },
     {
-      "name": "1C:Предприятие.Элемент Скрипт. (бывший 1С:Исполнитель)",
+      "name": "1C:Предприятие.Элемент Скрипт",
       "category": "Разработка",
       "subcategory": "Языки программирования",
       "logo": "ispolnitel.png",
@@ -363,14 +363,14 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "depends": [
-        "1С:Предприятие.Элемент"
-      ],
       "aliases": [
         "элемент скрипт",
         "исполнитель",
         "element script",
         "1с исполнитель"
+      ],
+      "depends": [
+        "1С:Предприятие.Элемент"
       ]
     },
     {
@@ -453,17 +453,18 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "configurator",
+        "конфа",
+        "конфигуратор 1с"
+      ],
       "analogs": [
         "1C:Enterprise Development Tools (EDT)",
         "Visual Studio Code (VSCode)"
       ],
       "depends": [
-        "Хранилище"
-      ],
-      "aliases": [
-        "configurator",
-        "конфа",
-        "конфигуратор 1с"
+        "Хранилище",
+        "Файловая СУБД"
       ]
     },
     {
@@ -509,18 +510,18 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
+      "aliases": [
+        "едт",
+        "edt",
+        "1с едт",
+        "enterprise development tools"
+      ],
       "analogs": [
         "Конфигуратор",
         "Visual Studio Code (VSCode)"
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "едт",
-        "edt",
-        "1с едт",
-        "enterprise development tools"
       ]
     },
     {
@@ -556,6 +557,13 @@ window.LANDSCAPE = {
         "проекты",
         "инхаус"
       ],
+      "aliases": [
+        "вскод",
+        "вс код",
+        "вижуал студио код",
+        "vs code",
+        "вскоде"
+      ],
       "analogs": [
         "Конфигуратор",
         "1C:Enterprise Development Tools (EDT)",
@@ -563,13 +571,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "вскод",
-        "вс код",
-        "вижуал студио код",
-        "vs code",
-        "вскоде"
       ]
     },
     {
@@ -600,15 +601,15 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "depends": [
-        "Встроенный язык программирования 1С:Предприятия",
-        "Стандарты разработки"
-      ],
       "aliases": [
         "бсп",
         "bsp",
         "ssl",
         "стандартные подсистемы"
+      ],
+      "depends": [
+        "Встроенный язык программирования 1С:Предприятия",
+        "Стандарты разработки"
       ]
     },
     {
@@ -637,16 +638,16 @@ window.LANDSCAPE = {
         "франчайзи",
         "инхаус"
       ],
+      "aliases": [
+        "турбоконф",
+        "турбо конф",
+        "turbo conf"
+      ],
       "analogs": [
         "Плагин для конфигуратора PhoenixBSL"
       ],
       "depends": [
         "Конфигуратор"
-      ],
-      "aliases": [
-        "турбоконф",
-        "турбо конф",
-        "turbo conf"
       ]
     },
     {
@@ -676,17 +677,17 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты"
       ],
+      "aliases": [
+        "инструменты разработчика",
+        "ир",
+        "подсистема инструменты разработчика"
+      ],
       "analogs": [
         "Подсистема \"Универсальные инструменты 1С для управляемых форм\"",
         "Infostart Toolkit"
       ],
       "depends": [
         "Встроенный язык программирования 1С:Предприятия"
-      ],
-      "aliases": [
-        "инструменты разработчика",
-        "ир",
-        "подсистема инструменты разработчика"
       ]
     },
     {
@@ -716,16 +717,16 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты"
       ],
+      "aliases": [
+        "универсальные инструменты",
+        "инструменты для управляемых форм"
+      ],
       "analogs": [
         "Подсистема \"Инструменты разработчика\"",
         "Infostart Toolkit"
       ],
       "depends": [
         "Встроенный язык программирования 1С:Предприятия"
-      ],
-      "aliases": [
-        "универсальные инструменты",
-        "инструменты для управляемых форм"
       ]
     },
     {
@@ -761,18 +762,18 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "инфостарт тулкит",
+        "infostart toolkit",
+        "тулкит",
+        "инфостарт"
+      ],
       "analogs": [
         "Подсистема \"Инструменты разработчика\"",
         "Подсистема \"Универсальные инструменты 1С для управляемых форм\""
       ],
       "depends": [
         "Конфигуратор"
-      ],
-      "aliases": [
-        "инфостарт тулкит",
-        "infostart toolkit",
-        "тулкит",
-        "инфостарт"
       ]
     },
     {
@@ -801,17 +802,17 @@ window.LANDSCAPE = {
         "франчайзи",
         "инхаус"
       ],
-      "analogs": [
-        "TurboConf"
-      ],
-      "depends": [
-        "Конфигуратор"
-      ],
       "aliases": [
         "феникс",
         "phoenix",
         "phoenixbsl",
         "феникс бсл"
+      ],
+      "analogs": [
+        "TurboConf"
+      ],
+      "depends": [
+        "Конфигуратор"
       ]
     },
     {
@@ -844,18 +845,18 @@ window.LANDSCAPE = {
         "проекты",
         "продукты"
       ],
+      "aliases": [
+        "напарник",
+        "1с напарник",
+        "naparnik",
+        "копилот 1с"
+      ],
       "analogs": [
         "GigaCode",
         "GitHub Copilot"
       ],
       "depends": [
         "1C:Enterprise Development Tools (EDT)"
-      ],
-      "aliases": [
-        "напарник",
-        "1с напарник",
-        "naparnik",
-        "копилот 1с"
       ]
     },
     {
@@ -879,18 +880,18 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
+      "aliases": [
+        "гигакод",
+        "гига код",
+        "giga code",
+        "сбер gigacode"
+      ],
       "analogs": [
         "Плагин 1С:Напарник",
         "GitHub Copilot"
       ],
       "depends": [
         "Visual Studio Code (VSCode)"
-      ],
-      "aliases": [
-        "гигакод",
-        "гига код",
-        "giga code",
-        "сбер gigacode"
       ]
     },
     {
@@ -904,7 +905,7 @@ window.LANDSCAPE = {
       "homepage": "https://github.com/features/copilot",
       "repo": null,
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
       "availability": "ограничен",
@@ -915,17 +916,17 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
+      "aliases": [
+        "гитхаб копилот",
+        "копилот",
+        "copilot"
+      ],
       "analogs": [
         "Плагин 1С:Напарник",
         "GigaCode"
       ],
       "depends": [
         "GitHub"
-      ],
-      "aliases": [
-        "гитхаб копилот",
-        "копилот",
-        "copilot"
       ]
     },
     {
@@ -948,7 +949,7 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/2624937/"
         }
       ],
-      "maturity": "нишевое",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "проприетарное",
       "availability": "ограничен",
@@ -959,15 +960,15 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
-      "analogs": [
-        "Visual Studio Code (VSCode)",
-        "Claude Code",
-        "Codex"
-      ],
       "aliases": [
         "курсор",
         "cursor ai",
         "курсор ии"
+      ],
+      "analogs": [
+        "Visual Studio Code (VSCode)",
+        "Claude Code",
+        "Codex"
       ]
     },
     {
@@ -991,15 +992,15 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
-      "analogs": [
-        "Cursor",
-        "Codex"
-      ],
       "aliases": [
         "клод код",
         "клауд код",
         "claude",
         "клод"
+      ],
+      "analogs": [
+        "Cursor",
+        "Codex"
       ]
     },
     {
@@ -1033,14 +1034,14 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
-      "analogs": [
-        "Cursor",
-        "Claude Code"
-      ],
       "aliases": [
         "кодекс",
         "openai codex",
         "кодекс openai"
+      ],
+      "analogs": [
+        "Cursor",
+        "Claude Code"
       ]
     },
     {
@@ -1070,13 +1071,13 @@ window.LANDSCAPE = {
         "проекты",
         "инхаус"
       ],
-      "depends": [
-        "Visual Studio Code (VSCode)"
-      ],
       "aliases": [
         "platform tools",
         "платформ тулс",
         "1c platform tools"
+      ],
+      "depends": [
+        "Visual Studio Code (VSCode)"
       ]
     },
     {
@@ -1114,13 +1115,13 @@ window.LANDSCAPE = {
         "проекты",
         "инхаус"
       ],
-      "depends": [
-        "1C:Enterprise Development Tools (EDT)"
-      ],
       "aliases": [
         "плагины едт",
         "edt plugins",
         "плагины edt"
+      ],
+      "depends": [
+        "1C:Enterprise Development Tools (EDT)"
       ]
     },
     {
@@ -1159,14 +1160,14 @@ window.LANDSCAPE = {
         "проекты",
         "инхаус"
       ],
-      "depends": [
-        "OneScript"
-      ],
       "aliases": [
         "библиотеки онскрипт",
         "oscript library",
         "oscript-library",
         "библиотеки oscript"
+      ],
+      "depends": [
+        "OneScript"
       ]
     },
     {
@@ -1191,13 +1192,13 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "depends": [
-        "OneScript"
-      ],
       "aliases": [
         "осень",
         "autumn",
         "отумн"
+      ],
+      "depends": [
+        "OneScript"
       ]
     },
     {
@@ -1222,16 +1223,16 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "depends": [
-        "Visual Studio Code (VSCode)",
-        "1C:Enterprise Development Tools (EDT)"
-      ],
       "aliases": [
         "бсл лс",
         "bsl ls",
         "bsl language server",
         "бсл сервер",
         "лангуэдж сервер"
+      ],
+      "depends": [
+        "Visual Studio Code (VSCode)",
+        "1C:Enterprise Development Tools (EDT)"
       ]
     },
     {
@@ -1257,6 +1258,11 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "гитсинк",
+        "гит синк",
+        "git sync"
+      ],
       "analogs": [
         "1С:ГитКонвертер"
       ],
@@ -1264,11 +1270,6 @@ window.LANDSCAPE = {
         "Хранилище",
         "git",
         "OneScript"
-      ],
-      "aliases": [
-        "гитсинк",
-        "гит синк",
-        "git sync"
       ]
     },
     {
@@ -1298,18 +1299,18 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
+      "aliases": [
+        "гитконвертер",
+        "гит конвертер",
+        "gitconverter",
+        "git converter"
+      ],
       "analogs": [
         "gitsync"
       ],
       "depends": [
         "git",
         "Хранилище"
-      ],
-      "aliases": [
-        "гитконвертер",
-        "гит конвертер",
-        "gitconverter",
-        "git converter"
       ]
     },
     {
@@ -1337,12 +1338,12 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "depends": [
-        "Язык запросов"
-      ],
       "aliases": [
         "консоль запросов",
         "query console"
+      ],
+      "depends": [
+        "Язык запросов"
       ]
     },
     {
@@ -1373,6 +1374,9 @@ window.LANDSCAPE = {
         "файловая бд",
         "file database",
         "файловый режим"
+      ],
+      "depends": [
+        "Конфигуратор"
       ]
     },
     {
@@ -1413,18 +1417,18 @@ window.LANDSCAPE = {
         "проекты",
         "инхаус"
       ],
-      "analogs": [
-        "Microsoft SQLServer",
-        "Postgres Pro",
-        "Oracle Database",
-        "IBM Db2"
-      ],
       "aliases": [
         "постгрес",
         "постгрескл",
         "постгре",
         "postgres",
         "пг"
+      ],
+      "analogs": [
+        "Microsoft SQLServer",
+        "Postgres Pro",
+        "Oracle Database",
+        "IBM Db2"
       ]
     },
     {
@@ -1461,18 +1465,18 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "PostgreSQL",
-        "Postgres Pro",
-        "Oracle Database",
-        "IBM Db2"
-      ],
       "aliases": [
         "мс скуль",
         "ms sql",
         "sql server",
         "скуль сервер",
         "майкрософт sql"
+      ],
+      "analogs": [
+        "PostgreSQL",
+        "Postgres Pro",
+        "Oracle Database",
+        "IBM Db2"
       ]
     },
     {
@@ -1496,6 +1500,11 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "aliases": [
+        "постгрес про",
+        "постгрес pro",
+        "postgrespro"
+      ],
       "analogs": [
         "PostgreSQL",
         "Microsoft SQLServer",
@@ -1504,11 +1513,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "PostgreSQL"
-      ],
-      "aliases": [
-        "постгрес про",
-        "постгрес pro",
-        "postgrespro"
       ]
     },
     {
@@ -1532,17 +1536,17 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "PostgreSQL",
-        "Microsoft SQLServer",
-        "Postgres Pro",
-        "IBM Db2"
-      ],
       "aliases": [
         "оракл",
         "oracle",
         "оракл бд",
         "оракле"
+      ],
+      "analogs": [
+        "PostgreSQL",
+        "Microsoft SQLServer",
+        "Postgres Pro",
+        "IBM Db2"
       ]
     },
     {
@@ -1566,17 +1570,17 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "PostgreSQL",
-        "Microsoft SQLServer",
-        "Postgres Pro",
-        "Oracle Database"
-      ],
       "aliases": [
         "дб2",
         "db2",
         "ибм db2",
         "айбиэм db2"
+      ],
+      "analogs": [
+        "PostgreSQL",
+        "Microsoft SQLServer",
+        "Postgres Pro",
+        "Oracle Database"
       ]
     },
     {
@@ -1616,13 +1620,13 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "analogs": [
-        "git"
-      ],
       "aliases": [
         "хранилище конфигурации",
         "storage",
         "репозиторий 1с"
+      ],
+      "analogs": [
+        "git"
       ]
     },
     {
@@ -1661,11 +1665,11 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "analogs": [
-        "Хранилище"
-      ],
       "aliases": [
         "гит"
+      ],
+      "analogs": [
+        "Хранилище"
       ]
     },
     {
@@ -1691,6 +1695,11 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "гитлаб",
+        "гит лаб",
+        "git lab"
+      ],
       "analogs": [
         "GitHub",
         "GitVerse",
@@ -1698,11 +1707,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "гитлаб",
-        "гит лаб",
-        "git lab"
       ]
     },
     {
@@ -1729,6 +1733,11 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "гитхаб",
+        "гит хаб",
+        "git hub"
+      ],
       "analogs": [
         "GitLab",
         "GitVerse",
@@ -1736,11 +1745,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "гитхаб",
-        "гит хаб",
-        "git hub"
       ]
     },
     {
@@ -1766,6 +1770,12 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "гитверс",
+        "гит верс",
+        "git verse",
+        "сбер гитверс"
+      ],
       "analogs": [
         "GitLab",
         "GitHub",
@@ -1773,12 +1783,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "гитверс",
-        "гит верс",
-        "git verse",
-        "сбер гитверс"
       ]
     },
     {
@@ -1804,6 +1808,11 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "битбакет",
+        "битбэкет",
+        "bit bucket"
+      ],
       "analogs": [
         "GitLab",
         "GitHub",
@@ -1811,11 +1820,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "битбакет",
-        "битбэкет",
-        "bit bucket"
       ]
     },
     {
@@ -1840,11 +1844,11 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "Mockplus"
-      ],
       "aliases": [
         "фигма"
+      ],
+      "analogs": [
+        "Mockplus"
       ]
     },
     {
@@ -1869,13 +1873,13 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "Figma"
-      ],
       "aliases": [
         "мокплюс",
         "мок плюс",
         "mock plus"
+      ],
+      "analogs": [
+        "Figma"
       ]
     },
     {
@@ -1900,14 +1904,14 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "MAKER-STUDIO",
-        "Накидка"
-      ],
       "aliases": [
         "балзамик",
         "бальзамик",
         "балсамик"
+      ],
+      "analogs": [
+        "MAKER-STUDIO",
+        "Накидка"
       ]
     },
     {
@@ -1938,14 +1942,14 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "Balsamiq",
-        "Накидка"
-      ],
       "aliases": [
         "мейкер студио",
         "макер студио",
         "maker studio"
+      ],
+      "analogs": [
+        "Balsamiq",
+        "Накидка"
       ]
     },
     {
@@ -1980,13 +1984,13 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "analogs": [
-        "Balsamiq",
-        "MAKER-STUDIO"
-      ],
       "aliases": [
         "накидка",
         "nakidka"
+      ],
+      "analogs": [
+        "Balsamiq",
+        "MAKER-STUDIO"
       ]
     },
     {
@@ -2011,14 +2015,14 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
+      "aliases": [
+        "тестировщик",
+        "1с тестировщик"
+      ],
       "analogs": [
         "1С:Сценарное тестирование",
         "Vanessa-Automation",
         "Тестер"
-      ],
-      "aliases": [
-        "тестировщик",
-        "1с тестировщик"
       ]
     },
     {
@@ -2052,14 +2056,14 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты"
       ],
+      "aliases": [
+        "сценарное тестирование",
+        "сценарные тесты"
+      ],
       "analogs": [
         "1С:Тестировщик",
         "Vanessa-Automation",
         "Тестер"
-      ],
-      "aliases": [
-        "сценарное тестирование",
-        "сценарные тесты"
       ]
     },
     {
@@ -2093,6 +2097,12 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты"
       ],
+      "aliases": [
+        "ванесса",
+        "ванесса автоматион",
+        "ванесса автомейшн",
+        "vanessa automation"
+      ],
       "analogs": [
         "1С:Тестировщик",
         "1С:Сценарное тестирование",
@@ -2101,12 +2111,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "Visual Studio Code (VSCode)"
-      ],
-      "aliases": [
-        "ванесса",
-        "ванесса автоматион",
-        "ванесса автомейшн",
-        "vanessa automation"
       ]
     },
     {
@@ -2131,16 +2135,16 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты"
       ],
+      "aliases": [
+        "ванесса адд",
+        "vanessa add",
+        "ванесса add"
+      ],
       "analogs": [
         "Vanessa-Automation"
       ],
       "depends": [
         "OneScript"
-      ],
-      "aliases": [
-        "ванесса адд",
-        "vanessa add",
-        "ванесса add"
       ]
     },
     {
@@ -2182,14 +2186,14 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты"
       ],
+      "aliases": [
+        "тестер",
+        "tester"
+      ],
       "analogs": [
         "1С:Тестировщик",
         "1С:Сценарное тестирование",
         "Vanessa-Automation"
-      ],
-      "aliases": [
-        "тестер",
-        "tester"
       ]
     },
     {
@@ -2230,14 +2234,14 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты"
       ],
-      "depends": [
-        "Встроенный язык программирования 1С:Предприятия"
-      ],
       "aliases": [
         "яксюнит",
         "яаксюнит",
         "yaxunit",
         "юнит тесты 1с"
+      ],
+      "depends": [
+        "Встроенный язык программирования 1С:Предприятия"
       ]
     },
     {
@@ -2267,15 +2271,15 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты"
       ],
-      "depends": [
-        "SonarQube"
-      ],
       "aliases": [
         "кавередж",
         "ковередж",
         "coverage",
         "покрытие кода",
         "coverage41c"
+      ],
+      "depends": [
+        "SonarQube"
       ]
     },
     {
@@ -2300,16 +2304,16 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты"
       ],
+      "aliases": [
+        "ибсмд раннер",
+        "ibcmd runner",
+        "ибцмд раннер"
+      ],
       "analogs": [
         "vanessa-runner"
       ],
       "depends": [
         "OneScript"
-      ],
-      "aliases": [
-        "ибсмд раннер",
-        "ibcmd runner",
-        "ибцмд раннер"
       ]
     },
     {
@@ -2334,16 +2338,16 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты"
       ],
+      "aliases": [
+        "тест раннер",
+        "test runner",
+        "1 test runner"
+      ],
       "analogs": [
         "vanessa-runner"
       ],
       "depends": [
         "OneScript"
-      ],
-      "aliases": [
-        "тест раннер",
-        "test runner",
-        "1 test runner"
       ]
     },
     {
@@ -2369,6 +2373,11 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "синтаксическая проверка",
+        "проверка конфигурации",
+        "syntax check"
+      ],
       "analogs": [
         "1С:Автоматизированная проверка конфигураций (АПК)",
         "SonarQube"
@@ -2376,11 +2385,6 @@ window.LANDSCAPE = {
       "depends": [
         "Конфигуратор",
         "1C:Enterprise Development Tools (EDT)"
-      ],
-      "aliases": [
-        "синтаксическая проверка",
-        "проверка конфигурации",
-        "syntax check"
       ]
     },
     {
@@ -2409,17 +2413,17 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
+      "aliases": [
+        "апк",
+        "apk",
+        "автоматизированная проверка"
+      ],
       "analogs": [
         "Синтаксическая проверка конфигурации",
         "SonarQube"
       ],
       "depends": [
         "Стандарты разработки"
-      ],
-      "aliases": [
-        "апк",
-        "apk",
-        "автоматизированная проверка"
       ]
     },
     {
@@ -2457,6 +2461,13 @@ window.LANDSCAPE = {
         "проекты",
         "инхаус"
       ],
+      "aliases": [
+        "сонаркуб",
+        "сонар",
+        "сонаркьюб",
+        "sonar",
+        "сонар куб"
+      ],
       "analogs": [
         "Синтаксическая проверка конфигурации",
         "1С:Автоматизированная проверка конфигураций (АПК)"
@@ -2464,13 +2475,6 @@ window.LANDSCAPE = {
       "depends": [
         "git",
         "Coverage41C"
-      ],
-      "aliases": [
-        "сонаркуб",
-        "сонар",
-        "сонаркьюб",
-        "sonar",
-        "сонар куб"
       ]
     },
     {
@@ -2510,17 +2514,17 @@ window.LANDSCAPE = {
         "проекты",
         "инхаус"
       ],
+      "aliases": [
+        "сппр",
+        "sppr",
+        "система проектирования"
+      ],
       "analogs": [
         "Jira",
         "Яндекс Трекер",
         "YouTrack",
         "Redmine",
         "Битрикс24"
-      ],
-      "aliases": [
-        "сппр",
-        "sppr",
-        "система проектирования"
       ]
     },
     {
@@ -2578,16 +2582,16 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
+      "aliases": [
+        "крусибл",
+        "crucible"
+      ],
       "analogs": [
         "Review Board",
         "Collaborator"
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "крусибл",
-        "crucible"
       ]
     },
     {
@@ -2611,16 +2615,16 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
+      "aliases": [
+        "ревью борд",
+        "review board"
+      ],
       "analogs": [
         "Crucible",
         "Collaborator"
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "ревью борд",
-        "review board"
       ]
     },
     {
@@ -2644,16 +2648,16 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
+      "aliases": [
+        "коллаборатор",
+        "collaborator"
+      ],
       "analogs": [
         "Crucible",
         "Review Board"
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "коллаборатор",
-        "collaborator"
       ]
     },
     {
@@ -2677,18 +2681,18 @@ window.LANDSCAPE = {
         "продукты",
         "инхаус"
       ],
+      "aliases": [
+        "кодрэббит",
+        "код рэббит",
+        "code rabbit",
+        "кодребит"
+      ],
       "analogs": [
         "ai-review"
       ],
       "depends": [
         "Gitlab CI",
         "GitHub Actions"
-      ],
-      "aliases": [
-        "кодрэббит",
-        "код рэббит",
-        "code rabbit",
-        "кодребит"
       ]
     },
     {
@@ -2713,17 +2717,17 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "aliases": [
+        "аи ревью",
+        "ии ревью",
+        "ai review"
+      ],
       "analogs": [
         "CodeRabbit"
       ],
       "depends": [
         "GitHub Actions",
         "Gitlab CI"
-      ],
-      "aliases": [
-        "аи ревью",
-        "ии ревью",
-        "ai review"
       ]
     },
     {
@@ -2767,6 +2771,11 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "дженкинс",
+        "женкинс",
+        "jenkins"
+      ],
       "analogs": [
         "Gitlab CI",
         "GitHub Actions",
@@ -2775,11 +2784,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "дженкинс",
-        "женкинс",
-        "jenkins"
       ]
     },
     {
@@ -2819,6 +2823,11 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "гитлаб ci",
+        "гитлаб сиай",
+        "gitlab ci"
+      ],
       "analogs": [
         "Jenkins",
         "GitHub Actions",
@@ -2827,11 +2836,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "гитлаб ci",
-        "гитлаб сиай",
-        "gitlab ci"
       ]
     },
     {
@@ -2858,6 +2862,11 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "гитхаб экшнс",
+        "github actions",
+        "гитхаб actions"
+      ],
       "analogs": [
         "Jenkins",
         "Gitlab CI",
@@ -2866,11 +2875,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "гитхаб экшнс",
-        "github actions",
-        "гитхаб actions"
       ]
     },
     {
@@ -2896,6 +2900,11 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "трэвис",
+        "травис",
+        "travis"
+      ],
       "analogs": [
         "Jenkins",
         "Gitlab CI",
@@ -2904,11 +2913,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "трэвис",
-        "травис",
-        "travis"
       ]
     },
     {
@@ -2935,6 +2939,11 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "ванесса раннер",
+        "vanessa runner",
+        "ванесса runner"
+      ],
       "analogs": [
         "ibcmdrunner",
         "1testrunner"
@@ -2942,11 +2951,6 @@ window.LANDSCAPE = {
       "depends": [
         "OneScript",
         "Vanessa-Automation"
-      ],
-      "aliases": [
-        "ванесса раннер",
-        "vanessa runner",
-        "ванесса runner"
       ]
     },
     {
@@ -2973,6 +2977,11 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "тимсити",
+        "тим сити",
+        "team city"
+      ],
       "analogs": [
         "Jenkins",
         "Gitlab CI",
@@ -2981,11 +2990,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "тимсити",
-        "тим сити",
-        "team city"
       ]
     },
     {
@@ -3009,13 +3013,13 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "Vagrant"
-      ],
       "aliases": [
         "ансибл",
         "энсибл",
         "ansible"
+      ],
+      "analogs": [
+        "Vagrant"
       ]
     },
     {
@@ -3056,12 +3060,12 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "Ansible"
-      ],
       "aliases": [
         "вагрант",
         "vagrant"
+      ],
+      "analogs": [
+        "Ansible"
       ]
     },
     {
@@ -3152,13 +3156,13 @@ window.LANDSCAPE = {
         "инхаус",
         "продукты"
       ],
-      "analogs": [
-        "Grafana"
-      ],
       "aliases": [
         "аллюр",
         "алюр",
         "allure"
+      ],
+      "analogs": [
+        "Grafana"
       ]
     },
     {
@@ -3189,13 +3193,13 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "depends": [
-        "EnterpriseData"
-      ],
       "aliases": [
         "конвертация данных",
         "кд",
         "data conversion"
+      ],
+      "depends": [
+        "EnterpriseData"
       ]
     },
     {
@@ -3259,15 +3263,15 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "RabbitMQ",
-        "Kafka"
-      ],
       "aliases": [
         "шина",
         "1с шина",
         "esb",
         "сервисная шина"
+      ],
+      "analogs": [
+        "RabbitMQ",
+        "Kafka"
       ]
     },
     {
@@ -3295,6 +3299,9 @@ window.LANDSCAPE = {
         "опи",
         "открытый пакет интеграций",
         "opi"
+      ],
+      "analogs": [
+        "Telegram бот"
       ]
     },
     {
@@ -3346,6 +3353,9 @@ window.LANDSCAPE = {
         "тг бот",
         "telegram bot",
         "бот телеграм"
+      ],
+      "analogs": [
+        "Открытый пакет интеграций"
       ]
     },
     {
@@ -3408,16 +3418,16 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "1С:Шина",
-        "Kafka"
-      ],
       "aliases": [
         "рэббитмкью",
         "реббит",
         "кролик",
         "rabbit",
         "рэббит"
+      ],
+      "analogs": [
+        "1С:Шина",
+        "Kafka"
       ]
     },
     {
@@ -3452,12 +3462,12 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "aliases": [
+        "кафка"
+      ],
       "analogs": [
         "1С:Шина",
         "RabbitMQ"
-      ],
-      "aliases": [
-        "кафка"
       ]
     },
     {
@@ -3559,15 +3569,15 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "бруно",
+        "bruno"
+      ],
       "analogs": [
         "Insomnia",
         "SoapUI",
         "Karate",
         "Postman"
-      ],
-      "aliases": [
-        "бруно",
-        "bruno"
       ]
     },
     {
@@ -3593,15 +3603,15 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "инсомния",
+        "insomnia"
+      ],
       "analogs": [
         "Bruno",
         "SoapUI",
         "Karate",
         "Postman"
-      ],
-      "aliases": [
-        "инсомния",
-        "insomnia"
       ]
     },
     {
@@ -3627,16 +3637,16 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "соап юай",
+        "soap ui",
+        "соапюай"
+      ],
       "analogs": [
         "Bruno",
         "Insomnia",
         "Karate",
         "Postman"
-      ],
-      "aliases": [
-        "соап юай",
-        "soap ui",
-        "соапюай"
       ]
     },
     {
@@ -3662,15 +3672,15 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "карате",
+        "karate"
+      ],
       "analogs": [
         "Bruno",
         "Insomnia",
         "SoapUI",
         "Postman"
-      ],
-      "aliases": [
-        "карате",
-        "karate"
       ]
     },
     {
@@ -3709,15 +3719,15 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "постман",
+        "postman"
+      ],
       "analogs": [
         "Bruno",
         "Insomnia",
         "SoapUI",
         "Karate"
-      ],
-      "aliases": [
-        "постман",
-        "postman"
       ]
     },
     {
@@ -3851,14 +3861,14 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "aliases": [
+        "аналитика 1с",
+        "1с аналитика"
+      ],
       "analogs": [
         "Microsoft Power BI",
         "Yandex DataLens",
         "Visiology"
-      ],
-      "aliases": [
-        "аналитика 1с",
-        "1с аналитика"
       ]
     },
     {
@@ -3895,16 +3905,16 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "1С:Аналитика",
-        "Yandex DataLens",
-        "Visiology"
-      ],
       "aliases": [
         "пауэр би",
         "повер би",
         "power bi",
         "пауэрби"
+      ],
+      "analogs": [
+        "1С:Аналитика",
+        "Yandex DataLens",
+        "Visiology"
       ]
     },
     {
@@ -3928,16 +3938,16 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "1С:Аналитика",
-        "Microsoft Power BI",
-        "Visiology"
-      ],
       "aliases": [
         "яндекс даталенс",
         "даталенс",
         "datalens",
         "data lens"
+      ],
+      "analogs": [
+        "1С:Аналитика",
+        "Microsoft Power BI",
+        "Visiology"
       ]
     },
     {
@@ -3961,15 +3971,15 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "1С:Аналитика",
-        "Microsoft Power BI",
-        "Yandex DataLens"
-      ],
       "aliases": [
         "визиолоджи",
         "визиология",
         "visiology"
+      ],
+      "analogs": [
+        "1С:Аналитика",
+        "Microsoft Power BI",
+        "Yandex DataLens"
       ]
     },
     {
@@ -3993,17 +4003,17 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "aliases": [
+        "рак рас",
+        "rac ras",
+        "рак/рас"
+      ],
       "analogs": [
         "ibcmd",
         "Консоль администрирования серверов 1С"
       ],
       "depends": [
         "Кластер серверов 1С:Предприятие"
-      ],
-      "aliases": [
-        "рак рас",
-        "rac ras",
-        "рак/рас"
       ]
     },
     {
@@ -4027,16 +4037,16 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "aliases": [
+        "ибсмд",
+        "ibcmd",
+        "ибцмд"
+      ],
       "analogs": [
         "RAC/RAS"
       ],
       "depends": [
         "Кластер серверов 1С:Предприятие"
-      ],
-      "aliases": [
-        "ибсмд",
-        "ibcmd",
-        "ибцмд"
       ]
     },
     {
@@ -4058,7 +4068,13 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "проекты"
+        "проекты",
+        "франчайзи"
+      ],
+      "aliases": [
+        "консоль администрирования",
+        "консоль кластера",
+        "admin console"
       ],
       "analogs": [
         "RAC/RAS"
@@ -4066,11 +4082,6 @@ window.LANDSCAPE = {
       "depends": [
         "Кластер серверов 1С:Предприятие",
         "1С:Эксперт по технологическим вопросам"
-      ],
-      "aliases": [
-        "консоль администрирования",
-        "консоль кластера",
-        "admin console"
       ]
     },
     {
@@ -4094,14 +4105,14 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "nginx"
-      ],
       "aliases": [
         "апач",
         "apache",
         "апаче",
         "httpd"
+      ],
+      "analogs": [
+        "nginx"
       ]
     },
     {
@@ -4125,14 +4136,14 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "Apache HTTP Server"
-      ],
       "aliases": [
         "нгинкс",
         "энджиникс",
         "нжинкс",
         "nginx"
+      ],
+      "analogs": [
+        "Apache HTTP Server"
       ]
     },
     {
@@ -4156,18 +4167,18 @@ window.LANDSCAPE = {
         "проекты",
         "инхаус"
       ],
+      "aliases": [
+        "кластер серверов",
+        "кластер 1с",
+        "сервер 1с",
+        "server cluster"
+      ],
       "depends": [
         "PostgreSQL",
         "Microsoft SQLServer",
         "Postgres Pro",
         "Oracle Database",
         "IBM Db2"
-      ],
-      "aliases": [
-        "кластер серверов",
-        "кластер 1с",
-        "сервер 1с",
-        "server cluster"
       ]
     },
     {
@@ -4196,15 +4207,15 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "Elasticsearch",
-        "ClickHouse"
-      ],
       "aliases": [
         "вансвисс",
         "уан свисс",
         "one swiss",
         "онсвисс"
+      ],
+      "analogs": [
+        "Elasticsearch",
+        "ClickHouse"
       ]
     },
     {
@@ -4261,14 +4272,14 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "analogs": [
-        "Teamly",
-        "Wiki репозитория"
-      ],
       "aliases": [
         "конфлюенс",
         "конфлюэнс",
         "confluence"
+      ],
+      "analogs": [
+        "Teamly",
+        "Wiki репозитория"
       ]
     },
     {
@@ -4295,13 +4306,13 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "analogs": [
-        "Confluence",
-        "Wiki репозитория"
-      ],
       "aliases": [
         "тимли",
         "teamly"
+      ],
+      "analogs": [
+        "Confluence",
+        "Wiki репозитория"
       ]
     },
     {
@@ -4330,18 +4341,18 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "вики",
+        "wiki",
+        "вики репозитория",
+        "репозиторий вики"
+      ],
       "analogs": [
         "Confluence",
         "Teamly"
       ],
       "depends": [
         "git"
-      ],
-      "aliases": [
-        "вики",
-        "wiki",
-        "вики репозитория",
-        "репозиторий вики"
       ]
     },
     {
@@ -4370,16 +4381,16 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "профессионал",
+        "проф",
+        "сертификат профессионал"
+      ],
       "analogs": [
         "1С:Специалист‑консультант",
         "1С:Специалист",
         "1С:Эксперт по технологическим вопросам",
         "1С:Эксплуататор"
-      ],
-      "aliases": [
-        "профессионал",
-        "проф",
-        "сертификат профессионал"
       ]
     },
     {
@@ -4405,15 +4416,15 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "специалист консультант",
+        "спец консультант"
+      ],
       "analogs": [
         "1С:Профессионал",
         "1С:Специалист",
         "1С:Эксперт по технологическим вопросам",
         "1С:Эксплуататор"
-      ],
-      "aliases": [
-        "специалист консультант",
-        "спец консультант"
       ]
     },
     {
@@ -4439,15 +4450,15 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "специалист",
+        "сертификат специалист"
+      ],
       "analogs": [
         "1С:Профессионал",
         "1С:Специалист‑консультант",
         "1С:Эксперт по технологическим вопросам",
         "1С:Эксплуататор"
-      ],
-      "aliases": [
-        "специалист",
-        "сертификат специалист"
       ]
     },
     {
@@ -4473,6 +4484,11 @@ window.LANDSCAPE = {
         "проекты",
         "продукты"
       ],
+      "aliases": [
+        "эксперт",
+        "эксперт по технологическим вопросам",
+        "1с эксперт"
+      ],
       "analogs": [
         "1С:Профессионал",
         "1С:Специалист‑консультант",
@@ -4482,11 +4498,6 @@ window.LANDSCAPE = {
       "depends": [
         "1С:Эксплуататор",
         "Консоль администрирования серверов 1С"
-      ],
-      "aliases": [
-        "эксперт",
-        "эксперт по технологическим вопросам",
-        "1с эксперт"
       ]
     },
     {
@@ -4516,6 +4527,10 @@ window.LANDSCAPE = {
         "проекты",
         "продукты"
       ],
+      "aliases": [
+        "эксплуататор",
+        "1с эксплуататор"
+      ],
       "analogs": [
         "1С:Профессионал",
         "1С:Специалист‑консультант",
@@ -4524,10 +4539,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "1С:Эксперт по технологическим вопросам"
-      ],
-      "aliases": [
-        "эксплуататор",
-        "1с эксплуататор"
       ]
     },
     {
@@ -4551,13 +4562,13 @@ window.LANDSCAPE = {
         "франчайзи",
         "проекты"
       ],
-      "analogs": [
-        "Сертификация от Госуслуг"
-      ],
       "aliases": [
         "тестцентр",
         "тест центр",
         "сертификация 1с"
+      ],
+      "analogs": [
+        "Сертификация от Госуслуг"
       ]
     },
     {
@@ -4583,13 +4594,13 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "analogs": [
-        "Сертификация от 1С-ТестЦентр"
-      ],
       "aliases": [
         "госуслуги",
         "сертификация госуслуги",
         "gosuslugi"
+      ],
+      "analogs": [
+        "Сертификация от 1С-ТестЦентр"
       ]
     },
     {
@@ -4613,13 +4624,13 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "Prometheus"
-      ],
       "aliases": [
         "заббикс",
         "забикс",
         "zabbix"
+      ],
+      "analogs": [
+        "Prometheus"
       ]
     },
     {
@@ -4643,16 +4654,16 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "aliases": [
+        "графана",
+        "grafana"
+      ],
       "analogs": [
         "Allure"
       ],
       "depends": [
         "Prometheus",
         "ClickHouse"
-      ],
-      "aliases": [
-        "графана",
-        "grafana"
       ]
     },
     {
@@ -4676,13 +4687,13 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "Zabbix"
-      ],
       "aliases": [
         "прометей",
         "прометеус",
         "prometheus"
+      ],
+      "analogs": [
+        "Zabbix"
       ]
     },
     {
@@ -4733,17 +4744,17 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "aliases": [
+        "цкк",
+        "ckk",
+        "центр контроля качества"
+      ],
       "analogs": [
         "1С:Анализатор"
       ],
       "depends": [
         "1С:КИП (Корпоративный инструментальный пакет)",
         "APDEX"
-      ],
-      "aliases": [
-        "цкк",
-        "ckk",
-        "центр контроля качества"
       ]
     },
     {
@@ -4767,16 +4778,16 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "aliases": [
+        "тест центр",
+        "тест-центр",
+        "test center"
+      ],
       "analogs": [
         "Тест Гилева (TPC-1C)"
       ],
       "depends": [
         "1С:КИП (Корпоративный инструментальный пакет)"
-      ],
-      "aliases": [
-        "тест центр",
-        "тест-центр",
-        "test center"
       ]
     },
     {
@@ -4800,16 +4811,16 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "aliases": [
+        "анализатор",
+        "1с анализатор"
+      ],
       "analogs": [
         "1С:ЦКК (Центр контроля качества)",
         "Анализ технологического журнала"
       ],
       "depends": [
         "Анализ технологического журнала"
-      ],
-      "aliases": [
-        "анализатор",
-        "1с анализатор"
       ]
     },
     {
@@ -4859,14 +4870,14 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "1С:Анализатор"
-      ],
       "aliases": [
         "технологический журнал",
         "тж",
         "анализ тж",
         "techlog"
+      ],
+      "analogs": [
+        "1С:Анализатор"
       ]
     },
     {
@@ -4890,14 +4901,14 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "1С:Тест-центр"
-      ],
       "aliases": [
         "тест гилева",
         "гилев",
         "tpc-1c",
         "gilev"
+      ],
+      "analogs": [
+        "1С:Тест-центр"
       ]
     },
     {
@@ -4922,15 +4933,15 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "OneSwiss",
-        "ClickHouse"
-      ],
       "aliases": [
         "эластик",
         "эластиксерч",
         "elastic",
         "эластик серч"
+      ],
+      "analogs": [
+        "OneSwiss",
+        "ClickHouse"
       ]
     },
     {
@@ -4955,12 +4966,12 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "depends": [
-        "Elasticsearch"
-      ],
       "aliases": [
         "кибана",
         "kibana"
+      ],
+      "depends": [
+        "Elasticsearch"
       ]
     },
     {
@@ -4984,13 +4995,13 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "depends": [
-        "Elasticsearch"
-      ],
       "aliases": [
         "логсташ",
         "лог сташ",
         "logstash"
+      ],
+      "depends": [
+        "Elasticsearch"
       ]
     },
     {
@@ -5015,14 +5026,14 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "OneSwiss",
-        "Elasticsearch"
-      ],
       "aliases": [
         "кликхаус",
         "клик хаус",
         "click house"
+      ],
+      "analogs": [
+        "OneSwiss",
+        "Elasticsearch"
       ]
     },
     {
@@ -5050,17 +5061,17 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "джира",
+        "жира",
+        "jira"
+      ],
       "analogs": [
         "1С:СППР",
         "Яндекс Трекер",
         "YouTrack",
         "Redmine",
         "Битрикс24"
-      ],
-      "aliases": [
-        "джира",
-        "жира",
-        "jira"
       ]
     },
     {
@@ -5087,13 +5098,13 @@ window.LANDSCAPE = {
         "франчайзи",
         "инхаус"
       ],
-      "analogs": [
-        "Kaiten",
-        "WEEEK"
-      ],
       "aliases": [
         "трелло",
         "trello"
+      ],
+      "analogs": [
+        "Kaiten",
+        "WEEEK"
       ]
     },
     {
@@ -5121,17 +5132,17 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "яндекс трекер",
+        "трекер",
+        "yandex tracker"
+      ],
       "analogs": [
         "1С:СППР",
         "Jira",
         "YouTrack",
         "Redmine",
         "Битрикс24"
-      ],
-      "aliases": [
-        "яндекс трекер",
-        "трекер",
-        "yandex tracker"
       ]
     },
     {
@@ -5159,18 +5170,18 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
+      "aliases": [
+        "ютрек",
+        "ю трек",
+        "youtrack",
+        "ютрэк"
+      ],
       "analogs": [
         "1С:СППР",
         "Jira",
         "Яндекс Трекер",
         "Redmine",
         "Битрикс24"
-      ],
-      "aliases": [
-        "ютрек",
-        "ю трек",
-        "youtrack",
-        "ютрэк"
       ]
     },
     {
@@ -5198,17 +5209,17 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "aliases": [
+        "редмайн",
+        "редмине",
+        "redmine"
+      ],
       "analogs": [
         "1С:СППР",
         "Jira",
         "Яндекс Трекер",
         "YouTrack",
         "Битрикс24"
-      ],
-      "aliases": [
-        "редмайн",
-        "редмине",
-        "redmine"
       ]
     },
     {
@@ -5237,13 +5248,13 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "analogs": [
-        "Trello",
-        "WEEEK"
-      ],
       "aliases": [
         "кайтен",
         "kaiten"
+      ],
+      "analogs": [
+        "Trello",
+        "WEEEK"
       ]
     },
     {
@@ -5272,14 +5283,14 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "analogs": [
-        "Trello",
-        "Kaiten"
-      ],
       "aliases": [
         "уик",
         "виик",
         "weeek"
+      ],
+      "analogs": [
+        "Trello",
+        "Kaiten"
       ]
     },
     {
@@ -5308,19 +5319,19 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "analogs": [
-        "1С:СППР",
-        "Jira",
-        "Яндекс Трекер",
-        "YouTrack",
-        "Redmine"
-      ],
       "aliases": [
         "битрикс",
         "bitrix",
         "битрикс24",
         "bitrix24",
         "б24"
+      ],
+      "analogs": [
+        "1С:СППР",
+        "Jira",
+        "Яндекс Трекер",
+        "YouTrack",
+        "Redmine"
       ]
     },
     {
@@ -5344,9 +5355,6 @@ window.LANDSCAPE = {
         "проекты",
         "инхаус"
       ],
-      "depends": [
-        "Docker"
-      ],
       "aliases": [
         "кубернетес",
         "кубер",
@@ -5354,6 +5362,9 @@ window.LANDSCAPE = {
         "k8s",
         "kubernetes",
         "кубернетис"
+      ],
+      "depends": [
+        "Docker"
       ]
     },
     {
@@ -5377,15 +5388,15 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "nginx",
-        "Apache HTTP Server"
-      ],
       "aliases": [
         "кэдди",
         "кади",
         "кеди",
         "caddy"
+      ],
+      "analogs": [
+        "nginx",
+        "Apache HTTP Server"
       ]
     },
     {
@@ -5409,15 +5420,15 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "RAC/RAS",
-        "Консоль администрирования серверов 1С"
-      ],
       "aliases": [
         "пуск",
         "панель управления 1с",
         "pusk",
         "ит-экспертиза"
+      ],
+      "analogs": [
+        "RAC/RAS",
+        "Консоль администрирования серверов 1С"
       ]
     },
     {
@@ -5441,6 +5452,12 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
+      "aliases": [
+        "тантор",
+        "tantor",
+        "тантор постгрес",
+        "тантор лабс"
+      ],
       "analogs": [
         "PostgreSQL",
         "Postgres Pro",
@@ -5448,12 +5465,6 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "PostgreSQL"
-      ],
-      "aliases": [
-        "тантор",
-        "tantor",
-        "тантор постгрес",
-        "тантор лабс"
       ]
     },
     {
@@ -5477,18 +5488,18 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "PerfExpert",
-        "PerfDog",
-        "Умный мониторинг"
-      ],
       "aliases": [
         "монитор",
         "1смонитор",
         "1smonitor",
         "бурмистров"
       ],
-      "logoInvert": true
+      "logoInvert": true,
+      "analogs": [
+        "PerfExpert",
+        "PerfDog",
+        "Умный мониторинг"
+      ]
     },
     {
       "name": "PerfDog",
@@ -5511,16 +5522,16 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "PerfExpert",
-        "Монитор (1smonitor)",
-        "Умный мониторинг"
-      ],
       "aliases": [
         "перфдог",
         "perfdog",
         "биатех",
         "bia technologies"
+      ],
+      "analogs": [
+        "PerfExpert",
+        "Монитор (1smonitor)",
+        "Умный мониторинг"
       ]
     },
     {
@@ -5544,17 +5555,17 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "PerfDog",
-        "Монитор (1smonitor)",
-        "Умный мониторинг"
-      ],
       "aliases": [
         "перфэксперт",
         "перфексперт",
         "perfexpert",
         "софтпоинт",
         "softpoint"
+      ],
+      "analogs": [
+        "PerfDog",
+        "Монитор (1smonitor)",
+        "Умный мониторинг"
       ]
     },
     {
@@ -5578,15 +5589,15 @@ window.LANDSCAPE = {
         "инхаус",
         "проекты"
       ],
-      "analogs": [
-        "PerfDog",
-        "PerfExpert",
-        "Монитор (1smonitor)"
-      ],
       "aliases": [
         "умный мониторинг",
         "ит-экспертиза мониторинг",
         "it-expertise"
+      ],
+      "analogs": [
+        "PerfDog",
+        "PerfExpert",
+        "Монитор (1smonitor)"
       ]
     },
     {
@@ -5599,7 +5610,7 @@ window.LANDSCAPE = {
       "homepage": "https://plantuml.com/",
       "repo": "https://github.com/plantuml/plantuml",
       "start": [],
-      "maturity": "нишевое",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
       "availability": "доступен",
@@ -5612,9 +5623,6 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "analogs": [
-        "draw.io (diagrams.net)"
-      ],
       "aliases": [
         "плантюмл",
         "плант юмл",
@@ -5623,6 +5631,9 @@ window.LANDSCAPE = {
         "uml",
         "плант умл",
         "умл"
+      ],
+      "analogs": [
+        "draw.io (diagrams.net)"
       ]
     },
     {
@@ -5648,19 +5659,16 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "analogs": [
-        "GitVerse",
-        "MosHub",
-        "GitLab",
-        "GitHub",
-        "Bitbucket"
-      ],
       "aliases": [
         "гитфлик",
         "гит флик",
         "gitflic"
       ],
-      "logoInvert": true
+      "logoInvert": true,
+      "analogs": [
+        "GitVerse",
+        "MosHub"
+      ]
     },
     {
       "name": "MosHub",
@@ -5685,16 +5693,44 @@ window.LANDSCAPE = {
         "продукты",
         "проекты"
       ],
-      "analogs": [
-        "GitVerse",
-        "GitFlic",
-        "GitLab",
-        "GitHub"
-      ],
       "aliases": [
         "мосхаб",
         "мос хаб",
         "moshub"
+      ],
+      "analogs": [
+        "GitVerse",
+        "GitFlic"
+      ]
+    },
+    {
+      "name": "PAPI",
+      "category": "Интеграции",
+      "subcategory": null,
+      "logo": null,
+      "description": "Открытая подсистема интеграционных инструментов для 1С: универсальный http-сервис и сопутствующие механизмы",
+      "why": "Готовый каркас для интеграций на 1С: универсальный HTTP-сервис, логирование, подсистема «Алгоритмы» для выполнения кода, регламентные задания, роли и история данных. Развивается с открытым кодом, инструменты ранее обкатывались в отдельном репозитории PAPI-tools",
+      "homepage": null,
+      "repo": "https://github.com/dsdred/PAPI",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "папи",
+        "papi",
+        "pretty api",
+        "папи тулс",
+        "papi tools"
       ]
     }
   ]
