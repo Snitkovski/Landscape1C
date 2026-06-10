@@ -75,6 +75,14 @@ Object.entries(D.axes).forEach(([a, ax]) => {
   });
 });
 
+// 6. Краткое описание и «зачем» не заканчиваются точкой (последнее предложение — без точки)
+D.items.forEach((i) => {
+  ["description", "why"].forEach((f) => {
+    if (typeof i[f] === "string" && /\.\s*$/.test(i[f]))
+      E(`«${i.name}»: поле ${f} заканчивается точкой (последнее предложение — без точки)`);
+  });
+});
+
 if (errors.length) {
   console.error(`✗ Найдено проблем: ${errors.length}`);
   errors.forEach((e) => console.error("  - " + e));
