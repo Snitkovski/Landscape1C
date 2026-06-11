@@ -5,8 +5,8 @@
     // ── Единый источник ссылок ──
     var NAV = [
         ["index.html", "Ландшафт"],
-        ["graph.html", "Граф"],
         ["scheme.html", "Схема"],
+        ["graph.html", "Граф"],
         ["methodology.html", "Методология"],
         ["council.html", "Эксперты"],
     ];
