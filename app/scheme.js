@@ -43,6 +43,24 @@
         });
         return tree;
     }
+    // Карточки колонки, сгруппированные по подкатегории. Порядок групп — по
+    // первому вхождению после сортировки; карточки без подкатегории — первыми
+    // (сверху, без подзаголовка — иначе слипаются с последней группой).
+    // Категории целиком без подкатегорий рисуются как раньше.
+    function groupBySub(items) {
+        const order = [];
+        const map = new Map();
+        items.forEach((it) => {
+            const k = it.subcategory || "";
+            if (!map.has(k)) {
+                map.set(k, []);
+                order.push(k);
+            }
+            map.get(k).push(it);
+        });
+        order.sort((a, b) => (b === "") - (a === ""));
+        return order.map((k) => ({ sub: k, items: map.get(k) }));
+    }
 
     // ── Хелперы ───────────────────────────────
     const esc = (s) =>
@@ -348,14 +366,17 @@
 
         let y = M;
 
-        // Заголовок постера
+        // Заголовок постера; под подзаголовком — адрес сайта
         out.push(
             `<text x="${M}" y="${y + 24}" font-family="Unbounded, sans-serif" font-weight="700" font-size="26" fill="${C.ink}">Ландшафт технологий 1С</text>`,
         );
         out.push(
             `<text x="${M}" y="${y + 46}" font-family="Inter, sans-serif" font-size="12" fill="${C.inkSoft}">Карта технологий экосистемы 1С${D.updated ? " · обновлено " + esc(D.updated) : ""}</text>`,
         );
-        y += 78;
+        out.push(
+            `<text x="${M}" y="${y + 64}" font-family="Inter, sans-serif" font-weight="600" font-size="11" letter-spacing="1" fill="${C.inkSoft}">landscape1c.ru</text>`,
+        );
+        y += 92;
 
         // Рисует колонку категории, возвращает нижнюю границу
         function drawColumn(colX, topY, cat, items) {
@@ -374,7 +395,35 @@
 
             let cy = topY + catBoxH;
             let prevBottom = cy; // откуда тянуть вертикальную ветку
-            items.forEach((it) => {
+            // Подзаголовок подкатегории: текст капсом с черточками по бокам
+            const drawSub = (sub) => {
+                const subFont = 8.5;
+                const label = truncate(
+                    sub.toUpperCase(),
+                    colW - 16,
+                    "700",
+                    subFont,
+                );
+                const dMid = cy + cardGap + 8; // линия текста разделителя
+                line(cx, prevBottom, cx, dMid - 8); // ветка до разделителя
+                const half =
+                    (measure(label, "700", subFont) + label.length * 0.8) / 2 +
+                    8;
+                out.push(
+                    `<text x="${cx}" y="${dMid}" text-anchor="middle" dominant-baseline="central" font-family="Inter, sans-serif" font-weight="700" font-size="${subFont}" letter-spacing="0.8" fill="${C.inkSoft}">${esc(label)}</text>`,
+                );
+                if (cx - half > colX) {
+                    out.push(
+                        `<line x1="${colX}" y1="${dMid}" x2="${cx - half}" y2="${dMid}" stroke="${C.cardLine}" stroke-width="1"/>`,
+                    );
+                    out.push(
+                        `<line x1="${cx + half}" y1="${dMid}" x2="${colX + colW}" y2="${dMid}" stroke="${C.cardLine}" stroke-width="1"/>`,
+                    );
+                }
+                prevBottom = dMid + 8;
+                cy = prevBottom - cardGap + 2;
+            };
+            const drawItem = (it) => {
                 const nameLines = wrapText(it.name, textW, "500", cardFont, 3);
                 const cardH = Math.max(
                     logoSz,
@@ -419,6 +468,10 @@
                 out.push(`</g>`);
                 cy = cardY + cardH;
                 prevBottom = cy;
+            };
+            groupBySub(items).forEach((g) => {
+                if (g.sub) drawSub(g.sub);
+                g.items.forEach(drawItem);
             });
             return { bottom: cy, headCenterX: cx };
         }
@@ -617,7 +670,7 @@
             "landscape-scheme.pdf",
         );
     }
-    // Майндмап (FreeMind .mm) — иерархия блок → категория → инструмент
+    // Майндмап (FreeMind .mm) — иерархия блок → категория → [подкатегория] → инструмент
     function exportMindmap() {
         const tree = currentTree();
         if (!tree.length) return;
@@ -626,9 +679,13 @@
             s += `<node TEXT="${esc(block.name)}">\n`;
             cats.forEach(({ cat, items }) => {
                 s += `<node TEXT="${esc(cat)}">\n`;
-                items.forEach(
-                    (it) => (s += `<node TEXT="${esc(it.name)}"/>\n`),
-                );
+                groupBySub(items).forEach((g) => {
+                    if (g.sub) s += `<node TEXT="${esc(g.sub)}">\n`;
+                    g.items.forEach(
+                        (it) => (s += `<node TEXT="${esc(it.name)}"/>\n`),
+                    );
+                    if (g.sub) s += `</node>\n`;
+                });
                 s += `</node>\n`;
             });
             s += `</node>\n`;
