@@ -2300,7 +2300,7 @@ window.LANDSCAPE = {
       "name": "Vanessa-ADD",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
-      "logo": "vanessa.png",
+      "logo": "vanessa-add.png",
       "description": "Набор инструментов автотестирования (предшественник Vanessa-Automation)",
       "why": "Ранний набор инструментов сценарного и поведенческого тестирования 1С",
       "homepage": null,
@@ -2771,7 +2771,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Review Board",
-        "Collaborator"
+        "Collaborator",
+        "Git Code Review"
       ],
       "depends": [
         "git"
@@ -2804,7 +2805,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Crucible",
-        "Collaborator"
+        "Collaborator",
+        "Git Code Review"
       ],
       "depends": [
         "git"
@@ -2837,7 +2839,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Crucible",
-        "Review Board"
+        "Review Board",
+        "Git Code Review"
       ],
       "depends": [
         "git"
@@ -7078,6 +7081,101 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "HashiCorp Vault"
+      ]
+    },
+    {
+      "name": "NotebookLM",
+      "category": "База знаний",
+      "subcategory": null,
+      "logo": "notebooklm.svg",
+      "logoInvert": true,
+      "description": "ИИ-блокнот Google: ответы, конспекты и аудиообзоры по загруженным источникам",
+      "why": "Быстро разобраться в корпусе проектной документации: загружаешь требования, регламенты и статьи — и получаешь ответы строго по своим источникам, со ссылками на них",
+      "homepage": "https://notebooklm.google.com",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "бесплатное",
+      "availability": "ограничен",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "ноутбуклм",
+        "ноутбук лм",
+        "notebookllm"
+      ]
+    },
+    {
+      "name": "Git Code Review",
+      "category": "Код-ревью",
+      "subcategory": null,
+      "logo": "git-code-review.png",
+      "description": "Рецензирование изменений из git-репозитория прямо в 1С (обработка и расширение)",
+      "why": "Код-ревью в привычной для 1С-ника среде: открываешь различия коммитов и веток в форме 1С, без облачных платформ хостинга кода",
+      "homepage": "https://infostart.ru/1c/tools/2002067/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "availability": "доступен",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "продукты",
+        "инхаус"
+      ],
+      "aliases": [
+        "gitcodereview",
+        "гит код ревью",
+        "гиткодревью"
+      ],
+      "analogs": [
+        "Crucible",
+        "Review Board",
+        "Collaborator"
+      ]
+    },
+    {
+      "name": "KOT for 1C",
+      "category": "Плагины и расширения",
+      "subcategory": "Для VSCode",
+      "logo": "kot-for-1c.png",
+      "description": "Расширение VS Code для разработки и поддержки автотестов 1С в YAML-формате (СППР / Vanessa Automation)",
+      "why": "Единый контур автотестирования в VS Code: IntelliSense шагов Gherkin, менеджер тестов и тестовых баз, сборка и запуск Vanessa Automation, AI-ревью сценариев — без переключения между инструментами",
+      "homepage": null,
+      "repo": "https://github.com/kakoytochelik/KOTfor1C",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "тестировщик",
+        "разработчик"
+      ],
+      "contexts": [
+        "продукты",
+        "проекты",
+        "инхаус"
+      ],
+      "aliases": [
+        "кот",
+        "keep on testing",
+        "кот фор 1с",
+        "kotfor1c"
+      ],
+      "depends": [
+        "Vanessa-Automation",
+        "1С:СППР"
       ]
     }
   ]
