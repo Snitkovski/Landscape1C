@@ -976,7 +976,8 @@ window.LANDSCAPE = {
       "analogs": [
         "Visual Studio Code (VSCode)",
         "Claude Code",
-        "Codex"
+        "Codex",
+        "Kiro"
       ]
     },
     {
@@ -3952,7 +3953,8 @@ window.LANDSCAPE = {
       "availability": "доступен",
       "roles": [
         "разработчик",
-        "тестировщик"
+        "тестировщик",
+        "аналитик"
       ],
       "contexts": [
         "инхаус",
@@ -4004,6 +4006,10 @@ window.LANDSCAPE = {
         {
           "label": "Формирование swagger спецификации на основании метаданных конфигурации 1С",
           "url": "https://github.com/botokash/swagger"
+        },
+        {
+          "label": "Swagger Editor — зеркало ETSI, открывается без VPN",
+          "url": "https://forge.etsi.org/swagger/editor/"
         }
       ],
       "maturity": "продвинутое",
@@ -4012,7 +4018,8 @@ window.LANDSCAPE = {
       "availability": "доступен",
       "roles": [
         "разработчик",
-        "тестировщик"
+        "тестировщик",
+        "аналитик"
       ],
       "contexts": [
         "инхаус",
@@ -5896,7 +5903,9 @@ window.LANDSCAPE = {
         "умл"
       ],
       "analogs": [
-        "draw.io (diagrams.net)"
+        "draw.io (diagrams.net)",
+        "Mermaid",
+        "Graphviz"
       ]
     },
     {
@@ -6560,6 +6569,473 @@ window.LANDSCAPE = {
         "ViPNet",
         "КриптоПро"
       ]
+    },
+    {
+      "name": "Mermaid",
+      "category": "Моделирование и документация",
+      "subcategory": "Диаграммы",
+      "logo": null,
+      "description": "Диаграммы как код: блок-схемы, последовательности и Ганты из текста в Markdown",
+      "why": "Стандарт де-факто для диаграмм в Markdown: рендерится в git-хостингах и базах знаний, версионируется рядом с кодом; библиотеку можно встраивать в свои решения, включая 1С",
+      "homepage": "https://mermaid.live",
+      "repo": "https://github.com/mermaid-js/mermaid",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "аналитик",
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "мермейд",
+        "мермаид",
+        "mermaid live"
+      ],
+      "analogs": [
+        "PlantUML",
+        "Graphviz"
+      ]
+    },
+    {
+      "name": "StormBPMN",
+      "category": "Моделирование и документация",
+      "subcategory": "Моделирование процессов",
+      "logo": null,
+      "description": "Онлайн-моделирование бизнес-процессов в нотации BPMN",
+      "why": "Российский онлайн-редактор BPMN: совместная работа над схемами процессов без VPN и установки ПО",
+      "homepage": "https://stormbpmn.com/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "проприетарное",
+      "availability": "доступен",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "шторм",
+        "штормбпмн",
+        "сторм бпмн"
+      ],
+      "analogs": [
+        "bpmn.io",
+        "Camunda Modeler"
+      ]
+    },
+    {
+      "name": "bpmn.io",
+      "category": "Моделирование и документация",
+      "subcategory": "Моделирование процессов",
+      "logo": null,
+      "description": "Открытая библиотека и онлайн-редактор BPMN-диаграмм",
+      "why": "Моделирование процессов прямо в браузере, выгрузка в .bpmn/.png/.svg; редактор можно встраивать в свои решения, включая 1С",
+      "homepage": "https://bpmn.io/",
+      "repo": "https://github.com/bpmn-io/bpmn-js",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "аналитик",
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "бпмн",
+        "бпмн ио",
+        "bpmn js"
+      ],
+      "analogs": [
+        "StormBPMN",
+        "Camunda Modeler"
+      ]
+    },
+    {
+      "name": "Camunda Modeler",
+      "category": "Моделирование и документация",
+      "subcategory": "Моделирование процессов",
+      "logo": null,
+      "description": "Десктопный редактор схем процессов в нотации BPMN",
+      "why": "Кросс-платформенное моделирование и правка BPMN-схем офлайн, без привязки к онлайн-сервисам",
+      "homepage": "https://camunda.com/download/modeler/",
+      "repo": "https://github.com/camunda/camunda-modeler",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "камунда"
+      ],
+      "analogs": [
+        "StormBPMN",
+        "bpmn.io"
+      ]
+    },
+    {
+      "name": "Structurizr",
+      "category": "Моделирование и документация",
+      "subcategory": "Архитектура",
+      "logo": null,
+      "description": "Документирование архитектуры ПО по модели C4",
+      "why": "Архитектура как код: модель системы описывается DSL, диаграммы C4 генерируются из нее и не расходятся между собой",
+      "homepage": "https://structurizr.com/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "бесплатное",
+      "availability": "доступен",
+      "roles": [
+        "аналитик",
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "структуризр",
+        "c4",
+        "си4"
+      ],
+      "analogs": [
+        "Archi",
+        "Modelio"
+      ]
+    },
+    {
+      "name": "Archi",
+      "category": "Моделирование и документация",
+      "subcategory": "Архитектура",
+      "logo": null,
+      "description": "Моделирование корпоративной архитектуры в нотации ArchiMate",
+      "why": "Когда нужно описать взаимодействие нескольких систем и сквозные процессы корпоративного ландшафта, а не одну конфигурацию",
+      "homepage": "https://www.archimatetool.com/",
+      "repo": "https://github.com/archimatetool/archi",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "арчи",
+        "архимейт",
+        "archimate"
+      ],
+      "analogs": [
+        "Structurizr",
+        "Modelio"
+      ]
+    },
+    {
+      "name": "Modelio",
+      "category": "Моделирование и документация",
+      "subcategory": "Архитектура",
+      "logo": null,
+      "description": "Десктопный инструмент моделирования в нотациях UML, BPMN, ArchiMate, SysML",
+      "why": "Офлайн-средство моделирования, когда нужно несколько нотаций в одном инструменте",
+      "homepage": "https://www.modelio.org/",
+      "repo": "https://github.com/ModelioOpenSource/Modelio",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "моделио",
+        "uml"
+      ],
+      "analogs": [
+        "Structurizr",
+        "Archi"
+      ]
+    },
+    {
+      "name": "Graphviz",
+      "category": "Моделирование и документация",
+      "subcategory": "Диаграммы",
+      "logo": null,
+      "description": "Визуализация графов из текстового описания на языке DOT",
+      "why": "Программная генерация схем связей и зависимостей: описал граф текстом — получил картинку",
+      "homepage": "https://graphviz.org/",
+      "repo": "https://gitlab.com/graphviz/graphviz",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "аналитик",
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "графвиз",
+        "дот",
+        "dot"
+      ],
+      "analogs": [
+        "PlantUML",
+        "Mermaid"
+      ]
+    },
+    {
+      "name": "Miro",
+      "category": "Моделирование и документация",
+      "subcategory": "Совместные доски",
+      "logo": null,
+      "description": "Онлайн-доска для совместного моделирования и воркшопов",
+      "why": "Совместные сессии с командой: от Event Storming до карт процессов — все рисуют на одной доске",
+      "homepage": "https://miro.com/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "бесплатное",
+      "availability": "ограничен",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "миро",
+        "мира"
+      ],
+      "analogs": [
+        "Excalidraw"
+      ]
+    },
+    {
+      "name": "Excalidraw",
+      "category": "Моделирование и документация",
+      "subcategory": "Совместные доски",
+      "logo": null,
+      "description": "Открытая онлайн-доска для набросков и схем в рисованном стиле",
+      "why": "Быстрые наброски схем и совместные доски без регистрации; работает в браузере и доступен из РФ",
+      "homepage": "https://excalidraw.com/",
+      "repo": "https://github.com/excalidraw/excalidraw",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "аналитик",
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "экскалидро",
+        "эксалидро"
+      ],
+      "analogs": [
+        "Miro"
+      ]
+    },
+    {
+      "name": "Markdown Editor",
+      "category": "Моделирование и документация",
+      "subcategory": null,
+      "logo": null,
+      "description": "Онлайн-редактор Markdown с мгновенным предпросмотром",
+      "why": "Быстрый рендер и точечные правки md-файлов без установки редактора",
+      "homepage": "https://markdown-editor.github.io/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "маркдаун",
+        "мд редактор"
+      ],
+      "analogs": []
+    },
+    {
+      "name": "JSON Editor Online",
+      "category": "API и веб-сервисы",
+      "subcategory": null,
+      "logo": null,
+      "description": "Визуальный редактор и сравнение JSON-документов",
+      "why": "Разбор больших JSON из обменов и API: дерево, поиск, сравнение двух документов",
+      "homepage": "https://jsoneditoronline.org/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "бесплатное",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "тестировщик",
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты",
+        "франчайзи"
+      ],
+      "aliases": [
+        "джейсон редактор",
+        "json редактор"
+      ],
+      "analogs": [
+        "JSONLint"
+      ]
+    },
+    {
+      "name": "JSONLint",
+      "category": "API и веб-сервисы",
+      "subcategory": null,
+      "logo": null,
+      "description": "Онлайн-валидатор JSON",
+      "why": "Быстро проверить корректность JSON из обмена или спецификации и найти ошибку в синтаксисе",
+      "homepage": "https://jsonlint.com/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "бесплатное",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "тестировщик",
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты",
+        "франчайзи"
+      ],
+      "aliases": [
+        "джейсонлинт",
+        "json линт"
+      ],
+      "analogs": [
+        "JSON Editor Online"
+      ]
+    },
+    {
+      "name": "Kiro",
+      "category": "ИИ-ассистенты",
+      "subcategory": null,
+      "logo": null,
+      "description": "ИИ-среда разработки Amazon со spec-driven подходом (IDE и CLI)",
+      "why": "Сначала спецификация — потом код: ИИ ведет разработку от требований и задач к реализации",
+      "homepage": "https://kiro.dev/",
+      "repo": null,
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "бесплатное",
+      "availability": "ограничен",
+      "roles": [
+        "разработчик",
+        "аналитик"
+      ],
+      "contexts": [
+        "продукты",
+        "инхаус"
+      ],
+      "aliases": [
+        "киро",
+        "spec driven",
+        "sdd"
+      ],
+      "analogs": [
+        "Cursor"
+      ]
+    },
+    {
+      "name": "DBeaver",
+      "category": "Системы управления базами данных (СУБД)",
+      "subcategory": null,
+      "logo": null,
+      "description": "Универсальный клиент СУБД: запросы, данные, ER-диаграммы",
+      "why": "Один инструмент для всех СУБД: выполнить запрос, посмотреть данные, построить ER-модель в IDEF1X или Crow's Foot",
+      "homepage": "https://dbeaver.io/",
+      "repo": "https://github.com/dbeaver/dbeaver",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "администратор",
+        "разработчик",
+        "аналитик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "дибивер",
+        "дбивер"
+      ],
+      "analogs": []
     }
   ]
 };
