@@ -1368,6 +1368,14 @@ a {
     color: var(--paper);
     font-weight: 700;
 }
+/* Сброс отборов в графе — вид как у веб-сброса, видна только при выбранных чипах */
+.graph-reset {
+    display: none;
+    align-self: center;
+}
+.graph-filters:has(.chip[aria-pressed="true"]) .graph-reset {
+    display: inline-block;
+}
 /* Кнопка отборов в верхней строке (видна в компактном/полноэкранном режиме) */
 .graph-ftrigger {
     display: none;
@@ -1995,20 +2003,15 @@ a {
         flex-wrap: wrap;
         gap: 6px;
     }
-    .page-main .filters.is-open .filters__reset {
+    /* вид как у веб-сброса (.reset), видна только когда есть выбранные чипы */
+    .page-main
+        .filters.is-open:has(.chip[aria-pressed="true"])
+        .filters__reset {
         display: block;
         width: 100%;
-        margin: 8px 0 4px;
-        padding: 9px;
-        font-family: var(--body);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        background: var(--ink);
-        color: var(--paper);
-        border: none;
-        cursor: pointer;
+        text-align: center;
+        margin: 6px 0 2px;
+        padding: 8px 0;
     }
 }
 /* по умолчанию (десктоп-сайдбар) кнопка сброса в фильтрах не нужна */

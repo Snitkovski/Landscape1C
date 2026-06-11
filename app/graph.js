@@ -505,6 +505,25 @@
     buildChips("f-role", D.axes.role.values, fRole);
     buildChips("f-maturity", D.axes.maturity.values, fMat);
 
+    // ── Кнопка сброса отборов (видимость — через CSS :has) ──
+    (function addReset() {
+        const fbox = document.getElementById("graph-filters");
+        if (!fbox) return;
+        const r = document.createElement("button");
+        r.type = "button";
+        r.className = "reset graph-reset";
+        r.textContent = "Сбросить ✕";
+        r.addEventListener("click", () => {
+            fRole.clear();
+            fMat.clear();
+            fbox.querySelectorAll(".chip").forEach((c) =>
+                c.setAttribute("aria-pressed", "false"),
+            );
+            applyFilter();
+        });
+        fbox.appendChild(r);
+    })();
+
     // ── Выпадающие отборы из верхней строки (только на мобильном) ──
     const fbox = document.getElementById("graph-filters");
     const ftrigger = document.querySelector(".graph-ftrigger");

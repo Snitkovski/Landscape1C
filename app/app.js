@@ -55,7 +55,7 @@
         // Кнопка сброса — видна только в мобильном попапе «Отборы» (CSS)
         const r = document.createElement("button");
         r.type = "button";
-        r.className = "filters__reset";
+        r.className = "reset filters__reset";
         r.textContent = "Сбросить ✕";
         r.addEventListener("click", reset);
         box.appendChild(r);
