@@ -1596,7 +1596,9 @@ window.LANDSCAPE = {
         "Microsoft SQLServer",
         "Postgres Pro",
         "Oracle Database",
-        "IBM Db2"
+        "IBM Db2",
+        "Tantor SE 1C",
+        "Platform V Pangolin"
       ]
     },
     {
@@ -1678,7 +1680,9 @@ window.LANDSCAPE = {
         "PostgreSQL",
         "Microsoft SQLServer",
         "Oracle Database",
-        "IBM Db2"
+        "IBM Db2",
+        "Tantor SE 1C",
+        "Platform V Pangolin"
       ],
       "depends": [
         "PostgreSQL"
@@ -3193,7 +3197,8 @@ window.LANDSCAPE = {
         "ansible"
       ],
       "analogs": [
-        "Vagrant"
+        "Vagrant",
+        "Terraform"
       ]
     },
     {
@@ -4346,7 +4351,10 @@ window.LANDSCAPE = {
         "httpd"
       ],
       "analogs": [
-        "nginx"
+        "nginx",
+        "Caddy",
+        "HAProxy",
+        "Angie"
       ]
     },
     {
@@ -4377,7 +4385,10 @@ window.LANDSCAPE = {
         "nginx"
       ],
       "analogs": [
-        "Apache HTTP Server"
+        "Apache HTTP Server",
+        "Caddy",
+        "HAProxy",
+        "Angie"
       ]
     },
     {
@@ -5597,7 +5608,9 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "nginx",
-        "Apache HTTP Server"
+        "Apache HTTP Server",
+        "HAProxy",
+        "Angie"
       ]
     },
     {
@@ -5662,7 +5675,8 @@ window.LANDSCAPE = {
       "analogs": [
         "PostgreSQL",
         "Postgres Pro",
-        "Microsoft SQLServer"
+        "Microsoft SQLServer",
+        "Platform V Pangolin"
       ],
       "depends": [
         "PostgreSQL"
@@ -5699,7 +5713,9 @@ window.LANDSCAPE = {
       "analogs": [
         "PerfExpert",
         "PerfDog",
-        "Умный мониторинг"
+        "Умный мониторинг",
+        "Оркестратор 1С",
+        "Алькир"
       ]
     },
     {
@@ -5766,7 +5782,9 @@ window.LANDSCAPE = {
       "analogs": [
         "PerfDog",
         "Монитор (1smonitor)",
-        "Умный мониторинг"
+        "Умный мониторинг",
+        "Оркестратор 1С",
+        "Алькир"
       ]
     },
     {
@@ -5962,7 +5980,9 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "nginx",
-        "Caddy"
+        "Caddy",
+        "Angie",
+        "Apache HTTP Server"
       ]
     },
     {
@@ -5995,7 +6015,8 @@ window.LANDSCAPE = {
       "analogs": [
         "nginx",
         "Caddy",
-        "HAProxy"
+        "HAProxy",
+        "Apache HTTP Server"
       ]
     },
     {
@@ -6025,6 +6046,9 @@ window.LANDSCAPE = {
         "терра",
         "terraform",
         "iac"
+      ],
+      "analogs": [
+        "Ansible"
       ]
     },
     {
@@ -6205,7 +6229,8 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "PostgreSQL",
-        "Postgres Pro"
+        "Postgres Pro",
+        "Tantor SE 1C"
       ]
     },
     {
@@ -6236,6 +6261,11 @@ window.LANDSCAPE = {
         "proapdex",
         "проапдекс",
         "апдекс"
+      ],
+      "analogs": [
+        "Алькир",
+        "PerfExpert",
+        "Монитор (1smonitor)"
       ]
     },
     {
@@ -6264,6 +6294,11 @@ window.LANDSCAPE = {
         "alkir",
         "digilabs",
         "диджилабс"
+      ],
+      "analogs": [
+        "Оркестратор 1С",
+        "PerfExpert",
+        "Монитор (1smonitor)"
       ]
     },
     {
@@ -6307,7 +6342,7 @@ window.LANDSCAPE = {
       "description": "Инструмент ведения технической документации по принципу docs-as-code",
       "why": "Командная работа над документацией как с вики, но с хранением в git: удобный редактор, версионирование и совместное ведение",
       "homepage": "https://gram.ax/",
-      "repo": null,
+      "repo": "https://github.com/Gram-ax/gramax",
       "start": [],
       "maturity": "нишевое",
       "origin": "отечественное",
@@ -6358,6 +6393,9 @@ window.LANDSCAPE = {
         "sso",
         "единый вход",
         "oidc"
+      ],
+      "analogs": [
+        "Multifactor"
       ]
     },
     {
@@ -6390,7 +6428,10 @@ window.LANDSCAPE = {
         "2fa",
         "многофакторная"
       ],
-      "logoInvert": true
+      "logoInvert": true,
+      "analogs": [
+        "Keycloak"
+      ]
     },
     {
       "name": "ViPNet",
@@ -6419,6 +6460,9 @@ window.LANDSCAPE = {
         "инфотекс",
         "infotecs",
         "гост vpn"
+      ],
+      "analogs": [
+        "Континент"
       ]
     },
     {
@@ -6448,6 +6492,9 @@ window.LANDSCAPE = {
         "код безопасности",
         "security code",
         "криптошлюз"
+      ],
+      "analogs": [
+        "ViPNet"
       ]
     }
   ]
