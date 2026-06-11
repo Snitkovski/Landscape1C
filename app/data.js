@@ -584,7 +584,7 @@ window.LANDSCAPE = {
     {
       "name": "Библиотека стандартных подсистем (БСП)",
       "category": "Библиотеки и инструменты",
-      "subcategory": null,
+      "subcategory": "Подсистемы и обработки",
       "logo": "1c.png",
       "description": "Набор готовых подсистем и стандартных механизмов от 1С — основа для разработки прикладных решений",
       "why": "Базовая библиотека, на которой строятся типовые конфигурации 1С. Дает готовые механизмы (права, печать, обмен данными, версионирование) и единые стандарты, экономя время разработки",
@@ -623,7 +623,7 @@ window.LANDSCAPE = {
     {
       "name": "TurboConf",
       "category": "Плагины и расширения",
-      "subcategory": null,
+      "subcategory": "Для Конфигуратора",
       "logo": "turboconf.png",
       "description": "Расширение Конфигуратора, автоматизирующее рутину разработки",
       "why": "Улучшает работу в Конфигураторе 1С",
@@ -661,7 +661,7 @@ window.LANDSCAPE = {
     {
       "name": "Подсистема \"Инструменты разработчика\"",
       "category": "Библиотеки и инструменты",
-      "subcategory": null,
+      "subcategory": "Подсистемы и обработки",
       "logo": "devtools.png",
       "description": "Набор внутренних инструментов разработчика: консоли запросов, кода, СКД",
       "why": "Набор инструментов разработчика, который помогает в ежедневной работе",
@@ -701,7 +701,7 @@ window.LANDSCAPE = {
     {
       "name": "Подсистема \"Универсальные инструменты 1С для управляемых форм\"",
       "category": "Библиотеки и инструменты",
-      "subcategory": null,
+      "subcategory": "Подсистемы и обработки",
       "logo": "universal-tools.png",
       "description": "Набор инструментов разработчика для управляемых форм",
       "why": "Набор инструментов разработчика, который помогает в ежедневной работе (используется для управляемых форм)",
@@ -740,7 +740,7 @@ window.LANDSCAPE = {
     {
       "name": "Infostart Toolkit",
       "category": "Библиотеки и инструменты",
-      "subcategory": null,
+      "subcategory": "Подсистемы и обработки",
       "logo": "infostart-toolkit.png",
       "description": "Набор инструментов для анализа и обработки данных в базе 1С",
       "why": "Набор инструментов разработчика, который помогает в ежедневной работе",
@@ -787,7 +787,7 @@ window.LANDSCAPE = {
     {
       "name": "Плагин для конфигуратора PhoenixBSL",
       "category": "Плагины и расширения",
-      "subcategory": null,
+      "subcategory": "Для Конфигуратора",
       "logo": "phoenixbsl.png",
       "description": "Анализ и форматирование кода 1С в Конфигураторе на базе BSL LS",
       "why": "Быстрая проверка на соответствие стандарта кода в конфигураторе",
@@ -877,9 +877,9 @@ window.LANDSCAPE = {
       "homepage": "https://gitverse.ru/features/gigacode/",
       "repo": null,
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "отечественное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "доступен",
       "roles": [
         "разработчик"
@@ -915,7 +915,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "нишевое",
       "origin": "зарубежное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "ограничен",
       "roles": [
         "разработчик"
@@ -959,7 +959,7 @@ window.LANDSCAPE = {
       ],
       "maturity": "продвинутое",
       "origin": "зарубежное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "ограничен",
       "roles": [
         "разработчик"
@@ -1055,7 +1055,7 @@ window.LANDSCAPE = {
     {
       "name": "Плагин для VSCode «1C:Platform Tools»",
       "category": "Плагины и расширения",
-      "subcategory": null,
+      "subcategory": "Для VSCode",
       "logo": "vscode.svg",
       "description": "Расширение VSCode с инструментами разработки на платформе 1С",
       "why": "Позволяет работать с около-1Сными проектами прямо в VSCode: запуск команд `vanessa-runner`, навигация по проектам, дерево метаданных, ER-диаграммы, отладка 1С и интеграция с AI-агентами через MCP — в одной панели",
@@ -1091,7 +1091,7 @@ window.LANDSCAPE = {
     {
       "name": "Плагины для 1С:EDT",
       "category": "Плагины и расширения",
-      "subcategory": null,
+      "subcategory": "Для EDT",
       "logo": "edt.png",
       "description": "Официальные и сторонние плагины, расширяющие 1С:EDT",
       "why": "Улучшают работу разработчика в 1C:EDT",
@@ -1135,7 +1135,7 @@ window.LANDSCAPE = {
     {
       "name": "Библиотеки для OneScript",
       "category": "Библиотеки и инструменты",
-      "subcategory": null,
+      "subcategory": "Для OneScript",
       "logo": "oscript-library.png",
       "description": "Готовые библиотеки сообщества для экосистемы OneScript",
       "why": "Не писать инфраструктуру с нуля: HTTP-клиенты, работа с JSON и архивами, CI-обвязка и тесты берутся готовыми пакетами",
@@ -1181,7 +1181,7 @@ window.LANDSCAPE = {
     {
       "name": "Autumn (ОСень)",
       "category": "Библиотеки и инструменты",
-      "subcategory": null,
+      "subcategory": "Для OneScript",
       "logo": "autumn.png",
       "description": "Фреймворк компонентных приложений для OneScript (DI/IoC)",
       "why": "Когда нужно быстро собрать приложение на OneScript, которое можно легко расширять и поддерживать. Особенно полезен, если проект состоит из множества взаимосвязанных модулей — Autumn сам организует их взаимодействие и избавит от лишней «склейки» кода",
@@ -1246,7 +1246,7 @@ window.LANDSCAPE = {
     {
       "name": "OneScript Debug (BSL)",
       "category": "Плагины и расширения",
-      "subcategory": null,
+      "subcategory": "Для VSCode",
       "logo": "onescript-debug.png",
       "description": "Отладка скриптов OneScript прямо в VSCode",
       "why": "Дает точки останова и пошаговую отладку OneScript-скриптов в редакторе — без внешних средств",
@@ -1278,7 +1278,7 @@ window.LANDSCAPE = {
     {
       "name": "Language 1C (BSL)",
       "category": "Плагины и расширения",
-      "subcategory": null,
+      "subcategory": "Для VSCode",
       "logo": "bsl-language-server.png",
       "description": "Подсветка синтаксиса, автодополнение и навигация по коду 1С (BSL) в VSCode",
       "why": "Превращает VSCode в полноценный редактор кода 1С: подсветка, автодополнение и переход к определению",
@@ -1310,7 +1310,7 @@ window.LANDSCAPE = {
     {
       "name": "Cucumber (Gherkin) Full Support",
       "category": "Плагины и расширения",
-      "subcategory": null,
+      "subcategory": "Для VSCode",
       "logo": "cucumber.png",
       "description": "Автодополнение и подсветка Gherkin для feature-файлов (BDD, Vanessa-Automation)",
       "why": "Помогает писать BDD-сценарии: автодополнение шагов, подсветка и переход к определениям в feature-файлах",
@@ -1343,7 +1343,7 @@ window.LANDSCAPE = {
     {
       "name": "Gherkin Table Align",
       "category": "Плагины и расширения",
-      "subcategory": null,
+      "subcategory": "Для VSCode",
       "logo": "gherkin-table-align.png",
       "description": "Выравнивание таблиц в Gherkin-сценариях",
       "why": "Автоматически выравнивает столбцы таблиц в feature-файлах — сценарии читать и поддерживать проще",
@@ -1375,7 +1375,7 @@ window.LANDSCAPE = {
     {
       "name": "Allure Support",
       "category": "Плагины и расширения",
-      "subcategory": null,
+      "subcategory": "Для VSCode",
       "logo": "allure-support.png",
       "description": "Поддержка Allure в VSCode: подсказки и навигация по разметке тестов",
       "why": "Упрощает работу с Allure прямо в редакторе — подсказки и переходы по разметке отчетов",
@@ -1407,7 +1407,7 @@ window.LANDSCAPE = {
     {
       "name": "gitsync",
       "category": "Системы хранения версий",
-      "subcategory": null,
+      "subcategory": "Синхронизация с 1С",
       "logo": "oscript-library.png",
       "description": "Выгрузка истории Хранилища конфигурации 1С в git (и Mercurial)",
       "why": "Переносит коммиты из Хранилища 1С в git с сохранением авторов и комментариев — мост к нормальному версионированию",
@@ -1444,7 +1444,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:ГитКонвертер",
       "category": "Системы хранения версий",
-      "subcategory": null,
+      "subcategory": "Синхронизация с 1С",
       "logo": "1c.png",
       "description": "Односторонняя синхронизация хранилища конфигурации 1С с репозиторием Git и переход на разработку в 1С:EDT с сохранением истории",
       "why": "Мост между классическим хранилищем 1С и git-процессом: переносит историю из хранилища в Git и позволяет перейти на разработку в 1С:EDT",
@@ -1466,7 +1466,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "продукты",
-        "инхаус"
+        "инхаус",
+        "проекты"
       ],
       "aliases": [
         "гитконвертер",
@@ -1485,7 +1486,7 @@ window.LANDSCAPE = {
     {
       "name": "Консоль запросов",
       "category": "Библиотеки и инструменты",
-      "subcategory": null,
+      "subcategory": "Подсистемы и обработки",
       "logo": "1c.png",
       "description": "Внешняя обработка для выполнения произвольных запросов на языке запросов 1С",
       "why": "Главный инструмент ad-hoc анализа данных: посмотреть содержимое таблиц, проверить гипотезу по данным и отладить запрос отчета без доработки конфигурации",
@@ -1551,7 +1552,7 @@ window.LANDSCAPE = {
     {
       "name": "PostgreSQL",
       "category": "Системы управления базами данных (СУБД)",
-      "subcategory": null,
+      "subcategory": "Семейство PostgreSQL",
       "logo": "postgresql.svg",
       "description": "Свободная СУБД; «1С» выпускает и поддерживает свою сборку PostgreSQL",
       "why": "PostgreSQL - это бесплатная СУБД, которая в текущих реалиях является одной из самых рекомендуемых",
@@ -1606,7 +1607,7 @@ window.LANDSCAPE = {
     {
       "name": "Microsoft SQLServer",
       "category": "Системы управления базами данных (СУБД)",
-      "subcategory": null,
+      "subcategory": "Зарубежные коммерческие",
       "logo": "sqlserver.svg",
       "description": "Проприетарная СУБД Microsoft с языком запросов Transact-SQL",
       "why": "Исторически основная СУБД для серверных баз 1С на Windows; знание T-SQL помогает диагностировать и оптимизировать запросы под нагрузкой",
@@ -1654,7 +1655,7 @@ window.LANDSCAPE = {
     {
       "name": "Postgres Pro",
       "category": "Системы управления базами данных (СУБД)",
-      "subcategory": null,
+      "subcategory": "Семейство PostgreSQL",
       "logo": "postgrespro.svg",
       "description": "Российская СУБД на базе PostgreSQL с поддержкой и сертификацией для 1С",
       "why": "Отечественная замена PostgreSQL/MS SQL для продуктива 1С: входит в реестр ПО, оптимизирована под нагрузку 1С",
@@ -1693,7 +1694,7 @@ window.LANDSCAPE = {
     {
       "name": "Oracle Database",
       "category": "Системы управления базами данных (СУБД)",
-      "subcategory": null,
+      "subcategory": "Зарубежные коммерческие",
       "logo": "oracle.svg",
       "description": "Промышленная СУБД Oracle, поддерживаемая платформой 1С:Предприятие",
       "why": "Используется как СУБД для крупных внедрений 1С, где исторически стоял Oracle",
@@ -1727,7 +1728,7 @@ window.LANDSCAPE = {
     {
       "name": "IBM Db2",
       "category": "Системы управления базами данных (СУБД)",
-      "subcategory": null,
+      "subcategory": "Зарубежные коммерческие",
       "logo": "ibm-db2.svg",
       "description": "СУБД IBM Db2, входящая в список поддерживаемых платформой 1С",
       "why": "Один из поддерживаемых 1С серверов БД; встречается в редких корпоративных ландшафтах",
@@ -1761,7 +1762,7 @@ window.LANDSCAPE = {
     {
       "name": "Хранилище",
       "category": "Системы хранения версий",
-      "subcategory": null,
+      "subcategory": "Системы контроля версий",
       "logo": "1c.png",
       "description": "Штатный механизм платформы для коллективной разработки конфигураций",
       "why": "Используется для командной разработки, чтобы отслеживать версии кода. Используется при разработке в Конфигураторе",
@@ -1807,7 +1808,7 @@ window.LANDSCAPE = {
     {
       "name": "git",
       "category": "Системы хранения версий",
-      "subcategory": null,
+      "subcategory": "Системы контроля версий",
       "logo": "git.svg",
       "description": "Распределенная система контроля версий — индустриальный стандарт",
       "why": "Используется для командной разработки, чтобы отслеживать версии кода. Используется при разработке в 1C:EDT",
@@ -1850,7 +1851,7 @@ window.LANDSCAPE = {
     {
       "name": "GitLab",
       "category": "Системы хранения версий",
-      "subcategory": null,
+      "subcategory": "Git-хостинги",
       "logo": "gitlab.svg",
       "description": "Платформа хостинга git-репозиториев с код-ревью и встроенным CI/CD",
       "why": "Хранит репозитории проектов 1С, ведет merge request'ы и запускает пайплайны Gitlab CI",
@@ -1887,7 +1888,7 @@ window.LANDSCAPE = {
     {
       "name": "GitHub",
       "category": "Системы хранения версий",
-      "subcategory": null,
+      "subcategory": "Git-хостинги",
       "logo": "github.svg",
       "logoInvert": true,
       "description": "Крупнейший хостинг git-репозиториев с pull request'ами и Actions",
@@ -1897,7 +1898,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "продвинутое",
       "origin": "зарубежное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "доступен",
       "roles": [
         "разработчик",
@@ -1925,7 +1926,7 @@ window.LANDSCAPE = {
     {
       "name": "GitVerse",
       "category": "Системы хранения версий",
-      "subcategory": null,
+      "subcategory": "Git-хостинги",
       "logo": "gitverse.png",
       "description": "Отечественная платформа хостинга git-репозиториев от SberTech",
       "why": "Российская замена GitHub/GitLab для команд 1С: репозитории, код-ревью, CI и ИИ-ассистент GigaCode",
@@ -1934,7 +1935,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "нишевое",
       "origin": "отечественное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "доступен",
       "roles": [
         "разработчик",
@@ -1963,7 +1964,7 @@ window.LANDSCAPE = {
     {
       "name": "Bitbucket",
       "category": "Системы хранения версий",
-      "subcategory": null,
+      "subcategory": "Git-хостинги",
       "logo": "bitbucket.svg",
       "description": "Хостинг git-репозиториев от Atlassian с pull request'ами и интеграцией с Jira",
       "why": "Хранит репозитории проектов 1С и связывает коммиты с задачами Jira; есть встроенный CI (Bitbucket Pipelines)",
@@ -1972,7 +1973,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "нишевое",
       "origin": "зарубежное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "ограничен",
       "roles": [
         "разработчик",
@@ -2009,7 +2010,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "продвинутое",
       "origin": "зарубежное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "ограничен",
       "roles": [
         "аналитик"
@@ -2039,7 +2040,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
-      "availability": "доступен",
+      "availability": "ограничен",
       "roles": [
         "аналитик"
       ],
@@ -2070,7 +2071,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
-      "availability": "доступен",
+      "availability": "ограничен",
       "roles": [
         "аналитик"
       ],
@@ -2171,7 +2172,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Тестировщик",
       "category": "Автоматизированное тестирование",
-      "subcategory": null,
+      "subcategory": "Функциональные тесты",
       "logo": "1c.png",
       "description": "Инструмент 1С для автоматизации функционального тестирования",
       "why": "Автоматизирует функциональное тестирование конфигураций при обновлениях",
@@ -2203,7 +2204,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Сценарное тестирование",
       "category": "Автоматизированное тестирование",
-      "subcategory": null,
+      "subcategory": "Функциональные тесты",
       "logo": "1c.png",
       "description": "Проверка функциональности через сценарии без программирования",
       "why": "Позволяет описывать и прогонять сценарные тесты решений 1С",
@@ -2247,7 +2248,7 @@ window.LANDSCAPE = {
     {
       "name": "Vanessa-Automation",
       "category": "Автоматизированное тестирование",
-      "subcategory": null,
+      "subcategory": "Функциональные тесты",
       "logo": "vanessa.png",
       "description": "BDD-тестирование решений 1С на языке Gherkin",
       "why": "Описывает и запускает сценарии на Gherkin, готовит инструкции и документацию",
@@ -2295,7 +2296,7 @@ window.LANDSCAPE = {
     {
       "name": "Vanessa-ADD",
       "category": "Автоматизированное тестирование",
-      "subcategory": null,
+      "subcategory": "Функциональные тесты",
       "logo": "vanessa.png",
       "description": "Набор инструментов автотестирования (предшественник Vanessa-Automation)",
       "why": "Ранний набор инструментов сценарного и поведенческого тестирования 1С",
@@ -2329,7 +2330,7 @@ window.LANDSCAPE = {
     {
       "name": "Тестер",
       "category": "Автоматизированное тестирование",
-      "subcategory": null,
+      "subcategory": "Функциональные тесты",
       "logo": null,
       "description": "Бесплатный инструмент сценарного тестирования решений 1С 8.3",
       "why": "Позволяет разрабатывать и запускать тесты, автоматизировать рутинные операции",
@@ -2378,7 +2379,7 @@ window.LANDSCAPE = {
     {
       "name": "YAxUnit",
       "category": "Автоматизированное тестирование",
-      "subcategory": null,
+      "subcategory": "Юнит-тесты",
       "logo": "yaxunit.svg",
       "description": "Фреймворк юнит-тестирования решений на 1С:Предприятие 8.3",
       "why": "Когда начинаете использовать тестирование, даже если не следуете TDD, то все равно начнете задаваться вопросом: \"а как я это буду тестировать?\". И как следствие, будете стараться следовать принципам SOLID, чтобы уменьшить зависимости, упростить методы, что облегчит тестирование. И это приводит к повышению качества кода. Также использую тесты, вы получаете возможность быстро проверить, что изменения кода, не ломают его. На YAxUnit возможно писать юнит, интеграционные и сценарные тесты",
@@ -2427,7 +2428,7 @@ window.LANDSCAPE = {
     {
       "name": "Coverage41C",
       "category": "Автоматизированное тестирование",
-      "subcategory": null,
+      "subcategory": "Юнит-тесты",
       "logo": "coverage41c.png",
       "description": "Измерение покрытия кода 1С автотестами через протокол отладчика",
       "why": "Показывает, какие строки кода реально проверяются тестами, а какие нет, — помогает находить непокрытые участки и оценивать качество тестовой базы. Результат выгружается в SonarQube",
@@ -2465,7 +2466,7 @@ window.LANDSCAPE = {
     {
       "name": "ibcmdrunner",
       "category": "CI/CD",
-      "subcategory": null,
+      "subcategory": "Сборка 1С",
       "logo": "oscript-library.png",
       "description": "OneScript-обертка над утилитой ibcmd для управления информационной базой из скриптов",
       "why": "Автоматизирует операции с базой (создание, выгрузка, загрузка, обновление) в CI и тестовых сценариях — без ручного запуска ibcmd",
@@ -2499,7 +2500,7 @@ window.LANDSCAPE = {
     {
       "name": "1testrunner",
       "category": "Автоматизированное тестирование",
-      "subcategory": null,
+      "subcategory": "Юнит-тесты",
       "logo": "oscript-library.png",
       "description": "Среда запуска юнит-тестов на OneScript",
       "why": "Находит и прогоняет тесты, написанные на OneScript, и формирует отчет — основа автотестов для скриптовой части проектов 1С",
@@ -2913,7 +2914,7 @@ window.LANDSCAPE = {
     {
       "name": "Jenkins",
       "category": "CI/CD",
-      "subcategory": null,
+      "subcategory": "CI-серверы",
       "logo": "jenkins.svg",
       "description": "Сервер автоматизации сборок и CI/CD-пайплайнов",
       "why": "Нужен для разворачивания системы непрерывной интеграции",
@@ -2969,7 +2970,7 @@ window.LANDSCAPE = {
     {
       "name": "Gitlab CI",
       "category": "CI/CD",
-      "subcategory": null,
+      "subcategory": "CI-серверы",
       "logo": "gitlab.svg",
       "description": "Встроенная в GitLab система непрерывной интеграции",
       "why": "Для запуска тестов при каждой закладке в хранилище или репозиторий",
@@ -3021,7 +3022,7 @@ window.LANDSCAPE = {
     {
       "name": "GitHub Actions",
       "category": "CI/CD",
-      "subcategory": null,
+      "subcategory": "CI-серверы",
       "logo": "github-actions.svg",
       "description": "Встроенная в GitHub система CI/CD на основе workflow-файлов",
       "why": "Запускает сборку, тесты и проверки кода 1С при каждом пуше в репозиторий на GitHub",
@@ -3030,7 +3031,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "продвинутое",
       "origin": "зарубежное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "доступен",
       "roles": [
         "администратор",
@@ -3060,7 +3061,7 @@ window.LANDSCAPE = {
     {
       "name": "Travis CI",
       "category": "CI/CD",
-      "subcategory": null,
+      "subcategory": "CI-серверы",
       "logo": "travis-ci.svg",
       "description": "Облачный сервис непрерывной интеграции с конфигом в .travis.yml",
       "why": "Исторически популярный облачный CI; для 1С-проектов сейчас вытесняется GitHub Actions и GitLab CI",
@@ -3070,7 +3071,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "проприетарное",
-      "availability": "доступен",
+      "availability": "ограничен",
       "roles": [
         "администратор",
         "тестировщик",
@@ -3098,7 +3099,7 @@ window.LANDSCAPE = {
     {
       "name": "vanessa-runner",
       "category": "CI/CD",
-      "subcategory": null,
+      "subcategory": "Сборка 1С",
       "logo": "vanessa.png",
       "description": "OneScript-оркестратор сборки, тестов и проверок 1С в CI",
       "why": "Стандартный инструмент CI для 1С: создает и обновляет базы, запускает Vanessa-Automation, замеряет покрытие и выгружает конфигурацию — одной командой в пайплайне",
@@ -3136,7 +3137,7 @@ window.LANDSCAPE = {
     {
       "name": "TeamCity",
       "category": "CI/CD",
-      "subcategory": null,
+      "subcategory": "CI-серверы",
       "logo": "teamcity.svg",
       "description": "CI/CD-сервер JetBrains для сборок и автотестов",
       "why": "Альтернатива Jenkins для пайплайнов 1С с удобным UI и готовыми раннерами",
@@ -3145,8 +3146,8 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "нишевое",
       "origin": "зарубежное",
-      "license": "проприетарное",
-      "availability": "доступен",
+      "license": "бесплатное",
+      "availability": "ограничен",
       "roles": [
         "администратор",
         "тестировщик",
@@ -3175,7 +3176,7 @@ window.LANDSCAPE = {
     {
       "name": "Ansible",
       "category": "CI/CD",
-      "subcategory": null,
+      "subcategory": "Инфраструктура как код",
       "logo": "ansible.svg",
       "description": "Система управления конфигурацией и автоматического развертывания",
       "why": "Автоматизирует развертывание серверов 1С, СУБД и окружений без ручной настройки",
@@ -3206,7 +3207,7 @@ window.LANDSCAPE = {
     {
       "name": "Vagrant",
       "category": "CI/CD",
-      "subcategory": null,
+      "subcategory": "Инфраструктура как код",
       "logo": "vagrant.svg",
       "description": "Создание воспроизводимых виртуальных окружений для разработки",
       "why": "Позволяет на локальной машине создавать легко управляемые виртуальные среды. То есть можно легко в них установить необходимые инструменты",
@@ -3233,7 +3234,7 @@ window.LANDSCAPE = {
       "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "open-source",
-      "availability": "доступен",
+      "availability": "ограничен",
       "roles": [
         "администратор"
       ],
@@ -3294,7 +3295,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "инхаус",
-        "продукты"
+        "продукты",
+        "проекты"
       ],
       "aliases": [
         "докер",
@@ -3305,7 +3307,7 @@ window.LANDSCAPE = {
     {
       "name": "Allure",
       "category": "Автоматизированное тестирование",
-      "subcategory": null,
+      "subcategory": "Отчеты о тестах",
       "logo": "allure.png",
       "description": "Наглядные отчеты о результатах автотестов",
       "why": "Может показывать результаты тестов и различных проверок в красивом и аккуратном виде. Приятно посмотреть",
@@ -3359,7 +3361,7 @@ window.LANDSCAPE = {
     {
       "name": "ТестОпс",
       "category": "Автоматизированное тестирование",
-      "subcategory": null,
+      "subcategory": "Отчеты о тестах",
       "logo": "testops.png",
       "description": "Платформа управления тестированием поверх Allure: запуск автотестов, аналитика и живые отчеты",
       "why": "Объединяет ручные и автоматические тесты, хранит историю прогонов и показывает аналитику качества — единый центр тест-менеджмента поверх отчетов Allure",
@@ -3401,7 +3403,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Конвертация данных",
       "category": "Интеграции",
-      "subcategory": null,
+      "subcategory": "Обмен между 1С",
       "logo": "1c.png",
       "description": "Создание правил обмена между конфигурациями 1С",
       "why": "Визуально описывает правила конвертации и обмена данными между системами",
@@ -3438,7 +3440,7 @@ window.LANDSCAPE = {
     {
       "name": "EnterpriseData",
       "category": "Интеграции",
-      "subcategory": null,
+      "subcategory": "Обмен между 1С",
       "logo": "1c.png",
       "description": "Универсальный формат обмена данными между системами",
       "why": "Бизнес-ориентированный формат для обменов между 1С и внешними системами",
@@ -3472,7 +3474,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Шина",
       "category": "Интеграции",
-      "subcategory": null,
+      "subcategory": "Брокеры и шины",
       "logo": "1c.png",
       "description": "Интеграционная шина предприятия (ESB) для обмена между системами",
       "why": "Позволяет настраивать обмены сообщений между разными системами, причем по содержимому сообщений можно определить кто будет получателем",
@@ -3510,7 +3512,7 @@ window.LANDSCAPE = {
     {
       "name": "Открытый пакет интеграций",
       "category": "Интеграции",
-      "subcategory": null,
+      "subcategory": "Внешние API",
       "logo": "openintegration.svg",
       "description": "Набор модулей для интеграции 1С с популярными API",
       "why": "Предназначено для легкой интеграции с существующими сервисами. Поставляется в виде расширения, проекта EDT, файлов конфигурации или других вариантов. После установки в конфигурации можем легко вызывать методы API сервисов не разрабатывая их самостоятельно",
@@ -3540,7 +3542,7 @@ window.LANDSCAPE = {
     {
       "name": "Telegram бот",
       "category": "Интеграции",
-      "subcategory": null,
+      "subcategory": "Внешние API",
       "logo": "telegram.png",
       "description": "Автоматизация обмена сообщениями через ботов Telegram",
       "why": "Для выполнения различных операций с помощью Telegram, начиная с интеграции с мессенджером или информированием о текущем состоянии фирмы и заканчивая ведением CRM",
@@ -3594,7 +3596,7 @@ window.LANDSCAPE = {
     {
       "name": "Curlone",
       "category": "Интеграции",
-      "subcategory": null,
+      "subcategory": "Внешние API",
       "logo": "curl.svg",
       "logoInvert": true,
       "description": "Конвертер команд curl в код на языке 1С",
@@ -3623,7 +3625,7 @@ window.LANDSCAPE = {
     {
       "name": "RabbitMQ",
       "category": "Интеграции",
-      "subcategory": null,
+      "subcategory": "Брокеры и шины",
       "logo": "rabbitmq.svg",
       "description": "Брокер сообщений для асинхронного обмена",
       "why": "Очереди и маршрутизация сообщений между 1С и внешними системами по AMQP",
@@ -3666,7 +3668,7 @@ window.LANDSCAPE = {
     {
       "name": "Kafka",
       "category": "Интеграции",
-      "subcategory": null,
+      "subcategory": "Брокеры и шины",
       "logo": "kafka.svg",
       "logoInvert": true,
       "description": "Потоковая платформа обмена сообщениями",
@@ -4226,7 +4228,7 @@ window.LANDSCAPE = {
     {
       "name": "RAC/RAS",
       "category": "Администрирование 1С",
-      "subcategory": null,
+      "subcategory": "Штатные инструменты",
       "logo": "1c.png",
       "description": "Серверная утилита (ras) и консольный клиент (rac) администрирования кластера 1С",
       "why": "Управление кластером, сеансами и информационными базами из командной строки — основа автоматизации администрирования и скриптов обслуживания",
@@ -4260,7 +4262,7 @@ window.LANDSCAPE = {
     {
       "name": "ibcmd",
       "category": "Администрирование 1С",
-      "subcategory": null,
+      "subcategory": "Штатные инструменты",
       "logo": "1c.png",
       "description": "Консольная утилита управления информационными базами 1С (создание, обновление, выгрузка)",
       "why": "Позволяет работать с ИБ без кластера: разворачивать, обновлять конфигурацию и выгружать/загружать данные из CLI в пайплайнах",
@@ -4293,7 +4295,7 @@ window.LANDSCAPE = {
     {
       "name": "Консоль администрирования серверов 1С",
       "category": "Администрирование 1С",
-      "subcategory": null,
+      "subcategory": "Штатные инструменты",
       "logo": "1c.png",
       "description": "Графическая консоль (MMC) управления кластером серверов 1С:Предприятие",
       "why": "Привычный GUI для администрирования кластера: рабочие серверы, сеансы, информационные базы, регламентные задания",
@@ -4328,7 +4330,7 @@ window.LANDSCAPE = {
     {
       "name": "Apache HTTP Server",
       "category": "Сетевая инфраструктура и облако",
-      "subcategory": null,
+      "subcategory": "Веб-серверы и прокси",
       "logo": "apache.svg",
       "description": "Веб-сервер для публикации веб-клиента и HTTP/REST-сервисов 1С",
       "why": "Классический вариант публикации базы 1С: веб-клиент, веб-сервисы и HTTP-сервисы доступны по сети",
@@ -4359,13 +4361,46 @@ window.LANDSCAPE = {
         "nginx",
         "Caddy",
         "HAProxy",
-        "Angie"
+        "Angie",
+        "IIS"
+      ]
+    },
+    {
+      "name": "IIS",
+      "category": "Сетевая инфраструктура и облако",
+      "subcategory": "Веб-серверы и прокси",
+      "logo": null,
+      "description": "Веб-сервер Microsoft для публикации баз 1С на Windows Server",
+      "why": "Штатный вариант публикации 1С в Windows-инфраструктуре: веб-клиент и HTTP-сервисы без стороннего ПО, доменная аутентификация из коробки",
+      "homepage": "https://www.iis.net/",
+      "repo": null,
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "проприетарное",
+      "availability": "ограничен",
+      "roles": [
+        "администратор",
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты",
+        "продукты",
+        "франчайзи"
+      ],
+      "aliases": [
+        "иис",
+        "internet information services"
+      ],
+      "analogs": [
+        "Apache HTTP Server"
       ]
     },
     {
       "name": "nginx",
       "category": "Сетевая инфраструктура и облако",
-      "subcategory": null,
+      "subcategory": "Веб-серверы и прокси",
       "logo": "nginx.svg",
       "description": "Высокопроизводительный веб-сервер и обратный прокси для публикации 1С",
       "why": "Обратный прокси и балансировщик перед серверами 1С: HTTPS, кэширование статики, маршрутизация веб- и HTTP-сервисов",
@@ -4400,7 +4435,7 @@ window.LANDSCAPE = {
     {
       "name": "Кластер серверов 1С:Предприятие",
       "category": "Администрирование 1С",
-      "subcategory": null,
+      "subcategory": "Штатные инструменты",
       "logo": "1c.png",
       "description": "Объединение рабочих серверов 1С для обслуживания нагрузки",
       "why": "Обеспечивает масштабируемость (наращивание оборудования под нагрузку), отказоустойчивость и балансировку нагрузки между серверами. Понимание устройства кластера важно при работе с серверным вариантом 1С и при администрировании крупных внедрений",
@@ -4435,7 +4470,7 @@ window.LANDSCAPE = {
     {
       "name": "OneSwiss",
       "category": "Администрирование 1С",
-      "subcategory": null,
+      "subcategory": "Управление парком баз",
       "logo": "oneswiss.png",
       "description": "Кроссплатформенный комплекс обслуживания и мониторинга баз 1С",
       "why": "Автоматизирует регламентное обслуживание баз и упрощает работу администратора: блокировка соединений, загрузка конфигураций и расширений, запуск внешних обработок и скриптов по шаблонам в виде блок-схем",
@@ -4472,7 +4507,7 @@ window.LANDSCAPE = {
     {
       "name": "draw.io (diagrams.net)",
       "category": "Моделирование и документация",
-      "subcategory": null,
+      "subcategory": "Диаграммы",
       "logo": "drawio.svg",
       "description": "Бесплатный редактор диаграмм и схем: блок-схемы, BPMN, ER, архитектура",
       "why": "Моделирование бизнес-процессов и схем интеграций для ТЗ и согласований; работает в браузере и десктопе, экспорт в проектную документацию",
@@ -4503,7 +4538,7 @@ window.LANDSCAPE = {
     {
       "name": "Confluence",
       "category": "Моделирование и документация",
-      "subcategory": null,
+      "subcategory": "База знаний",
       "logo": "confluence.svg",
       "description": "Корпоративная база знаний и пространство проектной документации от Atlassian",
       "why": "Хранит ТЗ, регламенты, протоколы встреч и базу знаний проекта 1С; тесно связан с задачами Jira",
@@ -4512,7 +4547,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "продвинутое",
       "origin": "зарубежное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "ограничен",
       "roles": [
         "аналитик",
@@ -4538,7 +4573,7 @@ window.LANDSCAPE = {
     {
       "name": "Teamly",
       "category": "Моделирование и документация",
-      "subcategory": null,
+      "subcategory": "База знаний",
       "logo": "teamly.svg",
       "description": "Отечественная платформа базы знаний и совместной работы с документами",
       "why": "Российская замена Confluence: ТЗ, регламенты и база знаний команды 1С в ПО из реестра",
@@ -4572,7 +4607,7 @@ window.LANDSCAPE = {
     {
       "name": "Wiki репозитория",
       "category": "Моделирование и документация",
-      "subcategory": null,
+      "subcategory": "База знаний",
       "logo": "wiki.svg",
       "logoInvert": true,
       "description": "Встроенная вики git-хостинга: статьи в Markdown рядом с кодом, без отдельного сервиса",
@@ -4660,13 +4695,13 @@ window.LANDSCAPE = {
       "license": "проприетарное",
       "availability": "доступен",
       "roles": [
-        "разработчик",
         "аналитик"
       ],
       "contexts": [
         "франчайзи",
         "продукты",
-        "проекты"
+        "проекты",
+        "инхаус"
       ],
       "aliases": [
         "специалист консультант",
@@ -4702,7 +4737,8 @@ window.LANDSCAPE = {
       "contexts": [
         "франчайзи",
         "продукты",
-        "проекты"
+        "проекты",
+        "инхаус"
       ],
       "aliases": [
         "специалист",
@@ -4796,7 +4832,7 @@ window.LANDSCAPE = {
     {
       "name": "Сертификация от 1С-ТестЦентр",
       "category": "Сертификация",
-      "subcategory": null,
+      "subcategory": "Независимая сертификация",
       "logo": "1c.png",
       "description": "Онлайн-тестирование знаний и навыков специалистов 1С",
       "why": "Независимая онлайн-проверка знаний 1С-разработчиков для соискателей и сотрудников. После прохождения теста сервис подготовит относительно подробное заключение о квалификации претендента, и на основании этого присвоит ему соответствующий грейд в зависимости от набранных баллов",
@@ -4812,7 +4848,8 @@ window.LANDSCAPE = {
       ],
       "contexts": [
         "франчайзи",
-        "проекты"
+        "проекты",
+        "инхаус"
       ],
       "aliases": [
         "тестцентр",
@@ -4826,7 +4863,7 @@ window.LANDSCAPE = {
     {
       "name": "Сертификация от Госуслуг",
       "category": "Сертификация",
-      "subcategory": null,
+      "subcategory": "Независимая сертификация",
       "logo": "gosuslugi.svg",
       "description": "Подтверждение ИТ-компетенций сертификатом на Госуслугах",
       "why": "Независимая онлайн-проверка знаний IT-компетенций, с сертификатом от Минцифры. Привлечение внимания к резюме. Выше шансы на трудоустройство. Хранение в одном месте и постоянный доступ",
@@ -4844,7 +4881,8 @@ window.LANDSCAPE = {
       "contexts": [
         "франчайзи",
         "продукты",
-        "проекты"
+        "проекты",
+        "инхаус"
       ],
       "aliases": [
         "госуслуги",
@@ -4858,7 +4896,7 @@ window.LANDSCAPE = {
     {
       "name": "Zabbix",
       "category": "Мониторинг",
-      "subcategory": null,
+      "subcategory": "Мониторинг инфраструктуры",
       "logo": "zabbix.svg",
       "description": "Мониторинг серверов, сервисов и инфраструктуры 1С",
       "why": "Следит за доступностью и нагрузкой серверов 1С, шлет алерты при проблемах",
@@ -4888,7 +4926,7 @@ window.LANDSCAPE = {
     {
       "name": "Grafana",
       "category": "Мониторинг",
-      "subcategory": null,
+      "subcategory": "Мониторинг инфраструктуры",
       "logo": "grafana.svg",
       "description": "Дашборды и визуализация метрик из разных источников",
       "why": "Собирает метрики 1С и инфраструктуры в наглядные дашборды",
@@ -4921,7 +4959,7 @@ window.LANDSCAPE = {
     {
       "name": "Prometheus",
       "category": "Мониторинг",
-      "subcategory": null,
+      "subcategory": "Мониторинг инфраструктуры",
       "logo": "prometheus.svg",
       "description": "Сбор и хранение метрик с алертингом",
       "why": "Собирает метрики серверов и сервисов 1С, питает Grafana и алерты",
@@ -5266,7 +5304,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "продвинутое",
       "origin": "зарубежное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "ограничен",
       "roles": [
         "разработчик",
@@ -5302,9 +5340,9 @@ window.LANDSCAPE = {
       "homepage": "https://trello.com/",
       "repo": null,
       "start": [],
-      "maturity": "базовое",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "ограничен",
       "roles": [
         "разработчик",
@@ -5337,7 +5375,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "продвинутое",
       "origin": "отечественное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "доступен",
       "roles": [
         "разработчик",
@@ -5375,7 +5413,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "продвинутое",
       "origin": "зарубежное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "ограничен",
       "roles": [
         "разработчик",
@@ -5412,7 +5450,7 @@ window.LANDSCAPE = {
       "homepage": "https://www.redmine.org/",
       "repo": null,
       "start": [],
-      "maturity": "базовое",
+      "maturity": "продвинутое",
       "origin": "зарубежное",
       "license": "open-source",
       "availability": "доступен",
@@ -5487,7 +5525,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "нишевое",
       "origin": "отечественное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "доступен",
       "roles": [
         "разработчик",
@@ -5523,7 +5561,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "базовое",
       "origin": "отечественное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "доступен",
       "roles": [
         "разработчик",
@@ -5588,7 +5626,7 @@ window.LANDSCAPE = {
     {
       "name": "Caddy",
       "category": "Сетевая инфраструктура и облако",
-      "subcategory": null,
+      "subcategory": "Веб-серверы и прокси",
       "logo": "caddy.svg",
       "description": "Современный веб-сервер и обратный прокси с автоматическим HTTPS для публикации 1С",
       "why": "Простая публикация веб-клиента и сервисов 1С: обратный прокси с автоматическим выпуском TLS-сертификатов и лаконичным конфигом",
@@ -5622,7 +5660,7 @@ window.LANDSCAPE = {
     {
       "name": "ПУСК (Панель управления сервисами и компонентами)",
       "category": "Администрирование 1С",
-      "subcategory": null,
+      "subcategory": "Управление парком баз",
       "logo": "pusk.svg",
       "description": "Кроссплатформенная веб-панель управления кластером серверов 1С через графический интерфейс",
       "why": "Администрирование инфраструктуры 1С без командной строки: базы, сеансы, блокировки и рабочие процессы кластера в одном браузерном интерфейсе. Работает на Linux и Windows",
@@ -5654,7 +5692,7 @@ window.LANDSCAPE = {
     {
       "name": "Tantor SE 1C",
       "category": "Системы управления базами данных (СУБД)",
-      "subcategory": null,
+      "subcategory": "Семейство PostgreSQL",
       "logo": "tantor.svg",
       "description": "Российская СУБД на базе PostgreSQL, оптимизированная и одобренная для продуктов 1С",
       "why": "Отечественная СУБД из реестра ПО для продуктива 1С: ядро PostgreSQL с собственными оптимизациями и встроенными средствами администрирования, тестируется на конфигурациях 1С",
@@ -5691,7 +5729,7 @@ window.LANDSCAPE = {
     {
       "name": "Монитор (1smonitor)",
       "category": "Мониторинг",
-      "subcategory": null,
+      "subcategory": "Мониторинг 1С",
       "logo": "1smonitor.png",
       "description": "Инструмент мониторинга производительности баз и серверов 1С: запросы, блокировки, взаимоблокировки",
       "why": "Анализ всех баз и серверов 1С одним инструментом: медленные запросы, ожидания на блокировках, взаимоблокировки и системные счетчики. Помогает администратору находить узкие места производительности",
@@ -5727,7 +5765,7 @@ window.LANDSCAPE = {
     {
       "name": "PerfDog",
       "category": "Мониторинг",
-      "subcategory": null,
+      "subcategory": "Мониторинг 1С",
       "logo": null,
       "description": "Онлайн-мониторинг и диагностика производительности высоконагруженных систем 1С",
       "why": "Выделяет ресурсоемкие запросы и контролирует нагрузку на уровне СУБД, серверов 1С и контекста кода: расшифровка блокировок и взаимоблокировок, разбор технологического журнала в одном интерфейсе",
@@ -5760,7 +5798,7 @@ window.LANDSCAPE = {
     {
       "name": "PerfExpert",
       "category": "Мониторинг",
-      "subcategory": null,
+      "subcategory": "Мониторинг 1С",
       "logo": "perfexpert.png",
       "description": "Платформа мониторинга производительности высоконагруженных систем 1С и СУБД от SoftPoint",
       "why": "Непрерывный контроль метрик производительности 1С и MS SQL/PostgreSQL: сбор трасс запросов, анализ блокировок и рекомендации по оптимизации индексов",
@@ -5796,7 +5834,7 @@ window.LANDSCAPE = {
     {
       "name": "Умный мониторинг",
       "category": "Мониторинг",
-      "subcategory": null,
+      "subcategory": "Мониторинг 1С",
       "logo": "it-expertise.svg",
       "description": "Программный комплекс сбора и анализа технологических данных ИТ-инфраструктуры 1С",
       "why": "Собирает и анализирует технологические данные, помогает оперативно реагировать на инциденты и прогнозировать производительность с применением ML. От разработчиков ПУСК (ИТ-Экспертиза)",
@@ -5828,7 +5866,7 @@ window.LANDSCAPE = {
     {
       "name": "PlantUML",
       "category": "Моделирование и документация",
-      "subcategory": null,
+      "subcategory": "Диаграммы",
       "logo": "plantuml.svg",
       "description": "Инструмент для создания UML- и других диаграмм из текстового описания",
       "why": "Диаграммы как код: последовательности, классы, компоненты и схемы процессов описываются текстом, хранятся рядом с проектом и удобно версионируются. Периодически встречается в материалах сообщества 1С",
@@ -5864,7 +5902,7 @@ window.LANDSCAPE = {
     {
       "name": "GitFlic",
       "category": "Системы хранения версий",
-      "subcategory": null,
+      "subcategory": "Git-хостинги",
       "logo": "gitflic.svg",
       "description": "Российская платформа для хранения git-репозиториев и совместной разработки",
       "why": "Отечественная замена GitHub/GitLab: хостинг git-репозиториев, код-ревью, CI и реестр пакетов. Входит в реестр российского ПО",
@@ -5873,7 +5911,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "нишевое",
       "origin": "отечественное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "доступен",
       "roles": [
         "разработчик",
@@ -5898,7 +5936,7 @@ window.LANDSCAPE = {
     {
       "name": "MosHub",
       "category": "Системы хранения версий",
-      "subcategory": null,
+      "subcategory": "Git-хостинги",
       "logo": "moshub.png",
       "description": "Российская платформа для хранения git-репозиториев и командной разработки",
       "why": "Отечественный сервис git-хостинга: репозитории, код-ревью и совместная работа над кодом как альтернатива зарубежным GitHub/GitLab",
@@ -5907,7 +5945,7 @@ window.LANDSCAPE = {
       "start": [],
       "maturity": "нишевое",
       "origin": "отечественное",
-      "license": "проприетарное",
+      "license": "бесплатное",
       "availability": "доступен",
       "roles": [
         "разработчик",
@@ -5931,7 +5969,7 @@ window.LANDSCAPE = {
     {
       "name": "PAPI",
       "category": "Интеграции",
-      "subcategory": null,
+      "subcategory": "Внешние API",
       "logo": null,
       "description": "Открытая подсистема интеграционных инструментов для 1С: универсальный http-сервис и сопутствующие механизмы",
       "why": "Готовый каркас для интеграций на 1С: универсальный HTTP-сервис, логирование, подсистема «Алгоритмы» для выполнения кода, регламентные задания, роли и история данных. Развивается с открытым кодом, инструменты ранее обкатывались в отдельном репозитории PAPI-tools",
@@ -5961,7 +5999,7 @@ window.LANDSCAPE = {
     {
       "name": "HAProxy",
       "category": "Сетевая инфраструктура и облако",
-      "subcategory": null,
+      "subcategory": "Веб-серверы и прокси",
       "logo": "haproxy.png",
       "description": "Высокопроизводительный балансировщик нагрузки и обратный прокси TCP/HTTP",
       "why": "Распределение нагрузки между серверами 1С и отказоустойчивая публикация: надежный балансировщик уровня L4/L7, который любят в крупных инсталляциях",
@@ -5994,7 +6032,7 @@ window.LANDSCAPE = {
     {
       "name": "Angie",
       "category": "Сетевая инфраструктура и облако",
-      "subcategory": null,
+      "subcategory": "Веб-серверы и прокси",
       "logo": "angie.svg",
       "description": "Отечественный форк nginx с расширенными возможностями и совместимостью с его конфигами",
       "why": "Замена nginx там, где нужны российское решение и совместимость с требованиями регуляторов: тот же конфиг плюс дополнительные модули",
@@ -6028,14 +6066,14 @@ window.LANDSCAPE = {
     {
       "name": "Terraform",
       "category": "Сетевая инфраструктура и облако",
-      "subcategory": null,
+      "subcategory": "Облачная инфраструктура",
       "logo": "terraform.svg",
       "description": "Инструмент декларативного управления инфраструктурой как кодом (IaC)",
       "why": "Воспроизводимое разворачивание серверов и окружений 1С в облаках и на железе: инфраструктура описывается кодом и применяется одной командой",
       "homepage": "https://www.terraform.io/",
       "repo": "https://github.com/hashicorp/terraform",
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
       "availability": "ограничен",
@@ -6059,14 +6097,14 @@ window.LANDSCAPE = {
     {
       "name": "HashiCorp Vault",
       "category": "Безопасность",
-      "subcategory": null,
+      "subcategory": "Доступ и секреты",
       "logo": "vault.svg",
       "description": "Хранилище секретов и централизованное управление доступом к чувствительным данным",
       "why": "Безопасное хранение паролей, токенов и ключей вместо конфигов и переменных окружения: централизованная выдача и ротация секретов для сервисов и пайплайнов",
       "homepage": "https://www.vaultproject.io/",
       "repo": "https://github.com/hashicorp/vault",
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "зарубежное",
       "license": "бесплатное",
       "availability": "ограничен",
@@ -6088,7 +6126,7 @@ window.LANDSCAPE = {
     {
       "name": "КриптоПро",
       "category": "Безопасность",
-      "subcategory": null,
+      "subcategory": "Криптография и VPN",
       "logo": "cryptopro.svg",
       "description": "Криптопровайдер и средства электронной подписи под российские стандарты (ГОСТ)",
       "why": "Без него не работают электронная подпись, защищенные соединения и обмен с госсистемами в 1С: реализует российскую криптографию на сервере и рабочих местах",
@@ -6124,14 +6162,14 @@ window.LANDSCAPE = {
     {
       "name": "1С:Управление ландшафтом",
       "category": "Администрирование 1С",
-      "subcategory": null,
+      "subcategory": "Управление парком баз",
       "logo": "1c.png",
       "description": "Продукт 1С для централизованного управления корпоративным ландшафтом информационных систем на платформе 1С:Предприятие",
       "why": "Управление множеством баз и серверов 1С из одной точки: контроль состояния, права доступа пользователей и доставка обновлений конфигураций по всему ландшафту",
       "homepage": "https://v8.1c.ru/tekhnologii/tekhnologii-krupnykh-vnedreniy/korporativnye-instrumenty/upravlenie-landshaftom/",
       "repo": null,
       "start": [],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "проприетарное",
       "availability": "доступен",
@@ -6152,7 +6190,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Облачная подсистема Фреш",
       "category": "Администрирование 1С",
-      "subcategory": null,
+      "subcategory": "Управление парком баз",
       "logo": "1c.png",
       "description": "Технология 1С для развертывания облачных сервисов на базе 1С:Предприятия по модели SaaS",
       "why": "Провайдер размещает приложения 1С у себя и отдает их множеству изолированных абонентов: мультиарендность, разделение данных и централизованные обновления",
@@ -6185,11 +6223,11 @@ window.LANDSCAPE = {
     {
       "name": "Selectel",
       "category": "Сетевая инфраструктура и облако",
-      "subcategory": null,
+      "subcategory": "Облачная инфраструктура",
       "logo": "selectel.svg",
       "description": "Облачный провайдер с готовой инфраструктурой и сервисами для размещения 1С",
       "why": "Быстрый запуск 1С без своего железа: аренда готового облака с настроенным окружением и оплата по использованным ресурсам",
-      "homepage": "https://selectel.ru/",
+      "homepage": "https://selectel.ru/services/1c-leasing/1c-cloud/",
       "repo": null,
       "start": [],
       "maturity": "нишевое",
@@ -6215,7 +6253,7 @@ window.LANDSCAPE = {
     {
       "name": "Platform V Pangolin",
       "category": "Системы управления базами данных (СУБД)",
-      "subcategory": null,
+      "subcategory": "Семейство PostgreSQL",
       "logo": "platform-v.png",
       "description": "СУБД Сбера на базе PostgreSQL — отечественная альтернатива для баз 1С",
       "why": "PostgreSQL-совместимая российская СУБД под нагрузки 1С: корпоративная поддержка и доработки как замена зарубежным базам данных",
@@ -6255,7 +6293,7 @@ window.LANDSCAPE = {
     {
       "name": "Оркестратор 1С",
       "category": "Мониторинг",
-      "subcategory": null,
+      "subcategory": "Мониторинг 1С",
       "logo": "orchestrator1c.svg",
       "description": "Отечественный сервис мониторинга и управления системами на платформе 1С:Предприятие",
       "why": "Наблюдение за здоровьем и производительностью 1С в реальном времени: анализ журнала регистрации и техжурнала, управление сеансами и оповещения в Telegram",
@@ -6290,7 +6328,7 @@ window.LANDSCAPE = {
     {
       "name": "Алькир",
       "category": "Мониторинг",
-      "subcategory": null,
+      "subcategory": "Мониторинг 1С",
       "logo": "alkir.png",
       "description": "Отечественный инструмент мониторинга и оптимизации производительности систем 1С",
       "why": "Углубленный анализ работы 1С в одном месте: управление сервером приложений, разбор блокировок и запросов к базе, APDEX и диагностика ошибок",
@@ -6323,7 +6361,7 @@ window.LANDSCAPE = {
     {
       "name": "Harbor",
       "category": "CI/CD",
-      "subcategory": null,
+      "subcategory": "Контейнеризация",
       "logo": "harbor.svg",
       "description": "Реестр контейнерных образов с управлением доступом и сканированием уязвимостей",
       "why": "Свое хранилище Docker-образов для сборки и поставки 1С-сервисов: контроль доступа, подпись и проверка образов на уязвимости",
@@ -6356,7 +6394,7 @@ window.LANDSCAPE = {
     {
       "name": "Gramax",
       "category": "Моделирование и документация",
-      "subcategory": null,
+      "subcategory": "База знаний",
       "logo": "gramax.svg",
       "description": "Инструмент ведения технической документации по принципу docs-as-code",
       "why": "Командная работа над документацией как с вики, но с хранением в git: удобный редактор, версионирование и совместное ведение",
@@ -6391,7 +6429,7 @@ window.LANDSCAPE = {
     {
       "name": "Keycloak",
       "category": "Безопасность",
-      "subcategory": null,
+      "subcategory": "Доступ и секреты",
       "logo": "keycloak.svg",
       "description": "Открытая система управления доступом, единого входа (SSO) и федерации учетных записей",
       "why": "Единый вход и централизованная аутентификация для сервисов вокруг 1С: SSO, OIDC/SAML, многофакторность и управление пользователями в одном месте",
@@ -6424,7 +6462,7 @@ window.LANDSCAPE = {
     {
       "name": "Multifactor",
       "category": "Безопасность",
-      "subcategory": null,
+      "subcategory": "Доступ и секреты",
       "logo": "multifactor.svg",
       "description": "Российский сервис двухфакторной аутентификации (MFA) и контроля доступа",
       "why": "Второй фактор при входе в инфраструктуру и сервисы вокруг 1С (VPN, RDP, порталы): подтверждение через приложение, OTP или биометрию против кражи паролей",
@@ -6459,14 +6497,14 @@ window.LANDSCAPE = {
     {
       "name": "ViPNet",
       "category": "Безопасность",
-      "subcategory": null,
+      "subcategory": "Криптография и VPN",
       "logo": "vipnet.svg",
       "description": "Российский комплекс защищенной сети и криптографии: ГОСТ-VPN и межсетевое экранирование",
       "why": "Защищенные каналы и сертифицированная криптография для обмена 1С с госсистемами и между офисами: ГОСТ-VPN под требования регуляторов",
       "homepage": "https://infotecs.ru/",
       "repo": null,
       "start": [],
-      "maturity": "базовое",
+      "maturity": "продвинутое",
       "origin": "отечественное",
       "license": "бесплатное",
       "availability": "доступен",
@@ -6493,7 +6531,7 @@ window.LANDSCAPE = {
     {
       "name": "Континент",
       "category": "Безопасность",
-      "subcategory": null,
+      "subcategory": "Криптография и VPN",
       "logo": "kontinent.svg",
       "description": "Российский программно-аппаратный комплекс сетевой безопасности и ГОСТ-VPN",
       "why": "Сертифицированная защита периметра и каналов до 1С: межсетевой экран, криптошлюз и VPN по ГОСТ для инфраструктур с требованиями ФСТЭК и ФСБ",
