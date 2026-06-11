@@ -6768,7 +6768,7 @@ window.LANDSCAPE = {
       "name": "Modelio",
       "category": "Моделирование и документация",
       "subcategory": "Архитектура",
-      "logo": null,
+      "logo": "modelio.png",
       "description": "Десктопный инструмент моделирования в нотациях UML, BPMN, ArchiMate, SysML",
       "why": "Офлайн-средство моделирования, когда нужно несколько нотаций в одном инструменте",
       "homepage": "https://www.modelio.org/",
