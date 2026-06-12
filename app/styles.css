@@ -1275,18 +1275,33 @@ a {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
     margin-top: 34px;
+    counter-reset: expert;
 }
 @media (max-width: 720px) {
     .exp-grid {
         grid-template-columns: 1fr;
     }
+    .page.council {
+        padding-inline: 10px;
+    }
 }
 
 .exp {
+    margin: 0; /* у <figure> браузерный отступ 1em 40px */
     display: flex;
     flex-direction: column;
     background: var(--card);
     border: 1.5px solid var(--ink);
+    counter-increment: expert;
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease;
+}
+@media (hover: hover) {
+    .exp:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 4px 4px 0 var(--ink);
+    }
 }
 .exp__photo {
     aspect-ratio: 1;
@@ -1299,6 +1314,23 @@ a {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition:
+        filter 0.25s ease,
+        transform 0.25s ease;
+}
+/* Слегка приглушаем в тон теплой палитре — фото из разных съемок собираются
+   в серию; наведение оживляет. Только на устройствах с курсором: на таче
+   ховера нет, фото сразу цветные */
+@media (hover: hover) {
+    .exp__photo img {
+        filter: sepia(0.18) saturate(0.8);
+    }
+}
+@media (hover: hover) {
+    .exp:hover .exp__photo img {
+        filter: none;
+        transform: scale(1.03);
+    }
 }
 
 .exp__body {
@@ -1308,6 +1340,22 @@ a {
     align-items: flex-start;
     gap: 12px;
     padding: clamp(18px, 2.4vw, 26px);
+    position: relative;
+}
+.exp__body::after {
+    content: counter(expert, decimal-leading-zero);
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--num);
+    user-select: none;
+}
+.exp--lead .exp__body::after {
+    content: none; /* автор без номера */
 }
 .exp__tag {
     font-family: var(--display);
@@ -1316,7 +1364,24 @@ a {
     letter-spacing: 1.5px;
     text-transform: uppercase;
     padding: 5px 10px;
-    border: 1.5px solid var(--ink);
+    border: 1px solid var(--card-line);
+    border-left: 3px solid var(--area, var(--ink));
+}
+/* Цвета областей = цвета блоков ландшафта на графе (BLOCK_COLORS в graph.js) */
+.exp__tag--design {
+    --area: #3a7ca5; /* Проектирование */
+}
+.exp__tag--dev {
+    --area: #2d7d3a; /* Разработка */
+}
+.exp__tag--qa {
+    --area: #b5471f; /* Качество */
+}
+.exp__tag--infra {
+    --area: #c08a1e; /* Инфраструктура и эксплуатация */
+}
+.exp__tag--author {
+    --area: var(--brand);
 }
 .exp__name {
     font-family: var(--display);
