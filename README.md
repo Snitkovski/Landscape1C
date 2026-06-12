@@ -1,5 +1,9 @@
 # Ландшафт технологий 1С
 
+[![Деплой](https://github.com/Oxotka/Landscape1C/actions/workflows/deploy.yml/badge.svg)](https://github.com/Oxotka/Landscape1C/actions/workflows/deploy.yml)
+[![Проверка данных](https://github.com/Oxotka/Landscape1C/actions/workflows/validate.yml/badge.svg)](https://github.com/Oxotka/Landscape1C/actions/workflows/validate.yml)
+[![Лицензия: MIT](https://img.shields.io/badge/лицензия-MIT-green.svg)](LICENSE)
+
 Интерактивная карта экосистемы технологий для разработчика на 1С и около 1С.
 
 Это не просто список инструментов, а **навигация по двум независимым осям** — функциональной роли и контексту работы, — с фильтрами, карточками технологий, связями между ними, графом и маршрутами освоения.

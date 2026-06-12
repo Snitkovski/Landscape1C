@@ -36,11 +36,13 @@
             "</a>"
         );
     };
-    // «Предложить инструмент» — только в бургере (в подвале смотрится лишним)
+    // «Предложить инструмент» и GitHub — только в бургере (в подвале смотрятся лишними)
     var proposeLink =
         '<a href="' +
         PROPOSE +
         '" target="_blank" rel="noopener">Предложить инструмент ↗︎</a>';
+    var githubLink =
+        '<a href="https://github.com/Oxotka/Landscape1C" target="_blank" rel="noopener">GitHub ↗︎</a>';
 
     // ── 0. Знак проекта («рельеф на осях») в обеих шапках ──
     // Цвета из темы: линии — currentColor (--ink), пик — --m-niche (CSS).
@@ -96,6 +98,7 @@
         '<div class="menu__sep"></div>' +
         proposeLink +
         ext(" ↗︎") +
+        githubLink +
         '<div class="menu__sep"></div>' +
         '<div class="menu__theme">' +
         '<button type="button" class="menu__theme-head" aria-expanded="false">' +
