@@ -4921,7 +4921,8 @@ window.LANDSCAPE = {
       "analogs": [
         "Teamly",
         "Wiki репозитория",
-        "Gramax"
+        "Gramax",
+        "Obsidian"
       ]
     },
     {
@@ -4956,7 +4957,8 @@ window.LANDSCAPE = {
       "analogs": [
         "Confluence",
         "Wiki репозитория",
-        "Gramax"
+        "Gramax",
+        "Obsidian"
       ]
     },
     {
@@ -5000,7 +5002,8 @@ window.LANDSCAPE = {
       "analogs": [
         "Confluence",
         "Teamly",
-        "Gramax"
+        "Gramax",
+        "Obsidian"
       ],
       "depends": [
         "git"
@@ -7118,7 +7121,8 @@ window.LANDSCAPE = {
       "analogs": [
         "Wiki репозитория",
         "Confluence",
-        "Teamly"
+        "Teamly",
+        "Obsidian"
       ]
     },
     {
@@ -8051,6 +8055,49 @@ window.LANDSCAPE = {
       "analogs": [
         "Selectel",
         "1С:Облачная подсистема Фреш"
+      ]
+    },
+    {
+      "name": "Obsidian",
+      "added": "2026-06-13",
+      "category": "База знаний",
+      "subcategory": null,
+      "logo": "obsidian.svg",
+      "description": "Локальная база знаний на Markdown-файлах со связями между заметками и графом",
+      "why": "Держать личную базу знаний по 1С — заметки, сниппеты, документацию — в Markdown-файлах со связями, локально и без сервера",
+      "homepage": "https://obsidian.md/",
+      "repo": null,
+      "start": [
+        {
+          "label": "Obsidian Help — справка и быстрый старт",
+          "url": "https://help.obsidian.md/"
+        }
+      ],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "бесплатное",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "аналитик"
+      ],
+      "contexts": [
+        "франчайзи",
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "обсидиан",
+        "obsidian",
+        "заметки",
+        "маркдаун"
+      ],
+      "analogs": [
+        "Confluence",
+        "Teamly",
+        "Wiki репозитория",
+        "Gramax"
       ]
     }
   ]
