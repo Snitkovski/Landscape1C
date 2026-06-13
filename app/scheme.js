@@ -903,6 +903,32 @@
     });
 
     renderToggles();
-    wrap.innerHTML = '<div class="scheme-wrap__empty">Загрузка…</div>';
+    wrap.innerHTML = skeletonHTML();
     preloadLogos().then(render);
+
+    // Скелетон загрузки: повторяет структуру постера (блок → колонки → карточки)
+    function skeletonHTML() {
+        const col = (cards) =>
+            '<div class="scheme-skeleton__col">' +
+            '<div class="scheme-skeleton__bar scheme-skeleton__cat"></div>' +
+            Array.from(
+                { length: cards },
+                () =>
+                    '<div class="scheme-skeleton__bar scheme-skeleton__card"></div>',
+            ).join("") +
+            "</div>";
+        const block = (cols) =>
+            '<div class="scheme-skeleton__block">' +
+            '<div class="scheme-skeleton__bar scheme-skeleton__head"></div>' +
+            '<div class="scheme-skeleton__cols">' +
+            cols.map(col).join("") +
+            "</div></div>";
+        return (
+            '<div class="scheme-skeleton" role="status" aria-label="Загрузка схемы">' +
+            block([4, 3, 5]) +
+            block([3, 4, 3, 4]) +
+            block([5, 3]) +
+            "</div>"
+        );
+    }
 })();
