@@ -1,6 +1,7 @@
 (() => {
     const D = window.LANDSCAPE;
     const $ = (s) => document.querySelector(s);
+    const { groupBySub, sortItems } = window.LandscapeUI; // shared.js — как на главной
 
     // Оси разметки: multi — массив значений, single — одно значение.
     const AXES = [
@@ -135,16 +136,36 @@
             return (i.name + " " + i.description).toLowerCase().includes(query);
         });
 
+        const cardsGrid = (list) => {
+            const cards = document.createElement("div");
+            cards.className = "cards";
+            list.forEach((i) => cards.appendChild(card(i)));
+            return cards;
+        };
+
         D.categories.forEach((catName) => {
-            const items = visible.filter((i) => i.category === catName);
+            const items = visible
+                .filter((i) => i.category === catName)
+                .sort(sortItems);
             if (!items.length) return;
             const cat = document.createElement("section");
             cat.className = "cat";
             cat.innerHTML = `<div class="cat__head"><h2 class="cat__name">${escH(catName)}</h2><span class="cat__num">${items.length}</span></div>`;
-            const cards = document.createElement("div");
-            cards.className = "cards";
-            items.forEach((i) => cards.appendChild(card(i)));
-            cat.appendChild(cards);
+            // Подкатегории — как на главной (shared.js): без подкатегории — первой группой
+            const groups = groupBySub(items);
+            if (groups.length === 1 && groups[0].sub === "") {
+                cat.appendChild(cardsGrid(items));
+            } else {
+                groups.forEach(({ sub, items }) => {
+                    if (sub) {
+                        const head = document.createElement("p");
+                        head.className = "subcat__head";
+                        head.textContent = sub;
+                        cat.appendChild(head);
+                    }
+                    cat.appendChild(cardsGrid(items));
+                });
+            }
             board.appendChild(cat);
         });
 

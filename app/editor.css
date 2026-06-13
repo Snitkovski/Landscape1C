@@ -4,6 +4,18 @@
     padding: 0;
 }
 
+/* ── Прилепленный верхний заголовок: всегда видны «Сохранить» и «Сайт» ── */
+.masthead--editor {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+}
+.masthead__actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 /* ── Панель действий ────────────────────── */
 .editbar {
     display: flex;
