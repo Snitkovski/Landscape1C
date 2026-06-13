@@ -569,6 +569,12 @@
         addEventListener("scroll", onScroll, { passive: true });
         addEventListener("resize", onScroll);
         onScroll();
+        // Клик по бренду «Редактор» — плавно наверх (как на основном сайте)
+        topbar
+            .querySelector(".topbar__brand")
+            ?.addEventListener("click", () =>
+                window.scrollTo({ top: 0, behavior: "smooth" }),
+            );
     }
 
     // Клик по подложке закрывает форму (правки уже в объекте, ничего не теряется)
