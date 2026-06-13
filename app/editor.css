@@ -273,6 +273,12 @@ a.btn {
     border-color: var(--ink);
     font-weight: 600;
 }
+/* Гасим черту/крестик из styles.css — это теги-переключатели, а не съемные
+   чипы отбора (как в графе и на схеме). Крестик ✕ остается у тегов связей. */
+.edit .chip[aria-pressed="true"]::before,
+.edit .chip[aria-pressed="true"]::after {
+    content: none;
+}
 
 /* ── Связи: аналоги / зависимости ───────── */
 .reledit {
@@ -320,8 +326,8 @@ a.btn {
     background: var(--paper);
     border: 1.3px solid var(--line-strong);
     border-radius: 0;
-    align-self: flex-start;
-    max-width: 300px;
+    align-self: stretch;
+    width: 100%;
     color: var(--ink);
 }
 .reladd:focus {

@@ -211,10 +211,8 @@
         <div class="edit__cols">
           <div class="edit__col">
             ${textRow("Название", "name", i.name)}
-            <div class="edit__grid2">
-              ${selectRow("Категория", "category", i.category, D.categories)}
-              ${textRow("Подкатегория", "subcategory", i.subcategory || "")}
-            </div>
+            ${selectRow("Категория", "category", i.category, D.categories)}
+            ${textRow("Подкатегория", "subcategory", i.subcategory || "")}
             <div class="edit__logo">
               ${textRow("Логотип (файл в logos/)", "logo", i.logo || "")}
               <span class="edit__logo-preview" id="logopreview"></span>
