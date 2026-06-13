@@ -67,6 +67,7 @@
     }
     // Клик по знаку: на главной — наверх, с остальных страниц — на главную
     var onMain = document.body.classList.contains("page-main");
+    var onGraph = document.body.classList.contains("page-graph");
     document.querySelectorAll(".logo-mark").forEach(function (m) {
         m.addEventListener("click", function () {
             if (onMain) window.scrollTo({ top: 0, behavior: "smooth" });
@@ -264,7 +265,9 @@
                 "is-visible",
                 window.scrollY > mast.offsetHeight - 10,
             );
-            if (foot)
+            // Граф помещается во вьюпорт и не скроллится — эвристика «долистали
+            // до низа» там всегда истинна, поэтому подвал держим свернутым
+            if (foot && !onGraph)
                 foot.classList.toggle(
                     "is-full",
                     window.innerHeight + window.scrollY >=
