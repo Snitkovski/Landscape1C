@@ -4,12 +4,8 @@
     padding: 0;
 }
 
-/* ── Прилепленный верхний заголовок: всегда видны «Сохранить» и «Сайт» ── */
-.masthead--editor {
-    position: sticky;
-    top: 0;
-    z-index: 40;
-}
+/* Большой заголовок (masthead) при прокрутке сменяется узким #topbar —
+   тот же прием, что на основном сайте (styles.css .topbar + editor.js). */
 .masthead__actions {
     display: flex;
     align-items: center;

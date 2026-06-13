@@ -540,14 +540,38 @@
         save();
         openEdit(it);
     });
-    $("#search").addEventListener("input", (e) => {
-        query = e.target.value.trim().toLowerCase();
-        render();
-    });
+    // Поиск продублирован в шапке и в узком topbar — держим оба поля в синхроне
+    const searchEls = ["#search", "#search2"].map($).filter(Boolean);
+    searchEls.forEach((el) =>
+        el.addEventListener("input", (e) => {
+            query = e.target.value.trim().toLowerCase();
+            searchEls.forEach((o) => {
+                if (o !== e.target) o.value = e.target.value;
+            });
+            render();
+        }),
+    );
 
-    $("#save").addEventListener("click", saveFile);
+    // «Сохранить» есть и в большом заголовке, и в узком topbar
+    ["#save", "#save2"].forEach((s) =>
+        $(s)?.addEventListener("click", saveFile),
+    );
     $("#export").addEventListener("click", downloadData);
     $("#build").addEventListener("click", buildDist);
+
+    // Узкий topbar выезжает, когда большой заголовок прокручен (как на сайте)
+    const topbar = document.getElementById("topbar");
+    const mast = document.querySelector(".masthead");
+    if (topbar && mast) {
+        const onScroll = () =>
+            topbar.classList.toggle(
+                "is-visible",
+                window.scrollY > mast.offsetHeight - 10,
+            );
+        addEventListener("scroll", onScroll, { passive: true });
+        addEventListener("resize", onScroll);
+        onScroll();
+    }
 
     // Клик по подложке закрывает форму (правки уже в объекте, ничего не теряется)
     $("#edit").addEventListener("click", (e) => {
