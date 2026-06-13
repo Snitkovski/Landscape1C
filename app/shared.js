@@ -35,5 +35,15 @@
         return order.map((k) => ({ sub: k, items: map.get(k) }));
     };
 
-    window.LandscapeUI = { wbr, logoMarkup, sortItems, groupBySub };
+    // Склонение существительного по числу: 1 инструмент, 2 инструмента, 5 инструментов
+    const plural = (n, one, few, many) => {
+        const d10 = n % 10,
+            d100 = n % 100;
+        if (d100 >= 11 && d100 <= 14) return many;
+        if (d10 === 1) return one;
+        if (d10 >= 2 && d10 <= 4) return few;
+        return many;
+    };
+
+    window.LandscapeUI = { wbr, logoMarkup, sortItems, groupBySub, plural };
 })();

@@ -24,7 +24,8 @@
     let query = "";
 
     const $ = (sel) => document.querySelector(sel);
-    const { wbr, logoMarkup, sortItems, groupBySub } = window.LandscapeUI; // shared.js
+    const { wbr, logoMarkup, sortItems, groupBySub, plural } =
+        window.LandscapeUI; // shared.js
 
     // ── Рендер фильтров ───────────────────────
     function renderFilters() {
@@ -196,7 +197,7 @@
         $("#empty").hidden = !noResults;
         if (noResults) updateEmptyMail();
         $("#count").textContent =
-            `${visible.length} из ${D.items.length} инструментов`;
+            `${visible.length} из ${D.items.length} ${plural(visible.length, "инструмент", "инструмента", "инструментов")}`;
         const active = axisActive || query;
         $("#reset").hidden = !active;
         // Дубль счётчика/сброса в прилипающей верхней строке — только при активном отборе

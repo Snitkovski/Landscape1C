@@ -541,8 +541,9 @@
     function updateHint() {
         const vlinks = links.filter((l) => !l.a.hidden && !l.b.hidden).length;
         const iso = live.filter((n) => !n.vdeg).length;
+        const pl = window.LandscapeUI.plural;
         if (hint)
-            hint.textContent = `${live.length} инструментов · ${vlinks} связей · ${iso} без связей`;
+            hint.textContent = `${live.length} ${pl(live.length, "инструмент", "инструмента", "инструментов")} · ${vlinks} ${pl(vlinks, "связь", "связи", "связей")} · ${iso} без связей`;
     }
 
     // ── Чипы фильтров: роль и зрелость ────────
