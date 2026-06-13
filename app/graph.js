@@ -42,17 +42,31 @@
     const R_BASE = 17,
         R_MAX = 30;
     const nodeR = (deg) => Math.min(R_MAX, R_BASE + 3 * Math.sqrt(deg));
-    // Светлый силуэт лого по его форме (для темной темы) — кросс-браузерная
-    // замена ctx.filter="invert(1)", которого нет в canvas старого Safari
+    // Инвертированная версия лого для темной темы. Делаем настоящую инверсию
+    // цвета (как CSS filter:invert(1) на доске) — тогда и монохромные знаки на
+    // прозрачном фоне, и цветные тайлы (JSON Editor, IIS) в графе выглядят так
+    // же, как в ландшафте. Если canvas «запачкан» (открытие через file://) и
+    // getImageData недоступен — откатываемся на светлый силуэт по форме.
     function invertedLogo(img) {
         const c = document.createElement("canvas");
         c.width = img.naturalWidth;
         c.height = img.naturalHeight;
         const x = c.getContext("2d");
         x.drawImage(img, 0, 0);
-        x.globalCompositeOperation = "source-in";
-        x.fillStyle = "#fff";
-        x.fillRect(0, 0, c.width, c.height);
+        try {
+            const d = x.getImageData(0, 0, c.width, c.height);
+            const p = d.data;
+            for (let i = 0; i < p.length; i += 4) {
+                p[i] = 255 - p[i];
+                p[i + 1] = 255 - p[i + 1];
+                p[i + 2] = 255 - p[i + 2]; // альфу не трогаем
+            }
+            x.putImageData(d, 0, 0);
+        } catch (e) {
+            x.globalCompositeOperation = "source-in";
+            x.fillStyle = "#fff";
+            x.fillRect(0, 0, c.width, c.height);
+        }
         return c;
     }
     const nodes = D.items.map((it) => {
