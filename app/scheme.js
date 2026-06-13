@@ -135,6 +135,27 @@
             const h = parseFloat(root.getAttribute("height")) || 24;
             vb = `0 0 ${w} ${h}`;
         }
+        // Чистим редакторский мусор (Inkscape/Affinity/RDF-метаданные): служебные
+        // узлы и атрибуты с чужими namespace-префиксами. При инлайне логотипа в общий
+        // постер объявления xmlns с его корня теряются, а необъявленный префикс
+        // (inkscape:, sodipodi:, serif:, rdf:…) делает итоговый SVG невалидным XML —
+        // из-за этого падал экспорт в PNG/PDF и файл не открывался в Illustrator.
+        root.querySelectorAll("*").forEach((el) => {
+            const local = el.localName.toLowerCase();
+            if (
+                local === "metadata" ||
+                local === "namedview" ||
+                (el.prefix && el.prefix !== "svg" && el.prefix !== "xlink")
+            ) {
+                el.remove();
+                return;
+            }
+            Array.from(el.attributes).forEach((a) => {
+                const p = a.name.includes(":") ? a.name.split(":")[0] : "";
+                if (p && p !== "xml" && p !== "xlink" && p !== "xmlns")
+                    el.removeAttribute(a.name);
+            });
+        });
         // Префиксуем id и ссылки на них, чтобы defs разных логотипов не конфликтовали
         root.querySelectorAll("[id]").forEach((el) => {
             el.id = prefix + el.id;
