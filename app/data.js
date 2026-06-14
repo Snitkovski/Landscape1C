@@ -7699,9 +7699,6 @@ window.LANDSCAPE = {
       "aliases": [
         "маркдаун",
         "мд редактор"
-      ],
-      "analogs": [
-        "Obsidian"
       ]
     },
     {
@@ -7920,9 +7917,6 @@ window.LANDSCAPE = {
         "ноутбуклм",
         "ноутбук лм",
         "notebookllm"
-      ],
-      "analogs": [
-        "Obsidian"
       ]
     },
     {
@@ -8151,9 +8145,7 @@ window.LANDSCAPE = {
         "Teamly",
         "Wiki репозитория",
         "Gramax",
-        "Dendron",
-        "Markdown Editor",
-        "NotebookLM"
+        "Dendron"
       ]
     },
     {
