@@ -23,6 +23,12 @@
     const matKey = (m) =>
         ({ базовое: "base", продвинутое: "adv", нишевое: "niche" })[m];
 
+    // Иконки кнопки «Поделиться»: значок share и галочка-подтверждение
+    const shareSvg =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>';
+    const checkSvg =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+
     function openDetail(i) {
         const dlg = $("#detail");
         const links = [
@@ -90,6 +96,7 @@
           <p class="detail__sub">${i.subcategory ? `${i.category} · ${i.subcategory}` : i.category}</p>
           ${badges.trim() ? `<div class="detail__badges">${badges}</div>` : ""}
         </div>
+        <button class="detail__share" type="button" aria-label="Поделиться" title="Поделиться · скопировать ссылку">${shareSvg}</button>
       </header>
       <div class="detail__scroll">
         <div class="detail__content">
@@ -105,6 +112,30 @@
         dlg.querySelector(".detail__close").addEventListener("click", () =>
             dlg.close(),
         );
+        // «Поделиться»: системный share на тач-устройствах, иначе копируем ссылку
+        const shareBtn = dlg.querySelector(".detail__share");
+        shareBtn.addEventListener("click", async () => {
+            const url =
+                location.origin +
+                location.pathname +
+                "?tool=" +
+                encodeURIComponent(i.name);
+            if (navigator.share && matchMedia("(pointer: coarse)").matches) {
+                try {
+                    await navigator.share({ title: i.name, url });
+                } catch (e) {}
+                return;
+            }
+            try {
+                await navigator.clipboard.writeText(url);
+                shareBtn.innerHTML = checkSvg;
+                shareBtn.classList.add("is-done");
+                setTimeout(() => {
+                    shareBtn.innerHTML = shareSvg;
+                    shareBtn.classList.remove("is-done");
+                }, 1600);
+            } catch (e) {}
+        });
         dlg.querySelectorAll(".detail__rel").forEach((btn) =>
             btn.addEventListener("click", () =>
                 openDetail(D.items[+btn.dataset.i]),

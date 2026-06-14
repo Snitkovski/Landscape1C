@@ -1074,6 +1074,7 @@ a {
 
 /* Шапка — закреплена сверху; при скролле схлопывается (класс is-compact) */
 .detail__head {
+    position: relative;
     flex: none;
     display: flex;
     align-items: center;
@@ -1279,6 +1280,34 @@ a {
     border: none;
     color: #bbb; /* вторичный — не основной элемент */
     transition: color 0.12s ease;
+}
+/* Иконка «Поделиться» в шапке модалки — под крестиком, у нижней линии; копирует ссылку */
+.detail__share {
+    position: absolute;
+    right: 16px;
+    bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: color 0.12s ease;
+}
+.detail__share svg {
+    width: 17px;
+    height: 17px;
+    display: block;
+}
+.detail__share:hover {
+    color: var(--ink);
+}
+.detail__share.is-done {
+    color: var(--brand);
 }
 .detail__close:hover {
     color: var(--ink);
