@@ -1294,7 +1294,7 @@ a {
     padding: 0;
     background: none;
     border: none;
-    color: var(--ink-soft);
+    color: #bbb; /* как крестик — вторичный элемент */
     cursor: pointer;
     transition: color 0.12s ease;
 }
