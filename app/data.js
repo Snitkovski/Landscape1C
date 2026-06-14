@@ -8435,6 +8435,192 @@ window.LANDSCAPE = {
         "Miro",
         "Excalidraw"
       ]
+    },
+    {
+      "name": "Bash",
+      "added": "2026-06-14",
+      "category": "Сетевая инфраструктура и облако",
+      "subcategory": "Терминал и доступ к серверам",
+      "logo": "bash.svg",
+      "description": "Командная оболочка Unix-систем — основной способ управления Linux-сервером",
+      "why": "Серверы 1С и СУБД все чаще работают на Linux — без командной строки их не администрировать",
+      "homepage": "https://www.gnu.org/software/bash/",
+      "repo": null,
+      "start": [
+        {
+          "label": "GNU Bash — руководство",
+          "url": "https://www.gnu.org/software/bash/manual/"
+        }
+      ],
+      "maturity": "базовое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "баш",
+        "bash",
+        "командная строка",
+        "терминал",
+        "shell",
+        "шелл",
+        "оболочка",
+        "cli"
+      ]
+    },
+    {
+      "name": "PuTTY",
+      "added": "2026-06-14",
+      "category": "Сетевая инфраструктура и облако",
+      "subcategory": "Терминал и доступ к серверам",
+      "logo": "putty.svg",
+      "description": "Классический SSH- и Telnet-клиент для подключения к серверам",
+      "why": "Подключаться к Linux-серверу 1С с Windows-машины проще всего через PuTTY",
+      "homepage": "https://www.putty.org/",
+      "repo": null,
+      "start": [
+        {
+          "label": "Сайт PuTTY",
+          "url": "https://www.putty.org/"
+        }
+      ],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "путти",
+        "putty",
+        "ssh клиент",
+        "ссш",
+        "телнет"
+      ],
+      "analogs": [
+        "MobaXterm"
+      ]
+    },
+    {
+      "name": "Midnight Commander",
+      "added": "2026-06-14",
+      "category": "Сетевая инфраструктура и облако",
+      "subcategory": "Терминал и доступ к серверам",
+      "logo": "mc.png",
+      "description": "Двухпанельный файловый менеджер для терминала Linux",
+      "why": "Ориентироваться в файлах Linux-сервера 1С и править конфиги прямо в консоли",
+      "homepage": "https://midnight-commander.org/",
+      "repo": null,
+      "start": [
+        {
+          "label": "Сайт Midnight Commander",
+          "url": "https://midnight-commander.org/"
+        }
+      ],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "mc",
+        "мс",
+        "миднайт коммандер",
+        "файловый менеджер",
+        "миднайт командер"
+      ]
+    },
+    {
+      "name": "MobaXterm",
+      "added": "2026-06-14",
+      "category": "Сетевая инфраструктура и облако",
+      "subcategory": "Терминал и доступ к серверам",
+      "logo": "mobaxterm.jpg",
+      "description": "Комбайн для Windows: SSH-терминал, передача файлов и X-сервер в одном окне",
+      "why": "Терминал к серверу 1С, SFTP-доступ к файлам и запуск графических приложений из одного окна",
+      "homepage": "https://mobaxterm.mobatek.net/",
+      "repo": null,
+      "start": [
+        {
+          "label": "Сайт MobaXterm",
+          "url": "https://mobaxterm.mobatek.net/"
+        }
+      ],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "бесплатное",
+      "availability": "доступен",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "мобакстерм",
+        "moba",
+        "мобаэкстерм"
+      ],
+      "analogs": [
+        "PuTTY",
+        "WinSCP"
+      ]
+    },
+    {
+      "name": "WinSCP",
+      "added": "2026-06-14",
+      "category": "Сетевая инфраструктура и облако",
+      "subcategory": "Терминал и доступ к серверам",
+      "logo": "winscp.png",
+      "description": "Графический клиент передачи файлов по SFTP и SCP для Windows",
+      "why": "Копировать обработки, дампы и логи между Windows и Linux-сервером 1С мышкой",
+      "homepage": "https://winscp.net/",
+      "repo": null,
+      "start": [
+        {
+          "label": "Сайт WinSCP",
+          "url": "https://winscp.net/eng/index.php"
+        }
+      ],
+      "maturity": "продвинутое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "винскп",
+        "winscp",
+        "sftp клиент",
+        "scp",
+        "вин скп"
+      ],
+      "analogs": [
+        "MobaXterm"
+      ]
     }
   ]
 };
