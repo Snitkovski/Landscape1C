@@ -681,6 +681,7 @@ window.LANDSCAPE = {
       "category": "Библиотеки и инструменты",
       "subcategory": "Подсистемы и обработки",
       "logo": "universal-tools.png",
+      "logoInvert": true,
       "description": "Набор инструментов разработчика для управляемых форм",
       "why": "Набор инструментов разработчика, который помогает в ежедневной работе (используется для управляемых форм)",
       "homepage": null,
@@ -4994,8 +4995,7 @@ window.LANDSCAPE = {
         "Wiki репозитория",
         "Gramax",
         "Obsidian",
-        "EvaWiki",
-        "Wiki.js"
+        "EvaWiki"
       ]
     },
     {
@@ -8876,8 +8876,7 @@ window.LANDSCAPE = {
       "analogs": [
         "Confluence",
         "Teamly",
-        "Wiki репозитория",
-        "Wiki.js"
+        "Wiki репозитория"
       ]
     },
     {
@@ -8917,10 +8916,7 @@ window.LANDSCAPE = {
         "викиджс"
       ],
       "analogs": [
-        "Confluence",
-        "Teamly",
-        "Wiki репозитория",
-        "EvaWiki"
+        "Wiki репозитория"
       ]
     },
     {
