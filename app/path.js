@@ -221,10 +221,14 @@
         // Дубль прогресса и выбранные роли в прилепленной шапке
         $("#path-fill2").style.width = fill;
         $("#path-done2").textContent = `${done} из ${total}`;
-        // В липкой шапке роли — «Разработчик + Администратор» (каждая с большой)
-        $("#path-role2").textContent = selected
-            .map((r) => r.charAt(0).toUpperCase() + r.slice(1))
-            .join(" + ");
+        // В липкой шапке роли — «Разработчик + Администратор» (каждая с большой);
+        // когда выбраны все — короче «Все роли»
+        $("#path-role2").textContent =
+            selected.length === ROLES.length
+                ? "Все роли"
+                : selected
+                      .map((r) => r.charAt(0).toUpperCase() + r.slice(1))
+                      .join(" + ");
         $("#path-reset").hidden = known.size === 0;
 
         renderTabs();
