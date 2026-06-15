@@ -5786,6 +5786,9 @@ window.LANDSCAPE = {
         "лог сташ",
         "logstash"
       ],
+      "analogs": [
+        "Vector"
+      ],
       "depends": [
         "Elasticsearch"
       ]
@@ -9046,6 +9049,37 @@ window.LANDSCAPE = {
         "Jira",
         "Redmine",
         "YouTrack"
+      ]
+    },
+    {
+      "name": "Vector",
+      "added": "2026-06-15",
+      "category": "Мониторинг",
+      "subcategory": "Анализ логов",
+      "logo": "vector.svg",
+      "description": "Конвейер сбора, преобразования и доставки логов и метрик",
+      "why": "Переносит технологический журнал и логи 1С в хранилища вроде ClickHouse для анализа",
+      "homepage": "https://vector.dev/",
+      "repo": "https://github.com/vectordotdev/vector",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "вектор",
+        "vector",
+        "vector dev"
+      ],
+      "analogs": [
+        "Logstash"
       ]
     }
   ]
