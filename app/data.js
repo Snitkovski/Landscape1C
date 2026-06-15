@@ -3824,8 +3824,7 @@ window.LANDSCAPE = {
       "added": "2026-06-08",
       "category": "Интеграции",
       "subcategory": "Внешние API",
-      "logo": "curl.svg",
-      "logoInvert": true,
+      "logo": "curlone.svg",
       "description": "Конвертер команд curl в код на языке 1С",
       "why": "Превращает пример запроса на curl из документации внешнего API в готовый код на 1С — написан на OneScript",
       "homepage": "https://curlone.ru/",
@@ -3849,8 +3848,9 @@ window.LANDSCAPE = {
         "инхаус"
       ],
       "aliases": [
+        "curlone",
+        "курлон",
         "курлван",
-        "curl one",
         "курлоне"
       ],
       "analogs": [
