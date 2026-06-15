@@ -1,7 +1,8 @@
 // Страница «Путь»: маршрут освоения инструментов для роли — от базы к
 // специализации. Ступени — шкала зрелости (базовое → продвинутое → нишевое),
 // внутри ступени группировка по блокам ландшафта. Отметки «знаю» хранятся
-// в localStorage (общие для всех ролей), роль — в URL (?role=…).
+// в localStorage (общие для всех ролей), роли — в URL (?role=…, можно
+// несколько через запятую: совмещающие профессии выбирают пару ролей).
 (function () {
     "use strict";
 
@@ -43,17 +44,40 @@
         } catch (e) {}
     };
 
-    // ── Роль в URL — ссылкой можно делиться; ?tool= не затираем (detail.js) ──
-    let role = new URLSearchParams(location.search).get("role") || DEFAULT_ROLE;
-    if (ROLES.indexOf(role) === -1) role = DEFAULT_ROLE;
+    // ── Роли в URL (через запятую) — ссылкой можно делиться; ?tool= не
+    // затираем (detail.js). Можно совмещать: разработчик+администратор и т.п.
+    function parseRoles() {
+        const raw = (
+            new URLSearchParams(location.search).get("role") || ""
+        ).split(",");
+        const set = new Set(
+            raw.map((s) => s.trim()).filter((r) => ROLES.includes(r)),
+        );
+        const list = ROLES.filter((r) => set.has(r)); // порядок оси ROLES
+        return list.length ? list : [DEFAULT_ROLE];
+    }
+    let selected = parseRoles();
     function writeUrl() {
         const p = new URLSearchParams(location.search);
-        p.set("role", role);
+        p.set("role", selected.join(","));
         history.replaceState(null, "", "?" + p.toString());
     }
+    // Хотя бы одна роль всегда выбрана; порядок держим по оси ROLES
+    function toggleRole(r) {
+        const on = selected.includes(r);
+        if (on && selected.length === 1) return;
+        const set = new Set(selected);
+        on ? set.delete(r) : set.add(r);
+        selected = ROLES.filter((x) => set.has(x));
+        writeUrl();
+        render();
+    }
 
+    // Инструмент попадает в маршрут, если подходит хотя бы одной выбранной роли
     const roleItems = () =>
-        D.items.filter((i) => (i.roles || []).includes(role));
+        D.items.filter((i) =>
+            (i.roles || []).some((r) => selected.includes(r)),
+        );
 
     // ── Слоты: аналоги внутри ступени — один пункт «на выбор» ──
     // Знаешь GitLab CI — GitHub Actions осваивать не обязательно. Компоненты
@@ -95,12 +119,8 @@
             b.type = "button";
             b.className = "path-tab";
             b.textContent = r;
-            b.setAttribute("aria-pressed", r === role);
-            b.addEventListener("click", () => {
-                role = r;
-                writeUrl();
-                render();
-            });
+            b.setAttribute("aria-pressed", selected.includes(r));
+            b.addEventListener("click", () => toggleRole(r));
             box.appendChild(b);
         });
     }
@@ -198,12 +218,13 @@
         $("#path-done").textContent = `${done} из ${total}`;
         const fill = total ? (100 * done) / total + "%" : "0";
         $("#path-fill").style.width = fill;
-        // Дубль прогресса и выбранная роль в прилепленной шапке
+        // Дубль прогресса и выбранные роли в прилепленной шапке
         $("#path-fill2").style.width = fill;
         $("#path-done2").textContent = `${done} из ${total}`;
-        // В липкой шапке роль — единственный заголовок, поэтому с большой буквы
-        $("#path-role2").textContent =
-            role.charAt(0).toUpperCase() + role.slice(1);
+        // В липкой шапке роли — «Разработчик + Администратор» (каждая с большой)
+        $("#path-role2").textContent = selected
+            .map((r) => r.charAt(0).toUpperCase() + r.slice(1))
+            .join(" + ");
         $("#path-reset").hidden = known.size === 0;
 
         renderTabs();
