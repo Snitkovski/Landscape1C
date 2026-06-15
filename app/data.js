@@ -9081,6 +9081,38 @@ window.LANDSCAPE = {
       "analogs": [
         "Logstash"
       ]
+    },
+    {
+      "name": "Simple Kafka Adapter",
+      "added": "2026-06-15",
+      "category": "Интеграции",
+      "subcategory": "Брокеры и шины",
+      "logo": null,
+      "description": "Внешняя компонента для прямого подключения 1С к Apache Kafka",
+      "why": "Позволяет из встроенного языка 1С отправлять и читать сообщения Kafka без промежуточных сервисов и коннекторов",
+      "homepage": null,
+      "repo": "https://github.com/NuclearAPK/Simple-Kafka_Adapter",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "симпл кафка адаптер",
+        "kafka adapter",
+        "кафка адаптер",
+        "симпл кафка"
+      ],
+      "depends": [
+        "Kafka"
+      ]
     }
   ]
 };
