@@ -1618,13 +1618,13 @@ a {
 .exp--lead {
     grid-column: 1 / -1;
 }
-@media (min-width: 600px) {
+@media (min-width: 721px) {
     .exp--lead {
         flex-direction: row;
     }
     .exp--lead .exp__photo {
         flex: none;
-        width: clamp(200px, 34%, 300px);
+        width: clamp(280px, 50%, 440px);
         border-bottom: none;
         border-right: 1.5px solid var(--ink);
     }
