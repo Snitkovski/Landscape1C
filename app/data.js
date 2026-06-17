@@ -7484,7 +7484,7 @@ window.LANDSCAPE = {
       "analogs": [
         "StormBPMN",
         "bpmn.io",
-        "OpenBPM Studio"
+        "OpenBPM"
       ]
     },
     {
@@ -9192,13 +9192,13 @@ window.LANDSCAPE = {
       ]
     },
     {
-      "name": "OpenBPM Engine",
+      "name": "OpenBPM",
       "added": "2026-06-17",
       "category": "Интеграции",
       "subcategory": null,
       "logo": "openbpm.png",
-      "description": "Российский движок исполнения бизнес-процессов по схемам BPMN с REST API для интеграций",
-      "why": "Оркестровать сквозные бизнес-процессы поверх разных систем: движок ведет процесс по схеме BPMN, а задачи на исполнение забирают микросервисы и приложения на любом языке, в том числе на 1С, обращаясь к нему по REST API",
+      "description": "Российская BPM-платформа: движок исполнения процессов по схемам BPMN и инструменты вокруг него — Studio, Control и Tasklist",
+      "why": "Оркестровать сквозные бизнес-процессы поверх разных систем: ядро платформы ведет процесс по схеме BPMN, а задачи на исполнение забирают микросервисы и приложения на любом языке, в том числе на 1С, обращаясь к нему по REST API",
       "homepage": "https://openbpm.ru/engine",
       "repo": "https://gitflic.ru/project/openbpm/openbpm-engine-community",
       "start": [
@@ -9215,7 +9215,7 @@ window.LANDSCAPE = {
           "url": "https://infostart.ru/1c/articles/1235299/"
         }
       ],
-      "maturity": "продвинутое",
+      "maturity": "нишевое",
       "origin": "отечественное",
       "license": "open-source",
       "availability": "доступен",
@@ -9236,80 +9236,9 @@ window.LANDSCAPE = {
         "камунда",
         "camunda",
         "бпм движок"
-      ]
-    },
-    {
-      "name": "OpenBPM Studio",
-      "added": "2026-06-17",
-      "category": "Моделирование и архитектура",
-      "subcategory": "Моделирование процессов",
-      "logo": "openbpm.png",
-      "description": "Плагин OpenIDE/IntelliJ IDEA: BPMN/DMN-моделирование вместе с кодом приложения",
-      "why": "Моделировать и кодить бизнес-процессы в одной IDE, без переключения на внешние редакторы",
-      "homepage": "https://openbpm.ru/studio",
-      "repo": "https://gitflic.ru/project/openbpm/openbpm-studio",
-      "start": [
-        {
-          "label": "Документация",
-          "url": "https://docs.openbpm.ru/"
-        }
-      ],
-      "maturity": "продвинутое",
-      "origin": "отечественное",
-      "license": "бесплатное",
-      "availability": "доступен",
-      "roles": [
-        "разработчик"
-      ],
-      "contexts": [
-        "проекты",
-        "инхаус",
-        "продукты"
-      ],
-      "aliases": [
-        "опенбпм студио",
-        "openbpm studio",
-        "студио"
       ],
       "analogs": [
         "Camunda Modeler"
-      ]
-    },
-    {
-      "name": "OpenBPM Control",
-      "added": "2026-06-17",
-      "category": "Мониторинг",
-      "subcategory": null,
-      "logo": "openbpm.png",
-      "description": "Веб-инструмент мониторинга и управления BPM-движками в реальном времени",
-      "why": "Видеть состояние процессов на движке и реагировать на инциденты через единый интерфейс",
-      "homepage": "https://openbpm.ru/control",
-      "repo": "https://gitflic.ru/project/openbpm/openbpm-control-community",
-      "start": [
-        {
-          "label": "Документация",
-          "url": "https://docs.openbpm.ru/"
-        }
-      ],
-      "maturity": "продвинутое",
-      "origin": "отечественное",
-      "license": "open-source",
-      "availability": "доступен",
-      "roles": [
-        "тестировщик",
-        "администратор",
-        "разработчик",
-        "аналитик"
-      ],
-      "contexts": [
-        "проекты",
-        "инхаус",
-        "продукты"
-      ],
-      "aliases": [
-        "опенбпм контрол",
-        "openbpm control",
-        "контрол"
       ]
     }
   ]
