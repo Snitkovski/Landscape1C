@@ -2619,7 +2619,7 @@ window.LANDSCAPE = {
       "description": "OneScript-обертка над утилитой ibcmd для управления информационной базой из скриптов",
       "why": "Автоматизирует операции с базой (создание, выгрузка, загрузка, обновление) в CI и тестовых сценариях — без ручного запуска ibcmd",
       "homepage": null,
-      "repo": "https://github.com/oscript-library/ibcmdrunner",
+      "repo": "https://github.com/vanessa-opensource/ibcmdrunner",
       "start": [],
       "maturity": "нишевое",
       "origin": "отечественное",
