@@ -8779,6 +8779,10 @@ window.LANDSCAPE = {
         "миднайт коммандер",
         "файловый менеджер",
         "миднайт командер"
+      ],
+      "analogs": [
+        "FAR Manager",
+        "Double Commander"
       ]
     },
     {
@@ -9463,6 +9467,176 @@ window.LANDSCAPE = {
       ],
       "analogs": [
         "Camunda Modeler"
+      ]
+    },
+    {
+      "name": "FAR Manager",
+      "added": "2026-06-27",
+      "updated": "2026-06-27",
+      "category": "Сетевая инфраструктура и облако",
+      "subcategory": "Терминал и доступ к серверам",
+      "logo": "far-manager.svg",
+      "description": "Двухпанельный консольный файловый менеджер для Windows с плагинами и архиватором",
+      "why": "Быстрая работа с файлами прямо на сервере 1С — копирование, поиск, правка и плагины под рутину без мыши",
+      "homepage": "https://farmanager.com",
+      "repo": "https://github.com/FarGroup/FarManager",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "far",
+        "фар",
+        "far manager",
+        "фар менеджер"
+      ],
+      "analogs": [
+        "Midnight Commander",
+        "Double Commander"
+      ]
+    },
+    {
+      "name": "Double Commander",
+      "added": "2026-06-27",
+      "updated": "2026-06-27",
+      "category": "Сетевая инфраструктура и облако",
+      "subcategory": "Терминал и доступ к серверам",
+      "logo": "double-commander.svg",
+      "description": "Кросс-платформенный двухпанельный файловый менеджер с доступом по SSH/SFTP",
+      "why": "Один файловый менеджер на Windows, Linux и macOS, включая работу с файлами сервера 1С по SSH",
+      "homepage": "https://doublecmd.sourceforge.io",
+      "repo": "https://github.com/doublecmd/doublecmd",
+      "start": [],
+      "maturity": "продвинутое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "проекты"
+      ],
+      "aliases": [
+        "double commander",
+        "дабл коммандер",
+        "doublecmd",
+        "даблкоммандер"
+      ],
+      "analogs": [
+        "Midnight Commander",
+        "FAR Manager"
+      ]
+    },
+    {
+      "name": "1CFilesConverter",
+      "added": "2026-06-27",
+      "updated": "2026-06-27",
+      "category": "Системы хранения версий",
+      "subcategory": "Синхронизация с 1С",
+      "logo": null,
+      "description": "Набор скриптов для конвертации файлов 1С между форматами Binary, XML и EDT",
+      "why": "Сводит конвертацию выгрузок 1С для git и EDT к одной команде — удобно для контроля версий и CI",
+      "homepage": "https://github.com/arkuznetsov/1CFilesConverter",
+      "repo": "https://github.com/arkuznetsov/1CFilesConverter",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "1cfilesconverter",
+        "конвертер файлов 1с",
+        "files converter"
+      ],
+      "depends": [
+        "Конфигуратор",
+        "1C:Enterprise Development Tools (EDT)"
+      ]
+    },
+    {
+      "name": "cpdb",
+      "added": "2026-06-27",
+      "updated": "2026-06-27",
+      "category": "Администрирование 1С",
+      "subcategory": "Управление парком баз",
+      "logo": null,
+      "description": "Консольное oscript-приложение для копирования баз 1С и MS SQL и развертывания на целевой системе",
+      "why": "Автоматизирует снятие копий и развертывание баз между средами — в том числе через SFTP, Яндекс.Диск и Jenkins",
+      "homepage": "https://github.com/arkuznetsov/cpdb",
+      "repo": "https://github.com/arkuznetsov/cpdb",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "cpdb",
+        "копирование баз 1с",
+        "database copier"
+      ],
+      "depends": [
+        "OneScript"
+      ]
+    },
+    {
+      "name": "yard",
+      "added": "2026-06-27",
+      "updated": "2026-06-27",
+      "category": "CI/CD",
+      "subcategory": "Сборка 1С",
+      "logo": null,
+      "description": "Консольное oscript-приложение для загрузки и обработки релизов конфигураций 1С с сайта релизов",
+      "why": "Автоматически выкачивает обновления типовых конфигураций 1С и готовит их для конвейеров обновления",
+      "homepage": "https://github.com/arkuznetsov/yard",
+      "repo": "https://github.com/arkuznetsov/yard",
+      "start": [],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "инхаус",
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "yard",
+        "yet another release downloader",
+        "загрузчик релизов 1с"
+      ],
+      "depends": [
+        "OneScript"
       ]
     }
   ]
