@@ -137,6 +137,7 @@ window.LANDSCAPE = {
     {
       "name": "Встроенный язык программирования 1С:Предприятия",
       "added": "2026-06-08",
+      "updated": "2026-06-10",
       "category": "Разработка",
       "subcategory": "Языки программирования",
       "logo": "1c.png",
@@ -183,6 +184,7 @@ window.LANDSCAPE = {
     {
       "name": "Язык запросов",
       "added": "2026-06-08",
+      "updated": "2026-06-10",
       "category": "Разработка",
       "subcategory": "Языки программирования",
       "logo": "1c.png",
@@ -229,6 +231,7 @@ window.LANDSCAPE = {
     {
       "name": "Система компоновки данных (СКД)",
       "added": "2026-06-09",
+      "updated": "2026-06-12",
       "category": "Разработка",
       "subcategory": "Языки программирования",
       "logo": "1c.png",
@@ -269,6 +272,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Предприятие.Элемент",
       "added": "2026-06-08",
+      "updated": "2026-06-10",
       "category": "Разработка",
       "subcategory": "Языки программирования",
       "logo": "element.svg",
@@ -312,6 +316,7 @@ window.LANDSCAPE = {
     {
       "name": "1C:Предприятие.Элемент Скрипт",
       "added": "2026-06-10",
+      "updated": "2026-06-10",
       "category": "Разработка",
       "subcategory": "Языки программирования",
       "logo": "ispolnitel.png",
@@ -354,6 +359,7 @@ window.LANDSCAPE = {
     {
       "name": "OneScript",
       "added": "2026-06-08",
+      "updated": "2026-06-10",
       "category": "Разработка",
       "subcategory": "Языки программирования",
       "logo": "onescript.png",
@@ -406,6 +412,7 @@ window.LANDSCAPE = {
     {
       "name": "Конфигуратор",
       "added": "2026-06-07",
+      "updated": "2026-06-10",
       "category": "Разработка",
       "subcategory": "IDE",
       "logo": "configurator.png",
@@ -450,6 +457,7 @@ window.LANDSCAPE = {
     {
       "name": "1C:Enterprise Development Tools (EDT)",
       "added": "2026-06-07",
+      "updated": "2026-06-10",
       "category": "Разработка",
       "subcategory": "IDE",
       "logo": "edt.png",
@@ -508,6 +516,7 @@ window.LANDSCAPE = {
     {
       "name": "Visual Studio Code (VSCode)",
       "added": "2026-06-07",
+      "updated": "2026-06-10",
       "category": "Разработка",
       "subcategory": "IDE",
       "logo": "vscode.svg",
@@ -558,6 +567,7 @@ window.LANDSCAPE = {
     {
       "name": "Библиотека стандартных подсистем (БСП)",
       "added": "2026-06-09",
+      "updated": "2026-06-12",
       "category": "Библиотеки и инструменты",
       "subcategory": "Подсистемы и обработки",
       "logo": "1c.png",
@@ -598,6 +608,7 @@ window.LANDSCAPE = {
     {
       "name": "TurboConf",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Плагины и расширения",
       "subcategory": "Для Конфигуратора",
       "logo": "turboconf.png",
@@ -637,6 +648,7 @@ window.LANDSCAPE = {
     {
       "name": "Подсистема \"Инструменты разработчика\"",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Библиотеки и инструменты",
       "subcategory": "Подсистемы и обработки",
       "logo": "devtools.png",
@@ -678,6 +690,7 @@ window.LANDSCAPE = {
     {
       "name": "Подсистема \"Универсальные инструменты 1С для управляемых форм\"",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Библиотеки и инструменты",
       "subcategory": "Подсистемы и обработки",
       "logo": "universal-tools.png",
@@ -719,6 +732,7 @@ window.LANDSCAPE = {
     {
       "name": "Infostart Toolkit",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Библиотеки и инструменты",
       "subcategory": "Подсистемы и обработки",
       "logo": "infostart-toolkit.png",
@@ -767,6 +781,7 @@ window.LANDSCAPE = {
     {
       "name": "Плагин для конфигуратора PhoenixBSL",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Плагины и расширения",
       "subcategory": "Для Конфигуратора",
       "logo": "phoenixbsl.png",
@@ -807,6 +822,7 @@ window.LANDSCAPE = {
     {
       "name": "Плагин 1С:Напарник",
       "added": "2026-06-08",
+      "updated": "2026-06-14",
       "category": "ИИ-ассистенты",
       "subcategory": "Автодополнение в IDE",
       "logo": "1c.png",
@@ -852,6 +868,7 @@ window.LANDSCAPE = {
     {
       "name": "GigaCode",
       "added": "2026-06-09",
+      "updated": "2026-06-13",
       "category": "ИИ-ассистенты",
       "subcategory": "Автодополнение в IDE",
       "logo": "gigacode.png",
@@ -894,6 +911,7 @@ window.LANDSCAPE = {
     {
       "name": "GitHub Copilot",
       "added": "2026-06-09",
+      "updated": "2026-06-13",
       "category": "ИИ-ассистенты",
       "subcategory": "Автодополнение в IDE",
       "logo": "github-copilot.svg",
@@ -935,6 +953,7 @@ window.LANDSCAPE = {
     {
       "name": "Cursor",
       "added": "2026-06-09",
+      "updated": "2026-06-13",
       "category": "ИИ-ассистенты",
       "subcategory": "ИИ-редакторы",
       "logo": "cursor.svg",
@@ -980,6 +999,7 @@ window.LANDSCAPE = {
     {
       "name": "Claude Code",
       "added": "2026-06-09",
+      "updated": "2026-06-13",
       "category": "ИИ-ассистенты",
       "subcategory": "CLI-агенты",
       "logo": "claude.svg",
@@ -1023,6 +1043,7 @@ window.LANDSCAPE = {
     {
       "name": "Codex",
       "added": "2026-06-09",
+      "updated": "2026-06-13",
       "category": "ИИ-ассистенты",
       "subcategory": "CLI-агенты",
       "logo": "openai.svg",
@@ -1066,6 +1087,7 @@ window.LANDSCAPE = {
     {
       "name": "Плагин для VSCode «1C:Platform Tools»",
       "added": "2026-06-10",
+      "updated": "2026-06-14",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "vscode.svg",
@@ -1103,6 +1125,7 @@ window.LANDSCAPE = {
     {
       "name": "Плагины для 1С:EDT",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Плагины и расширения",
       "subcategory": "Для EDT",
       "logo": "edt.png",
@@ -1148,6 +1171,7 @@ window.LANDSCAPE = {
     {
       "name": "Библиотеки для OneScript",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Библиотеки и инструменты",
       "subcategory": "Для OneScript",
       "logo": "oscript-library.png",
@@ -1195,6 +1219,7 @@ window.LANDSCAPE = {
     {
       "name": "Autumn (ОСень)",
       "added": "2026-06-08",
+      "updated": "2026-06-14",
       "category": "Библиотеки и инструменты",
       "subcategory": "Для OneScript",
       "logo": "autumn.png",
@@ -1227,6 +1252,7 @@ window.LANDSCAPE = {
     {
       "name": "BSL Language Server",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "Плагины и расширения",
       "subcategory": null,
       "logo": "bsl-language-server.png",
@@ -1268,6 +1294,7 @@ window.LANDSCAPE = {
     {
       "name": "OneScript Debug (BSL)",
       "added": "2026-06-10",
+      "updated": "2026-06-11",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "onescript-debug.png",
@@ -1301,6 +1328,7 @@ window.LANDSCAPE = {
     {
       "name": "Language 1C (BSL)",
       "added": "2026-06-10",
+      "updated": "2026-06-13",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "bsl-language-server.png",
@@ -1335,6 +1363,7 @@ window.LANDSCAPE = {
     {
       "name": "Cucumber (Gherkin) Full Support",
       "added": "2026-06-10",
+      "updated": "2026-06-11",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "cucumber.png",
@@ -1369,6 +1398,7 @@ window.LANDSCAPE = {
     {
       "name": "Gherkin Table Align",
       "added": "2026-06-10",
+      "updated": "2026-06-11",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "gherkin-table-align.png",
@@ -1402,6 +1432,7 @@ window.LANDSCAPE = {
     {
       "name": "Allure Support",
       "added": "2026-06-10",
+      "updated": "2026-06-11",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "allure-support.png",
@@ -1435,6 +1466,7 @@ window.LANDSCAPE = {
     {
       "name": "gitsync",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Системы хранения версий",
       "subcategory": "Синхронизация с 1С",
       "logo": "oscript-library.png",
@@ -1482,6 +1514,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:ГитКонвертер",
       "added": "2026-06-09",
+      "updated": "2026-06-11",
       "category": "Системы хранения версий",
       "subcategory": "Синхронизация с 1С",
       "logo": "1c.png",
@@ -1525,6 +1558,7 @@ window.LANDSCAPE = {
     {
       "name": "Консоль запросов",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Библиотеки и инструменты",
       "subcategory": "Подсистемы и обработки",
       "logo": "1c.png",
@@ -1564,6 +1598,7 @@ window.LANDSCAPE = {
     {
       "name": "Файловая СУБД",
       "added": "2026-06-08",
+      "updated": "2026-06-10",
       "category": "Системы управления базами данных (СУБД)",
       "subcategory": null,
       "logo": "1c.png",
@@ -1598,6 +1633,7 @@ window.LANDSCAPE = {
     {
       "name": "PostgreSQL",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Системы управления базами данных (СУБД)",
       "subcategory": "Семейство PostgreSQL",
       "logo": "postgresql.svg",
@@ -1654,6 +1690,7 @@ window.LANDSCAPE = {
     {
       "name": "Microsoft SQLServer",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Системы управления базами данных (СУБД)",
       "subcategory": "Зарубежные коммерческие",
       "logo": "sqlserver.svg",
@@ -1703,6 +1740,7 @@ window.LANDSCAPE = {
     {
       "name": "Postgres Pro",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Системы управления базами данных (СУБД)",
       "subcategory": "Семейство PostgreSQL",
       "logo": "postgrespro.svg",
@@ -1752,6 +1790,7 @@ window.LANDSCAPE = {
     {
       "name": "Oracle Database",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Системы управления базами данных (СУБД)",
       "subcategory": "Зарубежные коммерческие",
       "logo": "oracle.svg",
@@ -1792,6 +1831,7 @@ window.LANDSCAPE = {
     {
       "name": "IBM Db2",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Системы управления базами данных (СУБД)",
       "subcategory": "Зарубежные коммерческие",
       "logo": "ibm-db2.svg",
@@ -1832,6 +1872,7 @@ window.LANDSCAPE = {
     {
       "name": "Хранилище",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Системы хранения версий",
       "subcategory": "Системы контроля версий",
       "logo": "1c.png",
@@ -1879,6 +1920,7 @@ window.LANDSCAPE = {
     {
       "name": "git",
       "added": "2026-06-07",
+      "updated": "2026-06-11",
       "category": "Системы хранения версий",
       "subcategory": "Системы контроля версий",
       "logo": "git.svg",
@@ -1923,6 +1965,7 @@ window.LANDSCAPE = {
     {
       "name": "GitLab",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Системы хранения версий",
       "subcategory": "Git-хостинги",
       "logo": "gitlab.svg",
@@ -1966,6 +2009,7 @@ window.LANDSCAPE = {
     {
       "name": "GitHub",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Системы хранения версий",
       "subcategory": "Git-хостинги",
       "logo": "github.svg",
@@ -2010,6 +2054,7 @@ window.LANDSCAPE = {
     {
       "name": "GitVerse",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Системы хранения версий",
       "subcategory": "Git-хостинги",
       "logo": "gitverse.png",
@@ -2054,6 +2099,7 @@ window.LANDSCAPE = {
     {
       "name": "Bitbucket",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Системы хранения версий",
       "subcategory": "Git-хостинги",
       "logo": "bitbucket.svg",
@@ -2097,6 +2143,7 @@ window.LANDSCAPE = {
     {
       "name": "Figma",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Прототипирование",
       "subcategory": null,
       "logo": "figma.svg",
@@ -2133,6 +2180,7 @@ window.LANDSCAPE = {
     {
       "name": "Mockplus",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Прототипирование",
       "subcategory": null,
       "logo": "mockplus.png",
@@ -2171,6 +2219,7 @@ window.LANDSCAPE = {
     {
       "name": "Balsamiq",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "Прототипирование",
       "subcategory": null,
       "logo": "balsamiq.svg",
@@ -2209,6 +2258,7 @@ window.LANDSCAPE = {
     {
       "name": "MAKER-STUDIO",
       "added": "2026-06-08",
+      "updated": "2026-06-14",
       "category": "Прототипирование",
       "subcategory": null,
       "logo": "maker.webp",
@@ -2248,6 +2298,7 @@ window.LANDSCAPE = {
     {
       "name": "Накидка",
       "added": "2026-06-08",
+      "updated": "2026-06-14",
       "category": "Прототипирование",
       "subcategory": null,
       "logo": "nakidka.png",
@@ -2290,6 +2341,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Тестировщик",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": "1c.png",
@@ -2332,6 +2384,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Сценарное тестирование",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": "1c.png",
@@ -2377,6 +2430,7 @@ window.LANDSCAPE = {
     {
       "name": "Vanessa-Automation",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": "vanessa.png",
@@ -2426,6 +2480,7 @@ window.LANDSCAPE = {
     {
       "name": "Vanessa-ADD",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": "vanessa-add.png",
@@ -2470,6 +2525,7 @@ window.LANDSCAPE = {
     {
       "name": "Тестер",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Автоматизированное тестирование",
       "subcategory": "Функциональные тесты",
       "logo": null,
@@ -2520,6 +2576,7 @@ window.LANDSCAPE = {
     {
       "name": "YAxUnit",
       "added": "2026-06-08",
+      "updated": "2026-06-16",
       "category": "Автоматизированное тестирование",
       "subcategory": "Юнит-тесты",
       "logo": "yaxunit.svg",
@@ -2573,6 +2630,7 @@ window.LANDSCAPE = {
     {
       "name": "Coverage41C",
       "added": "2026-06-09",
+      "updated": "2026-06-15",
       "category": "Автоматизированное тестирование",
       "subcategory": "Отчеты о тестах",
       "logo": "coverage41c.png",
@@ -2613,6 +2671,7 @@ window.LANDSCAPE = {
     {
       "name": "ibcmdrunner",
       "added": "2026-06-09",
+      "updated": "2026-06-17",
       "category": "CI/CD",
       "subcategory": "Сборка 1С",
       "logo": "oscript-library.png",
@@ -2648,6 +2707,7 @@ window.LANDSCAPE = {
     {
       "name": "1testrunner",
       "added": "2026-06-09",
+      "updated": "2026-06-11",
       "category": "Автоматизированное тестирование",
       "subcategory": "Юнит-тесты",
       "logo": "oscript-library.png",
@@ -2683,6 +2743,7 @@ window.LANDSCAPE = {
     {
       "name": "Синтаксическая проверка конфигурации",
       "added": "2026-06-08",
+      "updated": "2026-06-14",
       "category": "Статический анализ кода",
       "subcategory": null,
       "logo": "1c.png",
@@ -2721,6 +2782,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Автоматизированная проверка конфигураций (АПК)",
       "added": "2026-06-08",
+      "updated": "2026-06-10",
       "category": "Статический анализ кода",
       "subcategory": null,
       "logo": "1c.png",
@@ -2761,6 +2823,7 @@ window.LANDSCAPE = {
     {
       "name": "SonarQube",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Статический анализ кода",
       "subcategory": null,
       "logo": "sonarqube.svg",
@@ -2813,6 +2876,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:СППР",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "Моделирование и архитектура",
       "subcategory": "Архитектура",
       "logo": "1c.png",
@@ -2863,6 +2927,7 @@ window.LANDSCAPE = {
     {
       "name": "Стандарты разработки",
       "added": "2026-06-08",
+      "updated": "2026-06-16",
       "category": "Статический анализ кода",
       "subcategory": null,
       "logo": "1c.png",
@@ -2898,6 +2963,7 @@ window.LANDSCAPE = {
     {
       "name": "Crucible",
       "added": "2026-06-09",
+      "updated": "2026-06-12",
       "category": "Код-ревью",
       "subcategory": null,
       "logo": "crucible.svg",
@@ -2938,6 +3004,7 @@ window.LANDSCAPE = {
     {
       "name": "Review Board",
       "added": "2026-06-09",
+      "updated": "2026-06-12",
       "category": "Код-ревью",
       "subcategory": null,
       "logo": "reviewboard.png",
@@ -2978,6 +3045,7 @@ window.LANDSCAPE = {
     {
       "name": "Collaborator",
       "added": "2026-06-09",
+      "updated": "2026-06-12",
       "category": "Код-ревью",
       "subcategory": null,
       "logo": "collaborator.png",
@@ -3018,6 +3086,7 @@ window.LANDSCAPE = {
     {
       "name": "CodeRabbit",
       "added": "2026-06-09",
+      "updated": "2026-06-14",
       "category": "Код-ревью",
       "subcategory": null,
       "logo": "coderabbit.svg",
@@ -3059,6 +3128,7 @@ window.LANDSCAPE = {
     {
       "name": "ai-review",
       "added": "2026-06-09",
+      "updated": "2026-06-14",
       "category": "Код-ревью",
       "subcategory": null,
       "logo": "ai-review.png",
@@ -3095,6 +3165,7 @@ window.LANDSCAPE = {
     {
       "name": "Jenkins",
       "added": "2026-06-07",
+      "updated": "2026-06-11",
       "category": "CI/CD",
       "subcategory": "CI-серверы",
       "logo": "jenkins.svg",
@@ -3152,6 +3223,7 @@ window.LANDSCAPE = {
     {
       "name": "Gitlab CI",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "CI/CD",
       "subcategory": "CI-серверы",
       "logo": "gitlab.svg",
@@ -3205,6 +3277,7 @@ window.LANDSCAPE = {
     {
       "name": "GitHub Actions",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "CI/CD",
       "subcategory": "CI-серверы",
       "logo": "github-actions.svg",
@@ -3254,6 +3327,7 @@ window.LANDSCAPE = {
     {
       "name": "Travis CI",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "CI/CD",
       "subcategory": "CI-серверы",
       "logo": "travis-ci.svg",
@@ -3298,6 +3372,7 @@ window.LANDSCAPE = {
     {
       "name": "vanessa-runner",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "CI/CD",
       "subcategory": "Сборка 1С",
       "logo": "vanessa.png",
@@ -3346,6 +3421,7 @@ window.LANDSCAPE = {
     {
       "name": "TeamCity",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "CI/CD",
       "subcategory": "CI-серверы",
       "logo": "teamcity.svg",
@@ -3391,6 +3467,7 @@ window.LANDSCAPE = {
     {
       "name": "Ansible",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "CI/CD",
       "subcategory": "Инфраструктура как код",
       "logo": "ansible.svg",
@@ -3432,6 +3509,7 @@ window.LANDSCAPE = {
     {
       "name": "Vagrant",
       "added": "2026-06-07",
+      "updated": "2026-06-11",
       "category": "CI/CD",
       "subcategory": "Инфраструктура как код",
       "logo": "vagrant.svg",
@@ -3475,6 +3553,7 @@ window.LANDSCAPE = {
     {
       "name": "Docker",
       "added": "2026-06-07",
+      "updated": "2026-06-11",
       "category": "CI/CD",
       "subcategory": "Контейнеризация",
       "logo": "docker.svg",
@@ -3526,6 +3605,7 @@ window.LANDSCAPE = {
     {
       "name": "Allure",
       "added": "2026-06-07",
+      "updated": "2026-06-11",
       "category": "Автоматизированное тестирование",
       "subcategory": "Отчеты о тестах",
       "logo": "allure.png",
@@ -3581,6 +3661,7 @@ window.LANDSCAPE = {
     {
       "name": "ТестОпс",
       "added": "2026-06-10",
+      "updated": "2026-06-11",
       "category": "Автоматизированное тестирование",
       "subcategory": "Отчеты о тестах",
       "logo": "testops.png",
@@ -3624,6 +3705,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Конвертация данных",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Интеграции",
       "subcategory": "Обмен между 1С",
       "logo": "1c.png",
@@ -3662,6 +3744,7 @@ window.LANDSCAPE = {
     {
       "name": "EnterpriseData",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Интеграции",
       "subcategory": "Обмен между 1С",
       "logo": "1c.png",
@@ -3697,6 +3780,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Шина",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Интеграции",
       "subcategory": "Брокеры и шины",
       "logo": "1c.png",
@@ -3737,6 +3821,7 @@ window.LANDSCAPE = {
     {
       "name": "Открытый пакет интеграций",
       "added": "2026-06-08",
+      "updated": "2026-06-14",
       "category": "Интеграции",
       "subcategory": "Внешние API",
       "logo": "openintegration.svg",
@@ -3774,6 +3859,7 @@ window.LANDSCAPE = {
     {
       "name": "Telegram бот",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Интеграции",
       "subcategory": "Внешние API",
       "logo": "telegram.png",
@@ -3829,6 +3915,7 @@ window.LANDSCAPE = {
     {
       "name": "Curlone",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Интеграции",
       "subcategory": "Внешние API",
       "logo": "curlone.png",
@@ -3867,6 +3954,7 @@ window.LANDSCAPE = {
     {
       "name": "RabbitMQ",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Интеграции",
       "subcategory": "Брокеры и шины",
       "logo": "rabbitmq.svg",
@@ -3911,6 +3999,7 @@ window.LANDSCAPE = {
     {
       "name": "Kafka",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Интеграции",
       "subcategory": "Брокеры и шины",
       "logo": "kafka.svg",
@@ -3952,6 +4041,7 @@ window.LANDSCAPE = {
     {
       "name": "Объектное хранилище S3",
       "added": "2026-06-08",
+      "updated": "2026-06-14",
       "category": "Интеграции",
       "subcategory": null,
       "logo": "s3.png",
@@ -3998,6 +4088,7 @@ window.LANDSCAPE = {
     {
       "name": "Fiddler",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "API и веб-сервисы",
       "subcategory": "Туннели и трафик",
       "logo": "fiddler.png",
@@ -4034,6 +4125,7 @@ window.LANDSCAPE = {
     {
       "name": "Bruno",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "API и веб-сервисы",
       "subcategory": "API-клиенты",
       "logo": "bruno.svg",
@@ -4075,6 +4167,7 @@ window.LANDSCAPE = {
     {
       "name": "Insomnia",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "API и веб-сервисы",
       "subcategory": "API-клиенты",
       "logo": "insomnia.svg",
@@ -4117,6 +4210,7 @@ window.LANDSCAPE = {
     {
       "name": "SoapUI",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "API и веб-сервисы",
       "subcategory": "API-клиенты",
       "logo": "soapui.png",
@@ -4159,6 +4253,7 @@ window.LANDSCAPE = {
     {
       "name": "Karate",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "API и веб-сервисы",
       "subcategory": "API-клиенты",
       "logo": "karate.svg",
@@ -4195,6 +4290,7 @@ window.LANDSCAPE = {
     {
       "name": "Postman",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "API и веб-сервисы",
       "subcategory": "API-клиенты",
       "logo": "postman.svg",
@@ -4246,6 +4342,7 @@ window.LANDSCAPE = {
     {
       "name": "OpenAPI UI (ex. Swagger)",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "API и веб-сервисы",
       "subcategory": null,
       "logo": "swagger.svg",
@@ -4313,6 +4410,7 @@ window.LANDSCAPE = {
     {
       "name": "Ngrok",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "API и веб-сервисы",
       "subcategory": "Туннели и трафик",
       "logo": "ngrok.svg",
@@ -4358,6 +4456,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Аналитика",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "BI-системы",
       "subcategory": null,
       "logo": "1c.png",
@@ -4404,6 +4503,7 @@ window.LANDSCAPE = {
     {
       "name": "Microsoft Power BI",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "BI-системы",
       "subcategory": null,
       "logo": "powerbi.svg",
@@ -4452,6 +4552,7 @@ window.LANDSCAPE = {
     {
       "name": "Yandex DataLens",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "BI-системы",
       "subcategory": null,
       "logo": "datalens.svg",
@@ -4496,6 +4597,7 @@ window.LANDSCAPE = {
     {
       "name": "Visiology",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "BI-системы",
       "subcategory": null,
       "logo": "visiology.svg",
@@ -4535,6 +4637,7 @@ window.LANDSCAPE = {
     {
       "name": "RAC/RAS",
       "added": "2026-06-08",
+      "updated": "2026-06-24",
       "category": "Администрирование 1С",
       "subcategory": "Штатные инструменты",
       "logo": "1c.png",
@@ -4580,6 +4683,7 @@ window.LANDSCAPE = {
     {
       "name": "ibcmd",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Администрирование 1С",
       "subcategory": "Штатные инструменты",
       "logo": "1c.png",
@@ -4623,6 +4727,7 @@ window.LANDSCAPE = {
     {
       "name": "Консоль администрирования серверов 1С",
       "added": "2026-06-08",
+      "updated": "2026-06-24",
       "category": "Администрирование 1С",
       "subcategory": "Штатные инструменты",
       "logo": "1c.png",
@@ -4665,6 +4770,7 @@ window.LANDSCAPE = {
     {
       "name": "Apache HTTP Server",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Веб-серверы и прокси",
       "logo": "apache.svg",
@@ -4713,6 +4819,7 @@ window.LANDSCAPE = {
     {
       "name": "IIS",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Веб-серверы и прокси",
       "logo": "iis.png",
@@ -4756,6 +4863,7 @@ window.LANDSCAPE = {
     {
       "name": "nginx",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Веб-серверы и прокси",
       "logo": "nginx.svg",
@@ -4801,6 +4909,7 @@ window.LANDSCAPE = {
     {
       "name": "Кластер серверов 1С:Предприятие",
       "added": "2026-06-08",
+      "updated": "2026-06-14",
       "category": "Администрирование 1С",
       "subcategory": "Штатные инструменты",
       "logo": "1c.png",
@@ -4842,6 +4951,7 @@ window.LANDSCAPE = {
     {
       "name": "OneSwiss",
       "added": "2026-06-08",
+      "updated": "2026-06-14",
       "category": "Администрирование 1С",
       "subcategory": "Управление парком баз",
       "logo": "oneswiss.png",
@@ -4881,6 +4991,7 @@ window.LANDSCAPE = {
     {
       "name": "draw.io (diagrams.net)",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "Диаграммы",
       "subcategory": null,
       "logo": "drawio.svg",
@@ -4918,6 +5029,7 @@ window.LANDSCAPE = {
     {
       "name": "Confluence",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "База знаний",
       "subcategory": "Корпоративные базы знаний",
       "logo": "confluence.svg",
@@ -4966,6 +5078,7 @@ window.LANDSCAPE = {
     {
       "name": "Teamly",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "База знаний",
       "subcategory": "Корпоративные базы знаний",
       "logo": "teamly.svg",
@@ -5003,6 +5116,7 @@ window.LANDSCAPE = {
     {
       "name": "Wiki репозитория",
       "added": "2026-06-09",
+      "updated": "2026-06-15",
       "category": "База знаний",
       "subcategory": "Корпоративные базы знаний",
       "logo": "wiki.svg",
@@ -5053,6 +5167,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Профессионал",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Сертификация",
       "subcategory": "Сертификация от 1С",
       "logo": "1c.png",
@@ -5098,6 +5213,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Специалист‑консультант",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Сертификация",
       "subcategory": "Сертификация от 1С",
       "logo": "1c.png",
@@ -5144,6 +5260,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Специалист",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Сертификация",
       "subcategory": "Сертификация от 1С",
       "logo": "1c.png",
@@ -5191,6 +5308,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Эксперт по технологическим вопросам",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Сертификация",
       "subcategory": "Сертификация от 1С",
       "logo": "1c.png",
@@ -5242,6 +5360,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Эксплуататор",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Сертификация",
       "subcategory": "Сертификация от 1С",
       "logo": "1c.png",
@@ -5282,6 +5401,7 @@ window.LANDSCAPE = {
     {
       "name": "Сертификация от 1С-ТестЦентр",
       "added": "2026-06-08",
+      "updated": "2026-06-14",
       "category": "Сертификация",
       "subcategory": "Независимая сертификация",
       "logo": "1c.png",
@@ -5311,6 +5431,7 @@ window.LANDSCAPE = {
     {
       "name": "Сертификация от Госуслуг",
       "added": "2026-06-08",
+      "updated": "2026-06-11",
       "category": "Сертификация",
       "subcategory": "Независимая сертификация",
       "logo": "gosuslugi.svg",
@@ -5342,6 +5463,7 @@ window.LANDSCAPE = {
     {
       "name": "Zabbix",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Мониторинг",
       "subcategory": "Мониторинг инфраструктуры",
       "logo": "zabbix.svg",
@@ -5383,6 +5505,7 @@ window.LANDSCAPE = {
     {
       "name": "Grafana",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Мониторинг",
       "subcategory": "Мониторинг инфраструктуры",
       "logo": "grafana.svg",
@@ -5426,6 +5549,7 @@ window.LANDSCAPE = {
     {
       "name": "Prometheus",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Мониторинг",
       "subcategory": "Мониторинг инфраструктуры",
       "logo": "prometheus.svg",
@@ -5467,6 +5591,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:КИП (Корпоративный инструментальный пакет)",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "Производительность и нагрузочное тестирование",
       "subcategory": null,
       "logo": "1c.png",
@@ -5507,6 +5632,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:ЦКК (Центр контроля качества)",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Производительность и нагрузочное тестирование",
       "subcategory": null,
       "logo": "1c.png",
@@ -5548,6 +5674,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Тест-центр",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Производительность и нагрузочное тестирование",
       "subcategory": null,
       "logo": "1c.png",
@@ -5589,6 +5716,7 @@ window.LANDSCAPE = {
     {
       "name": "APDEX",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Производительность и нагрузочное тестирование",
       "subcategory": null,
       "logo": "apdex.png",
@@ -5629,6 +5757,7 @@ window.LANDSCAPE = {
     {
       "name": "Анализ технологического журнала",
       "added": "2026-06-08",
+      "updated": "2026-06-13",
       "category": "Производительность и нагрузочное тестирование",
       "subcategory": null,
       "logo": "1c.png",
@@ -5674,6 +5803,7 @@ window.LANDSCAPE = {
     {
       "name": "Elasticsearch",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Мониторинг",
       "subcategory": "Анализ логов",
       "logo": "elasticsearch.svg",
@@ -5717,6 +5847,7 @@ window.LANDSCAPE = {
     {
       "name": "Kibana",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Мониторинг",
       "subcategory": "Анализ логов",
       "logo": "kibana.svg",
@@ -5753,6 +5884,7 @@ window.LANDSCAPE = {
     {
       "name": "Logstash",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Мониторинг",
       "subcategory": "Анализ логов",
       "logo": "logstash.svg",
@@ -5792,6 +5924,7 @@ window.LANDSCAPE = {
     {
       "name": "ClickHouse",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "Мониторинг",
       "subcategory": "Анализ логов",
       "logo": "clickhouse.svg",
@@ -5830,6 +5963,7 @@ window.LANDSCAPE = {
     {
       "name": "Jira",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Задачи",
       "subcategory": "Трекеры задач",
       "logo": "jira.svg",
@@ -5876,6 +6010,7 @@ window.LANDSCAPE = {
     {
       "name": "Trello",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Задачи",
       "subcategory": "Канбан-доски",
       "logo": "trello.svg",
@@ -5916,6 +6051,7 @@ window.LANDSCAPE = {
     {
       "name": "Яндекс Трекер",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Задачи",
       "subcategory": "Трекеры задач",
       "logo": "yandex-tracker.svg",
@@ -5960,6 +6096,7 @@ window.LANDSCAPE = {
     {
       "name": "YouTrack",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Задачи",
       "subcategory": "Трекеры задач",
       "logo": "youtrack.png",
@@ -6005,6 +6142,7 @@ window.LANDSCAPE = {
     {
       "name": "Redmine",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Задачи",
       "subcategory": "Трекеры задач",
       "logo": "redmine.svg",
@@ -6051,6 +6189,7 @@ window.LANDSCAPE = {
     {
       "name": "Kaiten",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Задачи",
       "subcategory": "Канбан-доски",
       "logo": "kaiten.jpeg",
@@ -6093,6 +6232,7 @@ window.LANDSCAPE = {
     {
       "name": "WEEEK",
       "added": "2026-06-08",
+      "updated": "2026-06-15",
       "category": "Задачи",
       "subcategory": "Канбан-доски",
       "logo": "weeek.svg",
@@ -6131,6 +6271,7 @@ window.LANDSCAPE = {
     {
       "name": "Битрикс24",
       "added": "2026-06-09",
+      "updated": "2026-06-15",
       "category": "Задачи",
       "subcategory": null,
       "logo": "bitrix24.svg",
@@ -6178,6 +6319,7 @@ window.LANDSCAPE = {
     {
       "name": "Kubernetes",
       "added": "2026-06-08",
+      "updated": "2026-06-12",
       "category": "CI/CD",
       "subcategory": "Контейнеризация",
       "logo": "kubernetes.svg",
@@ -6221,6 +6363,7 @@ window.LANDSCAPE = {
     {
       "name": "Caddy",
       "added": "2026-06-10",
+      "updated": "2026-06-12",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Веб-серверы и прокси",
       "logo": "caddy.svg",
@@ -6261,6 +6404,7 @@ window.LANDSCAPE = {
     {
       "name": "ПУСК (Панель управления сервисами и компонентами)",
       "added": "2026-06-10",
+      "updated": "2026-06-27",
       "category": "Администрирование 1С",
       "subcategory": "Управление парком баз",
       "logo": "pusk.svg",
@@ -6304,6 +6448,7 @@ window.LANDSCAPE = {
     {
       "name": "Tantor SE 1C",
       "added": "2026-06-10",
+      "updated": "2026-06-12",
       "category": "Системы управления базами данных (СУБД)",
       "subcategory": "Семейство PostgreSQL",
       "logo": "tantor.svg",
@@ -6351,6 +6496,7 @@ window.LANDSCAPE = {
     {
       "name": "Монитор (1smonitor)",
       "added": "2026-06-10",
+      "updated": "2026-06-11",
       "category": "Мониторинг",
       "subcategory": "Мониторинг 1С",
       "logo": "1smonitor.png",
@@ -6388,6 +6534,7 @@ window.LANDSCAPE = {
     {
       "name": "PerfDog",
       "added": "2026-06-10",
+      "updated": "2026-06-12",
       "category": "Мониторинг",
       "subcategory": "Мониторинг 1С",
       "logo": null,
@@ -6427,6 +6574,7 @@ window.LANDSCAPE = {
     {
       "name": "PerfExpert",
       "added": "2026-06-10",
+      "updated": "2026-06-12",
       "category": "Мониторинг",
       "subcategory": "Мониторинг 1С",
       "logo": "perfexpert.png",
@@ -6473,6 +6621,7 @@ window.LANDSCAPE = {
     {
       "name": "Умный мониторинг",
       "added": "2026-06-10",
+      "updated": "2026-06-27",
       "category": "Мониторинг",
       "subcategory": "Мониторинг 1С",
       "logo": "umnyy-monitoring.svg",
@@ -6506,6 +6655,7 @@ window.LANDSCAPE = {
     {
       "name": "PlantUML",
       "added": "2026-06-10",
+      "updated": "2026-06-13",
       "category": "Диаграммы",
       "subcategory": null,
       "logo": "plantuml.svg",
@@ -6554,6 +6704,7 @@ window.LANDSCAPE = {
     {
       "name": "GitFlic",
       "added": "2026-06-10",
+      "updated": "2026-06-12",
       "category": "Системы хранения версий",
       "subcategory": "Git-хостинги",
       "logo": "gitflic.svg",
@@ -6594,6 +6745,7 @@ window.LANDSCAPE = {
     {
       "name": "MosHub",
       "added": "2026-06-10",
+      "updated": "2026-06-11",
       "category": "Системы хранения версий",
       "subcategory": "Git-хостинги",
       "logo": "moshub.png",
@@ -6628,6 +6780,7 @@ window.LANDSCAPE = {
     {
       "name": "PAPI",
       "added": "2026-06-10",
+      "updated": "2026-06-15",
       "category": "Интеграции",
       "subcategory": "Внешние API",
       "logo": "papi.png",
@@ -6671,6 +6824,7 @@ window.LANDSCAPE = {
     {
       "name": "HAProxy",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Веб-серверы и прокси",
       "logo": "haproxy.png",
@@ -6710,6 +6864,7 @@ window.LANDSCAPE = {
     {
       "name": "Angie",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Веб-серверы и прокси",
       "logo": "angie.svg",
@@ -6750,6 +6905,7 @@ window.LANDSCAPE = {
     {
       "name": "Terraform",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Облачная инфраструктура",
       "logo": "terraform.svg",
@@ -6787,6 +6943,7 @@ window.LANDSCAPE = {
     {
       "name": "HashiCorp Vault",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "Безопасность",
       "subcategory": "Доступ и секреты",
       "logo": "vault.svg",
@@ -6826,6 +6983,7 @@ window.LANDSCAPE = {
     {
       "name": "КриптоПро",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "Безопасность",
       "subcategory": "Криптография и VPN",
       "logo": "cryptopro.svg",
@@ -6872,6 +7030,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Управление ландшафтом",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "Администрирование 1С",
       "subcategory": "Управление парком баз",
       "logo": "1c.png",
@@ -6913,6 +7072,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Облачная подсистема Фреш",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "Администрирование 1С",
       "subcategory": "Управление парком баз",
       "logo": "1c.png",
@@ -6957,6 +7117,7 @@ window.LANDSCAPE = {
     {
       "name": "Selectel",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Облачная инфраструктура",
       "logo": "selectel.svg",
@@ -6998,6 +7159,7 @@ window.LANDSCAPE = {
     {
       "name": "Platform V Pangolin",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "Системы управления базами данных (СУБД)",
       "subcategory": "Семейство PostgreSQL",
       "logo": "platform-v.png",
@@ -7040,6 +7202,7 @@ window.LANDSCAPE = {
     {
       "name": "Оркестратор 1С",
       "added": "2026-06-11",
+      "updated": "2026-06-11",
       "category": "Мониторинг",
       "subcategory": "Мониторинг 1С",
       "logo": "orchestrator1c.svg",
@@ -7076,6 +7239,7 @@ window.LANDSCAPE = {
     {
       "name": "Алькир",
       "added": "2026-06-11",
+      "updated": "2026-06-11",
       "category": "Мониторинг",
       "subcategory": "Мониторинг 1С",
       "logo": "alkir.png",
@@ -7110,6 +7274,7 @@ window.LANDSCAPE = {
     {
       "name": "Harbor",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "CI/CD",
       "subcategory": "Контейнеризация",
       "logo": "harbor.svg",
@@ -7149,6 +7314,7 @@ window.LANDSCAPE = {
     {
       "name": "Gramax",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "База знаний",
       "subcategory": "Документация как код",
       "logo": "gramax.svg",
@@ -7193,6 +7359,7 @@ window.LANDSCAPE = {
     {
       "name": "Keycloak",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "Безопасность",
       "subcategory": "Доступ и секреты",
       "logo": "keycloak.svg",
@@ -7236,6 +7403,7 @@ window.LANDSCAPE = {
     {
       "name": "Multifactor",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "Безопасность",
       "subcategory": "Доступ и секреты",
       "logo": "multifactor.svg",
@@ -7277,6 +7445,7 @@ window.LANDSCAPE = {
     {
       "name": "ViPNet",
       "added": "2026-06-11",
+      "updated": "2026-06-11",
       "category": "Безопасность",
       "subcategory": "Криптография и VPN",
       "logo": "vipnet.svg",
@@ -7312,6 +7481,7 @@ window.LANDSCAPE = {
     {
       "name": "Континент",
       "added": "2026-06-11",
+      "updated": "2026-06-11",
       "category": "Безопасность",
       "subcategory": "Криптография и VPN",
       "logo": "kontinent.svg",
@@ -7346,6 +7516,7 @@ window.LANDSCAPE = {
     {
       "name": "Mermaid",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "Диаграммы",
       "subcategory": null,
       "logo": "mermaid.svg",
@@ -7385,6 +7556,7 @@ window.LANDSCAPE = {
     {
       "name": "StormBPMN",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "Моделирование и архитектура",
       "subcategory": "Моделирование процессов",
       "logo": "stormbpmn.svg",
@@ -7422,6 +7594,7 @@ window.LANDSCAPE = {
     {
       "name": "bpmn.io",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "Моделирование и архитектура",
       "subcategory": "Моделирование процессов",
       "logo": "bpmn-io.svg",
@@ -7457,6 +7630,7 @@ window.LANDSCAPE = {
     {
       "name": "Camunda Modeler",
       "added": "2026-06-11",
+      "updated": "2026-06-17",
       "category": "Моделирование и архитектура",
       "subcategory": "Моделирование процессов",
       "logo": "camunda-modeler.svg",
@@ -7493,6 +7667,7 @@ window.LANDSCAPE = {
     {
       "name": "Structurizr",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "Моделирование и архитектура",
       "subcategory": "Архитектура",
       "logo": "structurizr.png",
@@ -7533,6 +7708,7 @@ window.LANDSCAPE = {
     {
       "name": "Archi",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "Моделирование и архитектура",
       "subcategory": "Архитектура",
       "logo": "archi.png",
@@ -7570,6 +7746,7 @@ window.LANDSCAPE = {
     {
       "name": "Modelio",
       "added": "2026-06-11",
+      "updated": "2026-06-11",
       "category": "Моделирование и архитектура",
       "subcategory": "Архитектура",
       "logo": "modelio.png",
@@ -7601,6 +7778,7 @@ window.LANDSCAPE = {
     {
       "name": "Graphviz",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "Диаграммы",
       "subcategory": null,
       "logo": "graphviz.png",
@@ -7640,6 +7818,7 @@ window.LANDSCAPE = {
     {
       "name": "Miro",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "База знаний",
       "subcategory": "Совместные доски",
       "logo": "miro.svg",
@@ -7672,6 +7851,7 @@ window.LANDSCAPE = {
     {
       "name": "Excalidraw",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "База знаний",
       "subcategory": "Совместные доски",
       "logo": "excalidraw.svg",
@@ -7705,6 +7885,7 @@ window.LANDSCAPE = {
     {
       "name": "Markdown Editor",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "База знаний",
       "subcategory": null,
       "logo": "markdown-editor.svg",
@@ -7733,6 +7914,7 @@ window.LANDSCAPE = {
     {
       "name": "JSON Editor Online",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "API и веб-сервисы",
       "subcategory": "JSON-инструменты",
       "logo": "json-editor-online.png",
@@ -7768,6 +7950,7 @@ window.LANDSCAPE = {
     {
       "name": "JSONLint",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "API и веб-сервисы",
       "subcategory": "JSON-инструменты",
       "logo": "jsonlint.svg",
@@ -7803,6 +7986,7 @@ window.LANDSCAPE = {
     {
       "name": "Kiro",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "ИИ-ассистенты",
       "subcategory": "ИИ-редакторы",
       "logo": "kiro.svg",
@@ -7840,6 +8024,7 @@ window.LANDSCAPE = {
     {
       "name": "DBeaver",
       "added": "2026-06-11",
+      "updated": "2026-06-13",
       "category": "Системы управления базами данных (СУБД)",
       "subcategory": null,
       "logo": "dbeaver.svg",
@@ -7878,6 +8063,7 @@ window.LANDSCAPE = {
     {
       "name": "Vaultwarden",
       "added": "2026-06-11",
+      "updated": "2026-06-11",
       "category": "Безопасность",
       "subcategory": "Доступ и секреты",
       "logo": "vaultwarden.svg",
@@ -7916,6 +8102,7 @@ window.LANDSCAPE = {
     {
       "name": "NotebookLM",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "База знаний",
       "subcategory": null,
       "logo": "notebooklm.svg",
@@ -7951,6 +8138,7 @@ window.LANDSCAPE = {
     {
       "name": "Git Code Review",
       "added": "2026-06-11",
+      "updated": "2026-06-11",
       "category": "Код-ревью",
       "subcategory": null,
       "logo": "git-code-review.png",
@@ -7984,6 +8172,7 @@ window.LANDSCAPE = {
     {
       "name": "KOT for 1C",
       "added": "2026-06-11",
+      "updated": "2026-06-12",
       "category": "Плагины и расширения",
       "subcategory": "Для VSCode",
       "logo": "kot-for-1c.png",
@@ -8019,6 +8208,7 @@ window.LANDSCAPE = {
     {
       "name": "Kafka UI",
       "added": "2026-06-12",
+      "updated": "2026-06-14",
       "category": "Интеграции",
       "subcategory": "Брокеры и шины",
       "logo": "kafka-ui.svg",
@@ -8060,6 +8250,7 @@ window.LANDSCAPE = {
     {
       "name": "Внешние источники данных",
       "added": "2026-06-12",
+      "updated": "2026-06-15",
       "category": "Интеграции",
       "subcategory": null,
       "logo": "1c.png",
@@ -8103,6 +8294,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Готовое рабочее место (1С:ГРМ)",
       "added": "2026-06-13",
+      "updated": "2026-06-13",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Облачная инфраструктура",
       "logo": "1c.png",
@@ -8137,6 +8329,7 @@ window.LANDSCAPE = {
     {
       "name": "Obsidian",
       "added": "2026-06-13",
+      "updated": "2026-06-14",
       "category": "База знаний",
       "subcategory": "Личные базы знаний",
       "logo": "obsidian.svg",
@@ -8181,6 +8374,7 @@ window.LANDSCAPE = {
     {
       "name": "Tasks",
       "added": "2026-06-13",
+      "updated": "2026-06-13",
       "category": "Задачи",
       "subcategory": "Трекеры задач",
       "logo": "tasks.png",
@@ -8228,6 +8422,7 @@ window.LANDSCAPE = {
     {
       "name": "Tuna",
       "added": "2026-06-13",
+      "updated": "2026-06-13",
       "category": "API и веб-сервисы",
       "subcategory": "Туннели и трафик",
       "logo": "tuna.svg",
@@ -8265,6 +8460,7 @@ window.LANDSCAPE = {
     {
       "name": "Koda",
       "added": "2026-06-13",
+      "updated": "2026-06-13",
       "category": "ИИ-ассистенты",
       "subcategory": "Автодополнение в IDE",
       "logo": "koda.svg",
@@ -8298,6 +8494,7 @@ window.LANDSCAPE = {
     {
       "name": "opencode",
       "added": "2026-06-13",
+      "updated": "2026-06-13",
       "category": "ИИ-ассистенты",
       "subcategory": "CLI-агенты",
       "logo": "opencode.svg",
@@ -8331,6 +8528,7 @@ window.LANDSCAPE = {
     {
       "name": "DocHub",
       "added": "2026-06-13",
+      "updated": "2026-06-13",
       "category": "Моделирование и архитектура",
       "subcategory": "Архитектура",
       "logo": "dochub.svg",
@@ -8371,6 +8569,7 @@ window.LANDSCAPE = {
     {
       "name": "VitePress",
       "added": "2026-06-13",
+      "updated": "2026-06-13",
       "category": "База знаний",
       "subcategory": "Документация как код",
       "logo": "vitepress.svg",
@@ -8404,6 +8603,7 @@ window.LANDSCAPE = {
     {
       "name": "Dendron",
       "added": "2026-06-13",
+      "updated": "2026-06-13",
       "category": "База знаний",
       "subcategory": "Личные базы знаний",
       "logo": "dendron.svg",
@@ -8436,6 +8636,7 @@ window.LANDSCAPE = {
     {
       "name": "Holst",
       "added": "2026-06-13",
+      "updated": "2026-06-14",
       "category": "База знаний",
       "subcategory": "Совместные доски",
       "logo": "holst.png",
@@ -8469,6 +8670,7 @@ window.LANDSCAPE = {
     {
       "name": "Bash",
       "added": "2026-06-14",
+      "updated": "2026-06-14",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Терминал и доступ к серверам",
       "logo": "bash.svg",
@@ -8507,6 +8709,7 @@ window.LANDSCAPE = {
     {
       "name": "PuTTY",
       "added": "2026-06-14",
+      "updated": "2026-06-14",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Терминал и доступ к серверам",
       "logo": "putty.svg",
@@ -8545,6 +8748,7 @@ window.LANDSCAPE = {
     {
       "name": "Midnight Commander",
       "added": "2026-06-14",
+      "updated": "2026-06-14",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Терминал и доступ к серверам",
       "logo": "mc.png",
@@ -8580,6 +8784,7 @@ window.LANDSCAPE = {
     {
       "name": "MobaXterm",
       "added": "2026-06-14",
+      "updated": "2026-06-14",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Терминал и доступ к серверам",
       "logo": "mobaxterm.jpg",
@@ -8617,6 +8822,7 @@ window.LANDSCAPE = {
     {
       "name": "WinSCP",
       "added": "2026-06-14",
+      "updated": "2026-06-15",
       "category": "Сетевая инфраструктура и облако",
       "subcategory": "Терминал и доступ к серверам",
       "logo": "winscp.png",
@@ -8655,6 +8861,7 @@ window.LANDSCAPE = {
     {
       "name": "Apache Superset",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "BI-системы",
       "subcategory": null,
       "logo": "superset.svg",
@@ -8695,6 +8902,7 @@ window.LANDSCAPE = {
     {
       "name": "OneUnit",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "Автоматизированное тестирование",
       "subcategory": "Юнит-тесты",
       "logo": "oscript-library.png",
@@ -8731,6 +8939,7 @@ window.LANDSCAPE = {
     {
       "name": "Deckhouse Prom++",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "Мониторинг",
       "subcategory": "Мониторинг инфраструктуры",
       "logo": "prompp.svg",
@@ -8770,6 +8979,7 @@ window.LANDSCAPE = {
     {
       "name": "Pixso",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "Прототипирование",
       "subcategory": null,
       "logo": "pixso.png",
@@ -8807,6 +9017,7 @@ window.LANDSCAPE = {
     {
       "name": "Datareon",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "Интеграции",
       "subcategory": "Брокеры и шины",
       "logo": "datareon.png",
@@ -8844,6 +9055,7 @@ window.LANDSCAPE = {
     {
       "name": "EvaWiki",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "База знаний",
       "subcategory": "Корпоративные базы знаний",
       "logo": "evawiki.png",
@@ -8886,6 +9098,7 @@ window.LANDSCAPE = {
     {
       "name": "Wiki.js",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "База знаний",
       "subcategory": "Корпоративные базы знаний",
       "logo": "wikijs.svg",
@@ -8926,6 +9139,7 @@ window.LANDSCAPE = {
     {
       "name": "YouGile",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "Задачи",
       "subcategory": "Канбан-доски",
       "logo": "yougile.svg",
@@ -8969,6 +9183,7 @@ window.LANDSCAPE = {
     {
       "name": "ПланФикс",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "Задачи",
       "subcategory": "Трекеры задач",
       "logo": "planfix.svg",
@@ -9011,6 +9226,7 @@ window.LANDSCAPE = {
     {
       "name": "OpenProject",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "Задачи",
       "subcategory": "Трекеры задач",
       "logo": "openproject.svg",
@@ -9052,6 +9268,7 @@ window.LANDSCAPE = {
     {
       "name": "Vector",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "Мониторинг",
       "subcategory": "Анализ логов",
       "logo": "vector.svg",
@@ -9083,6 +9300,7 @@ window.LANDSCAPE = {
     {
       "name": "Simple Kafka Adapter",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "Интеграции",
       "subcategory": "Брокеры и шины",
       "logo": null,
@@ -9115,6 +9333,7 @@ window.LANDSCAPE = {
     {
       "name": "JenkinsLib",
       "added": "2026-06-15",
+      "updated": "2026-06-15",
       "category": "CI/CD",
       "subcategory": "Сборка 1С",
       "logo": null,
@@ -9157,6 +9376,7 @@ window.LANDSCAPE = {
     {
       "name": "SonarQube BSL Community Plugin",
       "added": "2026-06-15",
+      "updated": "2026-06-17",
       "category": "Статический анализ кода",
       "subcategory": null,
       "logo": "bsl-language-server.png",
@@ -9197,6 +9417,7 @@ window.LANDSCAPE = {
     {
       "name": "OpenBPM",
       "added": "2026-06-17",
+      "updated": "2026-06-17",
       "category": "Интеграции",
       "subcategory": null,
       "logo": "openbpm.png",

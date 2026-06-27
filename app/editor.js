@@ -64,7 +64,15 @@
             el.classList.remove("dirty");
         }
     }
-    const save = markDirty; // правки помечают «не сохранено»; запись — по кнопке «Сохранить»
+    // Правки помечают «не сохранено»; запись — по кнопке «Сохранить».
+    // Заодно штампуем дату правки активной карточки (updated) — для истории изменений.
+    let editingItem = null;
+    const today = () => new Date().toISOString().slice(0, 10);
+    const touch = (it) => it && (it.updated = today());
+    const save = () => {
+        touch(editingItem);
+        markDirty();
+    };
 
     async function saveFile() {
         D.updated = ruDate(); // правка data.js = новая дата актуализации
@@ -222,6 +230,7 @@
             .join("")}</select></label>`;
 
     function openEdit(i) {
+        editingItem = i; // правки этой карточки штампуют ей updated (см. save)
         const dlg = $("#edit");
         dlg.innerHTML = `
       <div class="detail__body edit__body">
@@ -331,7 +340,14 @@
                 dlg.close();
             }
         });
-        dlg.addEventListener("close", render, { once: true });
+        dlg.addEventListener(
+            "close",
+            () => {
+                editingItem = null;
+                render();
+            },
+            { once: true },
+        );
         dlg.showModal();
     }
 
@@ -386,14 +402,17 @@
         if (type === "analogs") {
             t[type] = t[type] || [];
             if (!t[type].includes(i.name)) t[type].push(i.name);
+            touch(t); // парная карточка тоже изменилась
         }
         save();
     }
     function removeRel(i, type, name) {
         const t = D.items.find((x) => x.name === name);
         i[type] = (i[type] || []).filter((n) => n !== name);
-        if (type === "analogs" && t)
+        if (type === "analogs" && t) {
             t[type] = (t[type] || []).filter((n) => n !== i.name);
+            touch(t); // парная карточка тоже изменилась
+        }
         save();
     }
     function renderRel(i, type) {
@@ -499,6 +518,7 @@
         return {
             name: "Новый инструмент",
             added: new Date().toISOString().slice(0, 10), // дата добавления в ландшафт
+            updated: new Date().toISOString().slice(0, 10), // дата последней правки
             category: D.categories[0],
             subcategory: null,
             logo: null,
