@@ -29,7 +29,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Источник данных
 
-Единственный источник — `app/data.js` (`window.LANDSCAPE`, поля `roles/contexts/maturity/origin/license/availability/why/start/analogs/depends/aliases/...`). Правки контента вносить сюда — вручную или через редактор (`app/editor.html`, см. ниже).
+Единственный источник — `app/data.js` (`window.LANDSCAPE`, поля `roles/contexts/maturity/origin/license/availability/why/start/analogs/depends/aliases/added/updated/...`). Правки контента вносить сюда — вручную или через редактор (`app/editor.html`, см. ниже).
+
+**`added`/`updated`** — даты карточки в ISO (`YYYY-MM-DD`). `added` — когда добавлена, `updated` — последняя правка. Редактор штампует `updated` при любом изменении карточки (для двусторонних аналогов — и парной), новые карточки получают `updated` = дате создания. **При ручной правке `data.js` обнови `updated` сам** — `validate.js` требует корректные даты у каждой карточки и `updated >= added`. Поле пока только собирается, в UI не показывается (задел под историю изменений).
 
 **`aliases`** — скрытый от пользователя массив поисковых синонимов (русские транслитерации англоязычных названий и пр.: `git`→`гит`, `SonarQube`→`сонаркуб`). Не отображается на карточке, участвует только в поиске (`app.js` → `matches()` подмешивает его в строку поиска). Редактируется в форме редактора (поле «Синонимы для поиска», через запятую).
 
@@ -77,7 +79,7 @@ python3 scripts/serve.py   # его и запускает start.command
 
 `editor.js` сериализует весь `window.LANDSCAPE` (включая `updated`, `blocks`, все 6 осей) обратно тем же 2-пробельным JSON; при сохранении дата `updated` ставится автоматически. Без сервера «Сохранить» откатывается на скачивание копии.
 
-Проверка целостности данных (оси, блоки, файлы логотипов, связи, буква «ё»):
+Проверка целостности данных (оси, блоки, файлы логотипов, связи, буква «ё», даты added/updated):
 
 ```bash
 node scripts/validate.js

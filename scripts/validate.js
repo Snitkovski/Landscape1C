@@ -102,6 +102,16 @@ if (D.blocks) {
   });
 }
 
+// 8. Даты: у каждой карточки есть added и updated (ISO YYYY-MM-DD), updated не раньше added.
+//    updated штампует редактор при правке — проверка ловит ручные правки data.js без даты.
+const isISO = (s) => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s);
+D.items.forEach((i) => {
+  if (!isISO(i.added)) E(`«${i.name}»: added отсутствует или не в формате YYYY-MM-DD`);
+  if (!isISO(i.updated)) E(`«${i.name}»: updated отсутствует или не в формате YYYY-MM-DD (проставьте дату правки)`);
+  if (isISO(i.added) && isISO(i.updated) && i.updated < i.added)
+    E(`«${i.name}»: updated (${i.updated}) раньше added (${i.added})`);
+});
+
 if (errors.length) {
   console.error(`✗ Найдено проблем: ${errors.length}`);
   errors.forEach((e) => console.error("  - " + e));
