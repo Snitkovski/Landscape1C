@@ -7,6 +7,7 @@ const https = require("https");
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
+const { execFileSync } = require("child_process");
 
 const TOKEN = process.env.BOT_TOKEN;
 if (!TOKEN) {
@@ -23,6 +24,46 @@ const L = global.window.LANDSCAPE;
 const ROLES = L.axes.role.values; // разработчик / администратор / тестировщик / аналитик
 const CONTEXTS = L.axes.context.values; // франчайзи / инхаус / продукты / проекты
 const LEVELS = ["начинающий", "опытный", "эксперт"];
+
+// ── Логотипы: телеграм не принимает SVG — рендерим в PNG через qlmanage (macOS).
+// Кэш в bot/logo-cache/, растровые логотипы берутся из app/logos/ как есть.
+const LOGOS = path.join(__dirname, "..", "app", "logos");
+const CACHE = path.join(__dirname, "logo-cache");
+fs.mkdirSync(CACHE, { recursive: true });
+const svgs = [...new Set(L.items.map((i) => i.logo).filter(Boolean))]
+    .filter((f) => /\.svg$/i.test(f))
+    .filter(
+        (f) =>
+            fs.existsSync(path.join(LOGOS, f)) &&
+            !fs.existsSync(path.join(CACHE, f + ".png")),
+    );
+if (svgs.length) {
+    try {
+        execFileSync(
+            "qlmanage",
+            [
+                "-t",
+                "-s",
+                "512",
+                "-o",
+                CACHE,
+                ...svgs.map((f) => path.join(LOGOS, f)),
+            ],
+            {
+                stdio: "ignore",
+            },
+        );
+    } catch (e) {
+        console.error("рендер логотипов:", e.message);
+    }
+}
+const logoFile = (i) => {
+    if (!i.logo) return null;
+    const f = /\.svg$/i.test(i.logo)
+        ? path.join(CACHE, i.logo + ".png")
+        : path.join(LOGOS, i.logo);
+    return fs.existsSync(f) ? f : null;
+};
 
 // ── Хранилище (прототип: файлы; потом заменяется на БД в этих двух функциях) ──
 const ANSWERS = path.join(__dirname, "answers.jsonl");
@@ -80,6 +121,51 @@ const send = (chat, text, keyboard) =>
         parse_mode: "HTML",
         reply_markup: keyboard ? { inline_keyboard: keyboard } : undefined,
     });
+// sendPhoto с загрузкой файла — multipart руками (зависимостей нет)
+const sendPhoto = (chat, file, caption, keyboard) =>
+    new Promise((resolve, reject) => {
+        const b = "----landscape" + Date.now();
+        const fields = { chat_id: String(chat), caption, parse_mode: "HTML" };
+        if (keyboard)
+            fields.reply_markup = JSON.stringify({ inline_keyboard: keyboard });
+        let head = "";
+        for (const [k, v] of Object.entries(fields))
+            head += `--${b}\r\nContent-Disposition: form-data; name="${k}"\r\n\r\n${v}\r\n`;
+        head += `--${b}\r\nContent-Disposition: form-data; name="photo"; filename="${path.basename(file)}"\r\nContent-Type: application/octet-stream\r\n\r\n`;
+        const body = Buffer.concat([
+            Buffer.from(head),
+            fs.readFileSync(file),
+            Buffer.from(`\r\n--${b}--\r\n`),
+        ]);
+        const req = https.request(
+            {
+                hostname: "api.telegram.org",
+                path: `/bot${TOKEN}/sendPhoto`,
+                method: "POST",
+                headers: {
+                    "Content-Type": `multipart/form-data; boundary=${b}`,
+                    "Content-Length": body.length,
+                },
+            },
+            (res) => {
+                let data = "";
+                res.on("data", (c) => (data += c));
+                res.on("end", () => {
+                    try {
+                        const j = JSON.parse(data);
+                        j.ok
+                            ? resolve(j.result)
+                            : reject(new Error(j.description));
+                    } catch (e) {
+                        reject(e);
+                    }
+                });
+            },
+        );
+        req.on("error", reject);
+        req.end(body);
+    });
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 const btnRows = (labels, prefix, perRow = 2) => {
     const rows = [];
     labels.forEach((l, i) => {
@@ -142,13 +228,20 @@ const SENT = {
 async function sendCard(chat, s) {
     if (s.pos >= s.queue.length) return offerMore(chat, s);
     const i = byName(s.queue[s.pos]);
-    const sub = i.subcategory ? ` · ${i.subcategory}` : "";
-    await send(
-        chat,
-        `<b>${i.name}</b>  <i>(${s.pos + 1}/${s.queue.length})</i>\n${i.category}${sub}\n\n${i.description}`,
-        EXP_BTNS,
-    );
+    const text =
+        `<b>${esc(i.name)}</b>  <i>(${s.pos + 1}/${s.queue.length})</i>\n<i>${esc(i.category)}</i>\n\n` +
+        esc(i.description) +
+        (i.why ? `\n\n💡 ${esc(i.why)}` : "");
+    const logo = logoFile(i);
+    if (logo)
+        await sendPhoto(chat, logo, text, EXP_BTNS).catch(() =>
+            send(chat, text, EXP_BTNS),
+        );
+    else await send(chat, text, EXP_BTNS);
 }
+// Отвеченная карточка убирается из чата — не копим простыню
+const hideCard = (chat, msgId) =>
+    api("deleteMessage", { chat_id: chat, message_id: msgId }).catch(() => {});
 
 async function offerMore(chat, s) {
     if (!s.doneRoles.includes(s.block)) s.doneRoles.push(s.block);
@@ -245,9 +338,15 @@ async function onCallback(q) {
         return sendCard(chat, s);
     }
     if (kind === "a" && s.step === "quiz") {
+        // Висящий сентимент прошлой карточки — дозаписываем без него
+        if (s.pending) {
+            record(s, chat, s.pending.tool, s.pending.answer, null);
+            s.pending = null;
+        }
         const tool = s.queue[s.pos];
         if (val === "не знаю") {
             record(s, chat, tool, val, null);
+            await hideCard(chat, q.message.message_id);
             return next(chat, s);
         }
         s.pending = { tool, answer: val };
@@ -275,6 +374,7 @@ async function onCallback(q) {
             val === "-" ? null : val,
         );
         s.pending = null;
+        await hideCard(chat, q.message.message_id);
         return next(chat, s);
     }
     if (kind === "more" && s.step === "offer") {
