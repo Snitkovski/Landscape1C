@@ -23,8 +23,10 @@
             href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;900&family=Inter:wght@400;600&display=swap"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="styles.css?v=416e3e99" />
-        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <!-- Пути абсолютные: Pages отдает 404.html с любого вложенного пути
+             (например /tools/…), относительные ссылки там ломаются -->
+        <link rel="stylesheet" href="/styles.css?v=416e3e99" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <style>
             .nf {
                 min-height: calc(100vh - 100px);

@@ -23,8 +23,10 @@ function hashOf(asset) {
     }
 }
 
-// href/src="<имя-без-слешей>?v=...": только локальные ассеты, не внешние URL
-const RE = /\b(href|src)="([A-Za-z0-9_.\-]+)\?v=[^"]*"/g;
+// href/src="<имя>?v=..." — локальные ассеты, не внешние URL. Допускается
+// ведущий "/" (404.html подключает стили абсолютным путем — Pages отдает
+// её с любого вложенного адреса, относительные ссылки там ломаются).
+const RE = /\b(href|src)="(\/?[A-Za-z0-9_.\-]+)\?v=[^"]*"/g;
 const htmls = fs.readdirSync(APP).filter((f) => f.endsWith(".html"));
 let changed = 0;
 const touched = new Set();
