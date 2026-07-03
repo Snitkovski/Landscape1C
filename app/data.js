@@ -1873,7 +1873,7 @@ window.LANDSCAPE = {
     {
       "name": "Хранилище",
       "added": "2026-06-08",
-      "updated": "2026-06-11",
+      "updated": "2026-07-03",
       "category": "Системы хранения версий",
       "subcategory": "Системы контроля версий",
       "logo": "1c.png",
@@ -1883,8 +1883,8 @@ window.LANDSCAPE = {
       "repo": null,
       "start": [
         {
-          "label": "Работа с хранилищем конфигурации в 1С",
-          "url": "https://programmist1s.ru/hranilishhe-konfiguratsii-1s/"
+          "label": "Хранилище конфигурации: создание и использование",
+          "url": "https://infostart.ru/1c/articles/63841/"
         },
         {
           "label": "Важные вопросы про хранилище конфигурации",
@@ -4348,7 +4348,7 @@ window.LANDSCAPE = {
     {
       "name": "OpenAPI UI (ex. Swagger)",
       "added": "2026-06-08",
-      "updated": "2026-06-13",
+      "updated": "2026-07-03",
       "category": "API и веб-сервисы",
       "subcategory": null,
       "logo": "swagger.svg",
@@ -4358,8 +4358,8 @@ window.LANDSCAPE = {
       "repo": "https://github.com/swagger-api/swagger-ui",
       "start": [
         {
-          "label": "OpenAPI/Swagger для начинающих",
-          "url": "https://habr.com/ru/articles/776538/"
+          "label": "OpenAPI на практике: пошаговое руководство",
+          "url": "https://habr.com/ru/companies/first/articles/973186/"
         },
         {
           "label": "Swagger для 1С",
