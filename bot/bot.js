@@ -144,13 +144,24 @@ const api = (method, params) =>
         req.on("error", reject);
         req.end(body);
     });
+// Реестр отправленного ботом по чату (живет в состоянии) — чтобы «сброс»
+// мог вычистить с экрана вообще все, а не только текущее сообщение
+const track = (chat, res) => {
+    const s = state[chat];
+    if (s && res && res.message_id) {
+        (s.msgs = s.msgs || []).push(res.message_id);
+        if (s.msgs.length > 300) s.msgs.splice(0, s.msgs.length - 300);
+        saveState();
+    }
+    return res;
+};
 const send = (chat, text, keyboard) =>
     api("sendMessage", {
         chat_id: chat,
         text,
         parse_mode: "HTML",
         reply_markup: keyboard ? { inline_keyboard: keyboard } : undefined,
-    });
+    }).then((r) => track(chat, r));
 // Кэш telegram file_id по файлу логотипа: первый показ грузит файл,
 // дальше фото уходит мгновенно по идентификатору — в этом вся скорость
 const FILEIDS = path.join(__dirname, "file-ids.json");
@@ -161,18 +172,21 @@ try {
 const sendPhoto = async (chat, file, caption, keyboard) => {
     if (fileIds[file]) {
         try {
-            return await api("sendPhoto", {
-                chat_id: chat,
-                photo: fileIds[file],
-                caption,
-                parse_mode: "HTML",
-                reply_markup: keyboard
-                    ? { inline_keyboard: keyboard }
-                    : undefined,
-            });
+            return track(
+                chat,
+                await api("sendPhoto", {
+                    chat_id: chat,
+                    photo: fileIds[file],
+                    caption,
+                    parse_mode: "HTML",
+                    reply_markup: keyboard
+                        ? { inline_keyboard: keyboard }
+                        : undefined,
+                }),
+            );
         } catch (e) {} // file_id протух — перезаливаем файлом
     }
-    const res = await uploadPhoto(chat, file, caption, keyboard);
+    const res = track(chat, await uploadPhoto(chat, file, caption, keyboard));
     const ph = res.photo && res.photo[res.photo.length - 1];
     if (ph) {
         fileIds[file] = ph.file_id;
@@ -316,6 +330,19 @@ const SENT = {
 
 // s.role — роль респондента (из онбординга, не меняется);
 // s.block — роль, чьи инструменты сейчас показываем (ядро = своя роль, дальше опт-ин)
+// Отправка карточки: фото с фолбэком на текст; прошлая неотвеченная
+// карточка убирается — повторная отправка не плодит дубли
+async function postCard(chat, s, i, text) {
+    if (s.cardMsg) hideCard(chat, s.cardMsg);
+    const logo = logoFile(i);
+    const msg = logo
+        ? await sendPhoto(chat, logo, text, EXP_BTNS).catch(() =>
+              send(chat, text, EXP_BTNS),
+          )
+        : await send(chat, text, EXP_BTNS);
+    s.cardMsg = msg && msg.message_id;
+    saveState();
+}
 async function sendCard(chat, s) {
     if (s.pos >= s.queue.length) return offerMore(chat, s);
     const i = byName(s.queue[s.pos]);
@@ -323,16 +350,16 @@ async function sendCard(chat, s) {
         `<b>${esc(i.name)}</b>  <i>(${s.pos + 1}/${s.queue.length})</i>\n\n` +
         esc(i.description) +
         (i.why ? `\n\n💡 ${esc(i.why)}` : "");
-    const logo = logoFile(i);
-    if (logo)
-        await sendPhoto(chat, logo, text, EXP_BTNS).catch(() =>
-            send(chat, text, EXP_BTNS),
-        );
-    else await send(chat, text, EXP_BTNS);
+    return postCard(chat, s, i, text);
 }
 // Отвеченная карточка убирается из чата — не копим простыню
 const hideCard = (chat, msgId) =>
     api("deleteMessage", { chat_id: chat, message_id: msgId }).catch(() => {});
+// Служебный текст тостом: показали и через пару секунд убрали
+const toast = async (chat, text, ms = 3000) => {
+    const m = await send(chat, text).catch(() => null);
+    if (m) setTimeout(() => hideCard(chat, m.message_id), ms);
+};
 
 async function offerMore(chat, s) {
     if (!s.doneRoles.includes(s.block)) s.doneRoles.push(s.block);
@@ -401,7 +428,7 @@ const CP_BTNS = [
 const PAGE = 40;
 async function sendSummary(chat, page) {
     const rows = myAnswers(chat);
-    if (!rows.length) return send(chat, "Ответов пока нет.");
+    if (!rows.length) return toast(chat, "Ответов пока нет.");
     const order = { работал: 0, слышал: 1, "не знаю": 2 };
     rows.sort(
         (a, b) =>
@@ -419,11 +446,18 @@ async function sendSummary(chat, page) {
     const nav = [];
     if (p > 0) nav.push({ text: "⬅️", callback_data: `sum:${p - 1}` });
     if (p < pages - 1) nav.push({ text: "➡️", callback_data: `sum:${p + 1}` });
-    await send(
+    // Листание заменяет прошлую страницу, а не копит их
+    const s = state[chat];
+    if (s && s.sumMsg) hideCard(chat, s.sumMsg);
+    const msg = await send(
         chat,
         `Твои ответы${pages > 1 ? ` (стр. ${p + 1}/${pages})` : ""}:\n\n${lines.join("\n")}\n\nОшибся где-то — напиши название инструмента, исправим.`,
         nav.length ? [nav] : undefined,
-    );
+    ).catch(() => null);
+    if (s) {
+        s.sumMsg = msg && msg.message_id;
+        saveState();
+    }
 }
 // Исправление записано — возвращаемся, откуда пришли (финал или чекпоинт)
 async function fixDone(chat, s, what) {
@@ -431,11 +465,17 @@ async function fixDone(chat, s, what) {
     s.step = back;
     s.fixReturn = null;
     saveState();
-    if (back === "checkpoint")
-        return send(chat, `Исправлено: ${what}`, CP_BTNS);
-    // Без кнопок — тостом: показали и убрали
-    const note = await send(chat, `Исправлено: ${what}`).catch(() => null);
-    if (note) setTimeout(() => hideCard(chat, note.message_id), 3000);
+    if (back === "checkpoint") {
+        // Старый чекпоинт устарел — заменяем его новым с теми же кнопками
+        if (s.cpMsg) hideCard(chat, s.cpMsg);
+        const msg = await send(chat, `Исправлено: ${what}`, CP_BTNS).catch(
+            () => null,
+        );
+        s.cpMsg = msg && msg.message_id;
+        saveState();
+        return;
+    }
+    return toast(chat, `Исправлено: ${what}`);
 }
 // Карточка исправления: тот же вопрос, но вне очереди опроса.
 // Запоминаем, откуда пришли (финал или чекпоинт), чтобы вернуться туда же
@@ -449,12 +489,7 @@ async function sendFixCard(chat, s, name) {
         `<b>${esc(i.name)}</b>  <i>(исправление)</i>\n\n` +
         esc(i.description) +
         (i.why ? `\n\n💡 ${esc(i.why)}` : "");
-    const logo = logoFile(i);
-    if (logo)
-        await sendPhoto(chat, logo, text, EXP_BTNS).catch(() =>
-            send(chat, text, EXP_BTNS),
-        );
-    else await send(chat, text, EXP_BTNS);
+    return postCard(chat, s, i, text);
 }
 
 // ── Обработка апдейтов ──
@@ -492,6 +527,8 @@ const RESET_WORDS = ["/reset", "сброс", "сбросить", "заново"]
 async function onMessage(m) {
     const chat = m.chat.id;
     const s = state[chat];
+    // Сообщения пользователя тоже убираем — чат держим максимально чистым
+    hideCard(chat, m.message_id);
     const cmd = (m.text || "").trim().toLowerCase();
     // Сброс: стираем ответы и прогресс пользователя (с подтверждением)
     if (RESET_WORDS.includes(cmd) && s) {
@@ -516,12 +553,7 @@ async function onMessage(m) {
         s.pauseMsg = null;
         s.step = "quiz";
         saveState();
-        // Приветствие — тостом: показали и убрали
-        const hi = await send(
-            chat,
-            "С возвращением! 👋 Продолжаем с того же места.",
-        ).catch(() => null);
-        if (hi) setTimeout(() => hideCard(chat, hi.message_id), 3000);
+        await toast(chat, "С возвращением! 👋 Продолжаем с того же места.");
         await sendCard(chat, s);
     } else if (
         s.step === "done" ||
@@ -541,13 +573,18 @@ async function onMessage(m) {
                 return hay.includes(query);
             });
         if (!cand.length)
-            return send(
+            return toast(
                 chat,
-                "Не нашел такого среди твоих ответов. Попробуй написать название по-другому, или /start — пройти опрос заново.",
+                "Не нашел такого среди твоих ответов. Попробуй написать название по-другому.",
+                6000,
             );
         if (cand.length === 1) return sendFixCard(chat, s, cand[0]);
         if (cand.length > 6)
-            return send(chat, `Нашлось ${cand.length} — уточни название.`);
+            return toast(
+                chat,
+                `Нашлось ${cand.length} — уточни название.`,
+                5000,
+            );
         s.fixList = cand;
         saveState();
         return send(
@@ -588,11 +625,14 @@ async function onCallback(q) {
                 keep.length ? keep.join("\n") + "\n" : "",
             );
         }
+        // Вычищаем с экрана все, что бот присылал (реестр s.msgs),
+        // с разбежкой по времени — чтобы не упереться в лимиты API
+        (s.msgs || []).forEach((id, i) =>
+            setTimeout(() => hideCard(chat, id), i * 40),
+        );
         delete state[chat];
         saveState();
-        // «Все стерто» — как тост: показали и через пару секунд убрали
-        const note = await send(chat, "Все стерто 🧹").catch(() => null);
-        if (note) setTimeout(() => hideCard(chat, note.message_id), 3000);
+        await toast(chat, "Все стерто 🧹");
         return startIntro(chat);
     }
     if (kind === "go" && s.step === "intro") {
@@ -702,18 +742,21 @@ async function onCallback(q) {
     }
     if (kind === "sum") return sendSummary(chat, +val || 0);
     if (kind === "fixpick" && s.fixList && s.fixList[+val]) {
+        hideCard(chat, q.message.message_id); // «Какой из них?» больше не нужен
         const name = s.fixList[+val];
         s.fixList = null;
         return sendFixCard(chat, s, name);
     }
     if (kind === "cont" && s.step === "checkpoint") {
         hideCard(chat, q.message.message_id); // чекпоинт с итогами тоже убираем
+        s.cpMsg = null;
         s.step = "quiz";
         saveState();
         return sendCard(chat, s);
     }
     if (kind === "pause" && s.step === "checkpoint") {
         hideCard(chat, q.message.message_id);
+        s.cpMsg = null;
         s.step = "paused";
         const note = await send(
             chat,
@@ -839,12 +882,14 @@ async function next(chat, s) {
             )
             .join("\n");
         s.recent = [];
-        saveState();
-        return send(
+        const msg = await send(
             chat,
             `Пройдено <b>${s.pos}</b> из ${s.queue.length} — вот как ты ответил. Спасибо!\n\n${recent}\n\n${cheer}\n\nОшибся в чем-то — напиши название инструмента, поправим. Или двигаемся дальше!`,
             CP_BTNS,
-        );
+        ).catch(() => null);
+        s.cpMsg = msg && msg.message_id; // уберем, каким бы путем ни ушли
+        saveState();
+        return;
     }
     await sendCard(chat, s);
 }
