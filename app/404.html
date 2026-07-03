@@ -51,6 +51,9 @@
                 color: var(--num);
                 user-select: none;
             }
+            .nf__num-acc {
+                color: var(--brand); /* ноль — фирменный, как точка на знаке */
+            }
             .nf__title {
                 font-family: var(--display);
                 font-weight: 700;
@@ -61,7 +64,7 @@
                 color: var(--ink-soft);
                 font-size: 14px;
                 margin: 0 0 22px;
-                max-width: 48ch;
+                max-width: 66ch; /* вторая фраза после <br> — одной строкой */
             }
             .nf__btn {
                 justify-self: center; /* по центру текстового блока */
@@ -131,11 +134,13 @@
                 />
                 <circle class="nf__mark-acc" cx="16.6" cy="5.8" r="1.9" />
             </svg>
-            <div class="nf__num" aria-hidden="true">404</div>
+            <div class="nf__num" aria-hidden="true">
+                4<span class="nf__num-acc">0</span>4
+            </div>
             <h1 class="nf__title">Такой страницы на карте нет</h1>
             <p class="nf__text">
-                Возможно, ссылка устарела или в адресе опечатка. Все инструменты
-                по-прежнему на месте — начните с ландшафта
+                Возможно, ссылка устарела или в адресе опечатка.<br />
+                Все инструменты по-прежнему на месте — начните с ландшафта
             </p>
             <a class="empty__btn nf__btn" href="/">На главную</a>
         </main>
