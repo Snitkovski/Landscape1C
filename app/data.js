@@ -690,19 +690,19 @@ window.LANDSCAPE = {
     {
       "name": "Подсистема \"Универсальные инструменты 1С для управляемых форм\"",
       "added": "2026-06-08",
-      "updated": "2026-06-15",
+      "updated": "2026-07-03",
       "category": "Библиотеки и инструменты",
       "subcategory": "Подсистемы и обработки",
       "logo": "universal-tools.png",
       "logoInvert": true,
       "description": "Набор инструментов разработчика для управляемых форм",
       "why": "Набор инструментов разработчика, который помогает в ежедневной работе (используется для управляемых форм)",
-      "homepage": null,
-      "repo": null,
+      "homepage": "https://toolc.ru/",
+      "repo": "https://github.com/cpr1c/tools_ui_1c",
       "start": [
         {
-          "label": "https://github.com/cpr1c/tools_ui_1c/",
-          "url": "https://github.com/cpr1c/tools_ui_1c/"
+          "label": "Документация «Универсальные инструменты 1С»",
+          "url": "https://toolc.ru/docs/intro/"
         }
       ],
       "maturity": "продвинутое",
