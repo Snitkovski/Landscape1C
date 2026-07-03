@@ -25,6 +25,19 @@ const ROLES = L.axes.role.values; // разработчик / администр
 const CONTEXTS = L.axes.context.values; // франчайзи / инхаус / продукты / проекты
 const LEVELS = ["начинающий", "опытный", "эксперт"];
 
+// Исключения из опроса (bot/excluded.json): универсальные инструменты,
+// про которые спрашивать глупо — в итогах пойдут как «не применимо»
+let EXCLUDED = [];
+try {
+    EXCLUDED =
+        JSON.parse(
+            fs.readFileSync(path.join(__dirname, "excluded.json"), "utf8"),
+        ).excluded || [];
+} catch (e) {}
+EXCLUDED.filter((n) => !L.items.some((i) => i.name === n)).forEach((n) =>
+    console.error(`⚠ excluded.json: «${n}» не найден в data.js`),
+);
+
 // ── Логотипы: телеграм не принимает SVG — рендерим в PNG через qlmanage (macOS).
 // Кэш в bot/logo-cache/, растровые логотипы берутся из app/logos/ как есть.
 const LOGOS = path.join(__dirname, "..", "app", "logos");
@@ -241,6 +254,7 @@ const buildQueue = (role, answered, level) => {
         (i) =>
             (i.roles || []).includes(role) &&
             !answered.includes(i.name) &&
+            !EXCLUDED.includes(i.name) &&
             (level !== "начинающий" || i.maturity !== "нишевое"),
     );
     return shuffle(pool)
@@ -254,6 +268,7 @@ const nichePool = (s) =>
             (i) =>
                 i.maturity === "нишевое" &&
                 !s.answered.includes(i.name) &&
+                !EXCLUDED.includes(i.name) &&
                 (i.roles || []).some((r) => s.doneRoles.includes(r)),
         ),
     ).map((i) => i.name);
@@ -801,7 +816,9 @@ async function next(chat, s) {
 
 // ── Long polling ──
 (async () => {
-    console.log(`Бот запущен. Волна ${WAVE}. Инструментов: ${L.items.length}.`);
+    console.log(
+        `Бот запущен. Волна ${WAVE}. Инструментов: ${L.items.length}, исключено из опроса: ${EXCLUDED.length}.`,
+    );
     let offset = 0;
     for (;;) {
         try {
