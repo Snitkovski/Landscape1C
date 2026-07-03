@@ -30,14 +30,15 @@
                 min-height: calc(100vh - 100px);
                 display: grid;
                 place-content: center;
-                justify-items: start;
+                justify-items: center; /* симметричная композиция по центру */
+                text-align: center;
                 padding: 0 clamp(20px, 4vw, 40px);
             }
             .nf__mark {
-                width: 72px;
-                height: 72px;
+                width: clamp(88px, 12vw, 128px);
+                height: clamp(88px, 12vw, 128px);
                 stroke: var(--num); /* очень бледный знак над цифрой */
-                margin-bottom: 18px;
+                margin-bottom: 20px;
             }
             .nf__mark-acc {
                 fill: var(--brand);
@@ -51,8 +52,14 @@
                 color: var(--num);
                 user-select: none;
             }
-            .nf__num-acc {
-                color: var(--brand); /* ноль — фирменный, как точка на знаке */
+            .nf__num-dot {
+                /* ноль — фирменный кружок-заливка, как точка на знаке */
+                display: inline-block;
+                width: 0.68em;
+                height: 0.68em;
+                border-radius: 50%;
+                background: var(--brand);
+                margin: 0 0.05em;
             }
             .nf__title {
                 font-family: var(--display);
@@ -135,7 +142,7 @@
                 <circle class="nf__mark-acc" cx="16.6" cy="5.8" r="1.9" />
             </svg>
             <div class="nf__num" aria-hidden="true">
-                4<span class="nf__num-acc">0</span>4
+                4<span class="nf__num-dot"></span>4
             </div>
             <h1 class="nf__title">Такой страницы на карте нет</h1>
             <p class="nf__text">
