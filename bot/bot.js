@@ -245,21 +245,31 @@ const shuffle = (a) => {
     }
     return a;
 };
-// Очередь роли — только продвинутые инструменты: базовые у всех по
-// определению (спрашивать скучно, в итогах «не применимо», как и
-// excluded.json), нишевые предлагаются отдельной кнопкой после ядра.
-// Порядок случайный — без позиционного смещения
-const buildQueue = (role, answered) =>
+// Очередь роли: ядро из продвинутых (базовые у всех по определению —
+// в итогах пойдут как «не применимо», как и excluded.json) с вкраплениями
+// нишевых — по одному на четверку продвинутых, чтобы стена незнакомого
+// не копилась в конце. Пользователю это деление не показываем — для него
+// это просто инструменты. Порядок случайный — без позиционного смещения
+const pick = (role, answered, maturity) =>
     shuffle(
         L.items.filter(
             (i) =>
                 (i.roles || []).includes(role) &&
-                i.maturity === "продвинутое" &&
+                i.maturity === maturity &&
                 !answered.includes(i.name) &&
                 !EXCLUDED.includes(i.name),
         ),
     ).map((i) => i.name);
-// Нишевые, отложенные после ядра: по ролям, которые респондент уже проходил
+const buildQueue = (role, answered) => {
+    const niche = pick(role, answered, "нишевое");
+    const q = [];
+    pick(role, answered, "продвинутое").forEach((name, idx) => {
+        q.push(name);
+        if ((idx + 1) % 4 === 0 && niche.length) q.push(niche.shift());
+    });
+    return q;
+};
+// Нишевые, не попавшие в ядро: по ролям, которые респондент уже проходил
 const nichePool = (s) =>
     shuffle(
         L.items.filter(
@@ -333,12 +343,13 @@ async function offerMore(chat, s) {
     const rows = counts.map((x) => [
         { text: `${x.r} (${x.n})`, callback_data: `more:${x.r}` },
     ]);
-    // Нишевые пройденных ролей — отдельным опт-ином
+    // Оставшиеся нишевые пройденных ролей — отдельным опт-ином
+    // (без слова «нишевые»: для пользователя это просто инструменты)
     const niche = nichePool(s).length;
     if (niche)
         rows.push([
             {
-                text: `🔍 нишевые инструменты (${niche})`,
+                text: `🔍 еще инструменты твоей роли (${niche})`,
                 callback_data: "more:~niche",
             },
         ]);
@@ -421,7 +432,9 @@ async function fixDone(chat, s, what) {
     saveState();
     if (back === "checkpoint")
         return send(chat, `Исправлено: ${what}`, CP_BTNS);
-    return send(chat, `Исправлено: ${what}`);
+    // Без кнопок — тостом: показали и убрали
+    const note = await send(chat, `Исправлено: ${what}`).catch(() => null);
+    if (note) setTimeout(() => hideCard(chat, note.message_id), 3000);
 }
 // Карточка исправления: тот же вопрос, но вне очереди опроса.
 // Запоминаем, откуда пришли (финал или чекпоинт), чтобы вернуться туда же
@@ -498,9 +511,16 @@ async function onMessage(m) {
     // Любой текст посреди опроса — повторяем текущий шаг
     if (s.step === "quiz") await sendCard(chat, s);
     else if (s.step === "paused") {
+        if (s.pauseMsg) hideCard(chat, s.pauseMsg);
+        s.pauseMsg = null;
         s.step = "quiz";
         saveState();
-        await send(chat, "С возвращением! 👋 Продолжаем с того же места.");
+        // Приветствие — тостом: показали и убрали
+        const hi = await send(
+            chat,
+            "С возвращением! 👋 Продолжаем с того же места.",
+        ).catch(() => null);
+        if (hi) setTimeout(() => hideCard(chat, hi.message_id), 3000);
         await sendCard(chat, s);
     } else if (
         s.step === "done" ||
@@ -617,7 +637,7 @@ async function onCallback(q) {
         const n = buildQueue(s.role, s.answered).length;
         return send(
             chat,
-            `<b>Проверим:</b>\n\n- роль: <b>${s.role}</b>\n- уровень: <b>${s.level}</b>\n- контекст: <b>${s.context}</b>\n\nВпереди <b>${n}</b> ${plural(n, "продвинутый инструмент", "продвинутых инструмента", "продвинутых инструментов")} твоей роли. Базовые пропускаем — они и так у всех, а нишевые предложим после. Все ок?`,
+            `<b>Проверим:</b>\n\n- роль: <b>${s.role}</b>\n- уровень: <b>${s.level}</b>\n- контекст: <b>${s.context}</b>\n\nВпереди <b>${n}</b> ${plural(n, "инструмент", "инструмента", "инструментов")} твоей роли. Все ок?`,
             [
                 [
                     { text: "✅ Все ок, начинаем", callback_data: "ok:" },
@@ -686,19 +706,24 @@ async function onCallback(q) {
         return sendFixCard(chat, s, name);
     }
     if (kind === "cont" && s.step === "checkpoint") {
+        hideCard(chat, q.message.message_id); // чекпоинт с итогами тоже убираем
         s.step = "quiz";
         saveState();
         return sendCard(chat, s);
     }
     if (kind === "pause" && s.step === "checkpoint") {
+        hideCard(chat, q.message.message_id);
         s.step = "paused";
-        saveState();
-        return send(
+        const note = await send(
             chat,
             "Прогресс сохранен 👌\n\nВозвращайся, когда удобно: просто напиши боту что-нибудь — продолжим с того же места.",
-        );
+        ).catch(() => null);
+        s.pauseMsg = note && note.message_id; // удалим при возвращении
+        saveState();
+        return;
     }
     if (kind === "more" && s.step === "offer") {
+        hideCard(chat, q.message.message_id);
         if (val === "-") return finish(chat, s);
         if (val === "~niche") {
             // Отложенные нишевые: блоком остается своя роль
@@ -730,6 +755,8 @@ function record(s, chat, tool, answer, sentiment) {
     });
     // При исправлении инструмент уже в answered — не дублируем
     if (!s.answered.includes(tool)) s.answered.push(tool);
+    // Серия «не знаю» подряд — для адаптивного порядка очереди
+    s.streak = answer === "не знаю" ? (s.streak || 0) + 1 : 0;
     // Последняя десятка — для сводки на чекпоинте
     s.recent = s.recent || [];
     s.recent.push({ tool, answer, sentiment });
@@ -762,7 +789,7 @@ const CHEERS = [
         "Уверенно, как проведение документа без ошибок ✅",
         "Половина ландшафта уже знает твое мнение 🗣",
         "Продолжаем — статистика любит настойчивых 📊",
-        "Отличная выдержка! Дальше пойдут нишевые — самое интересное 🔍",
+        "Отличная выдержка! Дальше — самое интересное 🔍",
         "Ты явно видел жизнь. И инструменты 😎",
         "Середина позади, дальше легче — проверено 🧭",
     ],
@@ -783,6 +810,15 @@ const CHEERS = [
 ];
 async function next(chat, s) {
     s.pos++;
+    // Три «не знаю» подряд — поднимаем ближайший массовый (продвинутый)
+    // инструмент, чтобы не добивать серией незнакомых нишевых
+    if (s.streak >= 3 && s.pos < s.queue.length) {
+        const j = s.queue.findIndex(
+            (n, i) =>
+                i >= s.pos && (byName(n) || {}).maturity === "продвинутое",
+        );
+        if (j > s.pos) s.queue.splice(s.pos, 0, s.queue.splice(j, 1)[0]);
+    }
     saveState();
     // Чекпоинт каждые 10 ответов: прогресс + поощрялка + продолжить/пауза,
     // следующая карточка не шлется, пока не нажали «Продолжаем»
