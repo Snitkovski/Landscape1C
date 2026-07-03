@@ -419,6 +419,8 @@ const myAnswers = (chat) => {
 };
 const ANS_MARK = { работал: "✅", слышал: "👂", "не знаю": "🤷" };
 const SENT_MARK = { да: " 👍", нет: " 👎" };
+const ansRow = (r) =>
+    `${ANS_MARK[r.answer]} ${esc(r.tool)}${(r.sentiment && SENT_MARK[r.sentiment]) || ""}`;
 const CP_BTNS = [
     [
         { text: "▶️ Продолжаем", callback_data: "cont:" },
@@ -437,12 +439,7 @@ async function sendSummary(chat, page) {
     );
     const pages = Math.ceil(rows.length / PAGE);
     const p = Math.min(Math.max(page, 0), pages - 1);
-    const lines = rows
-        .slice(p * PAGE, p * PAGE + PAGE)
-        .map(
-            (r) =>
-                `${ANS_MARK[r.answer]} ${esc(r.tool)}${(r.sentiment && SENT_MARK[r.sentiment]) || ""}`,
-        );
+    const lines = rows.slice(p * PAGE, p * PAGE + PAGE).map(ansRow);
     const nav = [];
     if (p > 0) nav.push({ text: "⬅️", callback_data: `sum:${p - 1}` });
     if (p < pages - 1) nav.push({ text: "➡️", callback_data: `sum:${p + 1}` });
@@ -466,11 +463,14 @@ async function fixDone(chat, s, what) {
     s.fixReturn = null;
     saveState();
     if (back === "checkpoint") {
-        // Старый чекпоинт устарел — заменяем его новым с теми же кнопками
+        // Старый чекпоинт заменяем свежим — сводка уже с исправлением,
+        // вдруг нужно поправить что-то еще
         if (s.cpMsg) hideCard(chat, s.cpMsg);
-        const msg = await send(chat, `Исправлено: ${what}`, CP_BTNS).catch(
-            () => null,
-        );
+        const cp = s.cp;
+        const text = cp
+            ? `Исправлено: ${what}\n\nПройдено <b>${cp.pos}</b> из ${cp.total} — сводка теперь такая:\n\n${cp.list.map(ansRow).join("\n")}\n\nЕще что-то поправить — напиши название. Или двигаемся дальше!`
+            : `Исправлено: ${what}`;
+        const msg = await send(chat, text, CP_BTNS).catch(() => null);
         s.cpMsg = msg && msg.message_id;
         saveState();
         return;
@@ -799,6 +799,16 @@ function record(s, chat, tool, answer, sentiment) {
     });
     // При исправлении инструмент уже в answered — не дублируем
     if (!s.answered.includes(tool)) s.answered.push(tool);
+    if (s.step === "fix") {
+        // Исправление: правим строку в сводке чекпоинта (если она там),
+        // текущую десятку и серию «не знаю» не трогаем
+        const row = s.cp && s.cp.list.find((r) => r.tool === tool);
+        if (row) {
+            row.answer = answer;
+            row.sentiment = sentiment;
+        }
+        return;
+    }
     // Серия «не знаю» подряд — для адаптивного порядка очереди
     s.streak = answer === "не знаю" ? (s.streak || 0) + 1 : 0;
     // Последняя десятка — для сводки на чекпоинте
@@ -875,16 +885,12 @@ async function next(chat, s) {
         const cheer = pool[Math.floor(Math.random() * pool.length)];
         s.cheered.push(cheer);
         s.step = "checkpoint";
-        const recent = (s.recent || [])
-            .map(
-                (r) =>
-                    `${ANS_MARK[r.answer]} ${esc(r.tool)}${(r.sentiment && SENT_MARK[r.sentiment]) || ""}`,
-            )
-            .join("\n");
+        // Сводку держим в s.cp — после исправления перерисуем ее заново
+        s.cp = { list: s.recent || [], pos: s.pos, total: s.queue.length };
         s.recent = [];
         const msg = await send(
             chat,
-            `Пройдено <b>${s.pos}</b> из ${s.queue.length} — вот как ты ответил. Спасибо!\n\n${recent}\n\n${cheer}\n\nОшибся в чем-то — напиши название инструмента, поправим. Или двигаемся дальше!`,
+            `Пройдено <b>${s.pos}</b> из ${s.queue.length} — вот как ты ответил. Спасибо!\n\n${s.cp.list.map(ansRow).join("\n")}\n\n${cheer}\n\nОшибся в чем-то — напиши название инструмента, поправим. Или двигаемся дальше!`,
             CP_BTNS,
         ).catch(() => null);
         s.cpMsg = msg && msg.message_id; // уберем, каким бы путем ни ушли
