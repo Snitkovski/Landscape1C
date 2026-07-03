@@ -245,23 +245,21 @@ const shuffle = (a) => {
     }
     return a;
 };
-// Очередь роли: карточки роли без уже отвеченных, базовые раньше нишевых,
-// внутри уровня зрелости — случайный порядок (без позиционного смещения).
-// Начинающим нишевые в основную очередь не кладем — предложим отдельно
-const MAT = { базовое: 0, продвинутое: 1, нишевое: 2 };
-const buildQueue = (role, answered, level) => {
-    const pool = L.items.filter(
-        (i) =>
-            (i.roles || []).includes(role) &&
-            !answered.includes(i.name) &&
-            !EXCLUDED.includes(i.name) &&
-            (level !== "начинающий" || i.maturity !== "нишевое"),
-    );
-    return shuffle(pool)
-        .sort((a, b) => (MAT[a.maturity] ?? 9) - (MAT[b.maturity] ?? 9))
-        .map((i) => i.name);
-};
-// Нишевые, отложенные у начинающего: по ролям, которые он уже проходил
+// Очередь роли — только продвинутые инструменты: базовые у всех по
+// определению (спрашивать скучно, в итогах «не применимо», как и
+// excluded.json), нишевые предлагаются отдельной кнопкой после ядра.
+// Порядок случайный — без позиционного смещения
+const buildQueue = (role, answered) =>
+    shuffle(
+        L.items.filter(
+            (i) =>
+                (i.roles || []).includes(role) &&
+                i.maturity === "продвинутое" &&
+                !answered.includes(i.name) &&
+                !EXCLUDED.includes(i.name),
+        ),
+    ).map((i) => i.name);
+// Нишевые, отложенные после ядра: по ролям, которые респондент уже проходил
 const nichePool = (s) =>
     shuffle(
         L.items.filter(
@@ -330,13 +328,13 @@ async function offerMore(chat, s) {
     if (!s.doneRoles.includes(s.block)) s.doneRoles.push(s.block);
     const rest = ROLES.filter((r) => !s.doneRoles.includes(r));
     const counts = rest
-        .map((r) => ({ r, n: buildQueue(r, s.answered, s.level).length }))
+        .map((r) => ({ r, n: buildQueue(r, s.answered).length }))
         .filter((x) => x.n > 0);
     const rows = counts.map((x) => [
         { text: `${x.r} (${x.n})`, callback_data: `more:${x.r}` },
     ]);
-    // Отложенные нишевые начинающего — отдельным опт-ином
-    const niche = s.level === "начинающий" ? nichePool(s).length : 0;
+    // Нишевые пройденных ролей — отдельным опт-ином
+    const niche = nichePool(s).length;
     if (niche)
         rows.push([
             {
@@ -616,10 +614,10 @@ async function onCallback(q) {
         s.context = val;
         s.step = "confirm";
         saveState();
-        const n = buildQueue(s.role, s.answered, s.level).length;
+        const n = buildQueue(s.role, s.answered).length;
         return send(
             chat,
-            `<b>Проверим:</b>\n\n- роль: <b>${s.role}</b>\n- уровень: <b>${s.level}</b>\n- контекст: <b>${s.context}</b>\n\nВпереди <b>${n}</b> ${plural(n, "инструмент", "инструмента", "инструментов")} твоей роли, от базовых к продвинутым. Все ок?`,
+            `<b>Проверим:</b>\n\n- роль: <b>${s.role}</b>\n- уровень: <b>${s.level}</b>\n- контекст: <b>${s.context}</b>\n\nВпереди <b>${n}</b> ${plural(n, "продвинутый инструмент", "продвинутых инструмента", "продвинутых инструментов")} твоей роли. Базовые пропускаем — они и так у всех, а нишевые предложим после. Все ок?`,
             [
                 [
                     { text: "✅ Все ок, начинаем", callback_data: "ok:" },
@@ -631,7 +629,7 @@ async function onCallback(q) {
     if (kind === "ok" && s.step === "confirm") {
         hideCard(chat, q.message.message_id);
         s.block = s.role;
-        s.queue = buildQueue(s.block, s.answered, s.level);
+        s.queue = buildQueue(s.block, s.answered);
         s.pos = 0;
         s.step = "quiz";
         saveState();
@@ -708,7 +706,7 @@ async function onCallback(q) {
             s.queue = nichePool(s);
         } else {
             s.block = val;
-            s.queue = buildQueue(val, s.answered, s.level);
+            s.queue = buildQueue(val, s.answered);
         }
         s.pos = 0;
         s.step = "quiz";
