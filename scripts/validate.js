@@ -112,6 +112,55 @@ D.items.forEach((i) => {
     E(`«${i.name}»: updated (${i.updated}) раньше added (${i.added})`);
 });
 
+// 9. Имена карточек уникальны (дубль молча «съест» связи и дип-линки)
+{
+  const seen = new Set();
+  D.items.forEach((i) => {
+    if (seen.has(i.name)) E(`дубль карточки «${i.name}»`);
+    seen.add(i.name);
+  });
+}
+
+// 10. Связи: analogs симметричны (двусторонние), без самоссылок и дублей внутри массива
+const byName = new Map(D.items.map((i) => [i.name, i]));
+D.items.forEach((i) => {
+  ["analogs", "depends"].forEach((rel) => {
+    const arr = i[rel] || [];
+    if (arr.includes(i.name)) E(`«${i.name}»: ${rel} ссылается сам на себя`);
+    if (new Set(arr).size !== arr.length) E(`«${i.name}»: дубли в ${rel}`);
+  });
+  (i.analogs || []).forEach((a) => {
+    const other = byName.get(a);
+    if (other && !(other.analogs || []).includes(i.name))
+      E(`аналоги несимметричны: «${i.name}» → «${a}», обратной связи нет`);
+  });
+});
+
+// 11. Канон-форма файла: data.js должен байт-в-байт совпадать с тем, что пишет редактор
+//     (editor.js: JSON.stringify(…, null, 2), без umbrella и пустых analogs/depends).
+//     Ловит ручные правки, «уплывшие» от формата, — иначе первое же сохранение
+//     в редакторе перезапишет весь файл и даст шумный дифф.
+{
+  const items = D.items.map(({ umbrella, analogs, depends, ...rest }) => {
+    const o = { ...rest };
+    if (analogs && analogs.length) o.analogs = analogs;
+    if (depends && depends.length) o.depends = depends;
+    return o;
+  });
+  const canon =
+    "// Данные ландшафта (Вариант B). Сгенерировано редактором разметки (editor.html).\n" +
+    "window.LANDSCAPE = " +
+    JSON.stringify({ updated: D.updated, categories: D.categories, blocks: D.blocks, axes: D.axes, items }, null, 2) +
+    ";\n";
+  const real = fs.readFileSync(path.join(APP, "data.js"), "utf8");
+  if (canon !== real) {
+    const a = canon.split("\n"), b = real.split("\n");
+    let line = 0;
+    while (a[line] === b[line]) line++;
+    E(`data.js не в канон-форме редактора (первое расхождение — строка ${line + 1}); пересохраните через редактор или приведите правку к формату JSON.stringify(…, null, 2)`);
+  }
+}
+
 if (errors.length) {
   console.error(`✗ Найдено проблем: ${errors.length}`);
   errors.forEach((e) => console.error("  - " + e));

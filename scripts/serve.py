@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Локальный сервер редактора: отдает app/ и принимает:
 #   POST /save  -> пишет app/data.js, прогоняет cachebust и sitegen;
-#   POST /build -> cachebust + validate + сборка dist/ (кнопка «Собрать dist»).
+#   POST /build -> сборка dist/ кнопкой «Собрать dist» (build.js сам гоняет validate, sitegen и cachebust).
 # Запуск: ./start.command или python3 scripts/serve.py  →  http://127.0.0.1:8123/editor.html
 import http.server
 import os
@@ -46,14 +46,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             run_node("sitegen.js")
             self._respond(200, "saved")
         elif path == "/build":
-            out = []
-            for script in ("cachebust.js", "build.js"):  # build сам гоняет validate
-                code, text = run_node(script)
-                out.append(text)
-                if code != 0:
-                    self._respond(500, "\n".join(out))
-                    return
-            self._respond(200, "\n".join(out))
+            # build.js сам гоняет validate, sitegen и cachebust
+            code, text = run_node("build.js")
+            self._respond(200 if code == 0 else 500, text)
         else:
             self.send_error(404)
 

@@ -1690,7 +1690,7 @@ window.LANDSCAPE = {
     {
       "name": "Microsoft SQLServer",
       "added": "2026-06-08",
-      "updated": "2026-06-12",
+      "updated": "2026-07-03",
       "category": "Системы управления базами данных (СУБД)",
       "subcategory": "Зарубежные коммерческие",
       "logo": "sqlserver.svg",
@@ -1734,7 +1734,8 @@ window.LANDSCAPE = {
         "PostgreSQL",
         "Postgres Pro",
         "Oracle Database",
-        "IBM Db2"
+        "IBM Db2",
+        "Tantor SE 1C"
       ]
     },
     {
@@ -2054,7 +2055,7 @@ window.LANDSCAPE = {
     {
       "name": "GitVerse",
       "added": "2026-06-08",
-      "updated": "2026-06-12",
+      "updated": "2026-07-03",
       "category": "Системы хранения версий",
       "subcategory": "Git-хостинги",
       "logo": "gitverse.png",
@@ -2090,7 +2091,9 @@ window.LANDSCAPE = {
       "analogs": [
         "GitLab",
         "GitHub",
-        "Bitbucket"
+        "Bitbucket",
+        "GitFlic",
+        "MosHub"
       ],
       "depends": [
         "git"
@@ -3553,7 +3556,7 @@ window.LANDSCAPE = {
     {
       "name": "Docker",
       "added": "2026-06-07",
-      "updated": "2026-06-11",
+      "updated": "2026-07-03",
       "category": "CI/CD",
       "subcategory": "Контейнеризация",
       "logo": "docker.svg",
@@ -3600,6 +3603,9 @@ window.LANDSCAPE = {
         "докер",
         "доккер",
         "doker"
+      ],
+      "analogs": [
+        "Harbor"
       ]
     },
     {
@@ -4991,7 +4997,7 @@ window.LANDSCAPE = {
     {
       "name": "draw.io (diagrams.net)",
       "added": "2026-06-08",
-      "updated": "2026-06-13",
+      "updated": "2026-07-03",
       "category": "Диаграммы",
       "subcategory": null,
       "logo": "drawio.svg",
@@ -5024,6 +5030,9 @@ window.LANDSCAPE = {
         "draw io",
         "diagrams",
         "диаграммс"
+      ],
+      "analogs": [
+        "PlantUML"
       ]
     },
     {
@@ -9102,7 +9111,7 @@ window.LANDSCAPE = {
     {
       "name": "Wiki.js",
       "added": "2026-06-15",
-      "updated": "2026-06-15",
+      "updated": "2026-07-03",
       "category": "База знаний",
       "subcategory": "Корпоративные базы знаний",
       "logo": "wikijs.svg",
@@ -9137,7 +9146,8 @@ window.LANDSCAPE = {
         "викиджс"
       ],
       "analogs": [
-        "Wiki репозитория"
+        "Wiki репозитория",
+        "Confluence"
       ]
     },
     {

@@ -21,6 +21,10 @@ execFileSync("node", [path.join(__dirname, "validate.js")], { stdio: "inherit" }
 // 2. Освежаем sitemap.xml и llms.txt из данных — в dist уходят актуальные.
 execFileSync("node", [path.join(__dirname, "sitegen.js")], { stdio: "inherit" });
 
+// 2б. Версии ?v= по содержимому ассетов — забытый вручную cachebust не должен
+//     уезжать в деплой устаревшими хешами (браузеры отдадут старый кеш).
+execFileSync("node", [path.join(__dirname, "cachebust.js")], { stdio: "inherit" });
+
 // 3. Чистим и копируем app/ → dist/ с фильтром.
 fs.rmSync(DIST, { recursive: true, force: true });
 fs.cpSync(APP, DIST, { recursive: true, filter: (src) => !EXCLUDE.has(path.basename(src)) });

@@ -85,7 +85,7 @@ cd app && python3 -m http.server 8123
   - `nav.js` — общая навигация (знак, бургер-меню, выбор темы, подвал); `onboarding.js` — подсказки при первом визите; `404.html` — страница «не нашлась»
   - `editor.html` + `editor.js` — визуальный редактор разметки (на сайт не публикуется)
   - `styles.css`, `logos/` — оформление и логотипы
-- `scripts/` — `validate.js` (проверка целостности данных), `cachebust.js` (версии `?v=` ассетов по хешу содержимого), `sitegen.js` (sitemap.xml и llms.txt из данных), `build.js` (сборка `dist/`), `serve.py` (пишущий сервер для редактора)
+- `scripts/` — `validate.js` (проверка целостности данных), `cachebust.js` (версии `?v=` ассетов по хешу содержимого), `sitegen.js` (sitemap.xml и llms.txt из данных), `linkcheck.js` (проверка внешних ссылок карточек на живость), `build.js` (сборка `dist/`), `serve.py` (пишущий сервер для редактора)
 - `docs/` — [TZ.md](docs/TZ.md) (замысел, принятые решения, планы) и [METHODOLOGY.md](docs/METHODOLOGY.md) (правила разметки осей)
 
 ## Данные и разметка
