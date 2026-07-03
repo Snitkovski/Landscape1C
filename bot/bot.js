@@ -340,11 +340,9 @@ async function offerMore(chat, s) {
     const counts = rest
         .map((r) => ({ r, n: buildQueue(r, s.answered).length }))
         .filter((x) => x.n > 0);
-    const rows = counts.map((x) => [
-        { text: `${x.r} (${x.n})`, callback_data: `more:${x.r}` },
-    ]);
-    // Оставшиеся нишевые пройденных ролей — отдельным опт-ином
-    // (без слова «нишевые»: для пользователя это просто инструменты)
+    // Первой — добивка своей роли (оставшиеся нишевые; без слова «нишевые»:
+    // для пользователя это просто инструменты), ниже — чужие роли
+    const rows = [];
     const niche = nichePool(s).length;
     if (niche)
         rows.push([
@@ -353,6 +351,9 @@ async function offerMore(chat, s) {
                 callback_data: "more:~niche",
             },
         ]);
+    counts.forEach((x) =>
+        rows.push([{ text: `${x.r} (${x.n})`, callback_data: `more:${x.r}` }]),
+    );
     if (!rows.length) return finish(chat, s);
     s.step = "offer";
     saveState();
