@@ -1,9 +1,9 @@
 # Ландшафт технологий 1С
 
-[![Сайт](https://img.shields.io/website?url=https%3A%2F%2Flandscape1c.ru&label=landscape1c.ru&up_message=%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD&down_message=%D0%BD%D0%B5%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%B5%D0%BD)](https://landscape1c.ru)
-[![Деплой](https://github.com/Oxotka/Landscape1C/actions/workflows/deploy.yml/badge.svg)](https://github.com/Oxotka/Landscape1C/actions/workflows/deploy.yml)
-[![Проверка данных](https://github.com/Oxotka/Landscape1C/actions/workflows/validate.yml/badge.svg)](https://github.com/Oxotka/Landscape1C/actions/workflows/validate.yml)
-[![Лицензия: MIT](https://img.shields.io/badge/лицензия-MIT-green.svg)](LICENSE)
+[![Сайт](https://img.shields.io/website?url=https%3A%2F%2Flandscape1c.ru&label=landscape1c.ru&up_message=%D0%BE%D0%BD%D0%BB%D0%B0%D0%B9%D0%BD&down_message=%D0%BD%D0%B5%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%B5%D0%BD&style=for-the-badge)](https://landscape1c.ru)
+[![Деплой](https://img.shields.io/github/actions/workflow/status/Oxotka/Landscape1C/deploy.yml?branch=main&style=for-the-badge&label=%D0%B4%D0%B5%D0%BF%D0%BB%D0%BE%D0%B9)](https://github.com/Oxotka/Landscape1C/actions/workflows/deploy.yml)
+[![Проверка данных](https://img.shields.io/github/actions/workflow/status/Oxotka/Landscape1C/validate.yml?branch=main&style=for-the-badge&label=%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85)](https://github.com/Oxotka/Landscape1C/actions/workflows/validate.yml)
+[![Лицензия: MIT](https://img.shields.io/badge/%D0%BB%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F-MIT-green?style=for-the-badge)](LICENSE)
 
 Интерактивная карта экосистемы технологий для разработчика на 1С и около 1С.
 
@@ -48,7 +48,7 @@
 
 Все инструменты и их связи «Аналоги»/«Зависимости» на одной интерактивной карте: кластеры по блокам, клик по узлу открывает карточку.
 
-<img src="docs/screenshot-graph.png" alt="Граф связей между инструментами" width="100%" />
+<img src="docs/screenshot-graph.jpg" alt="Граф связей между инструментами" width="100%" />
 
 ## Как предложить инструмент или поправить карточку
 
