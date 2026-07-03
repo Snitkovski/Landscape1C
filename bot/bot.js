@@ -233,15 +233,37 @@ const shuffle = (a) => {
     return a;
 };
 // Очередь роли: карточки роли без уже отвеченных, базовые раньше нишевых,
-// внутри уровня зрелости — случайный порядок (без позиционного смещения)
+// внутри уровня зрелости — случайный порядок (без позиционного смещения).
+// Начинающим нишевые в основную очередь не кладем — предложим отдельно
 const MAT = { базовое: 0, продвинутое: 1, нишевое: 2 };
-const buildQueue = (role, answered) => {
+const buildQueue = (role, answered, level) => {
     const pool = L.items.filter(
-        (i) => (i.roles || []).includes(role) && !answered.includes(i.name),
+        (i) =>
+            (i.roles || []).includes(role) &&
+            !answered.includes(i.name) &&
+            (level !== "начинающий" || i.maturity !== "нишевое"),
     );
     return shuffle(pool)
         .sort((a, b) => (MAT[a.maturity] ?? 9) - (MAT[b.maturity] ?? 9))
         .map((i) => i.name);
+};
+// Нишевые, отложенные у начинающего: по ролям, которые он уже проходил
+const nichePool = (s) =>
+    shuffle(
+        L.items.filter(
+            (i) =>
+                i.maturity === "нишевое" &&
+                !s.answered.includes(i.name) &&
+                (i.roles || []).some((r) => s.doneRoles.includes(r)),
+        ),
+    ).map((i) => i.name);
+const plural = (n, one, few, many) => {
+    const d10 = n % 10,
+        d100 = n % 100;
+    if (d100 >= 11 && d100 <= 14) return many;
+    if (d10 === 1) return one;
+    if (d10 >= 2 && d10 <= 4) return few;
+    return many;
 };
 const byName = (n) => L.items.find((i) => i.name === n);
 
@@ -293,19 +315,27 @@ async function offerMore(chat, s) {
     if (!s.doneRoles.includes(s.block)) s.doneRoles.push(s.block);
     const rest = ROLES.filter((r) => !s.doneRoles.includes(r));
     const counts = rest
-        .map((r) => ({ r, n: buildQueue(r, s.answered).length }))
+        .map((r) => ({ r, n: buildQueue(r, s.answered, s.level).length }))
         .filter((x) => x.n > 0);
-    if (!counts.length) return finish(chat, s);
+    const rows = counts.map((x) => [
+        { text: `${x.r} (${x.n})`, callback_data: `more:${x.r}` },
+    ]);
+    // Отложенные нишевые начинающего — отдельным опт-ином
+    const niche = s.level === "начинающий" ? nichePool(s).length : 0;
+    if (niche)
+        rows.push([
+            {
+                text: `🔍 нишевые инструменты (${niche})`,
+                callback_data: "more:~niche",
+            },
+        ]);
+    if (!rows.length) return finish(chat, s);
     s.step = "offer";
     saveState();
     await send(
         chat,
-        `Блок пройден, спасибо! Ответов: <b>${s.answered.length}</b>.\n\nМожно посмотреть инструменты других ролей — это по желанию:`,
-        counts
-            .map((x) => [
-                { text: `${x.r} (${x.n})`, callback_data: `more:${x.r}` },
-            ])
-            .concat([[{ text: "🏁 Завершить", callback_data: "more:-" }]]),
+        `Блок пройден, спасибо! Ответов: <b>${s.answered.length}</b>.\n\nМожно продолжить — это по желанию:`,
+        rows.concat([[{ text: "🏁 Завершить", callback_data: "more:-" }]]),
     );
 }
 
@@ -418,6 +448,19 @@ async function startIntro(chat, keepAnswered) {
     );
 }
 
+const askRole = (chat) =>
+    send(
+        chat,
+        "<b>Кто ты по роли?</b>\n\n" +
+            "Как мы их понимаем:\n" +
+            "- <b>Разработчик</b> — код и запросы, конфигурации и расширения, юнит-тесты, интеграции, автоматизация на OneScript\n" +
+            "- <b>Администратор</b> (включая devops) — платформа, кластер, СУБД, бэкапы и обновления, CI-инфраструктура, мониторинг и производительность\n" +
+            "- <b>Тестировщик</b> — функциональное тестирование, автотесты (Vanessa, Сценарное тестирование), прогоны в CI, баг-трекеры\n" +
+            "- <b>Аналитик</b> (функциональный консультант) — требования и ТЗ, бизнес-процессы, прототипы, приемочные сценарии, настройка типовых, отчеты\n\n" +
+            "Совмещаешь — выбирай ту, где проводишь больше времени\nПотом можно будет пройти и для другой роли",
+        btnRows(ROLES, "role"),
+    );
+
 const RESET_WORDS = ["/reset", "сброс", "сбросить", "заново"];
 async function onMessage(m) {
     const chat = m.chat.id;
@@ -519,21 +562,13 @@ async function onCallback(q) {
         return startIntro(chat);
     }
     if (kind === "go" && s.step === "intro") {
+        hideCard(chat, q.message.message_id); // онбординг не захламляет чат
         s.step = "role";
         saveState();
-        return send(
-            chat,
-            "<b>Кто ты по роли?</b>\n\n" +
-                "Как мы их понимаем:\n" +
-                "- <b>Разработчик</b> — код и запросы, конфигурации и расширения, юнит-тесты, интеграции, автоматизация на OneScript\n" +
-                "- <b>Администратор</b> (включая devops) — платформа, кластер, СУБД, бэкапы и обновления, CI-инфраструктура, мониторинг и производительность\n" +
-                "- <b>Тестировщик</b> — функциональное тестирование, автотесты (Vanessa, Сценарное тестирование), прогоны в CI, баг-трекеры\n" +
-                "- <b>Аналитик</b> (функциональный консультант) — требования и ТЗ, бизнес-процессы, прототипы, приемочные сценарии, настройка типовых, отчеты\n\n" +
-                "Совмещаешь — выбирай ту, где проводишь больше времени\nПотом можно будет пройти и для другой роли",
-            btnRows(ROLES, "role"),
-        );
+        return askRole(chat);
     }
     if (kind === "role" && s.step === "role") {
+        hideCard(chat, q.message.message_id);
         s.role = val;
         s.step = "level";
         saveState();
@@ -547,6 +582,7 @@ async function onCallback(q) {
         );
     }
     if (kind === "level" && s.step === "level") {
+        hideCard(chat, q.message.message_id);
         s.level = val;
         s.step = "context";
         saveState();
@@ -561,17 +597,36 @@ async function onCallback(q) {
         );
     }
     if (kind === "ctx" && s.step === "context") {
+        hideCard(chat, q.message.message_id);
         s.context = val;
+        s.step = "confirm";
+        saveState();
+        const n = buildQueue(s.role, s.answered, s.level).length;
+        return send(
+            chat,
+            `<b>Проверим:</b>\n\n- роль: <b>${s.role}</b>\n- уровень: <b>${s.level}</b>\n- контекст: <b>${s.context}</b>\n\nВпереди <b>${n}</b> ${plural(n, "инструмент", "инструмента", "инструментов")} твоей роли, от базовых к продвинутым. Все ок?`,
+            [
+                [
+                    { text: "✅ Все ок, начинаем", callback_data: "ok:" },
+                    { text: "✏️ Исправить", callback_data: "redo:" },
+                ],
+            ],
+        );
+    }
+    if (kind === "ok" && s.step === "confirm") {
+        hideCard(chat, q.message.message_id);
         s.block = s.role;
-        s.queue = buildQueue(s.block, s.answered);
+        s.queue = buildQueue(s.block, s.answered, s.level);
         s.pos = 0;
         s.step = "quiz";
         saveState();
-        await send(
-            chat,
-            `Поехали: инструменты роли «${s.role}» — ${s.queue.length} шт. Сначала базовые, дальше интереснее.`,
-        );
         return sendCard(chat, s);
+    }
+    if (kind === "redo" && s.step === "confirm") {
+        hideCard(chat, q.message.message_id);
+        s.step = "role";
+        saveState();
+        return askRole(chat);
     }
     if (kind === "a" && (s.step === "quiz" || s.step === "fix")) {
         // Висящий сентимент прошлой карточки — дозаписываем без него
@@ -632,8 +687,14 @@ async function onCallback(q) {
     }
     if (kind === "more" && s.step === "offer") {
         if (val === "-") return finish(chat, s);
-        s.block = val;
-        s.queue = buildQueue(val, s.answered);
+        if (val === "~niche") {
+            // Отложенные нишевые: блоком остается своя роль
+            s.block = s.role;
+            s.queue = nichePool(s);
+        } else {
+            s.block = val;
+            s.queue = buildQueue(val, s.answered, s.level);
+        }
         s.pos = 0;
         s.step = "quiz";
         saveState();
