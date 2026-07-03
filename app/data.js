@@ -1,6 +1,6 @@
 // Данные ландшафта (Вариант B). Сгенерировано редактором разметки (editor.html).
 window.LANDSCAPE = {
-  "updated": "27 июня 2026",
+  "updated": "3 июля 2026",
   "categories": [
     "Прототипирование",
     "Диаграммы",
@@ -9637,6 +9637,47 @@ window.LANDSCAPE = {
       ],
       "depends": [
         "OneScript"
+      ]
+    },
+    {
+      "name": "Плагин для VSCode «1C:Enterprise.Element Script»",
+      "added": "2026-07-03",
+      "updated": "2026-07-03",
+      "category": "Плагины и расширения",
+      "subcategory": "Для VSCode",
+      "logo": "element-script-vscode.png",
+      "description": "Официальное расширение VSCode для языка 1С:Скрипт (Элемент Скрипт)",
+      "why": "Разработка на 1С:Скрипт (бывший 1С:Исполнитель) прямо в VSCode: подсветка, автодополнение, запуск и отладка скриптов — плагин от самой фирмы 1С",
+      "homepage": null,
+      "repo": null,
+      "start": [
+        {
+          "label": "Visual Studio Marketplace",
+          "url": "https://marketplace.visualstudio.com/items?itemName=1c-soft.1c-executor-plugin"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "отечественное",
+      "license": "бесплатное",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "1с скрипт",
+        "элемент скрипт плагин",
+        "1c executor",
+        "исполнитель vscode",
+        "element script"
+      ],
+      "depends": [
+        "Visual Studio Code (VSCode)",
+        "1C:Предприятие.Элемент Скрипт"
       ]
     }
   ]
