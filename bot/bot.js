@@ -401,22 +401,40 @@ async function sendFixCard(chat, s, name) {
 }
 
 // ── Обработка апдейтов ──
+async function startIntro(chat, keepAnswered) {
+    state[chat] = {
+        step: "intro",
+        answered: keepAnswered || [],
+        doneRoles: [],
+    };
+    saveState();
+    await send(
+        chat,
+        `Привет! Это опрос от <b>Ландшафта технологий 1С</b> — landscape1c.ru.\n\nМы собрали карту из ${L.items.length} инструментов экосистемы 1С и хотим проверить ее реальное состояние: что сообщество правда использует, о чем только слышало, а что знает полтора человека.\n\nПро каждый инструмент один вопрос: <b>работал / слышал / не знаю</b>. Займет сколько захочешь — прерваться можно в любой момент, прогресс сохранится.`,
+        [[{ text: "🙌 Я в деле", callback_data: "go:" }]],
+    );
+}
+
+const RESET_WORDS = ["/reset", "сброс", "сбросить", "заново"];
 async function onMessage(m) {
     const chat = m.chat.id;
     const s = state[chat];
-    if (m.text === "/start" || !s) {
-        state[chat] = {
-            step: "intro",
-            answered: (s && s.answered) || [],
-            doneRoles: [],
-        };
-        saveState();
-        await send(
+    const cmd = (m.text || "").trim().toLowerCase();
+    // Сброс: стираем ответы и прогресс пользователя (с подтверждением)
+    if (RESET_WORDS.includes(cmd) && s) {
+        return send(
             chat,
-            `Привет! Это опрос от <b>Ландшафта технологий 1С</b> — landscape1c.ru.\n\nМы собрали карту из ${L.items.length} инструментов экосистемы 1С и хотим проверить ее реальное состояние: что сообщество правда использует, о чем только слышало, а что знает полтора человека.\n\nПро каждый инструмент один вопрос: <b>работал / слышал / не знаю</b>. Займет сколько захочешь — прерваться можно в любой момент, прогресс сохранится.`,
-            [[{ text: "🙌 Я в деле", callback_data: "go:" }]],
+            "Стереть все твои ответы и прогресс? Это необратимо — опрос начнется с чистого листа.",
+            [
+                [
+                    { text: "🧹 Да, стереть", callback_data: "reset:yes" },
+                    { text: "Отмена", callback_data: "reset:no" },
+                ],
+            ],
         );
-        return;
+    }
+    if (m.text === "/start" || !s) {
+        return startIntro(chat, s && s.answered);
     }
     // Любой текст посреди опроса — повторяем текущий шаг
     if (s.step === "quiz") await sendCard(chat, s);
@@ -468,6 +486,31 @@ async function onCallback(q) {
     if (!s) return;
     const [kind, val] = q.data.split(/:(.*)/);
 
+    if (kind === "reset") {
+        if (val === "no") return send(chat, "Ок, ничего не трогаю 👌");
+        // Стираем ответы пользователя из журнала и прогресс из состояния
+        if (fs.existsSync(ANSWERS)) {
+            const keep = fs
+                .readFileSync(ANSWERS, "utf8")
+                .split("\n")
+                .filter(Boolean)
+                .filter((l) => {
+                    try {
+                        return JSON.parse(l).uid !== uid(chat);
+                    } catch (e) {
+                        return true;
+                    }
+                });
+            fs.writeFileSync(
+                ANSWERS,
+                keep.length ? keep.join("\n") + "\n" : "",
+            );
+        }
+        delete state[chat];
+        saveState();
+        await send(chat, "Все стерто 🧹 Начинаем с чистого листа.");
+        return startIntro(chat);
+    }
     if (kind === "go" && s.step === "intro") {
         s.step = "role";
         saveState();
