@@ -1883,6 +1883,10 @@ window.LANDSCAPE = {
       "repo": null,
       "start": [
         {
+          "label": "Командная разработка в хранилище конфигурации - это просто",
+          "url": "https://infostart.ru/1c/articles/1443756/"
+        },
+        {
           "label": "Хранилище конфигурации: создание и использование",
           "url": "https://infostart.ru/1c/articles/63841/"
         },
@@ -4360,6 +4364,10 @@ window.LANDSCAPE = {
         {
           "label": "OpenAPI на практике: пошаговое руководство",
           "url": "https://habr.com/ru/companies/first/articles/973186/"
+        },
+        {
+          "label": "Swagger (OpenAPI 3.0): подробный разбор спецификации",
+          "url": "https://habr.com/ru/articles/541592/"
         },
         {
           "label": "Swagger для 1С",
