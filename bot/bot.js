@@ -30,6 +30,29 @@ const LEVELS = ["начинающий", "опытный", "эксперт"];
 const LOGOS = path.join(__dirname, "..", "app", "logos");
 const CACHE = path.join(__dirname, "logo-cache");
 fs.mkdirSync(CACHE, { recursive: true });
+// SVG без viewBox QuickLook рисует мелко в углу холста 512: подставляем
+// viewBox из width/height и раздуваем сами width/height до 512 (маленькие
+// интринсик-размеры QuickLook не апскейлит) — рендерим правленую копию
+const svgSrc = (f) => {
+    const orig = path.join(LOGOS, f);
+    const raw = fs.readFileSync(orig, "utf8");
+    if (/viewBox=/.test(raw)) return orig;
+    const m = raw.match(
+        /<svg[^>]*?\bwidth="([\d.]+)(?:px)?"[^>]*?\bheight="([\d.]+)(?:px)?"/,
+    );
+    if (!m) return orig;
+    const patched = raw
+        .replace(/\bwidth="[\d.]+(?:px)?"/, `width="512"`)
+        .replace(
+            /\bheight="[\d.]+(?:px)?"/,
+            `height="${Math.round((512 * m[2]) / m[1])}"`,
+        )
+        .replace(/<svg/, `<svg viewBox="0 0 ${m[1]} ${m[2]}"`);
+    const tmp = path.join(CACHE, "_src");
+    fs.mkdirSync(tmp, { recursive: true });
+    fs.writeFileSync(path.join(tmp, f), patched);
+    return path.join(tmp, f);
+};
 const svgs = [...new Set(L.items.map((i) => i.logo).filter(Boolean))]
     .filter((f) => /\.svg$/i.test(f))
     .filter(
@@ -41,14 +64,7 @@ if (svgs.length) {
     try {
         execFileSync(
             "qlmanage",
-            [
-                "-t",
-                "-s",
-                "512",
-                "-o",
-                CACHE,
-                ...svgs.map((f) => path.join(LOGOS, f)),
-            ],
+            ["-t", "-s", "512", "-o", CACHE, ...svgs.map(svgSrc)],
             {
                 stdio: "ignore",
             },
@@ -56,6 +72,7 @@ if (svgs.length) {
     } catch (e) {
         console.error("рендер логотипов:", e.message);
     }
+    fs.rmSync(path.join(CACHE, "_src"), { recursive: true, force: true });
 }
 const logoFile = (i) => {
     if (!i.logo) return null;
@@ -121,8 +138,37 @@ const send = (chat, text, keyboard) =>
         parse_mode: "HTML",
         reply_markup: keyboard ? { inline_keyboard: keyboard } : undefined,
     });
-// sendPhoto с загрузкой файла — multipart руками (зависимостей нет)
-const sendPhoto = (chat, file, caption, keyboard) =>
+// Кэш telegram file_id по файлу логотипа: первый показ грузит файл,
+// дальше фото уходит мгновенно по идентификатору — в этом вся скорость
+const FILEIDS = path.join(__dirname, "file-ids.json");
+let fileIds = {};
+try {
+    fileIds = JSON.parse(fs.readFileSync(FILEIDS, "utf8"));
+} catch (e) {}
+const sendPhoto = async (chat, file, caption, keyboard) => {
+    if (fileIds[file]) {
+        try {
+            return await api("sendPhoto", {
+                chat_id: chat,
+                photo: fileIds[file],
+                caption,
+                parse_mode: "HTML",
+                reply_markup: keyboard
+                    ? { inline_keyboard: keyboard }
+                    : undefined,
+            });
+        } catch (e) {} // file_id протух — перезаливаем файлом
+    }
+    const res = await uploadPhoto(chat, file, caption, keyboard);
+    const ph = res.photo && res.photo[res.photo.length - 1];
+    if (ph) {
+        fileIds[file] = ph.file_id;
+        fs.writeFileSync(FILEIDS, JSON.stringify(fileIds));
+    }
+    return res;
+};
+// Загрузка фото файлом — multipart руками (зависимостей нет)
+const uploadPhoto = (chat, file, caption, keyboard) =>
     new Promise((resolve, reject) => {
         const b = "----landscape" + Date.now();
         const fields = { chat_id: String(chat), caption, parse_mode: "HTML" };
@@ -203,8 +249,8 @@ const EXP_BTNS = [
     [
         { text: "✅ Работал", callback_data: "a:работал" },
         { text: "👂 Слышал", callback_data: "a:слышал" },
-        { text: "🤷 Не знаю", callback_data: "a:не знаю" },
     ],
+    [{ text: "🤷 Не знаю", callback_data: "a:не знаю" }],
 ];
 const SENT = {
     работал: [
@@ -268,8 +314,90 @@ async function finish(chat, s) {
     saveState();
     await send(
         chat,
-        `Готово! Ответов записано: <b>${s.answered.length}</b>.\n\nЭто волна ${WAVE} года — результаты появятся на landscape1c.ru после закрытия сбора. Вернуться и продолжить можно в любой момент: /start`,
+        `Готово! Ответов записано: <b>${s.answered.length}</b>.\n\nЭто волна ${WAVE} года — результаты появятся на landscape1c.ru после закрытия сбора.\n\nЗаметил ошибку в ответах — напиши название инструмента, поправим.`,
+        [[{ text: "📋 Мои ответы", callback_data: "sum:0" }]],
     );
+}
+
+// ── Итоговый список и исправление ответов ──
+// Последний ответ пользователя по каждому инструменту из журнала
+const myAnswers = (chat) => {
+    if (!fs.existsSync(ANSWERS)) return [];
+    const my = new Map();
+    fs.readFileSync(ANSWERS, "utf8")
+        .split("\n")
+        .filter(Boolean)
+        .forEach((l) => {
+            try {
+                const r = JSON.parse(l);
+                if (r.uid === uid(chat)) my.set(r.tool, r);
+            } catch (e) {}
+        });
+    return [...my.values()];
+};
+const ANS_MARK = { работал: "✅", слышал: "👂", "не знаю": "🤷" };
+const SENT_MARK = { да: " 👍", нет: " 👎" };
+const CP_BTNS = [
+    [
+        { text: "▶️ Продолжаем", callback_data: "cont:" },
+        { text: "⏸ Пауза", callback_data: "pause:" },
+    ],
+];
+const PAGE = 40;
+async function sendSummary(chat, page) {
+    const rows = myAnswers(chat);
+    if (!rows.length) return send(chat, "Ответов пока нет.");
+    const order = { работал: 0, слышал: 1, "не знаю": 2 };
+    rows.sort(
+        (a, b) =>
+            order[a.answer] - order[b.answer] ||
+            a.tool.localeCompare(b.tool, "ru"),
+    );
+    const pages = Math.ceil(rows.length / PAGE);
+    const p = Math.min(Math.max(page, 0), pages - 1);
+    const lines = rows
+        .slice(p * PAGE, p * PAGE + PAGE)
+        .map(
+            (r) =>
+                `${ANS_MARK[r.answer]} ${esc(r.tool)}${(r.sentiment && SENT_MARK[r.sentiment]) || ""}`,
+        );
+    const nav = [];
+    if (p > 0) nav.push({ text: "⬅️", callback_data: `sum:${p - 1}` });
+    if (p < pages - 1) nav.push({ text: "➡️", callback_data: `sum:${p + 1}` });
+    await send(
+        chat,
+        `Твои ответы${pages > 1 ? ` (стр. ${p + 1}/${pages})` : ""}:\n\n${lines.join("\n")}\n\nОшибся где-то — напиши название инструмента, исправим.`,
+        nav.length ? [nav] : undefined,
+    );
+}
+// Исправление записано — возвращаемся, откуда пришли (финал или чекпоинт)
+async function fixDone(chat, s, what) {
+    const back = s.fixReturn || "done";
+    s.step = back;
+    s.fixReturn = null;
+    saveState();
+    if (back === "checkpoint")
+        return send(chat, `Исправлено: ${what}`, CP_BTNS);
+    return send(chat, `Исправлено: ${what}`);
+}
+// Карточка исправления: тот же вопрос, но вне очереди опроса.
+// Запоминаем, откуда пришли (финал или чекпоинт), чтобы вернуться туда же
+async function sendFixCard(chat, s, name) {
+    if (s.step !== "fix") s.fixReturn = s.step;
+    s.step = "fix";
+    s.fixTool = name;
+    saveState();
+    const i = byName(name);
+    const text =
+        `<b>${esc(i.name)}</b>  <i>(исправление)</i>\n\n` +
+        esc(i.description) +
+        (i.why ? `\n\n💡 ${esc(i.why)}` : "");
+    const logo = logoFile(i);
+    if (logo)
+        await sendPhoto(chat, logo, text, EXP_BTNS).catch(() =>
+            send(chat, text, EXP_BTNS),
+        );
+    else await send(chat, text, EXP_BTNS);
 }
 
 // ── Обработка апдейтов ──
@@ -292,19 +420,51 @@ async function onMessage(m) {
     }
     // Любой текст посреди опроса — повторяем текущий шаг
     if (s.step === "quiz") await sendCard(chat, s);
-    else if (s.step === "done")
-        await send(
+    else if (s.step === "paused") {
+        s.step = "quiz";
+        saveState();
+        await send(chat, "С возвращением! 👋 Продолжаем с того же места.");
+        await sendCard(chat, s);
+    } else if (
+        s.step === "done" ||
+        s.step === "fix" ||
+        s.step === "checkpoint"
+    ) {
+        // После финиша любой текст — поиск инструмента для исправления ответа
+        const query = (m.text || "").trim().toLowerCase();
+        if (!query) return;
+        const cand = myAnswers(chat)
+            .map((r) => r.tool)
+            .filter((n) => {
+                const i = byName(n);
+                const hay = [n, ...((i && i.aliases) || [])]
+                    .join(" ")
+                    .toLowerCase();
+                return hay.includes(query);
+            });
+        if (!cand.length)
+            return send(
+                chat,
+                "Не нашел такого среди твоих ответов. Попробуй написать название по-другому, или /start — пройти опрос заново.",
+            );
+        if (cand.length === 1) return sendFixCard(chat, s, cand[0]);
+        if (cand.length > 6)
+            return send(chat, `Нашлось ${cand.length} — уточни название.`);
+        s.fixList = cand;
+        saveState();
+        return send(
             chat,
-            "Опрос пройден. Начать заново или продолжить другими ролями: /start",
+            "Какой из них?",
+            cand.map((n, i) => [{ text: n, callback_data: `fixpick:${i}` }]),
         );
+    }
 }
 
 async function onCallback(q) {
     const chat = q.message.chat.id;
     const s = state[chat];
-    await api("answerCallbackQuery", { callback_query_id: q.id }).catch(
-        () => {},
-    );
+    // Не ждем подтверждение нажатия — экономим круг до сервера на каждом тапе
+    api("answerCallbackQuery", { callback_query_id: q.id }).catch(() => {});
     if (!s) return;
     const [kind, val] = q.data.split(/:(.*)/);
 
@@ -362,19 +522,21 @@ async function onCallback(q) {
         );
         return sendCard(chat, s);
     }
-    if (kind === "a" && s.step === "quiz") {
+    if (kind === "a" && (s.step === "quiz" || s.step === "fix")) {
         // Висящий сентимент прошлой карточки — дозаписываем без него
         if (s.pending) {
             record(s, chat, s.pending.tool, s.pending.answer, null);
             s.pending = null;
         }
-        const tool = s.queue[s.pos];
+        const isFix = s.step === "fix";
+        const tool = isFix ? s.fixTool : s.queue[s.pos];
         if (val === "не знаю") {
             record(s, chat, tool, val, null);
-            await hideCard(chat, q.message.message_id);
+            hideCard(chat, q.message.message_id); // не ждем — следующая карточка уходит сразу
+            if (isFix) return fixDone(chat, s, `${esc(tool)} — не знаю 🤷`);
             return next(chat, s);
         }
-        s.pending = { tool, answer: val };
+        s.pending = { tool, answer: val, fix: isFix };
         saveState();
         return api("editMessageReplyMarkup", {
             chat_id: chat,
@@ -391,16 +553,31 @@ async function onCallback(q) {
         );
     }
     if (kind === "s" && s.pending) {
-        record(
-            s,
-            chat,
-            s.pending.tool,
-            s.pending.answer,
-            val === "-" ? null : val,
-        );
+        const { tool, answer, fix } = s.pending;
+        record(s, chat, tool, answer, val === "-" ? null : val);
         s.pending = null;
-        await hideCard(chat, q.message.message_id);
+        hideCard(chat, q.message.message_id);
+        if (fix) return fixDone(chat, s, `${esc(tool)} ✍️`);
         return next(chat, s);
+    }
+    if (kind === "sum") return sendSummary(chat, +val || 0);
+    if (kind === "fixpick" && s.fixList && s.fixList[+val]) {
+        const name = s.fixList[+val];
+        s.fixList = null;
+        return sendFixCard(chat, s, name);
+    }
+    if (kind === "cont" && s.step === "checkpoint") {
+        s.step = "quiz";
+        saveState();
+        return sendCard(chat, s);
+    }
+    if (kind === "pause" && s.step === "checkpoint") {
+        s.step = "paused";
+        saveState();
+        return send(
+            chat,
+            "Прогресс сохранен 👌\n\nВозвращайся, когда удобно: просто напиши боту что-нибудь — продолжим с того же места.",
+        );
     }
     if (kind === "more" && s.step === "offer") {
         if (val === "-") return finish(chat, s);
@@ -426,7 +603,12 @@ function record(s, chat, tool, answer, sentiment) {
         answer,
         sentiment,
     });
-    s.answered.push(tool);
+    // При исправлении инструмент уже в answered — не дублируем
+    if (!s.answered.includes(tool)) s.answered.push(tool);
+    // Последняя десятка — для сводки на чекпоинте
+    s.recent = s.recent || [];
+    s.recent.push({ tool, answer, sentiment });
+    if (s.recent.length > 10) s.recent.shift();
 }
 // Поощрялки каждые 10 ответов; чем ближе конец блока, тем радостнее.
 // Без повторов, пока пул уровня не исчерпан (s.cheered — уже показанные)
@@ -477,6 +659,8 @@ const CHEERS = [
 async function next(chat, s) {
     s.pos++;
     saveState();
+    // Чекпоинт каждые 10 ответов: прогресс + поощрялка + продолжить/пауза,
+    // следующая карточка не шлется, пока не нажали «Продолжаем»
     if (s.pos % 10 === 0 && s.pos < s.queue.length) {
         const p = s.pos / s.queue.length;
         const tier = CHEERS[p < 0.4 ? 0 : p < 0.75 ? 1 : 2];
@@ -485,8 +669,20 @@ async function next(chat, s) {
         if (!pool.length) pool = tier; // пул исчерпан — идем по второму кругу
         const cheer = pool[Math.floor(Math.random() * pool.length)];
         s.cheered.push(cheer);
+        s.step = "checkpoint";
+        const recent = (s.recent || [])
+            .map(
+                (r) =>
+                    `${ANS_MARK[r.answer]} ${esc(r.tool)}${(r.sentiment && SENT_MARK[r.sentiment]) || ""}`,
+            )
+            .join("\n");
+        s.recent = [];
         saveState();
-        await send(chat, cheer);
+        return send(
+            chat,
+            `Пройдено <b>${s.pos}</b> из ${s.queue.length} — вот как ты ответил. Спасибо!\n\n${recent}\n\n${cheer}\n\nОшибся в чем-то — напиши название инструмента, поправим. Или двигаемся дальше!`,
+            CP_BTNS,
+        );
     }
     await sendCard(chat, s);
 }

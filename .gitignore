@@ -19,3 +19,4 @@ app/tools/
 bot/answers.jsonl
 bot/state.json
 bot/logo-cache/
+bot/file-ids.json
