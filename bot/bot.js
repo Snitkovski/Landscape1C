@@ -487,7 +487,9 @@ async function onCallback(q) {
     const [kind, val] = q.data.split(/:(.*)/);
 
     if (kind === "reset") {
-        if (val === "no") return send(chat, "Ок, ничего не трогаю 👌");
+        // Служебные сообщения сброса в чате не задерживаются
+        hideCard(chat, q.message.message_id);
+        if (val === "no") return;
         // Стираем ответы пользователя из журнала и прогресс из состояния
         if (fs.existsSync(ANSWERS)) {
             const keep = fs
@@ -508,7 +510,9 @@ async function onCallback(q) {
         }
         delete state[chat];
         saveState();
-        await send(chat, "Все стерто 🧹 Начинаем с чистого листа.");
+        // «Все стерто» — как тост: показали и через пару секунд убрали
+        const note = await send(chat, "Все стерто 🧹").catch(() => null);
+        if (note) setTimeout(() => hideCard(chat, note.message_id), 3000);
         return startIntro(chat);
     }
     if (kind === "go" && s.step === "intro") {
