@@ -5,6 +5,7 @@
 # Запуск: ./start.command или python3 scripts/serve.py  →  http://127.0.0.1:8123/editor.html
 import http.server
 import os
+import shutil
 import subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -12,14 +13,19 @@ APP = os.path.join(ROOT, "app")
 DATA = os.path.join(APP, "data.js")
 PORT = 8123
 
+NO_NODE = "Node.js не найден — установите с nodejs.org (нужен для cachebust/validate/сборки; пакеты ставить не нужно)"
+
 
 def run_node(script):
     """Запускает scripts/<script>, возвращает (код, объединенный вывод)."""
-    r = subprocess.run(
-        ["node", os.path.join(ROOT, "scripts", script)],
-        capture_output=True,
-        text=True,
-    )
+    try:
+        r = subprocess.run(
+            ["node", os.path.join(ROOT, "scripts", script)],
+            capture_output=True,
+            text=True,
+        )
+    except FileNotFoundError:
+        return 127, NO_NODE
     return r.returncode, (r.stdout + r.stderr).strip()
 
 
@@ -57,6 +63,8 @@ if __name__ == "__main__":
     httpd = http.server.ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
     print(f"Ландшафт: http://127.0.0.1:{PORT}/")
     print(f"Редактор: http://127.0.0.1:{PORT}/editor.html  →  пишет в {DATA}")
+    if not shutil.which("node"):
+        print(f"⚠ {NO_NODE}")
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
