@@ -54,7 +54,7 @@ console.log("инструменты:",L.items.length,"| категории:",L.c
 
 **Автоматические** (не правь руками, прогони генератор):
 
-- `app/llms.txt` — число инструментов генерит `node scripts/sitegen.js` из `data.js`.
+- `app/llms.txt`, `app/sitemap.xml` и статические страницы карточек `app/tools/<слаг>.html` (посадочные для поисковиков; каталог в `.gitignore`, пересоздается с нуля) — генерит `node scripts/sitegen.js` из `data.js`.
 - `app/index.html` `#count`/`#count2`, `cat__num` в категориях и декоративный счётчик `.masthead__num` в шапке — проставляет `app.js` в рантайме (в HTML у `.masthead__num` стоит заведомо ненастоящий плейсхолдер `999` до загрузки JS — **не менять**).
 
 ## Команды
@@ -91,7 +91,7 @@ node scripts/validate.js
 node scripts/linkcheck.js
 ```
 
-Sitemap и llms.txt (`app/sitemap.xml`, `app/llms.txt` — каталог для поисковиков и ИИ-ассистентов) генерируются из `app/data.js`; прогонять после содержательных правок данных:
+Sitemap, llms.txt и статические страницы карточек (`app/sitemap.xml`, `app/llms.txt`, `app/tools/*.html` — посадочные для поисковиков и каталог для ИИ-ассистентов; JSON-LD SoftwareApplication на каждой) генерируются из `app/data.js`; прогонять после содержательных правок данных:
 
 ```bash
 node scripts/sitegen.js

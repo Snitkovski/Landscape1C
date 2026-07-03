@@ -60,10 +60,10 @@
 
 Ваш инструмент уже на карте? Поставьте бейдж в README — он ведет прямо на карточку:
 
-[![ландшафт 1С — на карте](https://img.shields.io/badge/%D0%BB%D0%B0%D0%BD%D0%B4%D1%88%D0%B0%D1%84%D1%82_1%D0%A1-%D0%BD%D0%B0_%D0%BA%D0%B0%D1%80%D1%82%D0%B5-C05020)](https://landscape1c.ru/)
+[![ландшафт 1С — на карте](https://img.shields.io/badge/%D0%BB%D0%B0%D0%BD%D0%B4%D1%88%D0%B0%D1%84%D1%82_1%D0%A1-%D0%BD%D0%B0_%D0%BA%D0%B0%D1%80%D1%82%D0%B5-2A7A20?style=for-the-badge)](https://landscape1c.ru/)
 
 ```markdown
-[![ландшафт 1С — на карте](https://img.shields.io/badge/%D0%BB%D0%B0%D0%BD%D0%B4%D1%88%D0%B0%D1%84%D1%82_1%D0%A1-%D0%BD%D0%B0_%D0%BA%D0%B0%D1%80%D1%82%D0%B5-C05020)](ССЫЛКА_НА_КАРТОЧКУ)
+[![ландшафт 1С — на карте](https://img.shields.io/badge/%D0%BB%D0%B0%D0%BD%D0%B4%D1%88%D0%B0%D1%84%D1%82_1%D0%A1-%D0%BD%D0%B0_%D0%BA%D0%B0%D1%80%D1%82%D0%B5-2A7A20?style=for-the-badge)](ССЫЛКА_НА_КАРТОЧКУ)
 ```
 
 Ссылку на карточку скопируйте кнопкой «Поделиться» прямо в ней (вида `https://landscape1c.ru/?tool=…`). Заметили неточность в своей карточке — там же есть ссылка на форму правки.
@@ -99,7 +99,7 @@ cd app && python3 -m http.server 8123
   - `nav.js` — общая навигация (знак, бургер-меню, выбор темы, подвал); `onboarding.js` — подсказки при первом визите; `404.html` — страница «не нашлась»
   - `editor.html` + `editor.js` — визуальный редактор разметки (на сайт не публикуется)
   - `styles.css`, `logos/` — оформление и логотипы
-- `scripts/` — `validate.js` (проверка целостности данных), `cachebust.js` (версии `?v=` ассетов по хешу содержимого), `sitegen.js` (sitemap.xml и llms.txt из данных), `linkcheck.js` (проверка внешних ссылок карточек на живость), `build.js` (сборка `dist/`), `serve.py` (пишущий сервер для редактора)
+- `scripts/` — `validate.js` (проверка целостности данных), `cachebust.js` (версии `?v=` ассетов по хешу содержимого), `sitegen.js` (sitemap.xml, llms.txt и статические страницы карточек `app/tools/` из данных), `linkcheck.js` (проверка внешних ссылок карточек на живость), `build.js` (сборка `dist/`), `serve.py` (пишущий сервер для редактора)
 - `docs/` — [TZ.md](docs/TZ.md) (замысел, принятые решения, планы) и [METHODOLOGY.md](docs/METHODOLOGY.md) (правила разметки осей)
 
 ## Данные и разметка
@@ -110,7 +110,7 @@ cd app && python3 -m http.server 8123
 ```bash
 python3 scripts/serve.py     # http://127.0.0.1:8123/editor.html
 node scripts/validate.js     # проверка целостности: оси, блоки, логотипы, связи
-node scripts/sitegen.js      # sitemap.xml + llms.txt после правок данных
+node scripts/sitegen.js      # sitemap.xml + llms.txt + страницы карточек tools/
 ```
 
 В редакторе же есть кнопка «Собрать dist» — прогоняет проверку данных, обновляет версии ассетов и собирает `dist/` для выгрузки на хостинг.
