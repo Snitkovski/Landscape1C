@@ -3,15 +3,16 @@
 (() => {
     const D = window.LANDSCAPE;
     const $ = (sel) => document.querySelector(sel);
-    const { wbr, logoMarkup } = window.LandscapeUI; // shared.js
+    const { wbr, logoMarkup, slugOf } = window.LandscapeUI; // shared.js
     const byName = (n) => D.items.find((x) => x.name === n);
 
-    // ── Дип-линки: открытая карточка отражается в URL (?tool=имя) ──
+    // ── Дип-линки: открытая карточка отражается в URL (?tool=слаг) ──
+    // Слаг латиницей — ссылка не превращается в percent-encoding при шаринге.
     // Остальные параметры (фильтры главной) не трогаем; app.js, в свою
     // очередь, сохраняет tool при перезаписи своих параметров.
-    const writeTool = (name) => {
+    const writeTool = (slug) => {
         const p = new URLSearchParams(location.search);
-        if (name) p.set("tool", name);
+        if (slug) p.set("tool", slug);
         else p.delete("tool");
         const qs = p.toString();
         history.replaceState(null, "", qs ? "?" + qs : location.pathname);
@@ -116,10 +117,7 @@
         const shareBtn = dlg.querySelector(".detail__share");
         shareBtn.addEventListener("click", async () => {
             const url =
-                location.origin +
-                location.pathname +
-                "?tool=" +
-                encodeURIComponent(i.name);
+                location.origin + location.pathname + "?tool=" + slugOf(i.name);
             if (navigator.share && matchMedia("(pointer: coarse)").matches) {
                 try {
                     await navigator.share({ title: i.name, url });
@@ -157,7 +155,7 @@
             }
         });
         if (!dlg.open) dlg.showModal();
-        writeTool(i.name);
+        writeTool(slugOf(i.name));
     }
 
     window.openDetail = openDetail;
@@ -170,11 +168,13 @@
         });
         // «close» ловит все пути закрытия (крестик, подложка, Esc)
         dlg.addEventListener("close", () => writeTool(null));
-        // Пришли по дип-линку — сразу открываем карточку
+        // Пришли по дип-линку — сразу открываем карточку.
+        // Понимаем и слаг, и имя (старые ссылки ?tool=Накидка продолжают жить)
         const wanted = new URLSearchParams(location.search).get("tool");
         if (wanted) {
+            const w = wanted.toLowerCase();
             const it = D.items.find(
-                (x) => x.name.toLowerCase() === wanted.toLowerCase(),
+                (x) => slugOf(x.name) === w || x.name.toLowerCase() === w,
             );
             if (it) openDetail(it);
         }

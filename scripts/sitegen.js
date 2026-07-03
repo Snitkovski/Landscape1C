@@ -12,6 +12,7 @@ const APP = path.join(__dirname, "..", "app");
 
 global.window = {};
 require(path.join(APP, "data.js"));
+require(path.join(APP, "shared.js")); // slugOf — общий с дип-линками сайта
 const D = global.window.LANDSCAPE;
 
 const PAGES = [
@@ -30,19 +31,7 @@ const PAGES = [
 ];
 
 // ── Слаги карточек (транслит имени, уникальность обязательна) ──
-const TR = {
-    а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ё: "e", ж: "zh",
-    з: "z", и: "i", й: "i", к: "k", л: "l", м: "m", н: "n", о: "o",
-    п: "p", р: "r", с: "s", т: "t", у: "u", ф: "f", х: "h", ц: "c",
-    ч: "ch", ш: "sh", щ: "sch", ъ: "", ы: "y", ь: "", э: "e", ю: "yu",
-    я: "ya",
-};
-const slugOf = (name) =>
-    name
-        .toLowerCase()
-        .replace(/[а-яё]/g, (ch) => TR[ch])
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
+const { slugOf } = global.window.LandscapeUI;
 const slugs = new Map(); // name → slug
 D.items.forEach((i) => {
     const s = slugOf(i.name);
@@ -158,8 +147,10 @@ function toolPage(i) {
         )
         .join("");
     const links = [
-        i.homepage && `<li><a href="${h(i.homepage)}" rel="noopener">Сайт</a></li>`,
-        i.repo && `<li><a href="${h(i.repo)}" rel="noopener">Репозиторий</a></li>`,
+        i.homepage &&
+            `<li><a href="${h(i.homepage)}" rel="noopener">Сайт</a></li>`,
+        i.repo &&
+            `<li><a href="${h(i.repo)}" rel="noopener">Репозиторий</a></li>`,
     ]
         .filter(Boolean)
         .join("");
@@ -220,7 +211,7 @@ ${section("С чего начать", starts ? `<ul>${starts}</ul>` : "")}
 ${section("Ссылки", links ? `<ul>${links}</ul>` : "")}
 ${section("Аналоги", analogs ? `<p>${analogs}</p>` : "")}
 ${section("Зависимости", depends ? `<p>${depends}</p>` : "")}
-<p class="tp__cta"><a class="empty__btn" href="../?tool=${encodeURIComponent(i.name)}">Открыть на карте →</a></p>
+<p class="tp__cta"><a class="empty__btn" href="../?tool=${slugs.get(i.name)}">Открыть на карте →</a></p>
 </div>
 </main>
 </body>

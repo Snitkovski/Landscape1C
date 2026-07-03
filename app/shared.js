@@ -45,7 +45,31 @@
         return many;
     };
 
-    window.LandscapeUI = { wbr, logoMarkup, sortItems, groupBySub, plural };
+    // Слаг карточки (транслит имени) — общий для дип-линков (?tool=слаг),
+    // «Поделиться» и статических страниц tools/<слаг>.html (sitegen.js).
+    // prettier-ignore
+    const TR = {
+        а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ё: "e", ж: "zh",
+        з: "z", и: "i", й: "i", к: "k", л: "l", м: "m", н: "n", о: "o",
+        п: "p", р: "r", с: "s", т: "t", у: "u", ф: "f", х: "h", ц: "c",
+        ч: "ch", ш: "sh", щ: "sch", ъ: "", ы: "y", ь: "", э: "e", ю: "yu",
+        я: "ya",
+    };
+    const slugOf = (name) =>
+        name
+            .toLowerCase()
+            .replace(/[а-яё]/g, (ch) => TR[ch])
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+
+    window.LandscapeUI = {
+        wbr,
+        logoMarkup,
+        sortItems,
+        groupBySub,
+        plural,
+        slugOf,
+    };
 
     // ── Общие отборы между страницами (localStorage) ──
     // Роль/контекст/зрелость/… переносятся между главной, путем, схемой и
