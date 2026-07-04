@@ -20,3 +20,5 @@ app/tools/
 bot/answers.jsonl
 bot/state.json
 bot/file-ids.json
+# Агрегат для внутренней витрины bot/results.html — генерит bot/aggregate.js
+bot/survey2026.js

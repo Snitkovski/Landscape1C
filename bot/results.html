@@ -1,0 +1,546 @@
+<!doctype html>
+<!-- Внутренняя витрина результатов опроса — НЕ публикуется (лежит в bot/,
+     в dist не попадает). Данные: bot/survey2026.js (node bot/aggregate.js).
+     Открывается локально через file://, зависимостей нет. -->
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex" />
+        <title>Опрос — результаты (внутреннее)</title>
+        <style>
+            :root {
+                --page: #f9f9f7;
+                --surface: #fcfcfb;
+                --ink: #0b0b0b;
+                --ink-2: #52514e;
+                --muted: #898781;
+                --grid: #e1e0d9;
+                --baseline: #c3c2b7;
+                --border: rgba(11, 11, 11, 0.1);
+                --series: #2a78d6;
+                --series-soft: #9ec5f4;
+            }
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --page: #0d0d0d;
+                    --surface: #1a1a19;
+                    --ink: #ffffff;
+                    --ink-2: #c3c2b7;
+                    --muted: #898781;
+                    --grid: #2c2c2a;
+                    --baseline: #383835;
+                    --border: rgba(255, 255, 255, 0.1);
+                    --series: #3987e5;
+                    --series-soft: #1c5cab;
+                }
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                background: var(--page);
+                color: var(--ink);
+                font:
+                    15px/1.45 system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    sans-serif;
+            }
+            .wrap {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 24px 20px 60px;
+            }
+            h1 {
+                font-size: 22px;
+                margin: 0 0 4px;
+            }
+            .sub {
+                color: var(--muted);
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+            .card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 10px;
+                padding: 16px 18px;
+                margin-bottom: 16px;
+            }
+            .card h2 {
+                font-size: 14px;
+                margin: 0 0 12px;
+                color: var(--ink-2);
+                font-weight: 600;
+            }
+            /* Плитки итогов */
+            .tiles {
+                display: flex;
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+            .tile {
+                flex: 1 1 120px;
+            }
+            .tile .num {
+                font-size: 28px;
+                font-weight: 700;
+            }
+            .tile .lbl {
+                font-size: 12px;
+                color: var(--muted);
+            }
+            /* Разбивки респондентов: строка = метка + полоса + число */
+            .bars {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 8px 28px;
+            }
+            .bar-row {
+                display: grid;
+                grid-template-columns: 110px 1fr 34px;
+                align-items: center;
+                gap: 8px;
+                font-size: 13px;
+            }
+            .bar-row .lbl {
+                color: var(--ink-2);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .bar-row .num {
+                text-align: right;
+                font-variant-numeric: tabular-nums;
+            }
+            .track {
+                height: 10px;
+                background: var(--grid);
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            .fill {
+                height: 100%;
+                background: var(--series);
+                border-radius: 4px;
+            }
+            /* Отбор по роли респондента */
+            .chips {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin-bottom: 16px;
+            }
+            .chip {
+                border: 1px solid var(--border);
+                background: var(--surface);
+                color: var(--ink-2);
+                border-radius: 999px;
+                padding: 5px 14px;
+                font-size: 13px;
+                cursor: pointer;
+            }
+            .chip.on {
+                background: var(--series);
+                border-color: var(--series);
+                color: #fff;
+            }
+            input[type="search"] {
+                border: 1px solid var(--border);
+                background: var(--surface);
+                color: var(--ink);
+                border-radius: 999px;
+                padding: 5px 14px;
+                font-size: 13px;
+                width: 220px;
+            }
+            /* Таблица инструментов */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 13px;
+            }
+            th,
+            td {
+                padding: 6px 10px;
+                text-align: right;
+                border-bottom: 1px solid var(--grid);
+                font-variant-numeric: tabular-nums;
+                white-space: nowrap;
+            }
+            th:first-child,
+            td:first-child {
+                text-align: left;
+                white-space: normal;
+            }
+            th {
+                color: var(--muted);
+                font-weight: 600;
+                cursor: pointer;
+                user-select: none;
+                position: sticky;
+                top: 0;
+                background: var(--surface);
+            }
+            th.sorted {
+                color: var(--ink);
+            }
+            td .mini {
+                display: inline-block;
+                width: 56px;
+                height: 8px;
+                background: var(--grid);
+                border-radius: 4px;
+                margin-left: 8px;
+                vertical-align: middle;
+                overflow: hidden;
+            }
+            td .mini i {
+                display: block;
+                height: 100%;
+                background: var(--series);
+                border-radius: 4px;
+            }
+            tr.low td {
+                color: var(--muted);
+            }
+            tr.low td .mini i {
+                background: var(--series-soft);
+            }
+            .note {
+                font-size: 12px;
+                color: var(--muted);
+                margin-top: 10px;
+            }
+            /* Квадрант */
+            #quad {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+            #quad text {
+                font:
+                    11px system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    sans-serif;
+                fill: var(--ink-2);
+            }
+            #quad .axis-lbl {
+                fill: var(--muted);
+            }
+            #quad .corner {
+                fill: var(--muted);
+                font-size: 10px;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+            }
+            #tip {
+                position: fixed;
+                display: none;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 8px 12px;
+                font-size: 12px;
+                pointer-events: none;
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+                z-index: 10;
+                max-width: 260px;
+            }
+            #tip b {
+                display: block;
+                margin-bottom: 3px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <h1>Опрос популярности — волна <span id="wave"></span></h1>
+            <div class="sub" id="gen"></div>
+
+            <div class="card">
+                <div class="tiles" id="tiles"></div>
+            </div>
+
+            <div class="card">
+                <h2>Респонденты</h2>
+                <div class="bars" id="resp"></div>
+            </div>
+
+            <div class="chips" id="chips"></div>
+
+            <div class="card">
+                <h2>
+                    Квадрант: использование × retention
+                    <span id="quadNote" style="font-weight: 400"></span>
+                </h2>
+                <svg id="quad" viewBox="0 0 1060 520"></svg>
+            </div>
+
+            <div class="card">
+                <h2 style="display: flex; justify-content: space-between">
+                    <span>Инструменты</span>
+                    <input
+                        id="q"
+                        type="search"
+                        placeholder="Поиск по названию"
+                    />
+                </h2>
+                <table id="tbl">
+                    <thead>
+                        <tr></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="note">
+                    Серые строки — меньше <span id="minN"></span> ответов («мало
+                    данных» по порогу публикации). Retention = «снова бы» /
+                    ответившие на второй вопрос; интерес = «хочу попробовать» /
+                    ответившие. Пропуск («Дальше») не считается.
+                </div>
+            </div>
+        </div>
+        <div id="tip"></div>
+
+        <script src="survey2026.js"></script>
+        <script>
+            "use strict";
+            const S = window.SURVEY;
+            const $ = (s) => document.querySelector(s);
+            const MIN_N = 10; // порог «мало данных» (как в плане публикации)
+            const QUAD_MIN = 5; // минимум работавших для точки квадранта
+
+            $("#wave").textContent = S.wave;
+            $("#gen").textContent =
+                `Сгенерировано ${new Date(S.generated).toLocaleString("ru-RU")} · внутренняя витрина, не публикуется`;
+            $("#minN").textContent = MIN_N;
+
+            // ── Срез по роли респондента ──
+            let role = ""; // пусто = все
+            let query = "";
+            const pct = (a, b) => (b ? Math.round((100 * a) / b) : null);
+            const fmt = (v) => (v === null ? "—" : v + "%");
+            // Счетчики инструмента в текущем срезе
+            const slice = (t) => (role ? t.byRole[role] : t) || null;
+
+            // ── Плитки ──
+            function tiles() {
+                const ts = S.tools.map(slice).filter(Boolean);
+                const answers = ts.reduce((s, t) => s + t.total, 0);
+                const resp = role
+                    ? S.respondents.byRole[role] || 0
+                    : S.respondents.total;
+                $("#tiles").innerHTML = [
+                    [resp, "респондентов"],
+                    [answers, "ответов"],
+                    [ts.length, "инструментов затронуто"],
+                    [
+                        ts.filter((t) => t.total >= MIN_N).length,
+                        `с ${MIN_N}+ ответами`,
+                    ],
+                ]
+                    .map(
+                        ([n, l]) =>
+                            `<div class="tile"><div class="num">${n}</div><div class="lbl">${l}</div></div>`,
+                    )
+                    .join("");
+            }
+
+            // ── Разбивки респондентов (всегда по всем — это профиль волны) ──
+            function respBars() {
+                const groups = [
+                    ["Роль", S.respondents.byRole],
+                    ["Уровень", S.respondents.byLevel],
+                    ["Контекст", S.respondents.byContext],
+                ];
+                const max = Math.max(
+                    ...groups.flatMap(([, g]) => Object.values(g)),
+                );
+                $("#resp").innerHTML = groups
+                    .map(([title, g]) =>
+                        Object.entries(g)
+                            .sort((a, b) => b[1] - a[1])
+                            .map(
+                                ([k, n], i) =>
+                                    `<div class="bar-row" title="${title}">` +
+                                    `<span class="lbl">${k}</span>` +
+                                    `<span class="track"><span class="fill" style="width:${(100 * n) / max}%"></span></span>` +
+                                    `<span class="num">${n}</span></div>`,
+                            )
+                            .join(""),
+                    )
+                    .join("");
+            }
+
+            // ── Кнопки среза ──
+            function chips() {
+                const roles = Object.keys(S.respondents.byRole);
+                $("#chips").innerHTML = ["", ...roles]
+                    .map(
+                        (r) =>
+                            `<button class="chip${r === role ? " on" : ""}" data-r="${r}">` +
+                            (r
+                                ? `${r} (${S.respondents.byRole[r]})`
+                                : "все роли") +
+                            "</button>",
+                    )
+                    .join("");
+            }
+            $("#chips").addEventListener("click", (e) => {
+                const b = e.target.closest(".chip");
+                if (!b) return;
+                role = b.dataset.r;
+                render();
+            });
+
+            // ── Таблица ──
+            const COLS = [
+                ["name", "Инструмент"],
+                ["total", "Ответов"],
+                ["known", "Узнаваемость"],
+                ["used", "Использование"],
+                ["retention", "Retention"],
+                ["interest", "Интерес"],
+            ];
+            let sortKey = "used";
+            let sortDir = -1;
+            const metrics = (t) => ({
+                total: t.total,
+                known: pct(t.used + t.heard, t.total),
+                used: pct(t.used, t.total),
+                retention: pct(t.again, t.again + t.notAgain),
+                interest: pct(t.want, t.want + t.notWant),
+            });
+            function table() {
+                $("#tbl thead tr").innerHTML = COLS.map(
+                    ([k, l]) =>
+                        `<th class="${k === sortKey ? "sorted" : ""}" data-k="${k}">${l}${k === sortKey ? (sortDir < 0 ? " ↓" : " ↑") : ""}</th>`,
+                ).join("");
+                const rows = S.tools
+                    .map((t) => {
+                        const s = slice(t);
+                        return s && { name: t.name, ...metrics(s) };
+                    })
+                    .filter(Boolean)
+                    .filter(
+                        (r) => !query || r.name.toLowerCase().includes(query),
+                    )
+                    .sort((a, b) => {
+                        const x = a[sortKey],
+                            y = b[sortKey];
+                        if (sortKey === "name")
+                            return sortDir * a.name.localeCompare(b.name, "ru");
+                        return sortDir * ((x ?? -1) - (y ?? -1));
+                    });
+                $("#tbl tbody").innerHTML = rows
+                    .map(
+                        (r) =>
+                            `<tr class="${r.total < MIN_N ? "low" : ""}">` +
+                            `<td>${r.name}</td><td>${r.total}</td>` +
+                            [r.known, r.used]
+                                .map(
+                                    (v) =>
+                                        `<td>${fmt(v)}<span class="mini"><i style="width:${v || 0}%"></i></span></td>`,
+                                )
+                                .join("") +
+                            `<td>${fmt(r.retention)}</td><td>${fmt(r.interest)}</td></tr>`,
+                    )
+                    .join("");
+            }
+            $("#tbl thead").addEventListener("click", (e) => {
+                const th = e.target.closest("th");
+                if (!th) return;
+                if (sortKey === th.dataset.k) sortDir = -sortDir;
+                else {
+                    sortKey = th.dataset.k;
+                    sortDir = sortKey === "name" ? 1 : -1;
+                }
+                table();
+            });
+            $("#q").addEventListener("input", (e) => {
+                query = e.target.value.trim().toLowerCase();
+                table();
+            });
+
+            // ── Квадрант ──
+            const tip = $("#tip");
+            function quadrant() {
+                const pts = S.tools
+                    .map((t) => {
+                        const s = slice(t);
+                        if (!s || s.used < QUAD_MIN) return null;
+                        const m = metrics(s);
+                        return m.retention === null
+                            ? null
+                            : { name: t.name, ...m };
+                    })
+                    .filter(Boolean);
+                $("#quadNote").textContent =
+                    ` — инструменты с ${QUAD_MIN}+ работавшими (${pts.length})`;
+                const W = 1060,
+                    H = 520,
+                    P = { l: 46, r: 16, t: 24, b: 40 };
+                const x = (v) => P.l + ((W - P.l - P.r) * v) / 100;
+                const y = (v) => H - P.b - ((H - P.t - P.b) * v) / 100;
+                const med = (arr) =>
+                    [...arr].sort((a, b) => a - b)[
+                        Math.floor(arr.length / 2)
+                    ] || 0;
+                const mx = med(pts.map((p) => p.used));
+                const my = med(pts.map((p) => p.retention));
+                let svg = "";
+                // Сетка и оси
+                for (const v of [0, 25, 50, 75, 100]) {
+                    svg += `<line x1="${x(v)}" y1="${y(0)}" x2="${x(v)}" y2="${y(100)}" stroke="var(--grid)"/>`;
+                    svg += `<line x1="${x(0)}" y1="${y(v)}" x2="${x(100)}" y2="${y(v)}" stroke="var(--grid)"/>`;
+                    svg += `<text x="${x(v)}" y="${H - P.b + 16}" text-anchor="middle" class="axis-lbl">${v}%</text>`;
+                    svg += `<text x="${P.l - 8}" y="${y(v) + 4}" text-anchor="end" class="axis-lbl">${v}%</text>`;
+                }
+                svg += `<line x1="${x(0)}" y1="${y(0)}" x2="${x(100)}" y2="${y(0)}" stroke="var(--baseline)"/>`;
+                svg += `<text x="${x(50)}" y="${H - 6}" text-anchor="middle" class="axis-lbl">использование</text>`;
+                svg += `<text x="12" y="${y(50)}" text-anchor="middle" class="axis-lbl" transform="rotate(-90 12 ${y(50)})">retention</text>`;
+                // Медианы — границы квадрантов
+                if (pts.length) {
+                    svg += `<line x1="${x(mx)}" y1="${y(0)}" x2="${x(mx)}" y2="${y(100)}" stroke="var(--baseline)" stroke-dasharray="4 4"/>`;
+                    svg += `<line x1="${x(0)}" y1="${y(my)}" x2="${x(100)}" y2="${y(my)}" stroke="var(--baseline)" stroke-dasharray="4 4"/>`;
+                    svg += `<text x="${x(100)}" y="${y(100) - 8}" text-anchor="end" class="corner">звезды</text>`;
+                    svg += `<text x="${x(0) + 4}" y="${y(100) - 8}" class="corner">нишевые любимчики</text>`;
+                    svg += `<text x="${x(100)}" y="${y(0) - 8}" text-anchor="end" class="corner">популярные, но разочаровывают</text>`;
+                }
+                // Точки: подписи всем, если их немного
+                const label = pts.length <= 16;
+                pts.forEach((p, i) => {
+                    svg += `<circle data-i="${i}" cx="${x(p.used)}" cy="${y(p.retention)}" r="6" fill="var(--series)" stroke="var(--surface)" stroke-width="2"/>`;
+                    if (label)
+                        svg += `<text x="${x(p.used) + 9}" y="${y(p.retention) + 4}">${p.name}</text>`;
+                });
+                $("#quad").innerHTML = svg;
+                $("#quad").onmousemove = (e) => {
+                    const c = e.target.closest("circle");
+                    if (!c) {
+                        tip.style.display = "none";
+                        return;
+                    }
+                    const p = pts[+c.dataset.i];
+                    tip.innerHTML = `<b>${p.name}</b>использование ${fmt(p.used)} · retention ${fmt(p.retention)}<br>ответов: ${p.total}, узнаваемость ${fmt(p.known)}`;
+                    tip.style.display = "block";
+                    tip.style.left = e.clientX + 14 + "px";
+                    tip.style.top = e.clientY + 14 + "px";
+                };
+                $("#quad").onmouseleave = () => (tip.style.display = "none");
+            }
+
+            function render() {
+                tiles();
+                chips();
+                quadrant();
+                table();
+            }
+            respBars();
+            render();
+        </script>
+    </body>
+</html>
