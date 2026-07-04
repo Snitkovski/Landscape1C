@@ -28,16 +28,20 @@ for (const r of last.values()) {
         heard: 0,
         unknown: 0,
         again: 0,
+        notAgain: 0,
         want: 0,
+        notWant: 0,
         total: 0,
     };
     t.total++;
     if (r.answer === "работал") {
         t.used++;
         if (r.sentiment === "да") t.again++;
+        if (r.sentiment === "нет") t.notAgain++;
     } else if (r.answer === "слышал") {
         t.heard++;
         if (r.sentiment === "да") t.want++;
+        if (r.sentiment === "нет") t.notWant++;
     } else t.unknown++;
     stats.set(r.tool, t);
 }
@@ -51,10 +55,12 @@ console.log(
 console.log(
     "\nинструмент | ответов | узнаваемость | использование | retention | интерес",
 );
+// Retention и интерес — только от ответивших на второй вопрос:
+// пропуск («Дальше») не считается за «нет»
 [...stats.entries()]
     .sort((a, b) => b[1].used - a[1].used)
     .forEach(([tool, t]) => {
         console.log(
-            `${tool} | ${t.total} | ${pct(t.used + t.heard, t.total)} | ${pct(t.used, t.total)} | ${pct(t.again, t.used)} | ${pct(t.want, t.heard)}`,
+            `${tool} | ${t.total} | ${pct(t.used + t.heard, t.total)} | ${pct(t.used, t.total)} | ${pct(t.again, t.again + t.notAgain)} | ${pct(t.want, t.want + t.notWant)}`,
         );
     });
