@@ -62,11 +62,20 @@ const add = (t, r) => {
         if (r.sentiment === "нет") t.notWant++;
     } else t.unknown++;
 };
+// Срезы инструмента: по роли, контексту и уровню респондента —
+// в том числе для среза «франчайзи vs инхаус» из плана публикации
 const tools = new Map();
 for (const r of last.values()) {
-    const t = tools.get(r.tool) || { all: blank(), byRole: {} };
+    const t = tools.get(r.tool) || {
+        all: blank(),
+        byRole: {},
+        byContext: {},
+        byLevel: {},
+    };
     add(t.all, r);
     add((t.byRole[r.role] = t.byRole[r.role] || blank()), r);
+    add((t.byContext[r.context] = t.byContext[r.context] || blank()), r);
+    add((t.byLevel[r.level] = t.byLevel[r.level] || blank()), r);
     tools.set(r.tool, t);
 }
 
@@ -88,6 +97,8 @@ const out = {
                 maturity: i.maturity || null,
                 ...t.all,
                 byRole: t.byRole,
+                byContext: t.byContext,
+                byLevel: t.byLevel,
             };
         })
         .sort((a, b) => b.used - a.used || b.total - a.total),
