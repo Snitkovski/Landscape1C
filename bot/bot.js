@@ -68,7 +68,8 @@ const anchorUpdate = (chat, s, text) => {
 
 // ── Карточки ──
 // s.role — роль респондента (из онбординга, не меняется);
-// s.block — роль, чьи инструменты сейчас показываем (ядро = своя роль, дальше опт-ин)
+// s.block — чей блок сейчас показываем: роль (ядро = своя, дальше опт-ин)
+// или «редкие инструменты» — сводный пул нишевых по пройденным ролям
 // Отправка карточки: фото с фолбэком на текст; прошлая неотвеченная
 // карточка убирается — повторная отправка не плодит дубли
 async function postCard(chat, s, i, text, kb = K.exp) {
@@ -93,7 +94,9 @@ async function sendCard(chat, s) {
     return postCard(chat, s, i, T.card(i, s.pos, s.queue.length));
 }
 // Карточка исправления: тот же вопрос, но вне очереди опроса.
+// В пометке показываем прошлый ответ — понятно, что именно исправляешь.
 // Запоминаем, откуда пришли (финал или чекпоинт), чтобы вернуться туда же
+const prevAnswer = (chat, name) => myAnswers(chat).find((r) => r.tool === name);
 async function sendFixCard(chat, s, name) {
     if (s.step !== "fix") s.fixReturn = s.step;
     // Длинные чекпоинт и сводку на время исправления убираем — карточка
@@ -107,18 +110,20 @@ async function sendFixCard(chat, s, name) {
     s.fixTool = name;
     saveState();
     const i = byName(name);
-    return postCard(chat, s, i, T.fixCard(i), K.fix);
+    return postCard(chat, s, i, T.fixCard(i, prevAnswer(chat, name)), K.fix);
 }
 
 // ── Конец блока: предложение продолжить и финал ──
 async function offerMore(chat, s) {
-    if (!s.doneRoles.includes(s.block)) s.doneRoles.push(s.block);
+    // Блок «редкие инструменты» — не роль, в doneRoles ему не место
+    if (ROLES.includes(s.block) && !s.doneRoles.includes(s.block))
+        s.doneRoles.push(s.block);
     const rest = ROLES.filter((r) => !s.doneRoles.includes(r));
     const counts = rest
         .map((r) => ({ r, n: buildQueue(r, s.answered).length }))
         .filter((x) => x.n > 0);
-    // Первой — добивка своей роли (оставшиеся нишевые; без слова «нишевые»:
-    // для пользователя это просто инструменты), ниже — чужие роли
+    // Первой — добивка редких (оставшиеся нишевые пройденных ролей; без слова
+    // «нишевые»: для пользователя это просто инструменты), ниже — чужие роли
     const rows = [];
     const niche = nichePool(s).length;
     if (niche) rows.push([K.nicheBtn(niche)]);
@@ -537,8 +542,9 @@ async function onCallback(q) {
         // кнопки — иначе его легко не заметить
         const i = byName(tool);
         const text =
-            (isFix ? T.fixCard(i) : T.card(i, s.pos, s.queue.length)) +
-            T.sentPrompt(val);
+            (isFix
+                ? T.fixCard(i, prevAnswer(chat, tool))
+                : T.card(i, s.pos, s.queue.length)) + T.sentPrompt(val);
         const params = {
             chat_id: chat,
             message_id: q.message.message_id,
@@ -651,8 +657,9 @@ async function onCallback(q) {
         clearAux(chat, s);
         if (val === "-") return finish(chat, s);
         if (val === "~niche") {
-            // Отложенные нишевые: блоком остается своя роль
-            s.block = s.role;
+            // Отложенные нишевые всех пройденных ролей — свой сводный блок
+            // (не роль: пул шире своей роли, якорь и журнал не должны врать)
+            s.block = "редкие инструменты";
             s.queue = nichePool(s);
         } else {
             s.block = val;

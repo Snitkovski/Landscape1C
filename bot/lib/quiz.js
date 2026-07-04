@@ -29,6 +29,11 @@ const badExcluded = () =>
 
 const byName = (n) => L.items.find((i) => i.name === n);
 
+// Что вообще спрашиваем: без исключений (excluded.json) и без сертификаций —
+// сертификация не инструмент, в опросе популярности ей не место
+const askable = (i) =>
+    !EXCLUDED.includes(i.name) && i.category !== "Сертификация";
+
 const shuffle = (a) => {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -43,7 +48,7 @@ const pick = (role, answered, maturity) =>
                 (i.roles || []).includes(role) &&
                 i.maturity === maturity &&
                 !answered.includes(i.name) &&
-                !EXCLUDED.includes(i.name),
+                askable(i),
         ),
     ).map((i) => i.name);
 
@@ -68,7 +73,7 @@ const nichePool = (s) =>
             (i) =>
                 i.maturity === "нишевое" &&
                 !s.answered.includes(i.name) &&
-                !EXCLUDED.includes(i.name) &&
+                askable(i) &&
                 (i.roles || []).some((r) => s.doneRoles.includes(r)),
         ),
     ).map((i) => i.name);

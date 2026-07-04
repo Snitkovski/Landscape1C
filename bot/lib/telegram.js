@@ -62,11 +62,15 @@ const rawApi = (method, params) =>
     });
 const api = (method, params) => withRetry(() => rawApi(method, params));
 
+// Все сообщения — беззвучные (disable_notification): бот отвечает только
+// на действия пользователя, тот и так в чате — пуш с вибрацией на каждую
+// карточку раздражает
 const send = (chat, text, keyboard) =>
     api("sendMessage", {
         chat_id: chat,
         text,
         parse_mode: "HTML",
+        disable_notification: true,
         reply_markup: keyboard ? { inline_keyboard: keyboard } : undefined,
     }).then((r) => trackMsg(chat, r));
 
@@ -87,6 +91,7 @@ const sendPhoto = async (chat, file, caption, keyboard) => {
                     photo: fileIds[file],
                     caption,
                     parse_mode: "HTML",
+                    disable_notification: true,
                     reply_markup: keyboard
                         ? { inline_keyboard: keyboard }
                         : undefined,
@@ -109,7 +114,12 @@ const sendPhoto = async (chat, file, caption, keyboard) => {
 const uploadPhoto = (chat, file, caption, keyboard) =>
     new Promise((resolve, reject) => {
         const b = "----landscape" + Date.now();
-        const fields = { chat_id: String(chat), caption, parse_mode: "HTML" };
+        const fields = {
+            chat_id: String(chat),
+            caption,
+            parse_mode: "HTML",
+            disable_notification: "true",
+        };
         if (keyboard)
             fields.reply_markup = JSON.stringify({ inline_keyboard: keyboard });
         let head = "";
