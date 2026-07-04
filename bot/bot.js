@@ -36,6 +36,36 @@ const {
 
 const WAVE = 2026; // волна сбора; данные публикуются после отсечки
 
+// ── Якорь ──
+// Несмываемое сообщение вверху чата: пока оно есть, чат не бывает пустым
+// (иначе между удалением старой карточки и приходом новой телеграм успевает
+// показать кнопку «Старт»). Заодно живой прогресс. Обновляется редактированием
+async function ensureAnchor(chat, s, text) {
+    if (s.anchorText === text) return;
+    if (s.anchorMsg) {
+        try {
+            await api("editMessageText", {
+                chat_id: chat,
+                message_id: s.anchorMsg,
+                text,
+            });
+            s.anchorText = text;
+            saveState();
+            return;
+        } catch (e) {} // якорь удалили руками — пересоздаем
+    }
+    const msg = await send(chat, text).catch(() => null);
+    s.anchorMsg = msg && msg.message_id;
+    s.anchorText = text;
+    saveState();
+}
+// Обновление якоря без ожидания; ждем только первичное создание,
+// чтобы якорь гарантированно встал выше следующего сообщения
+const anchorUpdate = (chat, s, text) => {
+    const p = ensureAnchor(chat, s, text).catch(() => {});
+    return s.anchorMsg ? Promise.resolve() : p;
+};
+
 // ── Карточки ──
 // s.role — роль респондента (из онбординга, не меняется);
 // s.block — роль, чьи инструменты сейчас показываем (ядро = своя роль, дальше опт-ин)
@@ -55,6 +85,11 @@ async function postCard(chat, s, i, text, kb = K.exp) {
 async function sendCard(chat, s) {
     if (s.pos >= s.queue.length) return offerMore(chat, s);
     const i = byName(s.queue[s.pos]);
+    await anchorUpdate(
+        chat,
+        s,
+        T.anchor.quiz(s.block, s.pos + 1, s.queue.length),
+    );
     return postCard(chat, s, i, T.card(i, s.pos, s.queue.length));
 }
 // Карточка исправления: тот же вопрос, но вне очереди опроса.
@@ -91,12 +126,14 @@ async function offerMore(chat, s) {
     if (!rows.length) return finish(chat, s);
     s.step = "offer";
     saveState();
+    await anchorUpdate(chat, s, T.anchor.offer(s.answered.length));
     await send(chat, T.offer(s.answered.length), rows.concat([[K.finishBtn]]));
 }
 
 async function finish(chat, s) {
     s.step = "done";
     saveState();
+    await anchorUpdate(chat, s, T.anchor.done(s.answered.length));
     await send(chat, T.finish(s.answered.length, WAVE), K.myAnswers);
 }
 
@@ -201,12 +238,19 @@ async function fixDone(chat, s, what) {
 
 // ── Онбординг ──
 async function startIntro(chat, keepAnswered) {
-    state[chat] = {
+    // Якорь и реестр сообщений переживают перезапуск онбординга —
+    // иначе старый якорь останется висеть навсегда
+    const prev = state[chat] || {};
+    const s = (state[chat] = {
         step: "intro",
         answered: keepAnswered || [],
         doneRoles: [],
-    };
+        anchorMsg: prev.anchorMsg,
+        anchorText: prev.anchorText,
+        msgs: prev.msgs,
+    });
     saveState();
+    await anchorUpdate(chat, s, T.anchor.intro);
     await send(chat, T.intro, K.intro);
 }
 const askRole = (chat) => send(chat, T.role, btnRows(ROLES, "role"));
@@ -288,6 +332,7 @@ const PROGRESS_WORDS = [
 ];
 const HELP_WORDS = ["/help", "помощь", "справка", "хелп", "?"];
 const PAUSE_WORDS = ["/pause", "пауза", "стоп", "потом"];
+const RESUME_WORDS = ["/resume", "продолжить", "продолжаем", "дальше"];
 async function onMessage(m) {
     const chat = m.chat.id;
     const s = state[chat];
@@ -315,8 +360,34 @@ async function onMessage(m) {
         if (s.step === "quiz") await sendCard(chat, s);
         return;
     }
+    // Продолжить: снять паузу, двинуться с чекпоинта или вернуть карточку
+    if (RESUME_WORDS.includes(cmd) && s) {
+        if (s.step === "paused") {
+            if (s.pauseMsg) hideCard(chat, s.pauseMsg);
+            clearAux(chat, s);
+            s.pauseMsg = null;
+            s.step = "quiz";
+            saveState();
+            await toast(chat, T.welcomeBack);
+            return sendCard(chat, s);
+        }
+        if (s.step === "checkpoint") {
+            if (s.cpMsg) hideCard(chat, s.cpMsg);
+            clearAux(chat, s);
+            s.cpMsg = null;
+            s.step = "quiz";
+            saveState();
+            return sendCard(chat, s);
+        }
+        if (s.step === "quiz") return sendCard(chat, s);
+        if (s.step === "fix" && s.fixTool)
+            return sendFixCard(chat, s, s.fixTool);
+        if (s.step === "done") return toast(chat, T.nothingToResume, 6000);
+        return toast(chat, T.pickButton, 4000);
+    }
     // Пауза в любой момент опроса (кнопкой она есть только на чекпоинтах)
     if (PAUSE_WORDS.includes(cmd) && s) {
+        if (s.step === "paused") return toast(chat, T.alreadyPaused, 5000);
         if (s.step !== "quiz" && s.step !== "checkpoint")
             return toast(chat, T.noPause, 5000);
         if (s.cardMsg) hideCard(chat, s.cardMsg);
@@ -325,12 +396,16 @@ async function onMessage(m) {
         s.cardMsg = null;
         s.cpMsg = null;
         s.step = "paused";
-        const note = await send(chat, T.paused).catch(() => null);
+        const note = await send(chat, T.paused, K.resume).catch(() => null);
         s.pauseMsg = note && note.message_id;
         saveState();
         return;
     }
     if (m.text === "/start" || !s) {
+        // Случайный /start из меню посреди опроса не должен молча
+        // сбрасывать онбординг — сначала спрашиваем
+        if (s && ["quiz", "checkpoint", "paused", "fix"].includes(s.step))
+            return send(chat, T.startConfirm, K.startConfirm);
         return startIntro(chat, s && s.answered);
     }
     // Посреди опроса: название уже отвеченного инструмента — исправление,
@@ -438,6 +513,10 @@ async function onCallback(q) {
         return askRole(chat);
     }
     if (kind === "a" && (s.step === "quiz" || s.step === "fix")) {
+        // Нажатие на устаревшей карточке (не текущей) — просто убираем ее,
+        // иначе ответ записался бы не тому инструменту
+        if (s.cardMsg && q.message.message_id !== s.cardMsg)
+            return hideCard(chat, q.message.message_id);
         clearAux(chat, s); // ответили — сводка/справка больше не нужны
         // Висящий сентимент прошлой карточки — дозаписываем без него
         if (s.pending) {
@@ -454,13 +533,27 @@ async function onCallback(q) {
         }
         s.pending = { tool, answer: val, fix: isFix };
         saveState();
-        return api("editMessageReplyMarkup", {
+        // Второй вопрос дописываем в саму карточку, а не только меняем
+        // кнопки — иначе его легко не заметить
+        const i = byName(tool);
+        const text =
+            (isFix ? T.fixCard(i) : T.card(i, s.pos, s.queue.length)) +
+            T.sentPrompt(val);
+        const params = {
             chat_id: chat,
             message_id: q.message.message_id,
+            parse_mode: "HTML",
             reply_markup: { inline_keyboard: K.sent[val] },
-        }).catch(() => send(chat, T.sentFallback(val), K.sent[val]));
+        };
+        params[q.message.photo ? "caption" : "text"] = text;
+        return api(
+            q.message.photo ? "editMessageCaption" : "editMessageText",
+            params,
+        ).catch(() => send(chat, T.sentFallback(val), K.sent[val]));
     }
     if (kind === "s" && s.pending) {
+        if (s.cardMsg && q.message.message_id !== s.cardMsg)
+            return hideCard(chat, q.message.message_id);
         const { tool, answer, fix } = s.pending;
         record(s, chat, tool, answer, val === "-" ? null : val);
         s.pending = null;
@@ -501,6 +594,40 @@ async function onCallback(q) {
         s.pickMsg = null;
         return sendFixCard(chat, s, name);
     }
+    if (kind === "restart") {
+        // Подтверждение /start посреди опроса
+        hideCard(chat, q.message.message_id);
+        if (val === "new") return startIntro(chat, s.answered);
+        // «Продолжить» — возвращаем текущий шаг на экран
+        if (s.step === "paused") {
+            if (s.pauseMsg) hideCard(chat, s.pauseMsg);
+            s.pauseMsg = null;
+            s.step = "quiz";
+            saveState();
+            return sendCard(chat, s);
+        }
+        if (s.step === "fix" && s.fixTool)
+            return sendFixCard(chat, s, s.fixTool);
+        if (s.step === "checkpoint") {
+            if (s.cpMsg) hideCard(chat, s.cpMsg);
+            const msg = await send(
+                chat,
+                T.checkpointBack(s.cp),
+                K.checkpoint,
+            ).catch(() => null);
+            s.cpMsg = msg && msg.message_id;
+            saveState();
+            return;
+        }
+        return sendCard(chat, s);
+    }
+    if (kind === "resume" && s.step === "paused") {
+        hideCard(chat, q.message.message_id);
+        s.pauseMsg = null;
+        s.step = "quiz";
+        saveState();
+        return sendCard(chat, s);
+    }
     if (kind === "cont" && s.step === "checkpoint") {
         hideCard(chat, q.message.message_id); // чекпоинт с итогами тоже убираем
         clearAux(chat, s);
@@ -514,7 +641,7 @@ async function onCallback(q) {
         clearAux(chat, s);
         s.cpMsg = null;
         s.step = "paused";
-        const note = await send(chat, T.paused).catch(() => null);
+        const note = await send(chat, T.paused, K.resume).catch(() => null);
         s.pauseMsg = note && note.message_id; // удалим при возвращении
         saveState();
         return;
@@ -554,11 +681,17 @@ async function onCallback(q) {
                 command: "pause",
                 description: "Прерваться — прогресс сохранится",
             },
+            { command: "resume", description: "Продолжить опрос" },
             { command: "help", description: "Как все устроено" },
             { command: "start", description: "Начать опрос" },
             { command: "reset", description: "Стереть все и начать заново" },
         ],
     }).catch((e) => console.error("setMyCommands:", e.message));
+    // Кнопка «Меню» у поля ввода — принудительно включаем показ команд
+    // (иначе клиент решает сам и у части пользователей меню не видно)
+    api("setChatMenuButton", { menu_button: { type: "commands" } }).catch((e) =>
+        console.error("setChatMenuButton:", e.message),
+    );
     // Чаты обрабатываются параллельно, внутри чата — строго по очереди
     // (цепочка промисов на чат): медленный чат не тормозит остальных,
     // а два быстрых тапа одного пользователя не гоняются друг с другом
