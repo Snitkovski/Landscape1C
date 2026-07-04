@@ -41,14 +41,14 @@ const WAVE = 2026; // волна сбора; данные публикуются
 // s.block — роль, чьи инструменты сейчас показываем (ядро = своя роль, дальше опт-ин)
 // Отправка карточки: фото с фолбэком на текст; прошлая неотвеченная
 // карточка убирается — повторная отправка не плодит дубли
-async function postCard(chat, s, i, text) {
+async function postCard(chat, s, i, text, kb = K.exp) {
     if (s.cardMsg) hideCard(chat, s.cardMsg);
     const logo = logoFile(i);
     const msg = logo
-        ? await sendPhoto(chat, logo, text, K.exp).catch(() =>
-              send(chat, text, K.exp),
+        ? await sendPhoto(chat, logo, text, kb).catch(() =>
+              send(chat, text, kb),
           )
-        : await send(chat, text, K.exp);
+        : await send(chat, text, kb);
     s.cardMsg = msg && msg.message_id;
     saveState();
 }
@@ -61,11 +61,18 @@ async function sendCard(chat, s) {
 // Запоминаем, откуда пришли (финал или чекпоинт), чтобы вернуться туда же
 async function sendFixCard(chat, s, name) {
     if (s.step !== "fix") s.fixReturn = s.step;
+    // Длинные чекпоинт и сводку на время исправления убираем — карточка
+    // не должна требовать промотки; чекпоинт потом вернется обновленным
+    if (s.cpMsg) {
+        hideCard(chat, s.cpMsg);
+        s.cpMsg = null;
+    }
+    clearAux(chat, s);
     s.step = "fix";
     s.fixTool = name;
     saveState();
     const i = byName(name);
-    return postCard(chat, s, i, T.fixCard(i));
+    return postCard(chat, s, i, T.fixCard(i), K.fix);
 }
 
 // ── Конец блока: предложение продолжить и финал ──
@@ -94,6 +101,40 @@ async function finish(chat, s) {
 }
 
 // ── Итоговый список и исправление ответов ──
+// Вспомогательные сообщения (сводка, справка, «какой из них?») живут до
+// продолжения опроса: работаем с одним постом — карточка всегда одна на экране
+function clearAux(chat, s) {
+    for (const f of ["sumMsg", "helpMsg", "pickMsg"]) {
+        if (s[f]) {
+            hideCard(chat, s[f]);
+            s[f] = null;
+        }
+    }
+}
+// Поиск по названию и синонимам среди уже отвеченных — для исправления
+const searchAnswered = (chat, query) =>
+    myAnswers(chat)
+        .map((r) => r.tool)
+        .filter((n) => {
+            const i = byName(n);
+            const hay = [n, ...((i && i.aliases) || [])]
+                .join(" ")
+                .toLowerCase();
+            return hay.includes(query);
+        });
+// Уточнение при неоднозначном названии
+async function askWhichOne(chat, s, cand) {
+    s.fixList = cand;
+    if (s.pickMsg) hideCard(chat, s.pickMsg);
+    const msg = await send(
+        chat,
+        T.whichOne,
+        cand.map((n, i) => [{ text: n, callback_data: `fixpick:${i}` }]),
+    ).catch(() => null);
+    s.pickMsg = msg && msg.message_id;
+    saveState();
+}
+
 const ANS_ORDER = { работал: 0, слышал: 1, "не знаю": 2 };
 const PAGE = 40;
 async function sendSummary(chat, page) {
@@ -115,7 +156,15 @@ async function sendSummary(chat, page) {
     if (s && s.sumMsg) hideCard(chat, s.sumMsg);
     const msg = await send(
         chat,
-        T.summary(lines, p, pages),
+        T.summary(
+            lines,
+            p,
+            pages,
+            rows.length,
+            s && s.step === "quiz" && s.queue
+                ? { pos: s.pos, total: s.queue.length }
+                : null,
+        ),
         nav.length ? [nav] : undefined,
     ).catch(() => null);
     if (s) {
@@ -123,12 +172,17 @@ async function sendSummary(chat, page) {
         saveState();
     }
 }
-// Исправление записано — возвращаемся, откуда пришли (финал или чекпоинт)
+// Исправление записано — возвращаемся, откуда пришли
+// (финал, чекпоинт или прямо из опроса)
 async function fixDone(chat, s, what) {
     const back = s.fixReturn || "done";
     s.step = back;
     s.fixReturn = null;
     saveState();
+    if (back === "quiz") {
+        await toast(chat, T.fixed(what));
+        return sendCard(chat, s);
+    }
     if (back === "checkpoint") {
         // Старый чекпоинт заменяем свежим — сводка уже с исправлением,
         // вдруг нужно поправить что-то еще
@@ -174,13 +228,15 @@ function record(s, chat, tool, answer, sentiment) {
     // При исправлении инструмент уже в answered — не дублируем
     if (!s.answered.includes(tool)) s.answered.push(tool);
     if (s.step === "fix") {
-        // Исправление: правим строку в сводке чекпоинта (если она там),
-        // текущую десятку и серию «не знаю» не трогаем
-        const row = s.cp && s.cp.list.find((r) => r.tool === tool);
-        if (row) {
-            row.answer = answer;
-            row.sentiment = sentiment;
-        }
+        // Исправление: правим строку в сводке чекпоинта и в текущей
+        // десятке (если инструмент там), серию «не знаю» не трогаем
+        [s.cp && s.cp.list, s.recent].forEach((list) => {
+            const row = list && list.find((r) => r.tool === tool);
+            if (row) {
+                row.answer = answer;
+                row.sentiment = sentiment;
+            }
+        });
         return;
     }
     // Серия «не знаю» подряд — для адаптивного порядка очереди
@@ -223,6 +279,15 @@ async function next(chat, s) {
 
 // ── Роутинг входящих сообщений ──
 const RESET_WORDS = ["/reset", "сброс", "сбросить", "заново"];
+const PROGRESS_WORDS = [
+    "/progress",
+    "прогресс",
+    "мой прогресс",
+    "мои ответы",
+    "результаты",
+];
+const HELP_WORDS = ["/help", "помощь", "справка", "хелп", "?"];
+const PAUSE_WORDS = ["/pause", "пауза", "стоп", "потом"];
 async function onMessage(m) {
     const chat = m.chat.id;
     const s = state[chat];
@@ -233,13 +298,52 @@ async function onMessage(m) {
     if (RESET_WORDS.includes(cmd) && s) {
         return send(chat, T.resetConfirm, K.reset);
     }
+    // Прогресс: сводка ответов в любой момент; посреди опроса
+    // текущая карточка переотправляется, чтобы остаться внизу чата
+    if (PROGRESS_WORDS.includes(cmd) && s) {
+        await sendSummary(chat, 0);
+        if (s.step === "quiz") await sendCard(chat, s);
+        return;
+    }
+    // Справка: как устроено, команды, приватность; убирается кнопкой
+    // или сама — при продолжении опроса
+    if (HELP_WORDS.includes(cmd) && s) {
+        if (s.helpMsg) hideCard(chat, s.helpMsg);
+        const msg = await send(chat, T.help, K.gotIt).catch(() => null);
+        s.helpMsg = msg && msg.message_id;
+        saveState();
+        if (s.step === "quiz") await sendCard(chat, s);
+        return;
+    }
+    // Пауза в любой момент опроса (кнопкой она есть только на чекпоинтах)
+    if (PAUSE_WORDS.includes(cmd) && s) {
+        if (s.step !== "quiz" && s.step !== "checkpoint")
+            return toast(chat, T.noPause, 5000);
+        if (s.cardMsg) hideCard(chat, s.cardMsg);
+        if (s.cpMsg) hideCard(chat, s.cpMsg);
+        clearAux(chat, s);
+        s.cardMsg = null;
+        s.cpMsg = null;
+        s.step = "paused";
+        const note = await send(chat, T.paused).catch(() => null);
+        s.pauseMsg = note && note.message_id;
+        saveState();
+        return;
+    }
     if (m.text === "/start" || !s) {
         return startIntro(chat, s && s.answered);
     }
-    // Любой текст посреди опроса — повторяем текущий шаг
-    if (s.step === "quiz") await sendCard(chat, s);
-    else if (s.step === "paused") {
+    // Посреди опроса: название уже отвеченного инструмента — исправление,
+    // любой другой текст просто возвращает текущую карточку
+    if (s.step === "quiz") {
+        const cand = cmd ? searchAnswered(chat, cmd) : [];
+        if (cand.length === 1) return sendFixCard(chat, s, cand[0]);
+        if (cand.length >= 2 && cand.length <= 6)
+            return askWhichOne(chat, s, cand);
+        await sendCard(chat, s);
+    } else if (s.step === "paused") {
         if (s.pauseMsg) hideCard(chat, s.pauseMsg);
+        clearAux(chat, s);
         s.pauseMsg = null;
         s.step = "quiz";
         saveState();
@@ -251,27 +355,16 @@ async function onMessage(m) {
         s.step === "checkpoint"
     ) {
         // После финиша и на чекпоинте текст — поиск инструмента для исправления
-        const query = (m.text || "").trim().toLowerCase();
-        if (!query) return;
-        const cand = myAnswers(chat)
-            .map((r) => r.tool)
-            .filter((n) => {
-                const i = byName(n);
-                const hay = [n, ...((i && i.aliases) || [])]
-                    .join(" ")
-                    .toLowerCase();
-                return hay.includes(query);
-            });
+        if (!cmd) return;
+        const cand = searchAnswered(chat, cmd);
         if (!cand.length) return toast(chat, T.notFound, 6000);
         if (cand.length === 1) return sendFixCard(chat, s, cand[0]);
         if (cand.length > 6) return toast(chat, T.tooMany(cand.length), 5000);
-        s.fixList = cand;
-        saveState();
-        return send(
-            chat,
-            T.whichOne,
-            cand.map((n, i) => [{ text: n, callback_data: `fixpick:${i}` }]),
-        );
+        return askWhichOne(chat, s, cand);
+    } else {
+        // Онбординг и экран продолжения: молчать нельзя — молчание
+        // выглядит как «бот завис», подсказываем нажать кнопку
+        await toast(chat, T.pickButton, 4000);
     }
 }
 
@@ -281,6 +374,8 @@ async function onCallback(q) {
     const s = state[chat];
     // Не ждем подтверждение нажатия — экономим круг до сервера на каждом тапе
     api("answerCallbackQuery", { callback_query_id: q.id }).catch(() => {});
+    // «Понятно» под справкой — просто убрать сообщение, сессия не нужна
+    if (q.data === "hide:") return hideCard(chat, q.message.message_id);
     if (!s) return;
     const [kind, val] = q.data.split(/:(.*)/);
 
@@ -343,6 +438,7 @@ async function onCallback(q) {
         return askRole(chat);
     }
     if (kind === "a" && (s.step === "quiz" || s.step === "fix")) {
+        clearAux(chat, s); // ответили — сводка/справка больше не нужны
         // Висящий сентимент прошлой карточки — дозаписываем без него
         if (s.pending) {
             record(s, chat, s.pending.tool, s.pending.answer, null);
@@ -373,14 +469,41 @@ async function onCallback(q) {
         return next(chat, s);
     }
     if (kind === "sum") return sendSummary(chat, +val || 0);
+    if (kind === "fixcancel" && s.step === "fix") {
+        // «Оставить как есть»: выходим из исправления без записи;
+        // на чекпоинт возвращаемся с той же сводкой
+        hideCard(chat, q.message.message_id);
+        const back = s.fixReturn || "done";
+        s.step = back;
+        s.fixReturn = null;
+        s.fixTool = null;
+        saveState();
+        if (back === "quiz") {
+            await toast(chat, T.fixCanceled);
+            return sendCard(chat, s);
+        }
+        if (back === "checkpoint") {
+            const msg = await send(
+                chat,
+                T.checkpointBack(s.cp),
+                K.checkpoint,
+            ).catch(() => null);
+            s.cpMsg = msg && msg.message_id;
+            saveState();
+            return;
+        }
+        return toast(chat, T.fixCanceled);
+    }
     if (kind === "fixpick" && s.fixList && s.fixList[+val]) {
         hideCard(chat, q.message.message_id); // «Какой из них?» больше не нужен
         const name = s.fixList[+val];
         s.fixList = null;
+        s.pickMsg = null;
         return sendFixCard(chat, s, name);
     }
     if (kind === "cont" && s.step === "checkpoint") {
         hideCard(chat, q.message.message_id); // чекпоинт с итогами тоже убираем
+        clearAux(chat, s);
         s.cpMsg = null;
         s.step = "quiz";
         saveState();
@@ -388,6 +511,7 @@ async function onCallback(q) {
     }
     if (kind === "pause" && s.step === "checkpoint") {
         hideCard(chat, q.message.message_id);
+        clearAux(chat, s);
         s.cpMsg = null;
         s.step = "paused";
         const note = await send(chat, T.paused).catch(() => null);
@@ -397,6 +521,7 @@ async function onCallback(q) {
     }
     if (kind === "more" && s.step === "offer") {
         hideCard(chat, q.message.message_id);
+        clearAux(chat, s);
         if (val === "-") return finish(chat, s);
         if (val === "~niche") {
             // Отложенные нишевые: блоком остается своя роль
@@ -421,6 +546,19 @@ async function onCallback(q) {
     console.log(
         `Бот запущен. Волна ${WAVE}. Инструментов: ${L.items.length}, исключено из опроса: ${EXCLUDED.length}.`,
     );
+    // Меню команд в телеграме — чтобы команды были находимы без подсказок
+    api("setMyCommands", {
+        commands: [
+            { command: "progress", description: "Мои ответы и прогресс" },
+            {
+                command: "pause",
+                description: "Прерваться — прогресс сохранится",
+            },
+            { command: "help", description: "Как все устроено" },
+            { command: "start", description: "Начать опрос" },
+            { command: "reset", description: "Стереть все и начать заново" },
+        ],
+    }).catch((e) => console.error("setMyCommands:", e.message));
     // Чаты обрабатываются параллельно, внутри чата — строго по очереди
     // (цепочка промисов на чат): медленный чат не тормозит остальных,
     // а два быстрых тапа одного пользователя не гоняются друг с другом
