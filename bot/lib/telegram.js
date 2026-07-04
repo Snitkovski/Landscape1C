@@ -14,7 +14,31 @@ if (!TOKEN) {
     process.exit(1);
 }
 
-const api = (method, params) =>
+// Разбор ответа Bot API; на 429 (flood limit) в ошибку кладется retry_after
+const parseReply = (data, resolve, reject) => {
+    try {
+        const j = JSON.parse(data);
+        if (j.ok) return resolve(j.result);
+        const err = new Error(j.description);
+        if (j.parameters && j.parameters.retry_after)
+            err.retryAfter = j.parameters.retry_after;
+        reject(err);
+    } catch (e) {
+        reject(e);
+    }
+};
+// 429: Телеграм просит подождать retry_after секунд — ждем и повторяем,
+// иначе сообщение в пиковую нагрузку просто теряется
+const withRetry = (fn, attempt = 0) =>
+    fn().catch((e) =>
+        e.retryAfter && attempt < 3
+            ? new Promise((r) => setTimeout(r, e.retryAfter * 1000 + 250)).then(
+                  () => withRetry(fn, attempt + 1),
+              )
+            : Promise.reject(e),
+    );
+
+const rawApi = (method, params) =>
     new Promise((resolve, reject) => {
         const body = JSON.stringify(params || {});
         const req = https.request(
@@ -30,21 +54,13 @@ const api = (method, params) =>
             (res) => {
                 let data = "";
                 res.on("data", (c) => (data += c));
-                res.on("end", () => {
-                    try {
-                        const j = JSON.parse(data);
-                        j.ok
-                            ? resolve(j.result)
-                            : reject(new Error(j.description));
-                    } catch (e) {
-                        reject(e);
-                    }
-                });
+                res.on("end", () => parseReply(data, resolve, reject));
             },
         );
         req.on("error", reject);
         req.end(body);
     });
+const api = (method, params) => withRetry(() => rawApi(method, params));
 
 const send = (chat, text, keyboard) =>
     api("sendMessage", {
@@ -80,7 +96,7 @@ const sendPhoto = async (chat, file, caption, keyboard) => {
     }
     const res = trackMsg(
         chat,
-        await uploadPhoto(chat, file, caption, keyboard),
+        await withRetry(() => uploadPhoto(chat, file, caption, keyboard)),
     );
     const ph = res.photo && res.photo[res.photo.length - 1];
     if (ph) {
@@ -118,16 +134,7 @@ const uploadPhoto = (chat, file, caption, keyboard) =>
             (res) => {
                 let data = "";
                 res.on("data", (c) => (data += c));
-                res.on("end", () => {
-                    try {
-                        const j = JSON.parse(data);
-                        j.ok
-                            ? resolve(j.result)
-                            : reject(new Error(j.description));
-                    } catch (e) {
-                        reject(e);
-                    }
-                });
+                res.on("end", () => parseReply(data, resolve, reject));
             },
         );
         req.on("error", reject);

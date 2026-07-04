@@ -421,15 +421,31 @@ async function onCallback(q) {
     console.log(
         `Бот запущен. Волна ${WAVE}. Инструментов: ${L.items.length}, исключено из опроса: ${EXCLUDED.length}.`,
     );
+    // Чаты обрабатываются параллельно, внутри чата — строго по очереди
+    // (цепочка промисов на чат): медленный чат не тормозит остальных,
+    // а два быстрых тапа одного пользователя не гоняются друг с другом
+    const chains = new Map();
+    const dispatch = (chat, fn) => {
+        const tail = (chains.get(chat) || Promise.resolve())
+            .then(fn)
+            .catch(console.error);
+        chains.set(chat, tail);
+        tail.finally(() => {
+            if (chains.get(chat) === tail) chains.delete(chat);
+        });
+    };
     let offset = 0;
     for (;;) {
         try {
             const updates = await api("getUpdates", { offset, timeout: 50 });
             for (const u of updates) {
                 offset = u.update_id + 1;
-                if (u.message) await onMessage(u.message).catch(console.error);
-                if (u.callback_query)
-                    await onCallback(u.callback_query).catch(console.error);
+                if (u.message)
+                    dispatch(u.message.chat.id, () => onMessage(u.message));
+                if (u.callback_query && u.callback_query.message)
+                    dispatch(u.callback_query.message.chat.id, () =>
+                        onCallback(u.callback_query),
+                    );
             }
         } catch (e) {
             console.error("poll:", e.message);

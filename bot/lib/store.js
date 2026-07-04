@@ -18,33 +18,83 @@ const uid = (id) =>
         .digest("hex")
         .slice(0, 16);
 
-const saveAnswer = (rec) =>
-    fs.appendFileSync(ANSWERS, JSON.stringify(rec) + "\n");
-
-let state = {};
-try {
-    state = JSON.parse(fs.readFileSync(STATE, "utf8"));
-} catch (e) {}
-const saveState = () => fs.writeFileSync(STATE, JSON.stringify(state));
-
-// Последний ответ пользователя по каждому инструменту из журнала
-const myAnswers = (chat) => {
-    if (!fs.existsSync(ANSWERS)) return [];
-    const my = new Map();
+// Индекс ответов в памяти: uid → (tool → {tool, answer, sentiment}).
+// Журнал на диске — источник истины, целиком читается один раз при старте,
+// дальше только дозапись; храним лишь поля, нужные сводке и исправлению
+const index = new Map();
+const remember = (r) => {
+    if (!r.uid || !r.tool) return;
+    let m = index.get(r.uid);
+    if (!m) index.set(r.uid, (m = new Map()));
+    m.set(r.tool, { tool: r.tool, answer: r.answer, sentiment: r.sentiment });
+};
+if (fs.existsSync(ANSWERS))
     fs.readFileSync(ANSWERS, "utf8")
         .split("\n")
         .filter(Boolean)
         .forEach((l) => {
             try {
-                const r = JSON.parse(l);
-                if (r.uid === uid(chat)) my.set(r.tool, r);
+                remember(JSON.parse(l));
             } catch (e) {}
         });
-    return [...my.values()];
+
+const saveAnswer = (rec) => {
+    fs.appendFileSync(ANSWERS, JSON.stringify(rec) + "\n");
+    remember(rec);
 };
 
-// «Сброс»: стираем все ответы пользователя из журнала
+let state = {};
+try {
+    state = JSON.parse(fs.readFileSync(STATE, "utf8"));
+} catch (e) {}
+// Состояние пишется не на каждое действие (saveState дергается по несколько
+// раз на тап, а файл на тысячах сессий большой), а раз в секунду при наличии
+// изменений: сначала во временный файл, потом атомарный rename. Ответы при
+// падении не теряются — они в журнале; рискует максимум секунда прогресса
+let dirty = false;
+let writing = false;
+const saveState = () => {
+    dirty = true;
+};
+const flushState = () => {
+    if (!dirty || writing) return;
+    dirty = false;
+    writing = true;
+    fs.writeFile(STATE + ".tmp", JSON.stringify(state), (e) => {
+        if (e) {
+            writing = false;
+            dirty = true;
+            return console.error("state:", e.message);
+        }
+        fs.rename(STATE + ".tmp", STATE, (e2) => {
+            writing = false;
+            if (e2) {
+                dirty = true;
+                console.error("state:", e2.message);
+            }
+        });
+    });
+};
+setInterval(flushState, 1000).unref();
+// При остановке процесса несохраненное досохраняется синхронно
+process.on("exit", () => {
+    if (dirty) {
+        try {
+            fs.writeFileSync(STATE, JSON.stringify(state));
+        } catch (e) {}
+    }
+});
+["SIGINT", "SIGTERM"].forEach((sig) => process.on(sig, () => process.exit(0)));
+
+// Последний ответ пользователя по каждому инструменту
+const myAnswers = (chat) => {
+    const m = index.get(uid(chat));
+    return m ? [...m.values()] : [];
+};
+
+// «Сброс»: стираем все ответы пользователя из журнала и индекса
 const eraseAnswers = (chat) => {
+    index.delete(uid(chat));
     if (!fs.existsSync(ANSWERS)) return;
     const keep = fs
         .readFileSync(ANSWERS, "utf8")

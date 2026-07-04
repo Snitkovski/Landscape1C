@@ -25,6 +25,43 @@ node bot/report.js               # все респонденты
 node bot/report.js разработчик   # срез по роли респондента
 ```
 
+## Развертывание (VPS, systemd)
+
+Боту нужны из репозитория `bot/` и `app/` (данные `app/data.js` и растровые
+логотипы `app/logos/`) — проще всего клонировать репозиторий целиком.
+Юнит — `bot/deploy/stateof1c.service`:
+
+```bash
+# на сервере (Ubuntu): Node 22 LTS, пользователь, код
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo bash - && sudo apt-get install -y nodejs
+sudo useradd -r -s /usr/sbin/nologin stateof1c
+sudo git clone https://github.com/Oxotka/Landscape1C.git /opt/landscape1c
+sudo chown -R stateof1c: /opt/landscape1c
+
+# секреты и юнит
+printf 'BOT_TOKEN=<токен>\nBOT_SALT=<секрет>\n' | sudo tee /etc/stateof1c.env >/dev/null
+sudo chmod 600 /etc/stateof1c.env
+sudo cp /opt/landscape1c/bot/deploy/stateof1c.service /etc/systemd/system/
+sudo systemctl enable --now stateof1c
+journalctl -u stateof1c -f   # лог
+```
+
+При переезде с другой машины перенести три файла из `.gitignore` (в
+`/opt/landscape1c/bot/`, до старта юнита): `answers.jsonl` (ответы),
+`state.json` (сессии), `file-ids.json` (прогретый кэш логотипов — без него
+первый показ каждой карточки заново грузит файл). Бот должен быть запущен
+**в одном экземпляре**: два long polling на один токен дерутся за апдейты —
+перед стартом на сервере остановить локальный.
+
+Бэкап: единственные невосполнимые данные — `answers.jsonl`. На сервере:
+
+```bash
+( crontab -l 2>/dev/null; echo '0 3 * * * cp /opt/landscape1c/bot/answers.jsonl /root/backup-answers-$(date +\%u).jsonl' ) | crontab -
+```
+
+и время от времени забирать копию к себе:
+`scp <сервер>:/opt/landscape1c/bot/answers.jsonl ~/backup/`.
+
 ## Устройство
 
 `bot.js` — машина состояний и роутинг апдейтов. Шаги сессии:
