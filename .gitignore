@@ -20,7 +20,8 @@ app/tools/
 bot/answers.jsonl
 bot/state.json
 bot/file-ids.json
-# Агрегат для внутренней витрины bot/results.html — генерит bot/aggregate.js
-bot/survey2026.js
+# Агрегат волны для витрины app/survey2026.html — генерит bot/aggregate.js;
+# данные живой волны в публичный репозиторий не кладем (до публикации итогов)
+app/survey2026.js
 # Ранбук волны с адресом сервера — локальный, копия на сервере в /root
 bot/RUNBOOK.local.md

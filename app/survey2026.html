@@ -1,0 +1,878 @@
+<!doctype html>
+<!-- Итоги опроса популярности — волна 2026 (п.13 ТЗ). Сейчас это внутренняя
+     витрина: страница исключена из dist (scripts/build.js), данные
+     app/survey2026.js в .gitignore (генерит node bot/aggregate.js), наружу
+     ничего не уходит. Дальше на этой же странице поверх витрины вырастет
+     отчет-лонгрид «Итоги 2026».
+     При публикации: убрать исключения из build.js и .gitignore, снять
+     noindex, добавить Метрику/OG/canonical (по образцу council.html),
+     ссылку в nav.js и страницу в PAGES sitegen.js. -->
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="noindex" />
+        <title>Итоги 2026 · Ландшафт 1С</title>
+        <script>
+            (function () {
+                try {
+                    var t = localStorage.getItem("theme");
+                    if (!t)
+                        t = matchMedia("(prefers-color-scheme: dark)").matches
+                            ? "dark"
+                            : "light";
+                    document.documentElement.dataset.theme = t;
+                } catch (e) {}
+            })();
+        </script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css?v=416e3e99" />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+        <style>
+            /* Витрина на токенах styles.css; свои — только цвета серии.
+               Классы с приставкой sv- там, где имена заняты ландшафтом
+               (card/chip/note), остальное заскоуплено под .survey. */
+            .page.survey {
+                max-width: 1100px;
+                padding-block: 20px 60px;
+                /* синий серии = цвет «продвинутого» (--m-adv); негатив
+                   «не снова» — оранжевый нишевого (--m-niche): пары
+                   сине-оранжевые, CVD-разделение проверено валидатором */
+                --series: var(--m-adv);
+                --series-soft: #8aabd0;
+                --series-neg: var(--m-niche);
+            }
+            :root[data-theme="dark"] .page.survey {
+                --series-soft: #38678f;
+            }
+            .survey .sub {
+                color: var(--ink-soft);
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+            .sv-card {
+                background: var(--card);
+                border: 1px solid var(--card-line);
+                padding: 16px 18px;
+                margin-bottom: 16px;
+            }
+            .sv-card h2 {
+                font-size: 12px;
+                margin: 0 0 12px;
+                color: var(--ink-soft);
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+            }
+            /* Отборы: три оси, мультивыбор — как фильтры на других страницах
+               (ИЛИ внутри оси, И между осями, пусто = все) */
+            .sv-filters {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            .sv-fgroup {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+            .sv-flabel {
+                font-family: var(--display);
+                font-weight: 700;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                color: #999;
+                flex: 0 0 84px;
+            }
+            .sv-chip {
+                font-family: var(--body);
+                font-size: 12px;
+                padding: 5px 11px;
+                background: none;
+                border: 1px solid var(--edge);
+                border-radius: 2px;
+                color: var(--ink-soft);
+                cursor: pointer;
+            }
+            .sv-chip:hover {
+                background: var(--hover);
+            }
+            .sv-chip[aria-pressed="true"] {
+                background: var(--ink);
+                border-color: var(--ink);
+                color: var(--paper);
+                font-weight: 700;
+                box-shadow: inset 3px 0 0 var(--brand);
+            }
+            .sv-reset {
+                align-self: flex-start;
+                margin-left: 92px;
+                padding: 0;
+                background: none;
+                border: none;
+                font-family: var(--body);
+                font-size: 12px;
+                color: var(--ink-soft);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                cursor: pointer;
+            }
+            /* Плитки итогов */
+            .survey .tiles {
+                display: flex;
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+            .survey .tile {
+                flex: 1 1 120px;
+            }
+            .survey .tile .num {
+                font-family: var(--display);
+                font-size: 26px;
+                font-weight: 700;
+                letter-spacing: -1px;
+            }
+            .survey .tile .lbl {
+                font-size: 12px;
+                color: var(--ink-soft);
+            }
+            /* Разбивки респондентов: строка = метка + полоса + число */
+            .survey .bars {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 8px 28px;
+            }
+            .survey .bars h3 {
+                font-size: 12px;
+                color: var(--ink-soft);
+                font-weight: 600;
+                margin: 0 0 6px;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+            }
+            .survey .bar-row {
+                display: grid;
+                grid-template-columns: 110px 1fr 34px;
+                align-items: center;
+                gap: 8px;
+                font-size: 13px;
+            }
+            .survey .bar-row .lbl {
+                color: var(--ink-soft);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .survey .bar-row .num {
+                text-align: right;
+                font-variant-numeric: tabular-nums;
+            }
+            .survey .track {
+                display: block;
+                height: 10px;
+                background: var(--line);
+                border-radius: 2px;
+                overflow: hidden;
+            }
+            .survey .fill {
+                display: block;
+                height: 100%;
+                background: var(--series);
+                border-radius: 2px;
+            }
+            .survey input[type="search"] {
+                font-family: var(--body);
+                border: 1px solid var(--edge);
+                background: var(--card);
+                color: var(--ink);
+                border-radius: 0;
+                padding: 5px 12px;
+                font-size: 13px;
+                width: 220px;
+            }
+            /* Таблица инструментов */
+            .survey .tbl-wrap {
+                overflow-x: auto;
+            }
+            .survey table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 13px;
+            }
+            .survey th,
+            .survey td {
+                padding: 6px 10px;
+                text-align: right;
+                border-bottom: 1px solid var(--line);
+                font-variant-numeric: tabular-nums;
+                white-space: nowrap;
+            }
+            .survey th:first-child,
+            .survey td:first-child {
+                text-align: left;
+                white-space: normal;
+            }
+            .survey th {
+                color: var(--ink-soft);
+                font-weight: 600;
+                cursor: pointer;
+                user-select: none;
+                position: sticky;
+                top: 0;
+                background: var(--card);
+            }
+            .survey th.sorted {
+                color: var(--ink);
+            }
+            /* Название с маленьким логотипом (как на карточках ландшафта;
+               монохромные инвертирует глобальный img.is-invert) */
+            .sv-tool {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .sv-logo {
+                flex: 0 0 18px;
+                width: 18px;
+                height: 18px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .sv-logo img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+            }
+            .sv-logo--ph {
+                font-size: 7px;
+                font-weight: 700;
+                border: 1px solid var(--edge);
+                color: var(--ink-soft);
+            }
+            /* Распределения: верхняя полоса — первый вопрос (работал/слышал/
+               впервые вижу), нижняя — второй (снова бы/не снова/хочу/не хочу).
+               При наведении сосед-сегменты гаснут, подробности — в тултипе */
+            .survey .dists {
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+                width: 170px;
+            }
+            .survey .dist {
+                display: flex;
+                gap: 2px;
+                height: 10px;
+            }
+            .survey .dist--sent {
+                height: 5px;
+            }
+            .survey .dist i {
+                display: block;
+                border-radius: 2px;
+                min-width: 0;
+            }
+            .survey .dist:hover i:not(:hover) {
+                opacity: 0.35;
+            }
+            .survey .d-used {
+                background: var(--series);
+            }
+            .survey .d-heard {
+                background: var(--series-soft);
+            }
+            .survey .d-unknown {
+                background: var(--line);
+            }
+            .survey .d-again {
+                background: var(--series);
+            }
+            .survey .d-notAgain {
+                background: var(--series-neg);
+            }
+            .survey .d-want {
+                background: var(--series-soft);
+            }
+            .survey .d-notWant {
+                background: var(--line);
+            }
+            .survey .legend {
+                display: flex;
+                gap: 14px 18px;
+                flex-wrap: wrap;
+                font-size: 12px;
+                color: var(--ink-soft);
+                margin-bottom: 10px;
+            }
+            .survey .legend i {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 3px;
+                margin-right: 5px;
+                vertical-align: -1px;
+            }
+            .survey .legend .sep {
+                color: var(--edge);
+            }
+            .survey tr.low td {
+                color: var(--ink-soft);
+            }
+            .survey tr.low .dists {
+                opacity: 0.45;
+            }
+            .sv-note {
+                font-size: 12px;
+                color: var(--ink-soft);
+                margin-top: 10px;
+            }
+            /* Квадрант */
+            #quad {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+            #quad text {
+                font: 11px var(--body);
+                fill: var(--ink-soft);
+            }
+            #quad .axis-lbl {
+                fill: var(--ink-soft);
+            }
+            #quad .corner {
+                fill: var(--ink-soft);
+                font-size: 10px;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+            }
+            #tip {
+                position: fixed;
+                display: none;
+                background: var(--card);
+                border: 1px solid var(--edge);
+                padding: 8px 12px;
+                font-size: 12px;
+                pointer-events: none;
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+                z-index: 30;
+                max-width: 260px;
+            }
+            #tip b {
+                display: block;
+                margin-bottom: 3px;
+            }
+        </style>
+    </head>
+    <body class="page-doc">
+        <div class="topbar" id="topbar">
+            <span class="topbar__brand"
+                ><a
+                    href="index.html"
+                    style="text-decoration: none; color: inherit"
+                    >Ландшафт</a
+                ></span
+            >
+            <span class="topbar__search" style="font-size: 13px; color: #999"
+                >Итоги 2026</span
+            >
+        </div>
+
+        <header class="masthead">
+            <div class="masthead__main">
+                <p class="kicker">
+                    <a href="index.html" class="back">← Ландшафт</a>
+                </p>
+                <h1 class="title">Итоги 2026</h1>
+            </div>
+        </header>
+
+        <main class="page survey">
+            <div class="sub" id="gen"></div>
+
+            <div class="sv-filters" id="filters"></div>
+
+            <div class="sv-card">
+                <div class="tiles" id="tiles"></div>
+            </div>
+
+            <div class="sv-card">
+                <h2>Респонденты</h2>
+                <div class="bars" id="resp"></div>
+            </div>
+
+            <div class="sv-card">
+                <h2>
+                    Квадрант: использование × возврат
+                    <span id="quadNote" style="font-weight: 400"></span>
+                </h2>
+                <svg id="quad" viewBox="0 0 1060 540"></svg>
+            </div>
+
+            <div class="sv-card">
+                <h2 style="display: flex; justify-content: space-between">
+                    <span>Инструменты</span>
+                    <input
+                        id="q"
+                        type="search"
+                        placeholder="Поиск по названию"
+                    />
+                </h2>
+                <div class="legend">
+                    <span><i class="d-used"></i>работал</span>
+                    <span><i class="d-heard"></i>слышал</span>
+                    <span><i class="d-unknown"></i>впервые вижу</span>
+                    <span class="sep">·</span>
+                    <span><i class="d-again"></i>снова бы</span>
+                    <span><i class="d-notAgain"></i>не снова</span>
+                    <span><i class="d-want"></i>хочу попробовать</span>
+                    <span><i class="d-notWant"></i>не хочу</span>
+                </div>
+                <div class="tbl-wrap">
+                    <table id="tbl">
+                        <thead>
+                            <tr></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="sv-note">
+                    Верхняя полоса — первый вопрос (доли от всех ответов),
+                    нижняя — второй (доли от ответивших на него; пропуск
+                    «Дальше» не считается). Серые строки — меньше
+                    <span id="minN"></span> ответов («мало данных» по порогу
+                    публикации). Возврат = «снова бы» / ответившие на второй
+                    вопрос; интерес = «хочу попробовать» / ответившие; меньше
+                    трех ответивших — прочерк.
+                </div>
+            </div>
+        </main>
+
+        <footer class="foot">
+            <nav class="foot__links"></nav>
+        </footer>
+
+        <div id="tip"></div>
+
+        <script src="data.js?v=a1ffc343"></script>
+        <script src="shared.js?v=1719ddb7"></script>
+        <script src="survey2026.js?v=5e4488ac"></script>
+        <script>
+            "use strict";
+            const S = window.SURVEY;
+            const $ = (s) => document.querySelector(s);
+            const MIN_N = 10; // порог «мало данных» (как в плане публикации)
+            const QUAD_MIN = 5; // минимум работавших для точки квадранта
+            const SENT_MIN = 3; // минимум ответивших на второй вопрос, иначе «—»
+
+            // ── Отбор: мультивыбор по трем осям, как фильтры сайта —
+            // ИЛИ внутри оси, И между осями, пустая ось = «все».
+            // Данные лежат ячейками роль×уровень×контекст (S.dims — значения,
+            // в ячейках их индексы) — складываем подходящие ячейки ──
+            const DIMS = [
+                ["role", "Роль"],
+                ["level", "Уровень"],
+                ["context", "Контекст"],
+            ];
+            const sel = {
+                role: new Set(),
+                level: new Set(),
+                context: new Set(),
+            };
+            let query = "";
+            const pct = (a, b) => (b ? Math.round((100 * a) / b) : null);
+            const fmt = (v) => (v === null ? "—" : v + "%");
+            const cellOk = (c) =>
+                (!sel.role.size || sel.role.has(c[0])) &&
+                (!sel.level.size || sel.level.has(c[1])) &&
+                (!sel.context.size || sel.context.has(c[2]));
+            // Счетчики инструмента в текущем отборе (null — ответов нет)
+            function counters(t) {
+                const o = {
+                    used: 0,
+                    heard: 0,
+                    unknown: 0,
+                    again: 0,
+                    notAgain: 0,
+                    want: 0,
+                    notWant: 0,
+                };
+                for (const c of t.cells)
+                    if (cellOk(c)) {
+                        o.used += c[3];
+                        o.heard += c[4];
+                        o.unknown += c[5];
+                        o.again += c[6];
+                        o.notAgain += c[7];
+                        o.want += c[8];
+                        o.notWant += c[9];
+                    }
+                o.total = o.used + o.heard + o.unknown;
+                return o.total ? o : null;
+            }
+            const respTotal = () =>
+                S.respondents.cells.reduce(
+                    (s, c) => s + (cellOk(c) ? c[3] : 0),
+                    0,
+                );
+
+            // ── Логотипы: карточки ландшафта по имени инструмента ──
+            const ITEM = new Map(
+                window.LANDSCAPE.items.map((i) => [i.name, i]),
+            );
+            const logo = (name) =>
+                window.LandscapeUI.logoMarkup(ITEM.get(name) || {}, "sv-logo");
+
+            // ── Отборы ──
+            // Счетчики в чипах — по всей волне (не пересчитываются отбором)
+            const waveCount = {};
+            for (const [d] of DIMS) waveCount[d] = {};
+            S.respondents.cells.forEach((c) =>
+                DIMS.forEach(([d], di) => {
+                    waveCount[d][c[di]] = (waveCount[d][c[di]] || 0) + c[3];
+                }),
+            );
+            function filters() {
+                const any = DIMS.some(([d]) => sel[d].size);
+                $("#filters").innerHTML =
+                    DIMS.map(
+                        ([d, label]) =>
+                            `<div class="sv-fgroup"><span class="sv-flabel">${label}</span>` +
+                            S.dims[d]
+                                .map(
+                                    (v, i) =>
+                                        `<button class="sv-chip" data-d="${d}" data-i="${i}" aria-pressed="${sel[d].has(i)}">` +
+                                        `${v} (${waveCount[d][i] || 0})</button>`,
+                                )
+                                .join("") +
+                            `</div>`,
+                    ).join("") +
+                    (any
+                        ? `<button class="sv-reset" id="reset">сбросить отбор</button>`
+                        : "");
+            }
+            $("#filters").addEventListener("click", (e) => {
+                if (e.target.id === "reset") {
+                    for (const [d] of DIMS) sel[d].clear();
+                    return render();
+                }
+                const b = e.target.closest(".sv-chip");
+                if (!b) return;
+                const i = +b.dataset.i;
+                const set = sel[b.dataset.d];
+                set.has(i) ? set.delete(i) : set.add(i);
+                render();
+            });
+
+            // ── Плитки ──
+            function tiles() {
+                const ts = S.tools.map(counters).filter(Boolean);
+                const answers = ts.reduce((s, t) => s + t.total, 0);
+                $("#tiles").innerHTML = [
+                    [respTotal(), "респондентов"],
+                    [answers, "ответов"],
+                    [ts.length, "инструментов затронуто"],
+                    [
+                        ts.filter((t) => t.total >= MIN_N).length,
+                        `с ${MIN_N}+ ответами`,
+                    ],
+                ]
+                    .map(
+                        ([n, l]) =>
+                            `<div class="tile"><div class="num">${n}</div><div class="lbl">${l}</div></div>`,
+                    )
+                    .join("");
+            }
+
+            // ── Разбивки респондентов — профиль текущего отбора:
+            // три группы, каждая со своим заголовком ──
+            function respBars() {
+                const groups = DIMS.map(([d, title], di) => {
+                    const g = {};
+                    S.respondents.cells.forEach((c) => {
+                        if (cellOk(c))
+                            g[S.dims[d][c[di]]] =
+                                (g[S.dims[d][c[di]]] || 0) + c[3];
+                    });
+                    return [title, g];
+                });
+                const max = Math.max(
+                    1,
+                    ...groups.flatMap(([, g]) => Object.values(g)),
+                );
+                $("#resp").innerHTML = groups
+                    .map(
+                        ([title, g]) =>
+                            `<div><h3>${title}</h3>` +
+                            Object.entries(g)
+                                .sort((a, b) => b[1] - a[1])
+                                .map(
+                                    ([k, n]) =>
+                                        `<div class="bar-row">` +
+                                        `<span class="lbl">${k}</span>` +
+                                        `<span class="track"><span class="fill" style="width:${(100 * n) / max}%"></span></span>` +
+                                        `<span class="num">${n}</span></div>`,
+                                )
+                                .join("") +
+                            `</div>`,
+                    )
+                    .join("");
+            }
+
+            // ── Таблица ──
+            const COLS = [
+                ["name", "Инструмент"],
+                ["total", "Ответов"],
+                ["dist", "Распределение"],
+                ["known", "Узнаваемость"],
+                ["used", "Использование"],
+                ["retention", "Возврат"],
+                ["interest", "Интерес"],
+            ];
+            let sortKey = "used";
+            let sortDir = -1;
+            const metrics = (t) => ({
+                ...t,
+                known: pct(t.used + t.heard, t.total),
+                usedN: t.used,
+                used: pct(t.used, t.total),
+                // Мало ответивших на второй вопрос — не процент, а «—»
+                retention:
+                    t.again + t.notAgain >= SENT_MIN
+                        ? pct(t.again, t.again + t.notAgain)
+                        : null,
+                interest:
+                    t.want + t.notWant >= SENT_MIN
+                        ? pct(t.want, t.want + t.notWant)
+                        : null,
+            });
+            // Полосы распределения. Верхняя — первый вопрос (доли от total),
+            // нижняя — второй: снова бы/не снова/хочу/не хочу (доли от
+            // ответивших на него). Подробности сегмента — в data-tip
+            const seg = ([c, n, tip]) =>
+                `<i class="${c}" style="flex:${n}" data-tip="${tip}"></i>`;
+            const stack = (cls, parts) => {
+                const live = parts.filter(([, n]) => n);
+                return live.length
+                    ? `<span class="dist ${cls}">${live.map(seg).join("")}</span>`
+                    : "";
+            };
+            const dists = (r) => {
+                return (
+                    `<span class="dists">` +
+                    stack("", [
+                        [
+                            "d-used",
+                            r.usedN,
+                            `работал: ${r.usedN} (${pct(r.usedN, r.total)}%)`,
+                        ],
+                        [
+                            "d-heard",
+                            r.heard,
+                            `слышал: ${r.heard} (${pct(r.heard, r.total)}%)`,
+                        ],
+                        [
+                            "d-unknown",
+                            r.unknown,
+                            `впервые вижу: ${r.unknown} (${pct(r.unknown, r.total)}%)`,
+                        ],
+                    ]) +
+                    stack("dist--sent", [
+                        [
+                            "d-again",
+                            r.again,
+                            `снова бы: ${r.again}${r.retention !== null ? ` · возврат ${r.retention}%` : ""}`,
+                        ],
+                        ["d-notAgain", r.notAgain, `не снова: ${r.notAgain}`],
+                        [
+                            "d-want",
+                            r.want,
+                            `хочу попробовать: ${r.want}${r.interest !== null ? ` · интерес ${r.interest}%` : ""}`,
+                        ],
+                        ["d-notWant", r.notWant, `не хочу: ${r.notWant}`],
+                    ]) +
+                    `</span>`
+                );
+            };
+            function table() {
+                $("#tbl thead tr").innerHTML = COLS.map(
+                    ([k, l]) =>
+                        `<th class="${k === sortKey ? "sorted" : ""}" data-k="${k}">${l}${k === sortKey ? (sortDir < 0 ? " ↓" : " ↑") : ""}</th>`,
+                ).join("");
+                const rows = S.tools
+                    .map((t) => {
+                        const c = counters(t);
+                        return c && { name: t.name, ...metrics(c) };
+                    })
+                    .filter(Boolean)
+                    .filter(
+                        (r) => !query || r.name.toLowerCase().includes(query),
+                    )
+                    .sort((a, b) => {
+                        const k = sortKey === "dist" ? "used" : sortKey;
+                        if (k === "name")
+                            return sortDir * a.name.localeCompare(b.name, "ru");
+                        return sortDir * ((a[k] ?? -1) - (b[k] ?? -1));
+                    });
+                $("#tbl tbody").innerHTML = rows
+                    .map(
+                        (r) =>
+                            `<tr class="${r.total < MIN_N ? "low" : ""}">` +
+                            `<td><span class="sv-tool">${logo(r.name)}<span>${r.name}</span></span></td>` +
+                            `<td>${r.total}</td>` +
+                            `<td>${dists(r)}</td>` +
+                            `<td>${fmt(r.known)}</td><td>${fmt(r.used)}</td>` +
+                            `<td>${fmt(r.retention)}</td><td>${fmt(r.interest)}</td></tr>`,
+                    )
+                    .join("");
+            }
+            $("#tbl thead").addEventListener("click", (e) => {
+                const th = e.target.closest("th");
+                if (!th) return;
+                if (sortKey === th.dataset.k) sortDir = -sortDir;
+                else {
+                    sortKey = th.dataset.k;
+                    sortDir = sortKey === "name" ? 1 : -1;
+                }
+                table();
+            });
+            $("#q").addEventListener("input", (e) => {
+                query = e.target.value.trim().toLowerCase();
+                table();
+            });
+
+            // Тултип сегментов распределения (сосед-сегменты гасит CSS)
+            const tip = $("#tip");
+            const moveTip = (e) => {
+                tip.style.left = e.clientX + 14 + "px";
+                tip.style.top = e.clientY + 14 + "px";
+            };
+            $("#tbl").addEventListener("mousemove", (e) => {
+                const i = e.target.closest(".dist i");
+                if (!i) {
+                    tip.style.display = "none";
+                    return;
+                }
+                tip.textContent = i.dataset.tip;
+                tip.style.display = "block";
+                moveTip(e);
+            });
+            $("#tbl").addEventListener(
+                "mouseleave",
+                () => (tip.style.display = "none"),
+            );
+
+            // ── Квадрант ──
+            function quadrant() {
+                const pts = S.tools
+                    .map((t) => {
+                        const c = counters(t);
+                        if (
+                            !c ||
+                            c.used < QUAD_MIN ||
+                            c.again + c.notAgain < QUAD_MIN
+                        )
+                            return null;
+                        return { name: t.name, ...metrics(c) };
+                    })
+                    .filter(Boolean);
+                $("#quadNote").textContent =
+                    ` — инструменты с ${QUAD_MIN}+ работавшими и оценившими (${pts.length})`;
+                // Сверху запас (P.t) под подписи углов: точки со 100%
+                // лежат на верхней линии, подписи — выше нее, не впритык
+                const W = 1060,
+                    H = 540,
+                    P = { l: 46, r: 16, t: 44, b: 40 };
+                const x = (v) => P.l + ((W - P.l - P.r) * v) / 100;
+                const y = (v) => H - P.b - ((H - P.t - P.b) * v) / 100;
+                const med = (arr) =>
+                    [...arr].sort((a, b) => a - b)[
+                        Math.floor(arr.length / 2)
+                    ] || 0;
+                const mx = med(pts.map((p) => p.used));
+                const my = med(pts.map((p) => p.retention));
+                let svg = "";
+                // Сетка и оси
+                for (const v of [0, 25, 50, 75, 100]) {
+                    svg += `<line x1="${x(v)}" y1="${y(0)}" x2="${x(v)}" y2="${y(100)}" stroke="var(--line)"/>`;
+                    svg += `<line x1="${x(0)}" y1="${y(v)}" x2="${x(100)}" y2="${y(v)}" stroke="var(--line)"/>`;
+                    svg += `<text x="${x(v)}" y="${H - P.b + 16}" text-anchor="middle" class="axis-lbl">${v}%</text>`;
+                    svg += `<text x="${P.l - 8}" y="${y(v) + 4}" text-anchor="end" class="axis-lbl">${v}%</text>`;
+                }
+                svg += `<line x1="${x(0)}" y1="${y(0)}" x2="${x(100)}" y2="${y(0)}" stroke="var(--edge)"/>`;
+                svg += `<text x="${x(50)}" y="${H - 6}" text-anchor="middle" class="axis-lbl">использование</text>`;
+                svg += `<text x="12" y="${y(50)}" text-anchor="middle" class="axis-lbl" transform="rotate(-90 12 ${y(50)})">возврат</text>`;
+                // Медианы — границы квадрантов
+                if (pts.length) {
+                    svg += `<line x1="${x(mx)}" y1="${y(0)}" x2="${x(mx)}" y2="${y(100)}" stroke="var(--edge)" stroke-dasharray="4 4"/>`;
+                    svg += `<line x1="${x(0)}" y1="${y(my)}" x2="${x(100)}" y2="${y(my)}" stroke="var(--edge)" stroke-dasharray="4 4"/>`;
+                    svg += `<text x="${x(100)}" y="${y(100) - 18}" text-anchor="end" class="corner">звезды</text>`;
+                    svg += `<text x="${x(0) + 4}" y="${y(100) - 18}" class="corner">нишевые любимчики</text>`;
+                    svg += `<text x="${x(100)}" y="${y(0) - 12}" text-anchor="end" class="corner">популярные, но разочаровывают</text>`;
+                }
+                // Подписи: всем, если точек немного, иначе — самым заметным
+                // (дальше всех от центра квадрантов)
+                const labeled = new Set(
+                    pts.length <= 16
+                        ? pts
+                        : [...pts]
+                              .sort(
+                                  (a, b) =>
+                                      Math.hypot(
+                                          b.used - mx,
+                                          b.retention - my,
+                                      ) -
+                                      Math.hypot(a.used - mx, a.retention - my),
+                              )
+                              .slice(0, 12),
+                );
+                pts.forEach((p, i) => {
+                    svg += `<circle data-i="${i}" cx="${x(p.used)}" cy="${y(p.retention)}" r="6" fill="var(--series)" stroke="var(--card)" stroke-width="2"/>`;
+                    if (labeled.has(p))
+                        svg += `<text x="${x(p.used) + 9}" y="${y(p.retention) + 4}">${p.name}</text>`;
+                });
+                $("#quad").innerHTML = svg;
+                $("#quad").onmousemove = (e) => {
+                    const c = e.target.closest("circle");
+                    if (!c) {
+                        tip.style.display = "none";
+                        return;
+                    }
+                    const p = pts[+c.dataset.i];
+                    tip.innerHTML = `<b>${p.name}</b>использование ${fmt(p.used)} · возврат ${fmt(p.retention)}<br>ответов: ${p.total}, узнаваемость ${fmt(p.known)}`;
+                    tip.style.display = "block";
+                    moveTip(e);
+                };
+                $("#quad").onmouseleave = () => (tip.style.display = "none");
+            }
+
+            function render() {
+                filters();
+                tiles();
+                respBars();
+                quadrant();
+                table();
+            }
+            // Данные гитигнорены: на свежем клоне их нет — подсказка вместо
+            // падения на S.wave
+            if (S) {
+                $("#gen").textContent =
+                    `Волна ${S.wave} · сгенерировано ${new Date(S.generated).toLocaleString("ru-RU")} · пока не публикуется`;
+                $("#minN").textContent = MIN_N;
+                render();
+            } else {
+                $("#gen").textContent =
+                    "Нет данных: сгенерируй витрину — node bot/aggregate.js → app/survey2026.js";
+            }
+        </script>
+        <script src="nav.js?v=e707cea1"></script>
+    </body>
+</html>

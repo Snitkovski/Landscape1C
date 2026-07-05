@@ -12,6 +12,9 @@ const DIST = path.join(ROOT, "dist");
 // Не нужно на публичном хостинге (только локальная разработка / артефакты).
 const EXCLUDE = new Set([
   "editor.html", "editor.js", "editor.css",   // редактор разметки — пишет в data.js, только локально
+  // Витрина опроса — до публикации «Итогов 2026» наружу не выкладываем
+  // (данные survey2026.js вдобавок в .gitignore)
+  "survey2026.html", "survey2026.js",
   ".DS_Store",
 ]);
 
