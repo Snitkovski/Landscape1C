@@ -33,6 +33,30 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=APP, **kw)
 
+    # Как GitHub Pages: /survey2026 отдает survey2026.html
+    def translate_path(self, path):
+        p = super().translate_path(path)
+        if not os.path.exists(p) and not os.path.splitext(p)[1]:
+            html = p.rstrip("/") + ".html"
+            if os.path.isfile(html):
+                return html
+        return p
+
+    # Как GitHub Pages: вместо стандартной 404 — наша app/404.html
+    # (стили там подключены абсолютным путем, работает с любого адреса)
+    def send_error(self, code, message=None, explain=None):
+        page = os.path.join(APP, "404.html")
+        if code == 404 and self.command == "GET" and os.path.isfile(page):
+            with open(page, "rb") as f:
+                body = f.read()
+            self.send_response(404)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        super().send_error(code, message, explain)
+
     def _respond(self, code, text):
         self.send_response(code)
         self.send_header("Content-Type", "text/plain; charset=utf-8")
