@@ -12,7 +12,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="noindex" />
-        <title>Итоги 2026 · Ландшафт 1С</title>
+        <title>Итоги тестового опроса · Ландшафт 1С</title>
         <script>
             (function () {
                 try {
@@ -64,30 +64,42 @@
                 flex: 1;
                 min-width: 0;
                 padding: 0 0 60px;
-            }
-            .survey .sub {
-                color: var(--ink-soft);
-                font-size: 13px;
-                padding: 14px clamp(16px, 3vw, 24px);
+                /* clip (не hidden) — гасит горизонтальный вылет контента, не
+                   создавая скролл-контейнер, так что sticky-заголовки живы */
+                overflow-x: clip;
             }
             /* Раздел итогов — плоская секция во всю ширину, как категория
                ландшафта: шапка-полоса с нижней чертой, контент под ней */
             .sv-card {
                 margin: 0 0 12px;
             }
+            /* Заголовок раздела — как категория на главной: крупное имя
+               и большой ведущий номер, тяжелая нижняя черта; прилипает под
+               верхней строкой (52px) при прокрутке */
             .sv-card h2 {
                 display: flex;
                 align-items: center;
                 gap: 16px;
                 margin: 0;
-                padding: 13px clamp(16px, 3vw, 24px);
+                padding: 14px clamp(16px, 3vw, 24px);
                 background: var(--card);
                 border-bottom: 2px solid var(--ink);
-                font-size: 12px;
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 0.08em;
-                color: var(--ink-soft);
+                font-family: var(--display);
+                font-size: clamp(18px, 2.4vw, 24px);
+                font-weight: 700;
+                letter-spacing: -0.3px;
+                color: var(--ink);
+                position: sticky;
+                top: 52px;
+                z-index: 3;
+            }
+            .sv-card .sv-h__n {
+                flex: none;
+                font-family: var(--display);
+                font-weight: 900;
+                font-size: 32px;
+                line-height: 1;
+                color: #888;
             }
             .sv-body {
                 padding: 18px clamp(16px, 3vw, 24px) 26px;
@@ -113,15 +125,16 @@
                 text-underline-offset: 3px;
                 cursor: pointer;
             }
-            /* Заголовок-предложение: крупная сводка с акцентными числами */
+            /* Заголовок-предложение: крупная сводка с акцентными числами
+               (внутри карточки «Респонденты», над донатами) */
             .survey .sv-headline {
                 font-family: var(--display);
                 font-weight: 700;
-                font-size: clamp(21px, 3vw, 33px);
+                font-size: clamp(19px, 2.6vw, 28px);
                 line-height: 1.3;
                 letter-spacing: -0.5px;
                 color: var(--ink);
-                padding: 6px clamp(16px, 3vw, 24px) 30px;
+                margin: 0 0 22px;
             }
             .survey .hl-n {
                 font-weight: 900;
@@ -143,7 +156,9 @@
                колонки разделены вертикальной линией, как в референсе */
             .survey .sv-who {
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
+                /* minmax(0,1fr) — колонки могут ужиматься уже своего контента,
+                   иначе три доната распирают сетку шире экрана (ландшафт) */
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
             .survey .sv-who__col {
                 display: flex;
@@ -156,6 +171,13 @@
                 border-left: none;
                 padding-left: 0;
             }
+            /* оси левее наведенной приглушаем — фокус на наведенной и правее */
+            .survey .sv-who__col {
+                transition: opacity 0.2s ease;
+            }
+            .survey .sv-who__col.col-dim {
+                opacity: 0.35;
+            }
             .survey .donut {
                 flex: none;
                 width: clamp(120px, 14vw, 148px);
@@ -165,13 +187,16 @@
                 cursor: pointer;
                 transform-box: fill-box;
                 transform-origin: center;
+                /* transform (выдвижение) — linear, без разгона/торможения;
+                   штрих (предпросмотр отбора) — плавный сдвиг секторов */
                 transition:
-                    transform 0.13s ease,
-                    opacity 0.1s ease;
+                    transform 0.11s linear,
+                    opacity 0.1s linear,
+                    stroke-dasharray 0.45s ease,
+                    stroke-dashoffset 0.45s ease;
             }
-            /* подсветка через классы — чтобы срабатывала и от легенды, и от
-               сектора: активный выдвигается по биссектрисе и растет, остальные
-               гаснут */
+            /* подсветка через классы — срабатывает и от легенды, и от сектора:
+               активный выдвигается по биссектрисе и растет, остальные гаснут */
             .survey .donut circle.is-hi {
                 transform: translate(var(--dx, 0), var(--dy, 0)) scale(1.07);
             }
@@ -186,6 +211,15 @@
             }
             .survey .lgnd__row.is-dim {
                 opacity: 0.5;
+            }
+            /* выбранное значение (клик = отбор) — жирная метка и точка-маркер */
+            .survey .lgnd__row.is-sel .lgnd__name {
+                font-weight: 700;
+            }
+            .survey .lgnd__row.is-sel .lgnd__name::after {
+                content: "•";
+                margin-left: 5px;
+                color: var(--series);
             }
             .survey .sv-who__side {
                 min-width: 0;
@@ -240,6 +274,100 @@
                 .survey .sv-who__col:first-child {
                     border-top: none;
                 }
+                /* отборы уезжают в бургер: инлайн-сайдбар прячем, открываем
+                   попапом-шторкой из-под шапки (как на главной) */
+                .survey .filters {
+                    display: none;
+                }
+                .survey .filters.is-open {
+                    display: block;
+                    position: fixed;
+                    left: 0;
+                    right: 0;
+                    top: 52px;
+                    z-index: 25;
+                    max-height: calc(100vh - 52px - 48px);
+                    overflow: auto;
+                    margin: 0;
+                    padding: 2px 6px 10px;
+                    background: var(--card);
+                    border-bottom: 2px solid var(--ink);
+                    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.35);
+                    animation: sheet-down 0.2s ease;
+                }
+                .survey .filters.is-open .chip {
+                    padding: 9px 16px;
+                }
+                /* 16px, чтобы iOS не зумил при фокусе; поиск ужимается, чтобы
+                   влезать в шапку рядом с крупным заголовком */
+                .survey input[type="search"] {
+                    font-size: 16px;
+                }
+                .survey #q {
+                    font-size: 16px;
+                    width: auto;
+                    flex: 0 1 150px;
+                    min-width: 0;
+                    max-width: none;
+                }
+                /* крупный номер раздела мельче — освобождает место в шапке */
+                .sv-card .sv-h__n {
+                    font-size: 24px;
+                }
+                /* «Распахнуть» — стиль от .scheme-btn (как «Скачать» в схеме);
+                   тут только показ на мобильном и прижим вправо (.survey — выше
+                   специфичностью дефолтного display:none ниже по файлу) */
+                .survey .q-full-btn {
+                    display: inline-block;
+                    margin-left: auto;
+                }
+                /* распахнутый квадрант: карточка на весь экран, SVG повернут на
+                   90° — портретный экран используется как альбомный */
+                .sv-card.q-open {
+                    position: fixed;
+                    inset: 0;
+                    z-index: 40;
+                    margin: 0;
+                    background: var(--paper);
+                    overflow: hidden;
+                }
+                .sv-card.q-open > h2 {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    z-index: 2;
+                }
+                .sv-card.q-open .sv-body {
+                    position: absolute;
+                    inset: 0;
+                    padding: 0;
+                }
+                .sv-card.q-open #quad {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    /* аспект SVG 1060:540 → после поворота видимая ширина =
+                       width×0.51; ограничиваем и по высоте (98vh), и по
+                       ширине экрана (192vw), чтобы вписаться целиком */
+                    width: min(98vh, 192vw);
+                    height: auto;
+                    max-width: none;
+                    transform: translate(-50%, -50%) rotate(90deg);
+                }
+                body.q-locked {
+                    overflow: hidden;
+                }
+                /* в распахнутом (повернутом) квадранте и подсказку поворачиваем
+                   на те же 90°, чтобы читалась в той же ориентации */
+                body.q-locked #tip {
+                    transform: rotate(90deg);
+                    transform-origin: center;
+                }
+            }
+            /* по умолчанию (десктоп) кнопка «Распахнуть» скрыта */
+            .q-full-btn {
+                display: none;
             }
             .survey input[type="search"] {
                 font-family: var(--body);
@@ -255,42 +383,203 @@
             .survey .tbl-wrap {
                 overflow-x: auto;
             }
-            .survey table {
-                width: 100%;
-                border-collapse: collapse;
-                font-size: 13px;
+            /* ── Инструменты: bullet-полосы, сгруппированные по блокам
+               ландшафта. Фон полосы = узнаваемость, заливка = использование
+               (цвет блока), метка-риска = возврат ── */
+            /* палитра заливки по блокам (порядок ландшафта) */
+            .survey {
+                --blk-1: #1a4f8a;
+                --blk-2: #6f4e2e;
+                --blk-3: #0f8060;
+                --blk-4: #a83e18;
+                --blk-5: #4a6a86;
+                --blk-6: #8a6d1f;
             }
-            .survey th,
-            .survey td {
-                padding: 6px 10px;
-                text-align: right;
-                border-bottom: 1px solid var(--line);
-                font-variant-numeric: tabular-nums;
-                white-space: nowrap;
+            :root[data-theme="dark"] .survey {
+                --blk-1: #4a8acc;
+                --blk-2: #a9825a;
+                --blk-3: #2fa383;
+                --blk-4: #e06030;
+                --blk-5: #6f97b8;
+                --blk-6: #d4a935;
             }
-            .survey th:first-child,
-            .survey td:first-child {
-                text-align: left;
-                white-space: normal;
-            }
-            .survey th {
-                color: var(--ink-soft);
-                font-weight: 600;
-                cursor: pointer;
-                user-select: none;
-                position: sticky;
-                top: 0;
-                background: var(--card);
-            }
-            .survey th.sorted {
+            .survey #q {
+                margin-left: auto;
+                width: 240px;
+                max-width: 42vw;
+                padding: 6px 11px;
+                border: 1px solid var(--edge);
+                background: var(--paper);
+                font: inherit;
+                font-size: 12px;
+                text-transform: none;
+                letter-spacing: normal;
                 color: var(--ink);
             }
-            /* Название с маленьким логотипом (как на карточках ландшафта;
-               монохромные инвертирует глобальный img.is-invert) */
-            .sv-tool {
+            .survey .rng-row {
+                display: flex;
+                align-items: center;
+            }
+            .survey .rng-blk {
+                display: flex;
+                align-items: baseline;
+                gap: 10px;
+                margin: 20px 0 6px;
+                padding: 0 0 6px;
+                border-bottom: 1px solid var(--edge);
+                font-size: 11px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--ink-soft);
+            }
+            .survey .rng-blk__n {
+                font-family: var(--display);
+                font-size: 13px;
+                color: var(--blk);
+            }
+            .survey .rng-row {
+                border-bottom: 1px solid var(--line);
+            }
+            .survey .rng-row:hover {
+                background: var(--line);
+            }
+            .survey .rng-name {
                 display: flex;
                 align-items: center;
                 gap: 8px;
+                flex: 0 0 210px;
+                min-width: 0;
+                padding: 9px 12px 9px 0;
+            }
+            .survey .rng-name > span {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                font-size: 13px;
+                line-height: 1.25;
+            }
+            .survey .rng-bar {
+                position: relative;
+                flex: 1;
+                height: 20px;
+                border-radius: 3px;
+                background: var(--paper);
+            }
+            .survey .rng-known,
+            .survey .rng-used {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                border-radius: 3px;
+            }
+            .survey .rng-known {
+                background: color-mix(in srgb, var(--blk) 22%, var(--paper));
+            }
+            .survey .rng-used {
+                background: var(--blk);
+            }
+            .survey .rng-tick {
+                position: absolute;
+                top: -2px;
+                width: 3px;
+                height: calc(100% + 4px);
+                margin-left: -1.5px;
+                border-radius: 1px;
+                background: var(--ink);
+            }
+            .survey .rng-row.low {
+                opacity: 0.5;
+            }
+            /* ── Зона роста: спрос на еще не освоенное. Полоса = пул (знают,
+               но не работали), заливка = «хочу попробовать». Акцент — золотой
+               (--cat-4, «желание/спрос»), отличается от синего и зеленого ── */
+            .survey .grow-row {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid var(--line);
+            }
+            .survey .grow-row:hover {
+                background: var(--line);
+            }
+            .survey .grow-name {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex: 0 0 210px;
+                min-width: 0;
+                padding: 9px 12px 9px 0;
+            }
+            .survey .grow-name > span {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                font-size: 13px;
+                line-height: 1.25;
+            }
+            .survey .grow-bar {
+                position: relative;
+                flex: 1;
+                height: 20px;
+                border-radius: 3px;
+                background: var(--paper);
+            }
+            .survey .grow-pool,
+            .survey .grow-want {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                border-radius: 3px;
+            }
+            .survey .grow-pool {
+                background: color-mix(in srgb, var(--cat-4) 22%, var(--paper));
+            }
+            .survey .grow-want {
+                background: var(--cat-4);
+            }
+            /* ── Данные: кнопки-карточки выгрузки CSV ── */
+            .survey .dl {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+            .survey .dl-btn {
+                flex: 1 1 220px;
+                min-width: 0;
+                text-align: left;
+                padding: 14px 16px;
+                background: var(--paper);
+                border: 1px solid var(--edge);
+                border-radius: 6px;
+                font: inherit;
+                color: var(--ink);
+                cursor: pointer;
+                transition:
+                    border-color 0.15s,
+                    background 0.15s;
+            }
+            .survey .dl-btn:hover {
+                border-color: var(--ink);
+                background: var(--card);
+            }
+            .survey .dl-btn b {
+                display: block;
+                font-size: 14px;
+                margin-bottom: 4px;
+            }
+            .survey .dl-btn b::before {
+                content: "↓ ";
+                color: var(--cat-3);
+            }
+            .survey .dl-btn span {
+                display: block;
+                font-size: 12px;
+                line-height: 1.35;
+                color: var(--ink-soft);
             }
             .sv-logo {
                 flex: 0 0 18px;
@@ -311,82 +600,6 @@
                 border: 1px solid var(--edge);
                 color: var(--ink-soft);
             }
-            /* Распределения: верхняя полоса — первый вопрос (работал/слышал/
-               впервые вижу), нижняя — второй (снова бы/не снова/хочу/не хочу).
-               При наведении сосед-сегменты гаснут, подробности — в тултипе */
-            .survey .dists {
-                display: flex;
-                flex-direction: column;
-                gap: 2px;
-                width: 170px;
-            }
-            .survey .dist {
-                display: flex;
-                gap: 2px;
-                height: 10px;
-            }
-            .survey .dist--sent {
-                height: 5px;
-            }
-            .survey .dist i {
-                display: block;
-                border-radius: 2px;
-                min-width: 0;
-            }
-            .survey .dist:hover i:not(:hover) {
-                opacity: 0.35;
-            }
-            .survey .d-used {
-                background: var(--series);
-            }
-            .survey .d-heard {
-                background: var(--series-soft);
-            }
-            .survey .d-unknown {
-                background: var(--line);
-            }
-            .survey .d-again {
-                background: var(--series);
-            }
-            .survey .d-notAgain {
-                background: var(--series-neg);
-            }
-            .survey .d-want {
-                background: var(--series-soft);
-            }
-            .survey .d-notWant {
-                background: var(--line);
-            }
-            .survey .legend {
-                display: flex;
-                gap: 14px 18px;
-                flex-wrap: wrap;
-                font-size: 12px;
-                color: var(--ink-soft);
-                margin-bottom: 10px;
-            }
-            .survey .legend i {
-                display: inline-block;
-                width: 10px;
-                height: 10px;
-                border-radius: 3px;
-                margin-right: 5px;
-                vertical-align: -1px;
-            }
-            .survey .legend .sep {
-                color: var(--edge);
-            }
-            .survey tr.low td {
-                color: var(--ink-soft);
-            }
-            .survey tr.low .dists {
-                opacity: 0.45;
-            }
-            .sv-note {
-                font-size: 12px;
-                color: var(--ink-soft);
-                margin-top: 10px;
-            }
             /* Квадрант */
             #quad {
                 width: 100%;
@@ -401,10 +614,19 @@
                 fill: var(--ink-soft);
             }
             #quad .corner {
-                fill: var(--ink-soft);
+                fill: var(--ink);
                 font-size: 10px;
+                font-weight: 700;
                 letter-spacing: 0.04em;
                 text-transform: uppercase;
+            }
+            /* очень тонкая подпись медиан — скраю, не отвлекает */
+            #quad .med-lbl {
+                fill: var(--ink-soft);
+                font-size: 8px;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                opacity: 0.7;
             }
             /* Точки квадранта — логотипы инструментов на подложке-кружке;
                монохромные инвертируем в темной теме (флаг logoInvert) */
@@ -418,7 +640,7 @@
                 font-weight: 700;
             }
             :root[data-theme="dark"] #quad image.is-invert {
-                filter: invert(1);
+                filter: url(#quadInvert);
             }
             #tip {
                 position: fixed;
@@ -429,12 +651,121 @@
                 font-size: 12px;
                 pointer-events: none;
                 box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-                z-index: 30;
-                max-width: 260px;
+                /* выше распахнутого квадранта (z 40), иначе подсказка прячется
+                   за полноэкранной карточкой */
+                z-index: 50;
+                max-width: 300px;
             }
             #tip b {
                 display: block;
                 margin-bottom: 3px;
+            }
+            #tip .tip-share {
+                display: block;
+                font-weight: 700;
+                font-variant-numeric: tabular-nums;
+            }
+            #tip .tip-row {
+                display: block;
+                margin-top: 2px;
+                color: var(--ink-soft);
+            }
+            /* Тултип квадранта: логотип+название, подзаголовок «N ответов»,
+               таблица метрик (метка слева, процент справа) и расшифровка
+               в людях внизу */
+            #tip .tip-head {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 3px;
+            }
+            #tip .tip-head b {
+                margin: 0;
+            }
+            #tip .tip-sub {
+                display: block;
+                margin-bottom: 8px;
+                color: var(--ink-soft);
+            }
+            /* качественный вывод — выделенная плашка с акцентом по типу */
+            #tip .tip-verdict {
+                margin-bottom: 8px;
+                padding: 7px 9px;
+                border-radius: 4px;
+                border-left: 3px solid var(--vd);
+                background: color-mix(in srgb, var(--vd) 12%, transparent);
+                font-size: 12px;
+                line-height: 1.35;
+                color: var(--ink);
+            }
+            #tip .vd-star {
+                --vd: var(--m-adv);
+            }
+            #tip .vd-niche {
+                --vd: #0f8060;
+            }
+            #tip .vd-warn {
+                --vd: var(--m-niche);
+            }
+            #tip .vd-cold,
+            #tip .vd-low {
+                --vd: var(--ink-soft);
+            }
+            #tip .tip-metrics {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                padding: 8px 0;
+                border-top: 1px solid var(--line);
+                border-bottom: 1px solid var(--line);
+            }
+            #tip .m-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 14px;
+            }
+            #tip .m-exp {
+                margin-top: 1px;
+                font-size: 11px;
+                line-height: 1.3;
+                color: var(--ink-soft);
+            }
+            #tip .tv {
+                flex: none;
+                font-weight: 700;
+                font-variant-numeric: tabular-nums;
+            }
+            #tip .tv-a {
+                color: var(--m-adv);
+            }
+            #tip .tv-b {
+                color: #0f8060;
+            }
+            :root[data-theme="dark"] #tip .tv-b {
+                color: #2fa383;
+            }
+            /* подсветка метрики теми же цветами, что и сегмент полосы */
+            #tip .tip-metrics > div.is-hi {
+                margin: 0 -8px;
+                padding: 2px 8px;
+                border-radius: 3px;
+            }
+            #tip .tip-metrics > div.is-hi .m-top > span:first-child {
+                font-weight: 600;
+                color: var(--ink);
+            }
+            #tip .is-hi[data-k="known"] {
+                background: color-mix(in srgb, var(--blk) 18%, transparent);
+            }
+            #tip .is-hi[data-k="used"] {
+                background: color-mix(in srgb, var(--blk) 32%, transparent);
+            }
+            #tip .is-hi[data-k="retention"] {
+                background: color-mix(in srgb, var(--ink) 14%, transparent);
+            }
+            #tip .is-hi[data-k="interest"] {
+                background: color-mix(in srgb, #bf8a15 26%, transparent);
             }
         </style>
     </head>
@@ -448,7 +779,7 @@
                 ></span
             >
             <span class="topbar__search" style="font-size: 13px; color: #999"
-                >Итоги 2026</span
+                >Итоги</span
             >
         </div>
 
@@ -457,7 +788,7 @@
                 <p class="kicker">
                     <a href="index.html" class="back">← Ландшафт</a>
                 </p>
-                <h1 class="title">Итоги 2026</h1>
+                <h1 class="title">Итоги тестового опроса</h1>
             </div>
         </header>
 
@@ -466,21 +797,24 @@
                 <aside class="filters" id="filters" aria-label="Отборы"></aside>
 
                 <div class="sv-content">
-                    <div class="sub" id="gen"></div>
-
-                    <div class="sv-headline" id="headline"></div>
-
                     <div class="sv-card">
-                        <h2>Кто отвечал</h2>
+                        <h2><span class="sv-h__n">01</span>Респонденты</h2>
                         <div class="sv-body">
+                            <div class="sv-headline" id="headline"></div>
                             <div class="sv-who" id="who"></div>
                         </div>
                     </div>
 
                     <div class="sv-card">
                         <h2>
-                            Квадрант: использование × возврат
-                            <span id="quadNote" style="font-weight: 400"></span>
+                            <span class="sv-h__n">02</span>Квадрант
+                            <button
+                                id="quadFull"
+                                class="scheme-btn q-full-btn"
+                                type="button"
+                            >
+                                Распахнуть
+                            </button>
                         </h2>
                         <div class="sv-body">
                             <svg id="quad" viewBox="0 0 1060 540"></svg>
@@ -488,53 +822,48 @@
                     </div>
 
                     <div class="sv-card">
-                        <h2
-                            style="
-                                display: flex;
-                                justify-content: space-between;
-                            "
-                        >
-                            <span>Инструменты</span>
-                            <input
-                                id="q"
-                                type="search"
-                                placeholder="Поиск по названию"
-                            />
+                        <h2>
+                            <span class="sv-h__n">03</span>Инструменты
+                            <input id="q" type="search" placeholder="Поиск" />
                         </h2>
                         <div class="sv-body">
-                            <div class="legend">
-                                <span><i class="d-used"></i>работал</span>
-                                <span><i class="d-heard"></i>слышал</span>
-                                <span
-                                    ><i class="d-unknown"></i>впервые вижу</span
-                                >
-                                <span class="sep">·</span>
-                                <span><i class="d-again"></i>снова бы</span>
-                                <span><i class="d-notAgain"></i>не снова</span>
-                                <span
-                                    ><i class="d-want"></i>хочу
-                                    попробовать</span
-                                >
-                                <span><i class="d-notWant"></i>не хочу</span>
-                            </div>
-                            <div class="tbl-wrap">
-                                <table id="tbl">
-                                    <thead>
-                                        <tr></tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                            <div class="sv-note">
-                                Верхняя полоса — первый вопрос (доли от всех
-                                ответов), нижняя — второй (доли от ответивших на
-                                него; пропуск «Дальше» не считается). Серые
-                                строки — меньше
-                                <span id="minN"></span> ответов («мало данных»
-                                по порогу публикации). Возврат = «снова бы» /
-                                ответившие на второй вопрос; интерес = «хочу
-                                попробовать» / ответившие; меньше трех
-                                ответивших — прочерк.
+                            <div class="rng" id="rng"></div>
+                        </div>
+                    </div>
+
+                    <div class="sv-card">
+                        <h2><span class="sv-h__n">04</span>Зона роста</h2>
+                        <div class="sv-body">
+                            <div class="grow" id="grow"></div>
+                        </div>
+                    </div>
+
+                    <div class="sv-card">
+                        <h2><span class="sv-h__n">05</span>Исходные данные</h2>
+                        <div class="sv-body">
+                            <div class="dl">
+                                <button class="dl-btn" data-dl="tools">
+                                    <b>Инструменты — сводка</b>
+                                    <span
+                                        >по каждому: узнаваемость,
+                                        использование, лояльность, интерес +
+                                        сырые счетчики · CSV</span
+                                    >
+                                </button>
+                                <button class="dl-btn" data-dl="segments">
+                                    <b>Ответы по сегментам</b>
+                                    <span
+                                        >сырые ячейки инструмент × роль ×
+                                        уровень × контекст · CSV</span
+                                    >
+                                </button>
+                                <button class="dl-btn" data-dl="resp">
+                                    <b>Респонденты</b>
+                                    <span
+                                        >распределение участников по роли,
+                                        уровню и контексту · CSV</span
+                                    >
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -550,7 +879,8 @@
 
         <script src="data.js?v=a1ffc343"></script>
         <script src="shared.js?v=1719ddb7"></script>
-        <script src="survey2026.js?v=5e4488ac"></script>
+        <script src="survey2026.js?v=62c4a5ca"></script>
+        <script src="nav.js?v=e707cea1"></script>
         <script>
             "use strict";
             const S = window.SURVEY;
@@ -580,6 +910,14 @@
                 (!sel.role.size || sel.role.has(c[0])) &&
                 (!sel.level.size || sel.level.has(c[1])) &&
                 (!sel.context.size || sel.context.has(c[2]));
+            // Как cellOk, но игнорируя отбор перечисленных осей — донат каждой
+            // оси показывает ВСЕ ее значения (не сворачивается по своему отбору),
+            // учитывая только отбор остальных осей (фасетный подсчет)
+            const passExcept = (c, skips) =>
+                DIMS.every(
+                    ([d], i) =>
+                        skips.includes(d) || !sel[d].size || sel[d].has(c[i]),
+                );
             // Счетчики инструмента в текущем отборе (null — ответов нет)
             function counters(t) {
                 const o = {
@@ -709,20 +1047,20 @@
                 const arcs = items
                     .map((it) => {
                         const frac = it.val / (total || 1);
-                        const len = Math.max(0.5, frac * C - GAP);
-                        const pc = total
-                            ? Math.round((100 * it.val) / total)
-                            : 0;
+                        const len =
+                            frac <= 0 ? 0 : Math.max(0.5, frac * C - GAP);
                         // вектор выдвигания вдоль биссектрисы сектора (в лок.
                         // координатах; поворот -90 группы довернет его сам)
                         const phi = (acc + frac / 2) * 2 * Math.PI;
                         const dx = (Math.cos(phi) * OUT).toFixed(1);
                         const dy = (Math.sin(phi) * OUT).toFixed(1);
+                        // штрих задаем стилем (а не атрибутом) — тогда его смена
+                        // в paintDonut() плавно анимируется (предпросмотр отбора)
                         const seg =
                             `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke-width="${W}"` +
-                            ` style="stroke:${CAT(it.colorIdx)};--dx:${dx}px;--dy:${dy}px"` +
-                            ` stroke-dasharray="${len} ${C - len}" stroke-dashoffset="${-acc * C}"` +
-                            ` data-name="${it.name}" data-n="${it.val}" data-p="${pc}"></circle>`;
+                            ` style="stroke:${CAT(it.colorIdx)};stroke-dasharray:${len} ${C - len};stroke-dashoffset:${-acc * C};--dx:${dx}px;--dy:${dy}px"` +
+                            ` data-name="${it.name}" data-n="${it.val}"` +
+                            ` data-f0="${acc.toFixed(4)}" data-f1="${(acc + frac).toFixed(4)}"></circle>`;
                         acc += frac;
                         return seg;
                     })
@@ -734,34 +1072,32 @@
                 );
             }
             function whoCharts() {
-                const total = respTotal();
-                const pct = (v) => (total ? Math.round((100 * v) / total) : 0);
                 $("#who").innerHTML = DIMS.map(([d, label], di) => {
-                    const g = {};
-                    S.respondents.cells.forEach((c) => {
-                        if (cellOk(c))
-                            g[S.dims[d][c[di]]] =
-                                (g[S.dims[d][c[di]]] || 0) + c[3];
-                    });
-                    // цвет по каноническому индексу значения, показываем по убыванию
+                    // фасетно: распределение оси без учета ее собственного отбора,
+                    // показываем ВСЕ значения (даже 0%) в каноническом порядке —
+                    // как список чипов на сайдбаре; цвет закреплен за значением
+                    const { dist, total } = distOf(di, null, -1);
+                    const pct = (v) =>
+                        total ? Math.round((100 * v) / total) : 0;
                     const vals = (ORDER[d] || S.dims[d])
                         .map((name, idx) => ({
                             name,
-                            val: g[name] || 0,
+                            val: dist[name] || 0,
                             colorIdx: idx,
                         }))
-                        .filter((v) => v.val > 0)
-                        .sort((a, b) => b.val - a.val);
+                        .filter((v) => S.dims[d].includes(v.name));
                     const legend = vals
-                        .map(
-                            (v) =>
-                                `<div class="lgnd__row" data-name="${v.name}"><span class="lgnd__sw" style="background:${CAT(v.colorIdx)}"></span>` +
+                        .map((v) => {
+                            const on = sel[d].has(S.dims[d].indexOf(v.name));
+                            return (
+                                `<div class="lgnd__row${on ? " is-sel" : ""}" data-name="${v.name}"><span class="lgnd__sw" style="background:${CAT(v.colorIdx)}"></span>` +
                                 `<span class="lgnd__name">${v.name}</span>` +
-                                `<span class="lgnd__val">${pct(v.val)}%</span></div>`,
-                        )
+                                `<span class="lgnd__val">${pct(v.val)}%</span></div>`
+                            );
+                        })
                         .join("");
                     return (
-                        `<div class="sv-who__col">` +
+                        `<div class="sv-who__col" data-di="${di}" data-dim="${d}">` +
                         donut(vals, total) +
                         `<div class="sv-who__side">` +
                         `<div class="sv-who__head">${label}</div>` +
@@ -769,19 +1105,82 @@
                     );
                 }).join("");
             }
+            // Фасетное распределение оси dd (без учета ее собственного отбора).
+            // Если задан di (наведенная ось) — это предпросмотр «будто выбрано
+            // значение hix»: игнорируем и отбор di, добавляем условие c[di]===hix
+            const distOf = (dd, di, hix) => {
+                const dkey = DIMS[dd][0];
+                const skips = di == null ? [dkey] : [dkey, DIMS[di][0]];
+                const dist = {};
+                let total = 0;
+                S.respondents.cells.forEach((c) => {
+                    if (passExcept(c, skips) && (di == null || c[di] === hix)) {
+                        const k = S.dims[dkey][c[dd]];
+                        dist[k] = (dist[k] || 0) + c[3];
+                        total += c[3];
+                    }
+                });
+                return { dist, total };
+            };
+            // Плавно перерисовать существующие сектора доната под новое
+            // распределение (штрихи заданы стилем → CSS-переход анимирует сдвиг)
+            const DR = 35,
+                DC = 2 * Math.PI * DR,
+                DOUT = 6;
+            function paintDonut(svg, dist, total) {
+                let acc = 0;
+                svg.querySelectorAll("circle[data-name]").forEach((c) => {
+                    const val = dist[c.dataset.name] || 0;
+                    const frac = val / (total || 1);
+                    const len = frac <= 0 ? 0 : Math.max(0.5, frac * DC);
+                    const phi = (acc + frac / 2) * 2 * Math.PI;
+                    c.style.strokeDasharray = `${len} ${DC - len}`;
+                    c.style.strokeDashoffset = `${-acc * DC}`;
+                    c.style.setProperty(
+                        "--dx",
+                        (Math.cos(phi) * DOUT).toFixed(1) + "px",
+                    );
+                    c.style.setProperty(
+                        "--dy",
+                        (Math.sin(phi) * DOUT).toFixed(1) + "px",
+                    );
+                    c.dataset.f0 = acc.toFixed(4);
+                    c.dataset.f1 = (acc + frac).toFixed(4);
+                    c.dataset.n = val;
+                    acc += frac;
+                });
+            }
+            function paintLegend(col, dist, total) {
+                col.querySelectorAll(".lgnd__row").forEach((r) => {
+                    const v = dist[r.dataset.name] || 0;
+                    r.querySelector(".lgnd__val").textContent =
+                        (total ? Math.round((100 * v) / total) : 0) + "%";
+                });
+            }
+            // Предпросмотр: навели значение оси di → оси правее (dd > di)
+            // перерисовываем так, будто это значение выбрано (условное
+            // распределение). Оси левее и сама наведенная — на базовом отборе.
+            let whoPrevKey = "";
+            function paintWho(di, name) {
+                const key = di === null ? "" : di + ":" + name;
+                if (key === whoPrevKey) return;
+                whoPrevKey = key;
+                const hix =
+                    di === null ? -1 : S.dims[DIMS[di][0]].indexOf(name);
+                DIMS.forEach((_, dd) => {
+                    // предпросмотр только для осей правее наведенной
+                    const preview = di !== null && dd > di;
+                    const { dist, total } = preview
+                        ? distOf(dd, di, hix)
+                        : distOf(dd, null, -1);
+                    const col = $(`.sv-who__col[data-di="${dd}"]`);
+                    if (!col) return;
+                    paintDonut(col.querySelector(".donut"), dist, total);
+                    paintLegend(col, dist, total);
+                });
+            }
 
-            // ── Таблица ──
-            const COLS = [
-                ["name", "Инструмент"],
-                ["total", "Ответов"],
-                ["dist", "Распределение"],
-                ["known", "Узнаваемость"],
-                ["used", "Использование"],
-                ["retention", "Возврат"],
-                ["interest", "Интерес"],
-            ];
-            let sortKey = "used";
-            let sortDir = -1;
+            // ── Инструменты: bullet-полосы, сгруппированные по блокам ──
             const metrics = (t) => ({
                 ...t,
                 known: pct(t.used + t.heard, t.total),
@@ -797,139 +1196,517 @@
                         ? pct(t.want, t.want + t.notWant)
                         : null,
             });
-            // Полосы распределения. Верхняя — первый вопрос (доли от total),
-            // нижняя — второй: снова бы/не снова/хочу/не хочу (доли от
-            // ответивших на него). Подробности сегмента — в data-tip
-            const seg = ([c, n, tip]) =>
-                `<i class="${c}" style="flex:${n}" data-tip="${tip}"></i>`;
-            const stack = (cls, parts) => {
-                const live = parts.filter(([, n]) => n);
-                return live.length
-                    ? `<span class="dist ${cls}">${live.map(seg).join("")}</span>`
-                    : "";
+            // Медианы использования/возврата по инструментам квадранта —
+            // граница «выше/ниже среднего» для качественного вывода. Считает
+            // quadrant() при каждом рендере (зависит от текущего отбора)
+            let QMED = { use: 0, ret: 0 };
+            // Качественный вывод об инструменте — тем же языком, что углы
+            // квадранта (лидеры / нишевые любимчики / разочаровывают / …)
+            const verdict = (r) => {
+                if (r.total < MIN_N)
+                    return {
+                        cls: "vd-low",
+                        t: "Мало ответов — выводы предварительные",
+                    };
+                if (r.usedN < QUAD_MIN || r.retention === null)
+                    return r.known < 30
+                        ? {
+                              cls: "vd-cold",
+                              t: "Малоизвестен: работавших почти нет",
+                          }
+                        : {
+                              cls: "vd-cold",
+                              t: "Знают, но работавших пока мало",
+                          };
+                const hiUse = r.used >= QMED.use,
+                    hiRet = r.retention >= QMED.ret;
+                if (hiUse && hiRet)
+                    return {
+                        cls: "vd-star",
+                        t: "Из лидеров: широко используют и остаются с ним",
+                    };
+                if (!hiUse && hiRet)
+                    return {
+                        cls: "vd-niche",
+                        t: "Нишевый фаворит: используют не все, но кто попробовал — остается",
+                    };
+                if (hiUse && !hiRet)
+                    return {
+                        cls: "vd-warn",
+                        t: "Популярный, но разочаровывает: заметная часть не вернулась бы",
+                    };
+                return {
+                    cls: "vd-cold",
+                    t: "На периферии: и используют, и возвращаются немногие",
+                };
             };
-            const dists = (r) => {
+            // Детальная карточка инструмента в тултипе (общая с квадрантом):
+            // логотип+название, качественный вывод и все метрики с расшифровкой —
+            // из чего и как посчитан каждый процент (в людях)
+            const toolCard = (r) => {
+                const knownN = r.usedN + r.heard;
+                const retBase = r.again + r.notAgain;
+                const intBase = r.want + r.notWant;
+                const v = verdict(r);
+                const row = (k, label, val, cls, exp) =>
+                    `<div data-k="${k}">` +
+                    `<div class="m-top"><span>${label}</span><span class="tv ${cls}">${fmt(val)}</span></div>` +
+                    `<div class="m-exp">${exp}</div></div>`;
                 return (
-                    `<span class="dists">` +
-                    stack("", [
-                        [
-                            "d-used",
-                            r.usedN,
-                            `работал: ${r.usedN} (${pct(r.usedN, r.total)}%)`,
-                        ],
-                        [
-                            "d-heard",
-                            r.heard,
-                            `слышал: ${r.heard} (${pct(r.heard, r.total)}%)`,
-                        ],
-                        [
-                            "d-unknown",
-                            r.unknown,
-                            `впервые вижу: ${r.unknown} (${pct(r.unknown, r.total)}%)`,
-                        ],
-                    ]) +
-                    stack("dist--sent", [
-                        [
-                            "d-again",
-                            r.again,
-                            `снова бы: ${r.again}${r.retention !== null ? ` · возврат ${r.retention}%` : ""}`,
-                        ],
-                        ["d-notAgain", r.notAgain, `не снова: ${r.notAgain}`],
-                        [
-                            "d-want",
-                            r.want,
-                            `хочу попробовать: ${r.want}${r.interest !== null ? ` · интерес ${r.interest}%` : ""}`,
-                        ],
-                        ["d-notWant", r.notWant, `не хочу: ${r.notWant}`],
-                    ]) +
-                    `</span>`
+                    `<div class="tip-head">${logo(r.name)}<b>${r.name}</b></div>` +
+                    `<span class="tip-sub">${fmtN(r.total)} ${Pl(r.total, "ответ", "ответа", "ответов")} об инструменте</span>` +
+                    `<div class="tip-verdict ${v.cls}">${v.t}</div>` +
+                    `<div class="tip-metrics">` +
+                    row(
+                        "known",
+                        "Узнаваемость",
+                        r.known,
+                        "",
+                        `знают инструмент — ${fmtN(knownN)} из ${fmtN(r.total)} (работали или слышали)`,
+                    ) +
+                    row(
+                        "used",
+                        "Использование",
+                        r.used,
+                        "tv-a",
+                        `работали с ним — ${fmtN(r.usedN)} из ${fmtN(r.total)} ответивших`,
+                    ) +
+                    row(
+                        "retention",
+                        "Лояльность",
+                        r.retention,
+                        "tv-b",
+                        retBase >= SENT_MIN
+                            ? `готовность использовать снова — ${fmtN(r.again)} из ${fmtN(retBase)} работавших, кто оценил`
+                            : `оценивших выбор пока мало (${fmtN(retBase)}, нужно ${SENT_MIN}+)`,
+                    ) +
+                    row(
+                        "interest",
+                        "Интерес",
+                        r.interest,
+                        "",
+                        intBase >= SENT_MIN
+                            ? `хотят попробовать — ${fmtN(r.want)} из ${fmtN(intBase)} слышавших, но не работавших`
+                            : `ответивших «хочу/не хочу» пока мало (${fmtN(intBase)}, нужно ${SENT_MIN}+)`,
+                    ) +
+                    `</div>`
                 );
             };
-            function table() {
-                $("#tbl thead tr").innerHTML = COLS.map(
-                    ([k, l]) =>
-                        `<th class="${k === sortKey ? "sorted" : ""}" data-k="${k}">${l}${k === sortKey ? (sortDir < 0 ? " ↓" : " ↑") : ""}</th>`,
-                ).join("");
+            // категория → индекс блока ландшафта (для группировки полос)
+            const CAT_BLOCK = {};
+            window.LANDSCAPE.blocks.forEach((b, bi) =>
+                b.categories.forEach((c) => (CAT_BLOCK[c] = bi)),
+            );
+            const rowByName = new Map(); // имя → метрики (для тултипа)
+            function ranges() {
+                rowByName.clear();
                 const rows = S.tools
                     .map((t) => {
                         const c = counters(t);
-                        return c && { name: t.name, ...metrics(c) };
+                        if (!c) return null;
+                        const r = {
+                            name: t.name,
+                            cat: t.category,
+                            ...metrics(c),
+                        };
+                        rowByName.set(r.name, r);
+                        return r;
                     })
                     .filter(Boolean)
                     .filter(
                         (r) => !query || r.name.toLowerCase().includes(query),
-                    )
-                    .sort((a, b) => {
-                        const k = sortKey === "dist" ? "used" : sortKey;
-                        if (k === "name")
-                            return sortDir * a.name.localeCompare(b.name, "ru");
-                        return sortDir * ((a[k] ?? -1) - (b[k] ?? -1));
-                    });
-                $("#tbl tbody").innerHTML = rows
+                    );
+                // блоки ландшафта, внутри — по выбранной метрике (убывание)
+                const groups = window.LANDSCAPE.blocks
+                    .map((b, bi) => ({
+                        bi,
+                        name: b.name,
+                        items: rows
+                            .filter((r) => CAT_BLOCK[r.cat] === bi)
+                            .sort((a, b2) => b2.used - a.used),
+                    }))
+                    .filter((g) => g.items.length);
+                const bar = (r) =>
+                    `<div class="rng-bar">` +
+                    `<span class="rng-known" style="width:${r.known}%"></span>` +
+                    `<span class="rng-used" style="width:${r.used}%"></span>` +
+                    (r.retention !== null
+                        ? `<span class="rng-tick" style="left:${r.retention}%"></span>`
+                        : "") +
+                    `</div>`;
+                $("#rng").innerHTML = groups
                     .map(
-                        (r) =>
-                            `<tr class="${r.total < MIN_N ? "low" : ""}">` +
-                            `<td><span class="sv-tool">${logo(r.name)}<span>${r.name}</span></span></td>` +
-                            `<td>${r.total}</td>` +
-                            `<td>${dists(r)}</td>` +
-                            `<td>${fmt(r.known)}</td><td>${fmt(r.used)}</td>` +
-                            `<td>${fmt(r.retention)}</td><td>${fmt(r.interest)}</td></tr>`,
+                        (g) =>
+                            `<div class="rng-blk" style="--blk:var(--blk-${g.bi + 1})"><span class="rng-blk__n">${String(g.bi + 1).padStart(2, "0")}</span>${g.name}</div>` +
+                            g.items
+                                .map(
+                                    (r) =>
+                                        `<div class="rng-row${r.total < MIN_N ? " low" : ""}" data-name="${r.name}" style="--blk:var(--blk-${g.bi + 1})">` +
+                                        `<div class="rng-name">${logo(r.name)}<span>${r.name}</span></div>` +
+                                        bar(r) +
+                                        `</div>`,
+                                )
+                                .join(""),
                     )
                     .join("");
             }
-            $("#tbl thead").addEventListener("click", (e) => {
-                const th = e.target.closest("th");
-                if (!th) return;
-                if (sortKey === th.dataset.k) sortDir = -sortDir;
-                else {
-                    sortKey = th.dataset.k;
-                    sortDir = sortKey === "name" ? 1 : -1;
-                }
-                table();
-            });
             $("#q").addEventListener("input", (e) => {
                 query = e.target.value.trim().toLowerCase();
-                table();
+                ranges();
             });
 
-            // Тултип сегментов распределения (сосед-сегменты гасит CSS)
             const tip = $("#tip");
             const moveTip = (e) => {
                 tip.style.left = e.clientX + 14 + "px";
                 tip.style.top = e.clientY + 14 + "px";
             };
-            $("#tbl").addEventListener("mousemove", (e) => {
-                const i = e.target.closest(".dist i");
-                if (!i) {
-                    tip.style.display = "none";
-                    return;
+            // Тултип строки: карточку рисуем один раз при заходе на инструмент
+            // (иначе <img> логотипа мигал бы), позицию берем у строки
+            let rngName = null,
+                rngSeg = null;
+            $("#rng").addEventListener("mousemove", (e) => {
+                const row = e.target.closest(".rng-row");
+                const name = row ? row.dataset.name : null;
+                // какой сегмент полосы под курсором → подсветим строку в карточке.
+                // Считаем по геометрии полосы (у метки-риски широкая зона попадания)
+                let seg = null;
+                if (name) {
+                    const br = row
+                        .querySelector(".rng-bar")
+                        .getBoundingClientRect();
+                    if (e.clientX >= br.left && e.clientX <= br.right) {
+                        const r = rowByName.get(name);
+                        const x = e.clientX - br.left;
+                        const xpc = (x / br.width) * 100;
+                        if (
+                            r.retention !== null &&
+                            Math.abs(x - (br.width * r.retention) / 100) <= 7
+                        )
+                            seg = "retention";
+                        else if (xpc <= r.used) seg = "used";
+                        else if (xpc <= r.known) seg = "known";
+                    }
                 }
-                tip.textContent = i.dataset.tip;
-                tip.style.display = "block";
-                moveTip(e);
+                if (name === rngName && seg === rngSeg) return;
+                // карточку перерисовываем только при смене инструмента (без
+                // моргания логотипа при движении внутри одной строки)
+                if (name !== rngName) {
+                    rngName = name;
+                    if (!name) {
+                        rngSeg = null;
+                        tip.style.display = "none";
+                        return;
+                    }
+                    tip.innerHTML = toolCard(rowByName.get(name));
+                    // цвет блока — чтобы подсветка в карточке совпала с полосой
+                    tip.style.setProperty(
+                        "--blk",
+                        getComputedStyle(row).getPropertyValue("--blk"),
+                    );
+                    tip.style.display = "block";
+                    const rc = row.getBoundingClientRect();
+                    const tw = tip.offsetWidth,
+                        th = tip.offsetHeight;
+                    let left = e.clientX + 14;
+                    if (left + tw > innerWidth - 8) left = innerWidth - 8 - tw;
+                    let top = rc.bottom + 8;
+                    if (top + th > innerHeight - 8) top = rc.top - th - 8;
+                    tip.style.left = Math.max(8, left) + "px";
+                    tip.style.top = Math.max(8, top) + "px";
+                }
+                // подсветка нужной метрики — только классы, без перерисовки
+                rngSeg = seg;
+                tip.querySelectorAll(".tip-metrics > div").forEach((d) =>
+                    d.classList.toggle("is-hi", d.dataset.k === seg),
+                );
             });
-            $("#tbl").addEventListener(
-                "mouseleave",
-                () => (tip.style.display = "none"),
+            $("#rng").addEventListener("mouseleave", () => {
+                rngName = null;
+                rngSeg = null;
+                tip.style.display = "none";
+            });
+
+            // ── Зона роста: спрос на еще не освоенное ──
+            // Инструмент попадает сюда, если его знают, но не работали (пул =
+            // хочу + не хочу пробовать). Полоса: длина = пул, заливка = «хочу
+            // попробовать»; сортировка по объему спроса, показываем топ.
+            const GROW_MIN = 6, // порог пула (меньше — шум малых чисел)
+                GROW_TOP = 12;
+            const growByName = new Map();
+            function growth() {
+                growByName.clear();
+                const rows = S.tools
+                    .map((t) => {
+                        const c = counters(t);
+                        if (!c) return null;
+                        const r = { name: t.name, ...metrics(c) };
+                        r.pool = r.want + r.notWant;
+                        growByName.set(r.name, r);
+                        return r;
+                    })
+                    .filter(Boolean)
+                    .filter((r) => r.pool >= GROW_MIN)
+                    .sort((a, b) => b.want - a.want || b.interest - a.interest)
+                    .slice(0, GROW_TOP);
+                const maxPool = Math.max(1, ...rows.map((r) => r.pool));
+                $("#grow").innerHTML = rows
+                    .map(
+                        (r) =>
+                            `<div class="grow-row" data-name="${r.name}">` +
+                            `<div class="grow-name">${logo(r.name)}<span>${r.name}</span></div>` +
+                            `<div class="grow-bar">` +
+                            `<span class="grow-pool" style="width:${(100 * r.pool) / maxPool}%"></span>` +
+                            `<span class="grow-want" style="width:${(100 * r.want) / maxPool}%"></span>` +
+                            `</div>` +
+                            `</div>`,
+                    )
+                    .join("");
+            }
+            let growName = null,
+                growSeg = null;
+            $("#grow").addEventListener("mousemove", (e) => {
+                const row = e.target.closest(".grow-row");
+                const name = row ? row.dataset.name : null;
+                // над полосой — подсветим строку «Интерес» в карточке
+                const seg =
+                    name && e.target.closest(".grow-bar") ? "interest" : null;
+                if (name === growName && seg === growSeg) return;
+                if (name !== growName) {
+                    growName = name;
+                    if (!name) {
+                        growSeg = null;
+                        tip.style.display = "none";
+                        return;
+                    }
+                    tip.innerHTML = toolCard(growByName.get(name));
+                    tip.style.display = "block";
+                    const rc = row.getBoundingClientRect();
+                    const tw = tip.offsetWidth,
+                        th = tip.offsetHeight;
+                    let left = e.clientX + 14;
+                    if (left + tw > innerWidth - 8) left = innerWidth - 8 - tw;
+                    let top = rc.bottom + 8;
+                    if (top + th > innerHeight - 8) top = rc.top - th - 8;
+                    tip.style.left = Math.max(8, left) + "px";
+                    tip.style.top = Math.max(8, top) + "px";
+                }
+                growSeg = seg;
+                tip.querySelectorAll(".tip-metrics > div").forEach((d) =>
+                    d.classList.toggle("is-hi", d.dataset.k === seg),
+                );
+            });
+            $("#grow").addEventListener("mouseleave", () => {
+                growName = null;
+                growSeg = null;
+                tip.style.display = "none";
+            });
+
+            // ── Данные: агрегаты в CSV (полный набор, без учета отбора) ──
+            const csvCell = (v) => {
+                const s = String(v ?? "");
+                return /[";\n\r]/.test(s)
+                    ? '"' + s.replace(/"/g, '""') + '"'
+                    : s;
+            };
+            const toCSV = (rows) =>
+                rows.map((r) => r.map(csvCell).join(";")).join("\r\n");
+            function dlFile(fn, text) {
+                // BOM — чтобы Excel открыл кириллицу; разделитель «;» под RU-локаль
+                const blob = new Blob(["﻿" + text], {
+                    type: "text/csv;charset=utf-8",
+                });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = fn;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+            function toolsCSV() {
+                const rows = [
+                    [
+                        "Инструмент",
+                        "Категория",
+                        "Зрелость",
+                        "Ответов",
+                        "Работали",
+                        "Слышали",
+                        "Впервые",
+                        "Узнаваемость %",
+                        "Использование %",
+                        "Снова да",
+                        "Снова нет",
+                        "Лояльность %",
+                        "Хочу да",
+                        "Хочу нет",
+                        "Интерес %",
+                    ],
+                ];
+                const p = (a, b) => (b ? Math.round((100 * a) / b) : "");
+                S.tools.forEach((t) => {
+                    const o = [0, 0, 0, 0, 0, 0, 0];
+                    t.cells.forEach((c) => {
+                        for (let i = 0; i < 7; i++) o[i] += c[3 + i];
+                    });
+                    const [
+                        used,
+                        heard,
+                        unknown,
+                        again,
+                        notAgain,
+                        want,
+                        notWant,
+                    ] = o;
+                    const total = used + heard + unknown;
+                    rows.push([
+                        t.name,
+                        t.category,
+                        t.maturity,
+                        total,
+                        used,
+                        heard,
+                        unknown,
+                        p(used + heard, total),
+                        p(used, total),
+                        again,
+                        notAgain,
+                        p(again, again + notAgain),
+                        want,
+                        notWant,
+                        p(want, want + notWant),
+                    ]);
+                });
+                return toCSV(rows);
+            }
+            function segmentsCSV() {
+                const rows = [
+                    [
+                        "Инструмент",
+                        "Категория",
+                        "Зрелость",
+                        "Роль",
+                        "Уровень",
+                        "Контекст",
+                        "Работали",
+                        "Слышали",
+                        "Впервые",
+                        "Снова да",
+                        "Снова нет",
+                        "Хочу да",
+                        "Хочу нет",
+                    ],
+                ];
+                S.tools.forEach((t) =>
+                    t.cells.forEach((c) =>
+                        rows.push([
+                            t.name,
+                            t.category,
+                            t.maturity,
+                            S.dims.role[c[0]],
+                            S.dims.level[c[1]],
+                            S.dims.context[c[2]],
+                            c[3],
+                            c[4],
+                            c[5],
+                            c[6],
+                            c[7],
+                            c[8],
+                            c[9],
+                        ]),
+                    ),
+                );
+                return toCSV(rows);
+            }
+            function respCSV() {
+                const rows = [["Роль", "Уровень", "Контекст", "Человек"]];
+                S.respondents.cells.forEach((c) =>
+                    rows.push([
+                        S.dims.role[c[0]],
+                        S.dims.level[c[1]],
+                        S.dims.context[c[2]],
+                        c[3],
+                    ]),
+                );
+                return toCSV(rows);
+            }
+            document.querySelectorAll(".dl-btn").forEach((b) =>
+                b.addEventListener("click", () => {
+                    if (!S) return;
+                    const k = b.dataset.dl;
+                    if (k === "tools")
+                        dlFile("stateof1c-2026-tools.csv", toolsCSV());
+                    else if (k === "segments")
+                        dlFile("stateof1c-2026-segments.csv", segmentsCSV());
+                    else dlFile("stateof1c-2026-respondents.csv", respCSV());
+                }),
             );
+
+            // Мобильный: «Распахнуть» — квадрант на весь экран, повернутый
+            // в альбомную ориентацию; повторный клик сворачивает обратно
+            const quadFull = $("#quadFull");
+            if (quadFull) {
+                const quadCard = $("#quad").closest(".sv-card");
+                quadFull.addEventListener("click", () => {
+                    const open = quadCard.classList.toggle("q-open");
+                    quadFull.textContent = open ? "Свернуть" : "Распахнуть";
+                    document.body.classList.toggle("q-locked", open);
+                });
+            }
+
             // Подсветка «Кто отвечал»: наведение на сектор ИЛИ на строку
             // легенды подсвечивает одно значение — сектор выдвигается, а
             // остальные (и в кольце, и в легенде) гаснут. Тултип с числом и %
-            const whoClear = () =>
+            const whoClear = () => {
                 $("#who")
                     .querySelectorAll(".is-hi, .is-dim")
                     .forEach((el) => el.classList.remove("is-hi", "is-dim"));
+                $("#who")
+                    .querySelectorAll(".col-dim")
+                    .forEach((el) => el.classList.remove("col-dim"));
+            };
+            // Какой сектор под курсором — по углу от центра доната, а не по
+            // элементу под ним: выдвинутый сектор ушел бы из-под курсора,
+            // подсветка снималась бы и мерцала. Кольцо 20..50 в системе viewBox
+            const sectorAt = (col, e) => {
+                const svg = col.querySelector(".donut");
+                const r = svg.getBoundingClientRect();
+                const s = r.width / 120;
+                const dx = e.clientX - (r.left + r.width / 2);
+                const dy = e.clientY - (r.top + r.height / 2);
+                const rad = Math.hypot(dx, dy) / s;
+                if (rad < 20 || rad > 50) return null;
+                let f = ((Math.atan2(dy, dx) * 180) / Math.PI + 90) / 360;
+                f = ((f % 1) + 1) % 1;
+                const hit = [...svg.querySelectorAll("circle[data-name]")].find(
+                    (c) => f >= +c.dataset.f0 && f < +c.dataset.f1,
+                );
+                return hit ? hit.dataset.name : null;
+            };
             $("#who").addEventListener("mousemove", (e) => {
                 const col = e.target.closest(".sv-who__col");
-                const src =
-                    e.target.closest("circle[data-name]") ||
-                    e.target.closest(".lgnd__row");
                 whoClear();
-                if (!col || !src || !src.dataset.name) {
+                if (!col) {
+                    paintWho(null);
                     tip.style.display = "none";
                     return;
                 }
-                const name = src.dataset.name;
+                // легенду ловим по строке, сектор — по углу (см. sectorAt)
+                const row = e.target.closest(".lgnd__row");
+                const name = row ? row.dataset.name : sectorAt(col, e);
+                if (!name) {
+                    paintWho(null);
+                    tip.style.display = "none";
+                    return;
+                }
+                // предпросмотр отбора: перерисовать оси правее наведенной,
+                // оси левее — приглушить (фокус на наведенной и правее)
+                const di = +col.dataset.di;
+                paintWho(di, name);
+                $("#who")
+                    .querySelectorAll(".sv-who__col")
+                    .forEach((c) =>
+                        c.classList.toggle("col-dim", +c.dataset.di < di),
+                    );
                 let active = null;
                 col.querySelectorAll("circle[data-name]").forEach((c) => {
                     const hit = c.dataset.name === name;
@@ -942,14 +1719,42 @@
                     ),
                 );
                 if (active) {
-                    tip.innerHTML = `<b>${active.dataset.name}</b>${active.dataset.n} чел. · ${active.dataset.p}%`;
+                    const axis = col.querySelector(".sv-who__head").textContent;
+                    const n = +active.dataset.n;
+                    // база — популяция этого доната (фасет по остальным осям)
+                    const base = distOf(di, null, -1).total;
+                    const share = base ? (100 * n) / base : 0;
+                    const shareStr = share.toLocaleString("ru-RU", {
+                        maximumFractionDigits: 1,
+                    });
+                    tip.innerHTML =
+                        `<b>${axis}: ${active.dataset.name}</b>` +
+                        `<span class="tip-share">${shareStr}%</span>` +
+                        `<span class="tip-row">${fmtN(n)} ${Pl(n, "человек", "человека", "человек")} ` +
+                        `из ${fmtN(base)} ${Pl(base, "ответившего", "ответивших", "ответивших")}</span>`;
                     tip.style.display = "block";
                     moveTip(e);
                 }
             });
             $("#who").addEventListener("mouseleave", () => {
                 whoClear();
+                paintWho(null);
                 tip.style.display = "none";
+            });
+            // Клик по значению (строка легенды ИЛИ сектор) — как чип отбора на
+            // сайдбаре: включает/снимает значение оси, дальше общий render()
+            $("#who").addEventListener("click", (e) => {
+                const col = e.target.closest(".sv-who__col");
+                if (!col) return;
+                const row = e.target.closest(".lgnd__row");
+                const name = row ? row.dataset.name : sectorAt(col, e);
+                if (!name) return;
+                const d = col.dataset.dim;
+                const ix = S.dims[d].indexOf(name);
+                if (ix < 0) return;
+                sel[d].has(ix) ? sel[d].delete(ix) : sel[d].add(ix);
+                whoPrevKey = ""; // после перерисовки состояние доната иное
+                render();
             });
 
             // ── Квадрант ──
@@ -966,8 +1771,6 @@
                         return { name: t.name, ...metrics(c) };
                     })
                     .filter(Boolean);
-                $("#quadNote").textContent =
-                    ` — инструменты с ${QUAD_MIN}+ работавшими и оценившими (${pts.length})`;
                 // Сверху запас (P.t) под подписи углов: точки со 100%
                 // лежат на верхней линии, подписи — выше нее, не впритык
                 const W = 1060,
@@ -981,7 +1784,11 @@
                     ] || 0;
                 const mx = med(pts.map((p) => p.used));
                 const my = med(pts.map((p) => p.retention));
-                let svg = "";
+                QMED = { use: mx, ret: my }; // граница для качественного вывода
+                // Инверсия монохромных лого в темной теме: CSS-функция
+                // filter:invert(1) не применяется к SVG <image> в WebKit,
+                // поэтому настоящий SVG-фильтр (см. правило #quad image.is-invert)
+                let svg = `<defs><filter id="quadInvert" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="-1 0 0 0 1  0 -1 0 0 1  0 0 -1 0 1  0 0 0 1 0"/></filter></defs>`;
                 // Сетка и оси
                 for (const v of [0, 25, 50, 75, 100]) {
                     svg += `<line x1="${x(v)}" y1="${y(0)}" x2="${x(v)}" y2="${y(100)}" stroke="var(--line)"/>`;
@@ -991,43 +1798,81 @@
                 }
                 svg += `<line x1="${x(0)}" y1="${y(0)}" x2="${x(100)}" y2="${y(0)}" stroke="var(--edge)"/>`;
                 svg += `<text x="${x(50)}" y="${H - 6}" text-anchor="middle" class="axis-lbl">использование</text>`;
-                svg += `<text x="12" y="${y(50)}" text-anchor="middle" class="axis-lbl" transform="rotate(-90 12 ${y(50)})">возврат</text>`;
+                svg += `<text x="12" y="${y(50)}" text-anchor="middle" class="axis-lbl" transform="rotate(-90 12 ${y(50)})">лояльность</text>`;
                 // Медианы — границы квадрантов
                 if (pts.length) {
                     svg += `<line x1="${x(mx)}" y1="${y(0)}" x2="${x(mx)}" y2="${y(100)}" stroke="var(--edge)" stroke-dasharray="4 4"/>`;
                     svg += `<line x1="${x(0)}" y1="${y(my)}" x2="${x(100)}" y2="${y(my)}" stroke="var(--edge)" stroke-dasharray="4 4"/>`;
-                    svg += `<text x="${x(100)}" y="${y(100) - 18}" text-anchor="end" class="corner">звезды</text>`;
+                    // тонкие подписи медиан у краев линий
+                    svg += `<text x="${x(mx) + 3}" y="${y(0) - 4}" class="med-lbl">медиана</text>`;
+                    svg += `<text x="${x(100)}" y="${y(my) - 3}" text-anchor="end" class="med-lbl">медиана</text>`;
+                    svg += `<text x="${x(100)}" y="${y(100) - 18}" text-anchor="end" class="corner">лидеры</text>`;
                     svg += `<text x="${x(0) + 4}" y="${y(100) - 18}" class="corner">нишевые любимчики</text>`;
                     svg += `<text x="${x(100)}" y="${y(0) - 12}" text-anchor="end" class="corner">популярные, но разочаровывают</text>`;
                 }
                 // Точки — логотипы инструментов (сразу видно, кто есть кто);
-                // название и метрики — в тултипе при наведении. Подложка-кружок
-                // под лого, чтобы читалось на сетке; сверху прозрачный кружок с
-                // data-i для наведения
+                // название и метрики — в тултипе при наведении. Каждая точка —
+                // группа (подложка-кружок под лого + прозрачный кружок для
+                // наведения); при наведении группу поднимаем над соседями
                 pts.forEach((p, i) => {
                     const it = ITEM.get(p.name) || {};
                     const cx = x(p.used),
                         cy = y(p.retention),
                         r = 13;
-                    svg += `<circle class="dot-bg" cx="${cx}" cy="${cy}" r="${r}"/>`;
-                    svg += it.logo
+                    const img = it.logo
                         ? `<image href="logos/${it.logo}" x="${cx - r + 3}" y="${cy - r + 3}" width="${2 * r - 6}" height="${2 * r - 6}" preserveAspectRatio="xMidYMid meet"${it.logoInvert ? ' class="is-invert"' : ""}/>`
                         : `<text class="ph" x="${cx}" y="${cy + 3}" text-anchor="middle">1С</text>`;
-                    svg += `<circle data-i="${i}" cx="${cx}" cy="${cy}" r="${r}" fill="transparent"/>`;
+                    svg +=
+                        `<g class="dot" data-i="${i}">` +
+                        `<circle class="dot-bg" cx="${cx}" cy="${cy}" r="${r}"/>` +
+                        img +
+                        `<circle cx="${cx}" cy="${cy}" r="${r}" fill="transparent"/>` +
+                        `</g>`;
                 });
                 $("#quad").innerHTML = svg;
+                // Рисуем подсказку один раз при заходе на кругляш и ставим ее
+                // в фиксированную точку рядом с ним. Пока курсор внутри того же
+                // кругляша (hoverI не меняется) — не перерисовываем, иначе <img>
+                // логотипа перезагружается и мигает, а тултип дергается
+                let hoverI = null;
                 $("#quad").onmousemove = (e) => {
                     const c = e.target.closest("[data-i]");
-                    if (!c) {
+                    const i = c ? +c.dataset.i : null;
+                    if (i === hoverI) return;
+                    hoverI = i;
+                    if (i === null) {
                         tip.style.display = "none";
                         return;
                     }
-                    const p = pts[+c.dataset.i];
-                    tip.innerHTML = `<b>${p.name}</b>использование ${fmt(p.used)} · возврат ${fmt(p.retention)}<br>ответов: ${p.total}, узнаваемость ${fmt(p.known)}`;
+                    // поднимаем наведенную группу в конец SVG — поверх соседей
+                    $("#quad").appendChild(c);
+                    const p = pts[i];
+                    tip.innerHTML = toolCard(p);
                     tip.style.display = "block";
-                    moveTip(e);
+                    const tw = tip.offsetWidth,
+                        th = tip.offsetHeight;
+                    if (document.body.classList.contains("q-locked")) {
+                        // распахнутый режим: подсказка повернута (CSS), кладем
+                        // ее по центру экрана — так после поворота видна целиком
+                        tip.style.left = (innerWidth - tw) / 2 + "px";
+                        tip.style.top = (innerHeight - th) / 2 + "px";
+                    } else {
+                        // обычно — у кругляша (справа, при нехватке места слева);
+                        // по вертикали не вылезаем за экран
+                        const r = c.getBoundingClientRect();
+                        let left = r.right + 10;
+                        if (left + tw > innerWidth - 8) left = r.left - tw - 10;
+                        let top = r.top;
+                        if (top + th > innerHeight - 8)
+                            top = innerHeight - 8 - th;
+                        tip.style.left = Math.max(8, left) + "px";
+                        tip.style.top = Math.max(8, top) + "px";
+                    }
                 };
-                $("#quad").onmouseleave = () => (tip.style.display = "none");
+                $("#quad").onmouseleave = () => {
+                    hoverI = null;
+                    tip.style.display = "none";
+                };
             }
 
             function render() {
@@ -1035,20 +1880,39 @@
                 headline();
                 whoCharts();
                 quadrant();
-                table();
+                ranges();
+                growth();
             }
+            // ── Мобильный: «Отборы» уезжают в бургер, открываются попапом
+            // (как на главной; nav.js подключен выше — window.NAV доступен) ──
+            if (window.NAV) {
+                const filtersEl = $("#filters");
+                const openFilters = (on) =>
+                    filtersEl.classList.toggle("is-open", on);
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "menu__pa-item";
+                btn.textContent = "Отборы";
+                btn.addEventListener("click", () => {
+                    NAV.closeMenu();
+                    openFilters(true);
+                });
+                NAV.pageActions([btn]);
+                NAV.dismissOnOutside(
+                    () => filtersEl.classList.contains("is-open"),
+                    [filtersEl, ".menu__pa-item"],
+                    () => openFilters(false),
+                );
+            }
+
             // Данные гитигнорены: на свежем клоне их нет — подсказка вместо
             // падения на S.wave
             if (S) {
-                $("#gen").textContent =
-                    `Волна ${S.wave} · сгенерировано ${new Date(S.generated).toLocaleString("ru-RU")} · пока не публикуется`;
-                $("#minN").textContent = MIN_N;
                 render();
             } else {
-                $("#gen").textContent =
+                $("#headline").textContent =
                     "Нет данных: сгенерируй витрину — node bot/aggregate.js → app/survey2026.js";
             }
         </script>
-        <script src="nav.js?v=e707cea1"></script>
     </body>
 </html>
