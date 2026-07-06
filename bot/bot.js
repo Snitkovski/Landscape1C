@@ -37,6 +37,18 @@ const {
 } = require("./lib/store");
 
 const WAVE = 2026; // волна сбора; данные публикуются после отсечки
+// Идентификатор «эпохи» сбора: штампуется в каждую сессию. Сменился —
+// незавершенные сессии прошлой эпохи считаются недействительными и
+// сбрасываются в начало (тест → боевая волна, или ручной сброс через env
+// EPOCH). Так брошенный посреди теста опрос не «продолжится» в волне
+const EPOCH = process.env.EPOCH || (TEST_MODE ? "2026-test" : String(WAVE));
+// Сессия из прошлой эпохи недействительна — удаляем, дальше пойдет новый intro
+function staleEpoch(chat, s) {
+    if (!s || s.epoch === EPOCH) return false;
+    delete state[chat];
+    saveState();
+    return true;
+}
 
 // ── Якорь ──
 // Несмываемое сообщение вверху чата: пока оно есть, чат не бывает пустым
@@ -250,6 +262,7 @@ async function startIntro(chat, keepAnswered) {
     const prev = state[chat] || {};
     const s = (state[chat] = {
         step: "intro",
+        epoch: EPOCH,
         answered: keepAnswered || [],
         doneRoles: [],
         anchorMsg: prev.anchorMsg,
@@ -345,6 +358,8 @@ async function onMessage(m) {
     const s = state[chat];
     // Сообщения пользователя тоже убираем — чат держим максимально чистым
     hideCard(chat, m.message_id);
+    // Сессия прошлой эпохи (сменилась волна) — начинаем заново с интро
+    if (staleEpoch(chat, s)) return startIntro(chat);
     const cmd = (m.text || "").trim().toLowerCase();
     // Сброс: стираем ответы и прогресс пользователя (с подтверждением)
     if (RESET_WORDS.includes(cmd) && s) {
@@ -459,6 +474,8 @@ async function onCallback(q) {
     // «Понятно» под справкой — просто убрать сообщение, сессия не нужна
     if (q.data === "hide:") return hideCard(chat, q.message.message_id);
     if (!s) return;
+    // Сессия прошлой эпохи (сменилась волна) — сбрасываем и начинаем заново
+    if (staleEpoch(chat, s)) return startIntro(chat);
     const [kind, val] = q.data.split(/:(.*)/);
 
     if (kind === "reset") {
@@ -684,7 +701,7 @@ async function onCallback(q) {
             console.error(`⚠ test-set.json: «${n}» не найден в data.js`),
         );
     console.log(
-        `Бот запущен. Волна ${WAVE}. Инструментов: ${L.items.length}, исключено из опроса: ${EXCLUDED.length}.` +
+        `Бот запущен. Волна ${WAVE} (эпоха ${EPOCH}). Инструментов: ${L.items.length}, исключено из опроса: ${EXCLUDED.length}.` +
             (TEST_MODE
                 ? " ⚠ ТЕСТОВЫЙ РЕЖИМ: фиксированный набор из test-set.json."
                 : ""),
