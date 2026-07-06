@@ -73,6 +73,18 @@
             .sv-card {
                 margin: 0 0 12px;
             }
+            /* маркер тестовой волны — виден на всех экранах, чтобы числа не
+               приняли за настоящие итоги */
+            .survey .test-banner {
+                margin: 0;
+                padding: 9px clamp(16px, 3vw, 24px);
+                background: color-mix(in srgb, var(--m-niche) 12%, var(--card));
+                border-bottom: 1px solid var(--edge);
+                border-left: 3px solid var(--m-niche);
+                font-size: 12px;
+                font-weight: 600;
+                color: var(--ink);
+            }
             /* Заголовок раздела — как категория на главной: крупное имя
                и большой ведущий номер, тяжелая нижняя черта; прилипает под
                верхней строкой (52px) при прокрутке */
@@ -797,6 +809,10 @@
                 <aside class="filters" id="filters" aria-label="Отборы"></aside>
 
                 <div class="sv-content">
+                    <p class="test-banner">
+                        Демонстрация на тестовых данных — это не настоящие итоги
+                        опроса
+                    </p>
                     <div class="sv-card">
                         <h2><span class="sv-h__n">01</span>Респонденты</h2>
                         <div class="sv-body">
@@ -1634,10 +1650,10 @@
                     if (!S) return;
                     const k = b.dataset.dl;
                     if (k === "tools")
-                        dlFile("stateof1c-2026-tools.csv", toolsCSV());
+                        dlFile("stateof1c-test-tools.csv", toolsCSV());
                     else if (k === "segments")
-                        dlFile("stateof1c-2026-segments.csv", segmentsCSV());
-                    else dlFile("stateof1c-2026-respondents.csv", respCSV());
+                        dlFile("stateof1c-test-segments.csv", segmentsCSV());
+                    else dlFile("stateof1c-test-respondents.csv", respCSV());
                 }),
             );
 
