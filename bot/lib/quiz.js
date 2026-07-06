@@ -11,6 +11,12 @@ const ROLES = L.axes.role.values; // разработчик / администр
 const CONTEXTS = L.axes.context.values; // франчайзи / инхаус / продукты / проекты
 const LEVELS = ["начинающий", "опытный", "эксперт"];
 
+// Тестовый режим (env TEST_MODE=1): обкатка процесса на узком кругу.
+// Колода не по зрелости, а фиксированный курируемый набор (bot/test-set.json):
+// базовые + горстка узнаваемых инструментов — коротко и предсказуемо, чтобы
+// прогнать весь UX. В боевой волне (без флага) — обычная очередь по зрелости.
+const TEST_MODE = !!process.env.TEST_MODE;
+
 // Исключения из опроса (bot/excluded.json): универсальные инструменты,
 // про которые спрашивать глупо — в итогах пойдут как «не применимо»
 let EXCLUDED = [];
@@ -26,6 +32,22 @@ try {
 // Имена исключений, которых нет в data.js (опечатки) — для проверки при старте
 const badExcluded = () =>
     EXCLUDED.filter((n) => !L.items.some((i) => i.name === n));
+
+// Фиксированная тестовая колода (bot/test-set.json): явный список имён —
+// именно они и в этом порядке показываются в TEST_MODE, отфильтрованные по роли
+let TEST_SET = [];
+try {
+    TEST_SET =
+        JSON.parse(
+            fs.readFileSync(
+                path.join(__dirname, "..", "test-set.json"),
+                "utf8",
+            ),
+        ).tools || [];
+} catch (e) {}
+// Имена набора, которых нет в data.js (опечатки) — проверяем при старте
+const badTestSet = () =>
+    TEST_SET.filter((n) => !L.items.some((i) => i.name === n));
 
 const byName = (n) => L.items.find((i) => i.name === n);
 
@@ -52,12 +74,21 @@ const pick = (role, answered, maturity) =>
         ),
     ).map((i) => i.name);
 
+// TEST_MODE: фиксированный набор в порядке файла, отфильтрованный по роли и
+// уже отвеченному. Набор — истина: excluded/сертификации тут не отсекаем
+const testQueue = (role, answered) =>
+    TEST_SET.filter((n) => {
+        const i = byName(n);
+        return i && (i.roles || []).includes(role) && !answered.includes(n);
+    });
+
 // Очередь роли: ядро из продвинутых (базовые у всех по определению —
 // в итогах пойдут как «не применимо», как и excluded.json) с вкраплениями
 // нишевых — по одному на тройку продвинутых, чтобы стена незнакомого
 // не копилась в конце. Пользователю это деление не показываем — для него
 // это просто инструменты. Порядок случайный — без позиционного смещения
 const buildQueue = (role, answered) => {
+    if (TEST_MODE) return testQueue(role, answered);
     const niche = pick(role, answered, "нишевое");
     const q = [];
     pick(role, answered, "продвинутое").forEach((name, idx) => {
@@ -68,15 +99,17 @@ const buildQueue = (role, answered) => {
 };
 // Нишевые, не попавшие в ядро: по ролям, которые респондент уже проходил
 const nichePool = (s) =>
-    shuffle(
-        L.items.filter(
-            (i) =>
-                i.maturity === "нишевое" &&
-                !s.answered.includes(i.name) &&
-                askable(i) &&
-                (i.roles || []).some((r) => s.doneRoles.includes(r)),
-        ),
-    ).map((i) => i.name);
+    TEST_MODE
+        ? [] // в тесте нишевые уже вкраплены в колоду — общий пул не вываливаем
+        : shuffle(
+              L.items.filter(
+                  (i) =>
+                      i.maturity === "нишевое" &&
+                      !s.answered.includes(i.name) &&
+                      askable(i) &&
+                      (i.roles || []).some((r) => s.doneRoles.includes(r)),
+              ),
+          ).map((i) => i.name);
 
 // Три «не знаю» подряд — поднимаем ближайший массовый (продвинутый)
 // инструмент, чтобы не добивать серией незнакомых нишевых
@@ -97,6 +130,8 @@ module.exports = {
     LEVELS,
     EXCLUDED,
     badExcluded,
+    TEST_MODE,
+    badTestSet,
     byName,
     buildQueue,
     nichePool,

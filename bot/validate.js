@@ -3,7 +3,15 @@
 "use strict";
 const fs = require("fs");
 const path = require("path");
-const { L, ROLES, badExcluded, buildQueue, EXCLUDED } = require("./lib/quiz");
+const {
+    L,
+    ROLES,
+    badExcluded,
+    badTestSet,
+    TEST_MODE,
+    buildQueue,
+    EXCLUDED,
+} = require("./lib/quiz");
 const { logoFile } = require("./lib/logos");
 
 let errors = 0;
@@ -15,11 +23,16 @@ const err = (m) => {
 // Исключения сверяются с data.js — опечатка тихо выкинет инструмент из опроса
 badExcluded().forEach((n) => err(`excluded.json: «${n}» не найден в data.js`));
 
+// Фиксированный тестовый набор тоже сверяем всегда — опечатка выкинет
+// инструмент из тестовой колоды (name должен совпадать с data.js)
+badTestSet().forEach((n) => err(`test-set.json: «${n}» не найден в data.js`));
+
 // У каждой роли должна собираться непустая очередь
+const kind = TEST_MODE ? "тестовый набор" : "с вкраплениями нишевых";
 ROLES.forEach((role) => {
     const q = buildQueue(role, []);
     if (!q.length) err(`пустая очередь у роли «${role}»`);
-    else console.log(`✓ ${role}: очередь ${q.length} (с вкраплениями нишевых)`);
+    else console.log(`✓ ${role}: очередь ${q.length} (${kind})`);
 });
 
 // Буква «ё» в текстах бота запрещена — как во всем интерфейсе ландшафта

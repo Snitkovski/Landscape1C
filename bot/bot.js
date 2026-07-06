@@ -19,6 +19,8 @@ const {
     L,
     EXCLUDED,
     badExcluded,
+    TEST_MODE,
+    badTestSet,
     byName,
     buildQueue,
     nichePool,
@@ -677,8 +679,15 @@ async function onCallback(q) {
     badExcluded().forEach((n) =>
         console.error(`⚠ excluded.json: «${n}» не найден в data.js`),
     );
+    if (TEST_MODE)
+        badTestSet().forEach((n) =>
+            console.error(`⚠ test-set.json: «${n}» не найден в data.js`),
+        );
     console.log(
-        `Бот запущен. Волна ${WAVE}. Инструментов: ${L.items.length}, исключено из опроса: ${EXCLUDED.length}.`,
+        `Бот запущен. Волна ${WAVE}. Инструментов: ${L.items.length}, исключено из опроса: ${EXCLUDED.length}.` +
+            (TEST_MODE
+                ? " ⚠ ТЕСТОВЫЙ РЕЖИМ: фиксированный набор из test-set.json."
+                : ""),
     );
     // Меню команд в телеграме — чтобы команды были находимы без подсказок
     api("setMyCommands", {
