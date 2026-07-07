@@ -125,6 +125,23 @@
                 text-underline-offset: 3px;
                 cursor: pointer;
             }
+            /* Дубль «сбросить отбор» под донатами секции 01 — справа внизу,
+               показывается только при активном отборе (наполняется в render) */
+            .survey .sv-who__foot {
+                text-align: right;
+            }
+            .survey .sv-who__foot .sv-reset {
+                margin: 10px 0 0;
+                padding: 0;
+                background: none;
+                border: none;
+                font-family: var(--body);
+                font-size: 12px;
+                color: var(--ink-soft);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                cursor: pointer;
+            }
             /* Заголовок-предложение: крупная сводка с акцентными числами
                (внутри карточки «Респонденты», над донатами) */
             .survey .sv-headline {
@@ -802,6 +819,7 @@
                         <div class="sv-body">
                             <div class="sv-headline" id="headline"></div>
                             <div class="sv-who" id="who"></div>
+                            <div class="sv-who__foot" id="whoFoot"></div>
                         </div>
                     </div>
 
@@ -1666,6 +1684,35 @@
                     .querySelectorAll(".col-dim")
                     .forEach((el) => el.classList.remove("col-dim"));
             };
+            // Устойчивая подсветка отбора («залипшее наведение»): выбранные
+            // значения оси выделены (сектор выдвинут), остальные приглушены —
+            // легенда остается полной, но видно, что именно отобрано. Состояние
+            // покоя; наведение временно перекрывает его (см. whoClear + mousemove)
+            function whoSelState() {
+                $("#who")
+                    .querySelectorAll(".sv-who__col")
+                    .forEach((col) => {
+                        const d = col.dataset.dim;
+                        const on = sel[d].size > 0;
+                        col.querySelectorAll("circle[data-name]").forEach(
+                            (c) => {
+                                const hit =
+                                    on &&
+                                    sel[d].has(
+                                        S.dims[d].indexOf(c.dataset.name),
+                                    );
+                                c.classList.toggle("is-hi", hit);
+                                c.classList.toggle("is-dim", on && !hit);
+                            },
+                        );
+                        col.querySelectorAll(".lgnd__row").forEach((r) => {
+                            const hit =
+                                on &&
+                                sel[d].has(S.dims[d].indexOf(r.dataset.name));
+                            r.classList.toggle("is-dim", on && !hit);
+                        });
+                    });
+            }
             // Какой сектор под курсором — по углу от центра доната, а не по
             // элементу под ним: выдвинутый сектор ушел бы из-под курсора,
             // подсветка снималась бы и мерцала. Кольцо 20..50 в системе viewBox
@@ -1689,6 +1736,7 @@
                 whoClear();
                 if (!col) {
                     paintWho(null);
+                    whoSelState();
                     tip.style.display = "none";
                     return;
                 }
@@ -1697,6 +1745,7 @@
                 const name = row ? row.dataset.name : sectorAt(col, e);
                 if (!name) {
                     paintWho(null);
+                    whoSelState();
                     tip.style.display = "none";
                     return;
                 }
@@ -1741,6 +1790,7 @@
             $("#who").addEventListener("mouseleave", () => {
                 whoClear();
                 paintWho(null);
+                whoSelState();
                 tip.style.display = "none";
             });
             // Клик по значению (строка легенды ИЛИ сектор) — как чип отбора на
@@ -1756,6 +1806,13 @@
                 if (ix < 0) return;
                 sel[d].has(ix) ? sel[d].delete(ix) : sel[d].add(ix);
                 whoPrevKey = ""; // после перерисовки состояние доната иное
+                render();
+            });
+            // Дубль «сбросить отбор» под донатами (см. #whoFoot в render)
+            $("#whoFoot").addEventListener("click", (e) => {
+                if (e.target.id !== "resetWho") return;
+                for (const [d] of DIMS) sel[d].clear();
+                whoPrevKey = "";
                 render();
             });
 
@@ -1881,6 +1938,10 @@
                 filters();
                 headline();
                 whoCharts();
+                whoSelState();
+                $("#whoFoot").innerHTML = DIMS.some(([d]) => sel[d].size)
+                    ? `<button class="sv-reset" id="resetWho">сбросить отбор</button>`
+                    : "";
                 quadrant();
                 ranges();
                 growth();
