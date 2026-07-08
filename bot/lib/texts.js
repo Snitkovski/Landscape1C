@@ -23,7 +23,7 @@ const plural = (n, one, few, many) => {
 };
 
 const ANS_MARK = { работал: "✅", слышал: "👂", "не знаю": "🤷" };
-const SENT_MARK = { да: " 👍", нет: " 👎" };
+const SENT_MARK = { да: " 🔥", нет: " 👎" };
 // Строка сводки: значок ответа, инструмент, значок сентимента
 const ansRow = (r) =>
     `${ANS_MARK[r.answer]} ${esc(r.tool)}${(r.sentiment && SENT_MARK[r.sentiment]) || ""}`;
@@ -34,7 +34,7 @@ const card = (i, tag) =>
     esc(i.description) +
     (i.why ? `\n\n💡 ${esc(i.why)}` : "");
 
-// Прошлый ответ для пометки на карточке исправления: «✅ работал 👍»
+// Прошлый ответ для пометки на карточке исправления: «✅ работал 🔥»
 const prevAns = (r) =>
     `${ANS_MARK[r.answer]} ${r.answer === "не знаю" ? "впервые вижу" : r.answer}${(r.sentiment && SENT_MARK[r.sentiment]) || ""}`;
 
@@ -243,7 +243,7 @@ const K = {
     sent: {
         работал: [
             [
-                { text: "👍 Да", callback_data: "s:да" },
+                { text: "🔥 Да", callback_data: "s:да" },
                 { text: "👎 Нет", callback_data: "s:нет" },
             ],
             [{ text: "⏭ Дальше", callback_data: "s:-" }],
