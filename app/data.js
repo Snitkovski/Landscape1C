@@ -1,6 +1,6 @@
 // Данные ландшафта (Вариант B). Сгенерировано редактором разметки (editor.html).
 window.LANDSCAPE = {
-  "updated": "3 июля 2026",
+  "updated": "8 июля 2026",
   "categories": [
     "Прототипирование",
     "Диаграммы",
@@ -5325,7 +5325,7 @@ window.LANDSCAPE = {
     {
       "name": "1С:Эксперт по технологическим вопросам",
       "added": "2026-06-08",
-      "updated": "2026-06-12",
+      "updated": "2026-07-08",
       "category": "Сертификация",
       "subcategory": "Сертификация от 1С",
       "logo": "1c.png",
@@ -5334,6 +5334,10 @@ window.LANDSCAPE = {
       "homepage": null,
       "repo": null,
       "start": [
+        {
+          "label": "Разбор задач с экзамена 1С:Эксперт",
+          "url": "https://developer.1c.ru/applications/Console?state=expertcourse"
+        },
         {
           "label": "Настольная книга 1С:Эксперта по технологическим вопросам",
           "url": "https://online.1c.ru/books/book/20752408/"
@@ -9696,6 +9700,48 @@ window.LANDSCAPE = {
       "depends": [
         "Visual Studio Code (VSCode)",
         "1C:Предприятие.Элемент Скрипт"
+      ]
+    },
+    {
+      "name": "gRPC",
+      "added": "2026-07-08",
+      "updated": "2026-07-08",
+      "category": "API и веб-сервисы",
+      "subcategory": null,
+      "logo": "grpc.svg",
+      "description": "Бинарный протокол вызова удаленных процедур поверх HTTP/2 с контрактом на Protocol Buffers",
+      "why": "Быстрый типизированный способ связать 1С с внешними сервисами и микросервисами — нативная поддержка появляется в платформе с версии 8.5.5",
+      "homepage": "https://grpc.io",
+      "repo": "https://github.com/grpc/grpc",
+      "start": [
+        {
+          "label": "Поддержка протокола gRPC в платформе 1С",
+          "url": "https://wonderland.v8.1c.ru/blog/podderzhka-protokola-grpc/"
+        },
+        {
+          "label": "gRPC: официальная документация",
+          "url": "https://grpc.io/docs/"
+        }
+      ],
+      "maturity": "нишевое",
+      "origin": "зарубежное",
+      "license": "open-source",
+      "availability": "доступен",
+      "roles": [
+        "разработчик",
+        "администратор"
+      ],
+      "contexts": [
+        "продукты",
+        "проекты"
+      ],
+      "aliases": [
+        "грпс",
+        "грпц",
+        "protobuf",
+        "протобаф",
+        "protocol buffers",
+        "gRPC"
       ]
     }
   ]
