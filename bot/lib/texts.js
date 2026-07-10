@@ -5,6 +5,10 @@
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 
+// В данных роль/уровень/контекст строчными (значения осей, callback_data),
+// пользователю показываем с заглавной
+const cap = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
+
 // Тестовый прогон (env TEST_MODE): в текстах явно говорим, что это не боевая
 // волна — иначе тестер решит, что уже отвечает «по-настоящему»
 const TEST_MODE = !!process.env.TEST_MODE;
@@ -66,7 +70,7 @@ const T = {
         "<b>Продукты</b> — разработка тиражной конфигурации или продукта\n\n" +
         "<b>Проекты</b> — масштабные внедрения (например, ЕРП): обследование, миграции, интеграции",
     confirm: (s, n) =>
-        `<b>Проверим:</b>\n\n- роль: <b>${s.role}</b>\n- уровень: <b>${s.level}</b>\n- контекст: <b>${s.context}</b>\n\nВпереди <b>${n}</b> ${plural(n, "инструмент", "инструмента", "инструментов")} твоей роли. Все ок?`,
+        `<b>Проверим:</b>\n\n- роль: <b>${cap(s.role)}</b>\n- уровень: <b>${cap(s.level)}</b>\n- контекст: <b>${cap(s.context)}</b>\n\nВпереди <b>${n}</b> ${plural(n, "инструмент", "инструмента", "инструментов")} твоей роли. Все ок?`,
     card: (i, pos, total) => card(i, `${pos + 1}/${total}`),
     fixCard: (i, prev) =>
         card(
@@ -148,7 +152,7 @@ const T = {
             ? "🧪 Тест · Опрос: инструменты 1С"
             : "📋 Опрос: инструменты 1С — 2026",
         quiz: (block, pos, total) =>
-            `${A || "📊 "}${block}: ${pos} из ${total}`,
+            `${A || "📊 "}${cap(block)}: ${pos} из ${total}`,
         offer: (n) => `${A || "📊 "}Блок пройден · ответов: ${n}`,
         done: (n) => `${A || "🏁 "}Опрос пройден · ответов: ${n}`,
     },
@@ -207,7 +211,7 @@ const btnRows = (labels, prefix, perRow = 2) => {
     labels.forEach((l, i) => {
         if (i % perRow === 0) rows.push([]);
         rows[rows.length - 1].push({
-            text: l,
+            text: cap(l),
             callback_data: `${prefix}:${l}`,
         });
     });
@@ -280,10 +284,13 @@ const K = {
     // Кнопки экрана «можно продолжить». Пул редких — по всем пройденным
     // ролям, поэтому без «твоей роли» в надписи
     nicheBtn: (n) => ({
-        text: `🔍 редкие инструменты (${n})`,
+        text: `🔍 Редкие инструменты (${n})`,
         callback_data: "more:~niche",
     }),
-    roleBtn: (r, n) => ({ text: `${r} (${n})`, callback_data: `more:${r}` }),
+    roleBtn: (r, n) => ({
+        text: `${cap(r)} (${n})`,
+        callback_data: `more:${r}`,
+    }),
     finishBtn: { text: "🏁 Завершить", callback_data: "more:-" },
 };
 
